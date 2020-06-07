@@ -1,5 +1,7 @@
 % Pretty TeX class
 % @author Peter Waldert
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesClass{prettytex/base}[2020/06/07 Pretty TeX base class]
 
 % Base class
 \LoadClass[
