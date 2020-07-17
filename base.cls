@@ -24,9 +24,15 @@
 \setlength{\parskip}{0.5em}
 \setlength{\headsep}{3em}
 
+% Colors
+\usepackage{xcolor}
+\definecolor{prettyblue}{rgb}{0,0.6666,1}
+\definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
+\definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
+
 % Font
 \usepackage{amsfonts}
-\usepackage{kpfonts}
+%\usepackage{kpfonts}
 
 % Figures
 \usepackage{graphicx}
@@ -44,7 +50,7 @@
 \usepackage{url}
 \usepackage[
 	colorlinks=true,
-	urlcolor=blue,
+	urlcolor=prettyblue,
 	linkcolor=black
 ]{hyperref}
 
@@ -79,7 +85,26 @@
 }
 
 % Citing, References
-\usepackage{cite}  % numeric citation
+%\usepackage{cite}  % numeric citation
+%\usepackage{pdfpages}
+\usepackage[backend=biber]{biblatex}
 
 % Macros, Commands helper
 \usepackage{xparse}  % \NewDocumentCommand, etc.
+\usepackage{lipsum}
+
+% Include PDFs
+\usepackage{pdfpages}
+
+% Leftbar-Frame
+\renewenvironment{leftbar}[1][\hsize]
+{%
+	\def\FrameCommand
+	{%
+		{\color{prettyblue}\vrule width 3pt}%
+		\hspace{0pt}%must no space.
+		\fboxsep=.8cm\colorbox{lightgreybg}%
+	}%
+	\MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+}
+{\endMakeFramed}
