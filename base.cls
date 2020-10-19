@@ -16,8 +16,7 @@
 
 % Spacing
 \usepackage[
-	margin=2.1cm,
-	includeheadfoot
+	margin=2.1cm
 ]{geometry}
 \usepackage{parskip}
 \setlength{\parindent}{0em}
@@ -26,7 +25,7 @@
 
 % Colors
 \usepackage{xcolor}
-\definecolor{prettyblue}{rgb}{0,0.6666,1}
+\definecolor{themecolor}{rgb}{0,0.6666,1}
 \definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
 \definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
 
@@ -50,12 +49,14 @@
 \usepackage{url}
 \usepackage[
 	colorlinks=true,
-	urlcolor=prettyblue,
+	urlcolor=themecolor,
 	linkcolor=black
 ]{hyperref}
 
 % Headings
 \usepackage{titling}
+\usepackage{titlesec}
+\titlelabel{\color{themecolor}\thetitle\quad}
 
 % Math
 \usepackage{amsmath}
@@ -101,7 +102,7 @@
 {%
 	\def\FrameCommand
 	{%
-		{\color{prettyblue}\vrule width 3pt}%
+		{\color{themecolor}\vrule width 3pt}%
 		\hspace{0pt}%must no space.
 		\fboxsep=.8cm\colorbox{lightgreybg}%
 	}%
