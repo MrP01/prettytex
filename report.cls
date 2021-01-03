@@ -18,4 +18,6 @@
 
 % Language
 \usepackage[ngerman]{babel}
+\addto\extrasngerman{\def\figureautorefname{Abb.}}
+\addto\extrasngerman{\def\tableautorefname{Tab.}}
 
