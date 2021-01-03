@@ -15,3 +15,7 @@
 \fancyhead[L]{\leftmark}
 \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
 \renewcommand\headrule{\color{headrulecolor}\hrulefill}
+
+% Language
+\usepackage[ngerman]{babel}
+
