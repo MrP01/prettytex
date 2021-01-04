@@ -11,7 +11,7 @@
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[R]{\@author \enspace \textcolor{themecolor}{\textbullet}}
+\fancyhead[R]{\@author \enspace \textcolor{themecolor3}{\textbullet}}
 \fancyhead[L]{\leftmark}
 \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
 \renewcommand\headrule{\color{headrulecolor}\hrulefill}
