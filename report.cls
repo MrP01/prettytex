@@ -18,6 +18,7 @@
 
 % Language
 \usepackage[ngerman]{babel}
-\addto\extrasngerman{\def\figureautorefname{Abb.}}
-\addto\extrasngerman{\def\tableautorefname{Tab.}}
+\addto\extrasngerman{\def\figureautorefname{Abbildung}}
+\addto\extrasngerman{\def\tableautorefname{Tabelle}}
+\addto\extrasngerman{\def\equationautorefname{Gleichung}}
 

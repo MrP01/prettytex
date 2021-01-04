@@ -25,7 +25,8 @@
 
 % Colors
 \usepackage{xcolor}
-\definecolor{themecolor}{rgb}{0,0.6666,1}
+\definecolor{themecolor}{HTML}{00A8FF}
+\definecolor{themecolor2}{HTML}{659157}
 \definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
 \definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
 
@@ -50,7 +51,7 @@
 \usepackage[
 	colorlinks=true,
 	urlcolor=themecolor,
-	linkcolor=black
+	linkcolor=themecolor2
 ]{hyperref}
 
 % Headings
