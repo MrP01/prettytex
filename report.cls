@@ -1,4 +1,4 @@
-\LoadClass{base}
+\LoadClass{../prettytex/base}
 
 % Adjust geometry to include head and foot
 \newgeometry{
@@ -21,4 +21,7 @@
 \addto\extrasngerman{\def\figureautorefname{Abbildung}}
 \addto\extrasngerman{\def\tableautorefname{Tabelle}}
 \addto\extrasngerman{\def\equationautorefname{Gleichung}}
+\addto\extrasngerman{\def\sectionautorefname{Abschnitt}}
+\addto\extrasngerman{\def\subsectionautorefname{Unterabschnitt}}
+\addto\extrasngerman{\def\subsubsectionautorefname{Unterunterabschnitt}}
 

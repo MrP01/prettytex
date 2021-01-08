@@ -40,6 +40,7 @@
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage[singlelinecheck=false]{caption}
+\usepackage{tikz}
 
 % Lists
 \usepackage{enumitem}
@@ -50,9 +51,10 @@
 % Hyper stuff
 \usepackage{url}
 \usepackage[
-	colorlinks=true,
-	urlcolor=themecolor,
-	linkcolor=themecolor2
+    colorlinks=true,
+    urlcolor=themecolor,
+    linkcolor=themecolor2,
+    citecolor=themecolor3,
 ]{hyperref}
 
 % Headings
