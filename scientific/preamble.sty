@@ -1,0 +1,103 @@
+\ProvidesPackage{preamble}
+
+%----------------------------------------------------------------------------------------------------------------------
+% package loading: general
+%----------------------------------------------------------------------------------------------------------------------
+\usepackage[utf8]{inputenc}                                 % allows ö,ä,ü in .tex source files
+\usepackage[T1]{fontenc}                                    % sets fontencoding
+\usepackage{lmodern}                                        % sets lmoderm font
+\usepackage{import}                                         % allows for file-imports in documents
+\usepackage{babel}                                          % language control
+\usepackage{fancyhdr}                                       % fancy headers with lots of customization
+\usepackage[table]{xcolor}                                  % color names 
+\usepackage{float}                                          % adds several positions and support for latex floats
+\usepackage{epigraph}                                       % adds an epigraph (quotation)
+\usepackage{hhline}                                         % adds double-lines for tables
+\usepackage{listings}                                       % adds environments for code-listings
+\usepackage{bbm}                                            % allows for font scaling
+
+%----------------------------------------------------------------------------------------------------------------------
+% package loading: mathematics
+%----------------------------------------------------------------------------------------------------------------------
+\usepackage{amsmath}                                        % commom mathematics package  
+\usepackage{amssymb}                                        % commom math symbols
+\usepackage{amsthm}                                         % theme for ams math
+\usepackage{amsfonts}                                       % fonts for ams
+\usepackage{cancel}                                         % adds a strikethrough in math-mode
+\usepackage{esint}                                          % beautiful integrals
+\usepackage{mathtools}                                      % math expansion set
+\usepackage{siunitx}                                        % adds neat methods of writing si-units
+
+%----------------------------------------------------------------------------------------------------------------------
+% package loading: graphics
+%----------------------------------------------------------------------------------------------------------------------
+\usepackage{pgfplots}                                       % loads tikz as well, used for plots/graphics
+\usepackage{tikz-3dplot}                                    % loads extra stuff for 3d-support in tikz
+\usepackage{geometry}                                       % page layout control
+
+%----------------------------------------------------------------------------------------------------------------------
+% package options: geometry
+%----------------------------------------------------------------------------------------------------------------------
+\geometry{                                                  % set package options for geometry   
+  a4paper,                                                  % sets paper-size to a4
+  twoside,                                                  % sets the paper to be two-sided
+  left=1.5cm,                                               % left page margin
+  right=1.5cm,                                              % right page margin
+  top=1cm,                                                  % top page margin
+  bottom=1cm,                                               % botoom page margin
+  includeheadfoot                                           % include footer in margin calculations
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% package options: pgfplots
+%----------------------------------------------------------------------------------------------------------------------
+\pgfplotsset{compat=1.16}                                   % sets compatibility level of pgfplots
+
+\usepgfplotslibrary{                                        % select specific additional libraries for pgf
+  patchplots,                                               % allows for some crazy path manipulations
+  fillbetween                                               % able to easily fill area between two curves
+}
+
+\usetikzlibrary{                                            % select additional libraries for tikz
+  calc,                                                     % adds simple calculation methods
+  arrows.meta,                                              % allows for fine-grained arrow stylization
+  patterns,                                                 % adds some fill-patterns
+  shapes.misc,                                              % more shapes for \draw
+  patterns.meta,                                            % fine grained pattern control/definition
+  matrix,                                                   % draw matrix like structures
+  decorations                                               % path decorations (e.g. curly line with 'snake')
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% set equation numbering | custom environments
+%----------------------------------------------------------------------------------------------------------------------
+% TODO: enable setting by custom class or move to class
+\numberwithin{equation}{chapter}                            % number equations per chapter
+\newtheorem{definition}{Definition}[chapter]                % number definitons per chapter
+\newtheorem{theorem}{Satz}[chapter]                         % number theorems per chapter
+\newtheorem{example}{Beispiel}[chapter]                     % number examples per chapter
+
+\newcommand*\col[2]{\textcolor{#1}{#2}}                     % shorten textcolor command
+
+%tabular with local arraystretch given by parameter (use with \begin{Tabular}[stretch]{cols} ...)
+\newenvironment{Tabular}[2][1]{\def\arraystretch{#1}\tabular{#2}}{\endtabular} 
+  
+%----------------------------------------------------------------------------------------------------------------------
+% listings styling definiton
+%----------------------------------------------------------------------------------------------------------------------
+\lstdefinestyle{code_style}{                                % defines a new style 'code_style'
+    backgroundcolor=\color{backcolour},                     % sets the background color of the entire block
+    commentstyle=\color{codegreen},                         % sets the color of comments to codegreen
+    keywordstyle=\color{magenta},                           % sets the color of keywords to magenta
+    numberstyle=\tiny\color{codegray},                      % makes line-numbers small and colors them gray
+    stringstyle=\color{green},                              % sets the color of strings to green
+    basicstyle=\ttfamily\footnotesize,                      % sets the font and size 
+    breakatwhitespace=false,                                % disable linebreaks at whitespace
+    breaklines=true,                                        % enable automatic linebreaks of long lines
+    captionpos=b,                                           % sets caption position to bottom
+    keepspaces=true,                                        % converts tabs to spaces and keeps them for column width
+    showspaces=false,                                       % disables space-indication with symbol
+    showstringspaces=false,                                 % disables space-indication symbols in strings
+    showtabs=false,                                         % disables tab-indication with symbol 
+    tabsize=1                                               % sets conversion size of tabs
+}
