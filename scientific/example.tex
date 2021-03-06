@@ -1,0 +1,204 @@
+\documentclass{report}
+
+\usepackage{preamble}   %should be loaded before math
+\usepackage{math}
+
+\lstset{style=code_style}
+
+\begin{document}
+  \section{General Information}
+    The files \textit{math.sty} and \textit{preamble.sty} should provide you a simple yet effectie suite of
+    macors for quick writing of mathematical/scientific papers. To properly load them you should include the
+    following in your preamble:
+    \begin{center}
+      \lstinputlisting[language={latex}]{preamble_listing.tex}  
+    \end{center}
+
+    It is important that you maintain the order of the packags, since math.sty uses some packages included in
+    preamble.sty. Other than providing an extensive list of mathematical operators from math, there 
+    are some useful commands in preamble.sty too.  The one that I myself use quite often is
+    \lstinline[language=latex]|\col{<color>}{<text>}|. Altough xcolor defines \lstinline|\textcolor|,
+    it can get kind of ''clunky'' in tables or similar, so i wrote a shorter command.
+
+
+  \section{Symbol Index}
+    % \lstinline cannot be used in \multicolumn
+    % see (in german) https://golatex.de/tabelle-mit-multicolumn-und-lstinline-t20748.html
+    % TODO: find better/more elegant solution
+
+    \newsavebox\tveccol
+    \begin{lrbox}{\tveccol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\tvec{x_1}{x_2}{x_3}|
+      \end{minipage}
+    \end{lrbox}
+
+    \newsavebox\arsinhcol
+    \begin{lrbox}{\arsinhcol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\Arsinh|
+      \end{minipage}
+    \end{lrbox}
+
+    \newsavebox\arcoshcol
+    \begin{lrbox}{\arcoshcol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\Arcosh|
+      \end{minipage}
+    \end{lrbox}
+
+    \newsavebox\artanhcol
+    \begin{lrbox}{\artanhcol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\Artanh|
+      \end{minipage}
+    \end{lrbox}
+
+    \newsavebox\arcotanhcol
+    \begin{lrbox}{\arcotanhcol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\Arcoth|
+      \end{minipage}
+    \end{lrbox}
+
+    \newsavebox\arccotcol
+    \begin{lrbox}{\arccotcol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\arccot|
+      \end{minipage}
+    \end{lrbox}
+
+    
+
+  \begin{center}
+    \begin{longtable}{Cl Cc Cc Cl Cc Cc}
+      \textbf{Symbol} & \textbf{Math-Mode} & \textbf{Result} &  \textbf{Symbol} & \textbf{Math-Mode} & \textbf{Result}\\
+      \multicolumn{2}{Cl}{\textbf{Symbol}} & \multicolumn{2}{Cc}{\textbf{Math-Mode}} & \multicolumn{2}{Cc}{\textbf{Result}}\\
+      \hhline{======}
+      \multicolumn{6}{Cc}{\textit{Vectors}}\\
+      \hline
+      Column Vector & \lstinline|\pvec{x_1}{x_2}|&$\pvec{x_1}{x_2}$ & 
+        Dot-Product & \lstinline|\dotp{x_1}{x_2}| & $\dotp{x_1}{x_2}$\\
+      \multicolumn{2}{Cl}{Column Vector} & \multicolumn{2}{Cc}{\usebox\tveccol} &
+        \multicolumn{2}{Cc}{$\tvec{x_1}{x_2}{x_3}$} \\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Matrices}}\\
+      \hline
+      Bold faced Matrix & \lstinline|\mat{M}| & $\mat{M}$&Determinant & \lstinline|\det|&$\det$\\
+      Matrix-Rank (de) & \lstinline|\Rang| & $\Rang$ & Matrix-Rank (en) &\lstinline|\Rank|&$\Rank$\\
+      Matrix-Trace (de) & \lstinline|\Spur| & $\Spur$ & Matrix-Trace (en) &\lstinline|\Trace|&$\Trace$\\
+      Adjunct-Matrix & \lstinline|\Adj| & $\Adj$ & Cofactor-Matrix & \lstinline|\Cof| & $\Cof$\\
+      Identity-Matrix (de) &\lstinline|\imate| & $\imate$ & Identity-Matrix (en) & \lstinline|\imati| & $\imati$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Calculus and Functions}}\\
+      \hline
+      Differential d & \lstinline|\diff|& $\diff$ & Divergence & \lstinline|\divs| & $\divs$\\
+      Derivative & \lstinline|\der{f}{x}| & $\der{f}{x}$ & 
+        Partial Derivative & \lstinline|\per{f}{x_1}| & $\per{f}{x_1}$\\
+      n-th Derivative & \lstinline|\ner{f}{x}{n}|&$\ner{f}{x}{n}$ &
+        n-th Partial Derivative & \lstinline|\pnr{f}{x_1}{n}| & $\pnr{f}{x_1}{n}$\\
+      Curl (de) & \lstinline|\rot| & $\rot$ & Curl (en) & \lstinline|\curl| & $\curl$\\
+      Limit (noarg) & \lstinline|\lims| & $\lims$ & Limit & \lstinline|\lim{n}{\infty}| & $\lim{n}{\infty}$\\
+      Infimum (noarg) & \lstinline|\infs| & $\infs$ & Infimum & \lstinline|\inf{M}| & $\inf{M}$\\
+      Supremum (noarg) & \lstinline|\sups| & $\sups$ & Supremum & \lstinline|\sup{M}| & $\sup{M}$\\ 
+      Limes Inferior (noarg) & \lstinline|\liminfs| & $\liminfs$ & Limes Inferior & \lstinline|\liminf{n}{\infty}| &
+        $\liminf{n}{\infty}$\\
+      Limes Superior  (noarg) & \lstinline|\limsups| & $\limsups$ & Limes Superior & $\limsup{n}{\infty}$ & 
+        $\limsup{n}{\infty}$\\
+      Function Image (de) & \lstinline|\Bild| & $\Bild$ & Function Image (en) & \lstinline|\Img| & $\Img$ \\
+      \multicolumn{2}{Cl}{Area Sinus hyperbolicus} & \multicolumn{2}{Cc}{\usebox\arsinhcol} & 
+        \multicolumn{2}{Cc}{$\Arsinh$}\\
+      \multicolumn{2}{Cl}{Area Cosinus hyperbolicus} & \multicolumn{2}{Cc}{\usebox\arcoshcol} & 
+        \multicolumn{2}{Cc}{$\Arcosh$}\\
+      \multicolumn{2}{Cl}{Area Tangens hyperbolicus} & \multicolumn{2}{Cc}{\usebox\artanhcol} & 
+        \multicolumn{2}{Cc}{$\Artanh$}\\
+      \multicolumn{2}{Cl}{Area Cotanges hyperbolicus} & \multicolumn{2}{Cc}{\usebox\arcotanhcol} & 
+        \multicolumn{2}{Cc}{$\Arcoth$}\\
+      \multicolumn{2}{Cl}{Arcus Cotanges} & \multicolumn{2}{Cc}{\usebox\arccotcol} & 
+        \multicolumn{2}{Cc}{$\arccot$}\\
+      \pagebreak
+      \hline
+      \multicolumn{6}{Cc}{\textit{Logic}}\\
+      \hline
+      Bijunction & \lstinline|\bij| & $\bij$ \\
+      Equivalent & \lstinline|\eqv| & $\eqv$ & Not Equivalent & \lstinline|\neqv| & $\neqv$\\
+      Right Subjunction & \lstinline|\subj| & $\subj$ & Left Subjunction & \lstinline|\lsubj| & $\lsubj$\\
+      Not Right Subjunction & \lstinline|\nsubj| & $\nsubj$ & Not Left Subjunction & \lstinline|\nlsubj| & $\nlsubj$\\
+      Right Implication & \lstinline|\implies| & $\implies$ & Left Implication & \lstinline|\limplies| & $\limplies$\\
+      Not Right Implication & \lstinline|\nimplies| & $\nimplies$ & Not Left Implication & \lstinline|\nlimplies| &
+        $\nlimplies$\\
+      Symbol for True (de) & \lstinline|\dtrue| & $\dtrue$ & Symbol for True (en) & \lstinline|\etrue| & $\etrue$\\
+      Symbol for False (de) & \lstinline|\dfalse| & $\dfalse$ & Symbol for False (en) & \lstinline|\efalse| &$\efalse$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Equations}}\\
+      \hline
+      Should be equal to & \lstinline|\feq| & $\feq$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Constants}}\\
+      \hline
+      Imaginary Unit & \lstinline|\i| &  $\i$ & Jimaginary Unit (EE) & \lstinline|\j| & $\j$\\
+      Euler's Number & \lstinline|\e| & $\e$ & &&\\
+      \hline 
+      \multicolumn{6}{Cc}{\textit{Number Theory}}\\
+      \hline
+      GCD (de) & \lstinline|\ggT| & $\ggT$ & GCD (en)&\lstinline|\gcd|& $\gcd$\\
+      LCM (de) & \lstinline|\kgV| & $\kgV$ & LCM (en)&\lstinline|\lcm|& $\lcm$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Signal Transforms}}\\
+      \hline
+      Laplace-Transformed & \lstinline|\ltr{x}| & $\ltr{x}$ & Z-Transformed & \lstinline|\ztr{x}| & $\ztr{x}$\\
+      Laplace-Transformation & \lstinline|\lap{x}| & $\lap{x}$ & Z-Transformed & \lstinline|\zat{x}| & $\zat{x}$\\
+      Fourier-Transformation & \lstinline|\frt| & $\frt$ & Fourier-Transformation & \lstinline|\fat{x}| & $\fat{x}$\\
+      Fourier-Series (de) & \lstinline|\frr| & $\frr$ & Fourier-Series (en) & \lstinline|\frs| & $\frs$\\
+      DFT & \lstinline|\dft| & $\dft$ & DTFT & \lstinline|\dtft| & $\dtft$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Custom TikZ-Symbols for Signal Transforms}}\\
+      \hline
+      Laplace-Transformation & \lstinline|\ltransf| & $\ltransf$ & Inverse Laplace-Transformation & 
+        \lstinline|\Ltransf| & $\Ltransf$\\
+      Z-Transformation & \lstinline|\ztransf| & $\ztransf$ & Inverse Z-Transformation & \lstinline|\Ztransf| &
+        $\Ztransf$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Sets}}\\
+      \hline
+      Natural Numbers & \lstinline|\N| & $\N$ & Integers & \lstinline|\Z| & $\Z$\\
+      Rational Numbers & \lstinline|\Q| & $\Q$ & Irrational Numbers & \lstinline|\I| & $\I$\\
+      Real Numbers & \lstinline|\R| & $\R$ & Complex Numbers & \lstinline|\C|& $\C$\\
+      Set of Primes & \lstinline|\P| & $\P$ & Transcendetal Numbers & \lstinline|\T| & $\T$\\
+      General Field (de) & \lstinline|\K| & $\K$ & General Field (en) & \lstinline|\F| & $\F$\\
+      \hhline{======}\\
+      \caption{All symbols and operators from math.sty}
+    \end{longtable}
+  \end{center}
+
+  As you might have noticed, some of the entries in the table above feature either (de) or (en). These
+  typically refer to language-dependet Operators. A classic example is the Curl of a Vector-Field. In English, the
+  operator is either $\nabla\times\mat{V}$ or $\curl(\mat{V})$. In German however, the cross-prodcut
+  $\nabla\times\mat{V}$ ist referred to as \textit{Rotation von $\mat{V}$}\footnote{Rotation of $\mat{V}$}. 
+  Hence the Operator $\rot(\mat{V})$.
+
+  There also exist some limits which take no arguments, which is listed with (noarg). This was mostly done
+  to provide a simple text command for just the operator. If you e.g. just want to write: 
+  \textit{The limes superior refers to the largest ...} and want to use the symbol $\limsups$ in text without any
+  subscript.
+
+  \section{A Word on Tables}
+    Tables in \LaTeX can be quite a pain, especially correct vertical spacing and alignemnt. To avoid maximum 
+    frustration, the package \lstinline|cellspace| is loaded. It allows to define a minimal distance to the top
+    and the bottom of a row. To enable this functionality in your tables, you need to modify your column-list by
+    adding \lstinline|S| in front of your column type, e.g. \lstinline|\begin{tabular}{Sc Sl Sr}|. 
+    \textbf{Note:} If you have \lstinline|siunitx| loaded\footnote{preamble loads this package} you need to
+    write \lstinline|Cc| instead.  
+
+    The standard value for space to top/bottom is 4pt. You can change this by modifying the corresponging commands
+    in preamble.sty:
+    \begin{itemize}
+      \item \lstinline|\setlength\cellspacetopline|  controls the spacing to the top
+      \item \lstinline|\setlength\cellspacebottomline| controls the spacing to the bottom
+    \end{itemize}
+
+    preamble also includes the \lstinline|longtable| package. This allows for tables to perform pagebreak. A
+    pagebreak can be manually inserted by typing \lstinline|\pagebreak| in the table-contents. In order for
+    this to work, the longtable-environment mustn't be in a table-environment. So wrap your longtable in
+    a center and put the caption as a row element.
+\end{document}

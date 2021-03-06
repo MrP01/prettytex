@@ -13,8 +13,8 @@
 \newcommand*\mat[1]{\mathbf{#1}}                              % write matrix-variable in bold
 \newcommand*\Rang{\mathrm{Rang}}                              % rank of a matrix (german)
 \newcommand*\Rank{\mathrm{Rank}}                              % rank of a matrix (english)
-\newcommand*\spur{\mathrm{Spur}}                              % trace of a matrix (german)
-\newcommand*\trace{\mathrm{Trace}}                            % trace of a matrix (english)
+\newcommand*\Spur{\mathrm{Spur}}                              % trace of a matrix (german)
+\newcommand*\Trace{\mathrm{Trace}}                            % trace of a matrix (english)
 \renewcommand{\det}{\mathrm{det}}                             % determinant of a matrix
 \newcommand*\Adj{\mathrm{Adj}}                                % adjunct matrix
 \newcommand*\Cof{\mathrm{Cof}}                                % cofactor matrix
@@ -38,8 +38,8 @@
 \renewcommand{\lim}[2]{\underset{#1\subj #2}{\lims}}          % limit with arguments
 \renewcommand{\limsup}[2]{\underset{#1\subj #2}{\limsups\;}}  % limes superior with arguments
 \renewcommand{\liminf}[2]{\underset{#1\subj #2}{\liminfs\;}}  % limes inferior with arguments
-\renewcommand{\sup}[1]{\sups\Big(#1\Big)}                     % supremum with argument
-\renewcommand{\inf}[1]{\infs\Big(#1\Big)}                     % infimum with argument
+\renewcommand{\sup}[1]{\sups\big(#1\big)}                     % supremum with argument
+\renewcommand{\inf}[1]{\infs\big(#1\big)}                     % infimum with argument
 \newcommand*\Bild{\mathrm{Bild}}                              % image of a function (german)
 \newcommand*\Img{\mathrm{Img}}                                % image of a function (english)
 \newcommand*\der[2]{\frac{\diff #1}{\diff #2}}                % derivative
@@ -56,15 +56,21 @@
 \newcommand*\bij{\leftrightarrow}                             % bijunction
 \newcommand*\subj{\rightarrow}                                % subjunction ->
 \newcommand*\lsubj{\leftarrow}                                % left subjunction <-
-\newcommand*\nsubj{\cancel{\rightarrow}}                      % not subjunction
-\newcommand*\nlsubj{\cancel{\leftarrow}}                      % not left subjunction
+\newcommand*\nsubj{\cancel{\subj}}                      % not subjunction
+\newcommand*\nlsubj{\cancel{\lsubj}}                      % not left subjunction
 \newcommand*\eqv{\Leftrightarrow}                             % eqvivalent
 \newcommand*\neqv{\cancel{\eqv}}                              % not equivalent
-\newcommand*\true{\mathrm{W}}                                 % symbol for true (german)       
-\newcommand*\false{\mathrm{F}}                                % symbol for false (german)
+\renewcommand{\implies}{\Rightarrow}                          % implies (with shorter arrow)
+\newcommand*\limplies{\Leftarrow}                             % left implies
+\newcommand*\nimplies{\cancel{\implies}}                      % not implies
+\newcommand*\nlimplies{\cancel{\limplies}}                    % not left implies
+\newcommand*\dtrue{\mathrm{W}}                                % symbol for true (german)       
+\newcommand*\dfalse{\mathrm{F}}                               % symbol for false (german)
+\newcommand*\etrue{\mathrm{T}}                                % symbol for true (english)
+\newcommand*\efalse{\mathrm{F}}                               % symbol for false (english)  
 
 %----------------------------------------------------------------------------------------------------------------------
-% eqations
+% equations
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand*\feq{\overset{!}{=}}                              % should equal to
 
@@ -78,9 +84,9 @@
 %----------------------------------------------------------------------------------------------------------------------
 % number theory
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\ggT{\mathrm{ggT}}                                % largest common divisor (german)
+\newcommand*\ggT{\mathrm{ggT}}                                % greatest common divisor (german)
 \newcommand*\kgV{\mathrm{kgV}}                                % least commom multiple (german)
-\newcommand*\lcd{\mathrm{lcd}}                                % largest common divisor (english)
+\renewcommand{\gcd}{\mathrm{gcd}}                             % greatest common divisor (english)
 \newcommand*\lcm{\mathrm{lcm}}                                % least commom multiple (english)
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -88,11 +94,14 @@
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand*\ztr[1]{\tilde{#1}}                               % indication that #1 is a z-transform
 \newcommand*\ltr[1]{\overline{#1}}                            % indication that #1 is a laplace-transform
-\newcommand*\lap[1]{\Big\{#1\Big\}(s)}                        % laplace transformation (with {}(s))
-\newcommand*\zat[1]{\Big\{#1\Big\}(z)}                        % z transformation (with {}(z))
-\newcommand*\frs{\overset{\mathrm{FR}}{\longleftrightarrow}}  % fourier series (german)
+\newcommand*\lap[1]{\mathcal{L}\big\{#1\big\}(s)}             % laplace transformation (with {}(s))
+\newcommand*\zat[1]{\mathcal{Z}\big\{#1\big\}(z)}             % z transformation (with {}(z))
+\newcommand*\frr{\overset{\mathrm{FR}}{\longleftrightarrow}}  % fourier series (german)
+\newcommand*\frs{\overset{\mathrm{FS}}{\longleftrightarrow}}  % fourier series (english)
 \newcommand*\frt{\overset{\mathrm{FT}}{\longleftrightarrow}}  % fourier transformation 
-\newcommand*\dft{\overset{\mathrm{N}}{\longleftrightarrow}}   % discrete fourier transform
+\newcommand*\fat[1]{\mathcal{F}\big\{#1\big\}(\omega)}        % alternative writing for Fourier-Transform
+\newcommand*\dft{\overset{\mathrm{DFT}}{\longleftrightarrow}} % discrete fourier transform
+\newcommand*\dtft{\overset{\mathrm{DTFT}}{\longleftrightarrow}} % discrete time fourier transform
 
 %----------------------------------------------------------------------------------------------------------------------
 % signal transform: special tikz symbols
@@ -101,12 +110,12 @@
   \draw[white] (-0.1,0) rectangle (1.2,0.3);                  % 
   \draw[fill=black] (0,0) rectangle (0.3,0.3);                % symbol for inverse z transform (uses squares to
   \draw (0.3,0.15) -- (0.8,0.15);                             % indicate a discrete input)
-  \draw (0.8,0) rectangle (1.1,0.3);                          % 
+  \draw[fill=white] (0.8,0) rectangle (1.1,0.3);              % 
 \end{tikzpicture}}                                            %
 
 \newcommand*\ztransf{\begin{tikzpicture}[scale=0.6]           %
   \draw[white] (-0.1,0) rectangle (1.2,0.3);                  % 
-  \draw (0,0) rectangle (0.3,0.3);                            % symbol for z transform (uses squares to indicate
+  \draw[fill=white] (0,0) rectangle (0.3,0.3);                % symbol for z transform (uses squares to indicate
   \draw (0.3,0.15) -- (0.8,0.15);                             % a discrete input)
   \draw[fill=black] (0.8,0) rectangle (1.1,0.3);              %
 \end{tikzpicture}}                                            %
@@ -114,14 +123,14 @@
 \newcommand*\Ltransf{\begin{tikzpicture}[scale=0.6]           %
   \draw[white] (-0.1,0) rectangle (1.2,0.3);                  %
   \draw[fill=black] (0,0) circle (0.15);                      % symbol for inverse laplace transform (uses circles to
-  \draw (0.3,0.15) -- (0.8,0.15);                             % indicate a continous input)
-  \draw (0.95,0) circle (0.15);                               %
+  \draw (0.15,0) -- (0.8,0);                                  % indicate a continuous input)
+  \draw[fill=white] (0.95,0) circle (0.15);                   %
 \end{tikzpicture}}                                            %
 
 \newcommand*\ltransf{\begin{tikzpicture}[scale=0.6]           %
   \draw[white] (-0.1,0) rectangle (1.2,0.3);                  %
-  \draw (0,0) circle (0.15);                                  % symbol for laplace transform (uses circles to indicate
-  \draw (0.3,0.15) -- (0.8,0.15);                             % a continous input)
+  \draw[fill=white] (0,0) circle (0.15);                      % symbol for laplace transform (uses circles to indicate
+  \draw (0.15,0) -- (0.8,0);                                  % a continuous input)
   \draw[fill=black] (0.95,0) circle (0.15);                   %
 \end{tikzpicture}}                                            %
 
