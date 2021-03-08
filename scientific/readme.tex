@@ -1,15 +1,16 @@
 \documentclass{report}
 
-\usepackage{preamble}   %should be loaded before math
-\usepackage{math}
+\usepackage{preamble}   % should be loaded before math
+\usepackage{math}       % requires preamble
 
-\lstset{style=code_style}
+\lstset{style=code_style} % sets the syntax highlighting of listings to code_style
 
 \begin{document}
   \section{General Information}
     The files \textit{math.sty} and \textit{preamble.sty} should provide you a simple yet effectie suite of
     macros for quick writing of mathematical/scientific papers. To properly load them you should include the
     following in your preamble:
+    % listings does not directly support writing latex-code in the environment
     \begin{center}
       \lstinputlisting[language={latex}]{preamble_listing.tex}  
     \end{center}
@@ -170,7 +171,7 @@
       Natural Numbers & \lstinline|\N| & $\N$ & Integers & \lstinline|\Z| & $\Z$\\
       Rational Numbers & \lstinline|\Q| & $\Q$ & Irrational Numbers & \lstinline|\I| & $\I$\\
       Real Numbers & \lstinline|\R| & $\R$ & Complex Numbers & \lstinline|\C|& $\C$\\
-      Set of Primes & \lstinline|\P| & $\P$ & Transcendetal Numbers & \lstinline|\T| & $\T$\\
+      Set of Primes & \lstinline|\P| & $\P$ & Transcendental Numbers & \lstinline|\T| & $\T$\\
       General Field (de) & \lstinline|\K| & $\K$ & General Field (en) & \lstinline|\F| & $\F$\\
       \hhline{======}\\
       \caption{All symbols and operators from math.sty}
@@ -207,4 +208,10 @@
     pagebreak can be manually inserted by typing \lstinline|\pagebreak| in the table-contents. In order for
     this to work, the longtable-environment mustn't be in a table-environment. So wrap your longtable in
     a center and put the caption as a row element.
+
+  \section{Authors Note}
+    Since I am currently studying Information and Computer Engineering, I've only written macros for 
+    corresponding field (i.e. electrical engineering). So currently there no neat macros for Chemistry or
+    advanced Physics, etc. Since this repository is public you can Issue a feature request and given some 
+    time it should be implemented in a corresponding style.
 \end{document}
