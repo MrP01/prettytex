@@ -24,6 +24,27 @@
 \newcommand*\imate{\mat{E}}                                   % identity matrix (german)
 \newcommand*\imati{\mat{I}}                                   % identity matrix (english)
 
+
+\newcommand*{\longleadsto}[1]{\begin{tikzpicture}
+  \draw [->, line join=round, decorate, decoration={
+    zigzag,
+    segment length=4,
+    amplitude=.9,
+    post=lineto,
+    post length=2pt}] (0,0) -- (#1,0);\end{tikzpicture}}
+
+\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{0.7}}}          % matrix row  operation
+
+% beautiful soltion by Stefan Kottwitz (https://tex.stackexchange.com/users/213/stefan-kottwitz)
+% Latex-Stackexchange post: 
+%   https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
+\makeatletter                                      %
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{ %
+  \hskip -\arraycolsep                             % macro for augmented matrices, see readme.pdf for more
+  \let\@ifnextchar\new@ifnextchar                  % information
+  \array{#1}}                                      %
+\makeatother                                       %
+
 %----------------------------------------------------------------------------------------------------------------------
 % calculus
 %----------------------------------------------------------------------------------------------------------------------
