@@ -34,6 +34,20 @@
       \end{minipage}
     \end{lrbox}
 
+    \newsavebox\rpveccol
+    \begin{lrbox}{\rpveccol}
+      \begin{minipage}[t]{3cm}
+        \lstinline|\rpvec{x_1}{x_2}|
+      \end{minipage}
+    \end{lrbox}
+
+    \newsavebox\rtveccol
+    \begin{lrbox}{\rtveccol}
+      \begin{minipage}[t]{3.2cm}
+        \lstinline|\rtvec{x_1}{x_2}{x_3}|
+      \end{minipage}
+    \end{lrbox}
+
     \newsavebox\arsinhcol
     \begin{lrbox}{\arsinhcol}
       \begin{minipage}[t]{3cm}
@@ -73,6 +87,10 @@
         Dot-Product & \lstinline|\dotp{x_1}{x_2}| & $\dotp{x_1}{x_2}$\\
       \multicolumn{2}{Cl}{Column Vector} & \multicolumn{2}{Cc}{\usebox\tveccol} &
         \multicolumn{2}{Cc}{$\tvec{x_1}{x_2}{x_3}$} \\
+      \multicolumn{2}{Cl}{Row Vector} & \multicolumn{2}{Cc}{\usebox\rpveccol} & 
+        \multicolumn{2}{Cc}{$\rpvec{x_1}{x_2}$}\\
+      \multicolumn{2}{Cl}{Row Vector} & \multicolumn{2}{Cc}{\usebox\rtveccol} &
+        \multicolumn{2}{Cc}{$\rtvec{x_1}{x_2}{x_3}$}\\
       \hline
       \multicolumn{6}{Cc}{\textit{Matrices}}\\
       \hline
