@@ -62,18 +62,7 @@
       \end{minipage}
     \end{lrbox}
 
-    \newsavebox\arccotcol
-    \begin{lrbox}{\arccotcol}
-      \begin{minipage}[t]{3cm}
-        \lstinline|\arccot|
-      \end{minipage}
-    \end{lrbox}
-
-    
-
   \begin{center}
-    \setlength\LTleft{.25cm}
-    \setlength\LTright{.25cm}
     \begin{longtable}{Cl Cc Cc Cl Cc Cc}
       \textbf{Symbol} & \textbf{Math-Mode} & \textbf{Result} &  \textbf{Symbol} & \textbf{Math-Mode} & \textbf{Result}\\
       \multicolumn{2}{Cl}{\textbf{Symbol}} & \multicolumn{2}{Cc}{\textbf{Math-Mode}} & \multicolumn{2}{Cc}{\textbf{Result}}\\
@@ -87,7 +76,8 @@
       \hline
       \multicolumn{6}{Cc}{\textit{Matrices}}\\
       \hline
-      Bold faced Matrix & \lstinline|\mat{M}| & $\mat{M}$&Determinant & \lstinline|\det|&$\det$\\
+      Matrix & \lstinline|\mat{M}| & $\mat{M}$ & Matrix (greek letters) & \lstinline|\gmat{M}| & $\gmat{\phi}$\\
+      Determinant & \lstinline|\det|&$\det$\\
       Matrix-Rank (de) & \lstinline|\Rang| & $\Rang$ & Matrix-Rank (en) &\lstinline|\Rank|&$\Rank$\\
       Matrix-Trace (de) & \lstinline|\Spur| & $\Spur$ & Matrix-Trace (en) &\lstinline|\Trace|&$\Trace$\\
       Adjunct-Matrix & \lstinline|\Adj| & $\Adj$ & Cofactor-Matrix & \lstinline|\Cof| & $\Cof$\\
@@ -95,7 +85,8 @@
       \hline
       \multicolumn{6}{Cc}{\textit{Calculus and Functions}}\\
       \hline
-      Differential d & \lstinline|\diff|& $\diff$ & Divergence & \lstinline|\divs| & $\divs$\\
+      Differential d & \lstinline|\diff|& $\diff$ & Exterior Derivative & \lstinline|\extd| & $\extd$\\
+      Divergence & \lstinline|\divs| & $\divs$\\
       Derivative & \lstinline|\der{f}{x}| & $\der{f}{x}$ & 
         Partial Derivative & \lstinline|\per{f}{x_1}| & $\per{f}{x_1}$\\
       n-th Derivative & \lstinline|\ner{f}{x}{n}|&$\ner{f}{x}{n}$ &
@@ -109,6 +100,9 @@
       Limes Superior  (noarg) & \lstinline|\limsups| & $\limsups$ & Limes Superior & $\limsup{n}{\infty}$ & 
         $\limsup{n}{\infty}$\\
       Function Image (de) & \lstinline|\Bild| & $\Bild$ & Function Image (en) & \lstinline|\Img| & $\Img$ \\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Additional Trigonometric Functions}}\\
+      \hline
       \multicolumn{2}{Cl}{Area Sinus hyperbolicus} & \multicolumn{2}{Cc}{\usebox\arsinhcol} & 
         \multicolumn{2}{Cc}{$\Arsinh$}\\
       \multicolumn{2}{Cl}{Area Cosinus hyperbolicus} & \multicolumn{2}{Cc}{\usebox\arcoshcol} & 
@@ -117,9 +111,8 @@
         \multicolumn{2}{Cc}{$\Artanh$}\\
       \multicolumn{2}{Cl}{Area Cotanges hyperbolicus} & \multicolumn{2}{Cc}{\usebox\arcotanhcol} & 
         \multicolumn{2}{Cc}{$\Arcoth$}\\
-      \multicolumn{2}{Cl}{Arcus Cotanges} & \multicolumn{2}{Cc}{\usebox\arccotcol} & 
-        \multicolumn{2}{Cc}{$\arccot$}\\
-      \pagebreak
+     Arcus Cotanges & \lstinline|\arccot| & $\arccot$\\
+      Arcus Secans & \lstinline|\arcsec| & $\arcsec$ & Arcus Cosecans & \lstinline|\arccsc| & $\arccsc$\\
       \hline
       \multicolumn{6}{Cc}{\textit{Logic}}\\
       \hline
@@ -150,20 +143,20 @@
       \multicolumn{6}{Cc}{\textit{Signal Transforms}}\\
       \hline
       Laplace Transform & \lstinline|\ltr{x}| & $\ltr{x}$ & Z Transform & \lstinline|\ztr{x}| & $\ztr{x}$\\
-      Laplace Transform & \lstinline|\lap{x}| & $\lap{x}$ & Inverse Laplace Transform & \lstinline|\ilap{x}| & 
+      Laplace Transform & \lstinline|\lap{x}| & $\lap{x}$ & Laplace Transform (inv)& \lstinline|\ilap{x}| & 
         $\ilap{x}$\\
-      Z-Transform & \lstinline|\zat{x}| & $\zat{x}$ & Inverse Z-Transform & \lstinline|\izat{x}| & $\izat{x}$\\
+      Z-Transform & \lstinline|\zat{x}| & $\zat{x}$ & Z-Transform (inv)& \lstinline|\izat{x}| & $\izat{x}$\\
       Fourier Transform & \lstinline|\frt| & $\frt$ \\
-      Fourier Transform & \lstinline|\fat{x}| & $\fat{x}$ & Inverse Fourier Transform & \lstinline|\ifat{x}| &
+      Fourier Transform & \lstinline|\fat{x}| & $\fat{x}$ & Fourier Transform (inv)& \lstinline|\ifat{x}| &
         $\ifat{x}$\\
       Fourier Series (de) & \lstinline|\frr| & $\frr$ & Fourier Series (en) & \lstinline|\frs| & $\frs$\\
       DFT & \lstinline|\dft| & $\dft$ & DTFT & \lstinline|\dtft| & $\dtft$\\
       \hline
       \multicolumn{6}{Cc}{\textit{Custom TikZ-Symbols for Signal Transforms}}\\
       \hline
-      Laplace Transform & \lstinline|\ltransf| & $\ltransf$ & Inverse Laplace Transform & 
+      Laplace Transform & \lstinline|\ltransf| & $\ltransf$ & Laplace Transform (inv)& 
         \lstinline|\Ltransf| & $\Ltransf$\\
-      Z Transform & \lstinline|\ztransf| & $\ztransf$ & Inverse Z Transform & \lstinline|\Ztransf| &
+      Z Transform & \lstinline|\ztransf| & $\ztransf$ & Z Transform (inv) & \lstinline|\Ztransf| &
         $\Ztransf$\\
       \hline
       \multicolumn{6}{Cc}{\textit{Sets}}\\
