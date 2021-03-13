@@ -3,14 +3,17 @@
 %----------------------------------------------------------------------------------------------------------------------
 % vectors
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\pvec[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}      % 2x1 column-vector
+\newcommand*\pvec[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}      % 2x1 column vector
 \newcommand*\tvec[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}  % 3x1 column vector
+\newcommand*\rpvec[2]{\begin{bmatrix}#1&#2\end{bmatrix}}      % 1x2 row vector
+\newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}}   % 1x3 row vector
 \newcommand*\dotp[2]{\big\langle#1,#2\big\rangle}             % dot-product with arguemnts
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand*\mat[1]{\mathbf{#1}}                              % write matrix-variable in bold
+\newcommand*\gmat[1]{\boldsymbol#1}                           % write matrix-variable in bold (greek letters)
 \newcommand*\Rang{\mathrm{Rang}}                              % rank of a matrix (german)
 \newcommand*\Rank{\mathrm{Rank}}                              % rank of a matrix (english)
 \newcommand*\Spur{\mathrm{Spur}}                              % trace of a matrix (german)
@@ -21,6 +24,27 @@
 \newcommand*\imate{\mat{E}}                                   % identity matrix (german)
 \newcommand*\imati{\mat{I}}                                   % identity matrix (english)
 
+
+\newcommand*{\longleadsto}[1]{\begin{tikzpicture}
+  \draw [->, line join=round, decorate, decoration={
+    zigzag,
+    segment length=4,
+    amplitude=.9,
+    post=lineto,
+    post length=2pt}] (0,0) -- (#1,0);\end{tikzpicture}}
+
+\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{0.7}}}          % matrix row  operation
+
+% beautiful soltion by Stefan Kottwitz (https://tex.stackexchange.com/users/213/stefan-kottwitz)
+% Latex-Stackexchange post: 
+%   https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
+\makeatletter                                      %
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{ %
+  \hskip -\arraycolsep                             % macro for augmented matrices, see readme.pdf for more
+  \let\@ifnextchar\new@ifnextchar                  % information
+  \array{#1}}                                      %
+\makeatother                                       %
+
 %----------------------------------------------------------------------------------------------------------------------
 % calculus
 %----------------------------------------------------------------------------------------------------------------------
@@ -30,6 +54,8 @@
 \newcommand*\Artanh{\mathrm{Artanh}}                          % Area tangens hyperbolicus
 \newcommand*\Arcoth{\mathrm{Arcoth}}                          % Area cotangens hyperbolicus
 \newcommand*\arccot{\mathrm{arccot}}                          % Arcus Cotangens
+\newcommand*\arcsec{\mathrm{arcsec}}
+\newcommand*\arccsc{\mathrm{arccsc}}
 \newcommand*\lims{\mathrm{lim}}                               % limes
 \newcommand*\sups{\mathrm{sup}}                               % supremum
 \newcommand*\infs{\mathrm{inf}}                               % infimum
@@ -49,6 +75,7 @@
 \newcommand*\rot{\mathrm{rot}}                                % curl of vector field (german)
 \newcommand*\curl{\mathrm{curl}}                              % curl of vector field (english)
 \newcommand*\divs{\mathrm{div}}                               % divergence of vector field
+\newcommand*\extd{\mathrm{D}}                                 % exterior derivative
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 

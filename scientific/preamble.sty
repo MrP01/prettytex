@@ -17,6 +17,7 @@
 \usepackage{bbm}                                            % allows for font scaling
 \usepackage{cellspace}                                      % cell-vspace made easy
 \usepackage{longtable}                                      % for loooooooong tables
+\usepackage{xstring}                                        % conditionalize newcommands
 
 %----------------------------------------------------------------------------------------------------------------------
 % package loading: mathematics
@@ -25,6 +26,7 @@
 \usepackage{amssymb}                                        % commom math symbols
 \usepackage{amsthm}                                         % theme for ams math
 \usepackage{amsfonts}                                       % fonts for ams
+\usepackage{bm}                                             % bold math
 \usepackage{cancel}                                         % adds a strikethrough in math-mode
 \usepackage{esint}                                          % beautiful integrals
 \usepackage{mathtools}                                      % math expansion set
@@ -35,6 +37,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 \usepackage{pgfplots}                                       % loads tikz as well, used for plots/graphics
 \usepackage{tikz-3dplot}                                    % loads extra stuff for 3d-support in tikz
+\usepackage{graphicx}
 \usepackage{geometry}                                       % page layout control
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -82,13 +85,14 @@
 }
 
 \usetikzlibrary{                                            % select additional libraries for tikz
-    calc,                                                     % adds simple calculation methods
-    arrows.meta,                                              % allows for fine-grained arrow stylization
-    patterns,                                                 % adds some fill-patterns
-    shapes.misc,                                              % more shapes for \draw
-    patterns.meta,                                            % fine grained pattern control/definition
-    matrix,                                                   % draw matrix like structures
-    decorations                                               % path decorations (e.g. curly line with 'snake')
+  calc,                                                     % adds simple calculation methods
+  arrows.meta,                                              % allows for fine-grained arrow stylization
+  patterns,                                                 % adds some fill-patterns
+  shapes.misc,                                              % more shapes for \draw
+  patterns.meta,                                            % fine grained pattern control/definition
+  decorations.pathmorphing,                                    % fine grained pattern control/definition
+  matrix,                                                   % draw matrix like structures
+  decorations                                               % path decorations (e.g. curly line with 'snake')
 }
 
 %----------------------------------------------------------------------------------------------------------------------
