@@ -5,9 +5,9 @@
 
 % Base class
 \LoadClass[
-	12pt,
-	a4paper,
-	oneside
+    12pt,
+    a4paper,
+    oneside
 ]{article}
 
 % Encoding
@@ -16,7 +16,7 @@
 
 % Spacing
 \usepackage[
-	margin=2.1cm
+    margin=2.1cm
 ]{geometry}
 \usepackage{parskip}
 \setlength{\parindent}{0em}
@@ -71,22 +71,22 @@
 \usepackage{esvect}  % vectors
 \usepackage{siunitx}
 \sisetup{
-	separate-uncertainty,
-	locale=DE,
-	per-mode=fraction,
-	number-unit-product=\,\,\,
+    separate-uncertainty,
+    locale=DE,
+    per-mode=fraction,
+    number-unit-product=\,\,\,
 }
 
 % Code
 \usepackage{minted}
 \setminted{
-	breaklines=true,
-	python3=true,
-	baselinestretch=1,
-	linenos=true
+    breaklines=true,
+    python3=true,
+    baselinestretch=1,
+    linenos=true
 }
 \setmintedinline{
-	breaklines=true
+    breaklines=true
 }
 
 % Citing, References
@@ -102,14 +102,13 @@
 \usepackage{pdfpages}
 
 % Leftbar-Frame
-\renewenvironment{leftbar}[1][\hsize]
-{%
-	\def\FrameCommand
-	{%
-		{\color{themecolor}\vrule width 3pt}%
-		\hspace{0pt}%must no space.
-		\fboxsep=.8cm\colorbox{lightgreybg}%
-	}%
-	\MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
-}
-{\endMakeFramed}
+\renewenvironment{leftbar}[1][\hsize]{%
+    \def\FrameCommand
+    {%
+            {\color{themecolor}\vrule width 3pt}%
+        \hspace{0pt}%must no space.
+        \fboxsep=.8cm\colorbox{lightgreybg}%
+    }%
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}%
+    }
+    {\endMakeFramed}

@@ -2,8 +2,8 @@
 
 % Adjust geometry to include head and foot
 \newgeometry{
-	margin=2.1cm,
-	includeheadfoot
+    margin=2.1cm,
+    includeheadfoot
 }
 
 % Headings

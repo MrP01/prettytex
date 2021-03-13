@@ -9,9 +9,9 @@
 \usepackage[utf8]{inputenc}
 \usepackage{xspace}
 \usepackage[
-	colorlinks=true,
-	urlcolor=themecolor,
-	linkcolor=black
+    colorlinks=true,
+    urlcolor=themecolor,
+    linkcolor=black
 ]{hyperref}
 
 \setmarginsrb{1.75cm}{1.75cm}{1.75cm}{1.75cm}{0pt}{0pt}{\baselineskip}{2.0\baselineskip}
@@ -36,5 +36,19 @@
 \def\comment#1{}
 
 \newenvironment{Itemize}{%
-  \begin{itemize}\setlength{\parsep}{\parskip}\setlength{\itemsep}{0pt}%
-}{\end{itemize}}
+    \begin{itemize}
+        \setlength{\parsep}{\parskip}\setlength{\itemsep}{0pt}%
+        }{
+    \end{itemize}}
+
+\newcommand{\SignatureAndDate}[2][2.5in]{%
+    \noindent%
+    \begin{tabular}{@{}p{#1}@{}}
+        \\ \hline \\[-.75\normalbaselineskip]
+        #2
+    \end{tabular} \hspace{1in}
+    \begin{tabular}{@{}p{#1}@{}}
+        \\ \hline \\[-.75\normalbaselineskip]
+        Ort, Datum
+    \end{tabular}
+}
