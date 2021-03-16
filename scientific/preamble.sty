@@ -18,6 +18,7 @@
 \usepackage{cellspace}                                      % cell-vspace made easy
 \usepackage{longtable}                                      % for loooooooong tables
 \usepackage{xstring}                                        % conditionalize newcommands
+\usepackage{multirow}                                       % allow table cells to span multiple rows
 
 %----------------------------------------------------------------------------------------------------------------------
 % package loading: mathematics
@@ -37,34 +38,34 @@
 %----------------------------------------------------------------------------------------------------------------------
 \usepackage{pgfplots}                                       % loads tikz as well, used for plots/graphics
 \usepackage{tikz-3dplot}                                    % loads extra stuff for 3d-support in tikz
-\usepackage{graphicx}
+\usepackage{graphicx}                                       % provides some useful tools for rotations, etc.
 \usepackage{geometry}                                       % page layout control
 
 %----------------------------------------------------------------------------------------------------------------------
 % package options: cellspace
 %----------------------------------------------------------------------------------------------------------------------
-\setlength\cellspacetoplimit{4pt}
-\setlength\cellspacebottomlimit{4pt}
+\setlength\cellspacetoplimit{4pt}                           % sets space to cell-top    to  4 pts
+\setlength\cellspacebottomlimit{4pt}                        % sets space to cell-bottom to  4 pts
 
 %----------------------------------------------------------------------------------------------------------------------
 % custom colors
 %----------------------------------------------------------------------------------------------------------------------
-\definecolor{dark_cyan}{RGB}{130, 234, 255}
-\definecolor{purple}{RGB}{180, 2, 212}
-\definecolor{green}{RGB}{0, 153, 51}
-\definecolor{red}{RGB}{204, 0, 0}
-\definecolor{blue}{RGB}{0, 102, 255}
-\definecolor{orange}{RGB}{227, 102, 0}
+\definecolor{dark_cyan}{RGB}{130, 234, 255}                 % defines the color dark_cyan
+\definecolor{purple}{RGB}{180, 2, 212}                      % defines the color purple
+\definecolor{green}{RGB}{0, 153, 51}                        % defines the color green
+\definecolor{red}{RGB}{204, 0, 0}                           % defines the color red
+\definecolor{blue}{RGB}{0, 102, 255}                        % defines the color blue
+\definecolor{orange}{RGB}{227, 102, 0}                      % defines the color orange
 
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{codegreen}{rgb}{0,0.6,0}                       %
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}                    % colors for listings
+\definecolor{codepurple}{rgb}{0.58,0,0.82}                  %
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}               %
 
 %----------------------------------------------------------------------------------------------------------------------
 % package options: geometry
-%----------------------------------------------------------------------------------------------------------------------
-\geometry{                                                  % set package options for geometry   
+%---------------------------------------------------------------------------------------------------------------------
+\geometry{                                                    % set package options for geometry   
     a4paper,                                                  % sets paper-size to a4
     twoside,                                                  % sets the paper to be two-sided
     left=1.5cm,                                               % left page margin
@@ -80,8 +81,8 @@
 \pgfplotsset{compat=1.16}                                   % sets compatibility level of pgfplots
 
 \usepgfplotslibrary{                                        % select specific additional libraries for pgf
-    patchplots,                                               % allows for some crazy path manipulations
-    fillbetween                                               % able to easily fill area between two curves
+    patchplots,                                             % allows for some crazy path manipulations
+    fillbetween                                             % able to easily fill area between two curves
 }
 
 \usetikzlibrary{                                            % select additional libraries for tikz
@@ -90,7 +91,7 @@
   patterns,                                                 % adds some fill-patterns
   shapes.misc,                                              % more shapes for \draw
   patterns.meta,                                            % fine grained pattern control/definition
-  decorations.pathmorphing,                                    % fine grained pattern control/definition
+  decorations.pathmorphing,                                 % fine grained pattern control/definition
   matrix,                                                   % draw matrix like structures
   decorations                                               % path decorations (e.g. curly line with 'snake')
 }
@@ -133,16 +134,25 @@
 %----------------------------------------------------------------------------------------------------------------------
 % latex language definition for listings package
 %----------------------------------------------------------------------------------------------------------------------
-\lstdefinelanguage{latex}{
-    keywords=[1]{usepackage,newcommand, begin, end,document, documentclass,author,ProvidesPackage,RequiresPackage},
-    keywords=[2]{tabular,table,figure, tikzpicture, tabularx, longtable,align,align*,aligned,equation,equation*,
-    tikzpicture,circuitikz,center,titlepage},
-    keywords=[3]{relax,newcommand, renewcommand, maketitle,makeatletter,makeatother},
-    keywords=[4]{col}
-    sensitive=true,
-    keywordstyle=[1]\color{blue},
-    keywordstyle=[2]\color{red},
-    keywordstyle=[3]\color{green},
-    keywordstyle=[4]\color{red}
-    morestring=[b]'
+\lstdefinelanguage{latex}{                                  % defines a new language 'latex'
+    keywords=[1]{usepackage,newcommand, begin, end,         %
+                 document, documentclass,author,            % sets first type of keywords
+                 ProvidesPackage,RequiresPackage            %
+                },
+    keywords=[2]{tabular,table,figure, tikzpicture,         %
+                 tabularx, longtable,align,align*,          % sets second type of keywords
+                 aligned,equation,equation*,                %
+                 tikzpicture,circuitikz,center,             %
+                 titlepage
+                },
+    keywords=[3]{relax,newcommand, renewcommand,            % sets third type of keywords
+                 maketitle,makeatletter,makeatother         %
+                },
+    keywords=[4]{col}                                       % for custom defined keywords
+    sensitive=true,                                         % case sensitivity
+    keywordstyle=[1]\color{blue},                           % style for first type keywords
+    keywordstyle=[2]\color{red},                            % style for second type keywords
+    keywordstyle=[3]\color{green},                          % style for third type keywords
+    keywordstyle=[4]\color{red}                             % style for custom keywords
+    morestring=[b]'                                         % allows for single quote strings
 }
