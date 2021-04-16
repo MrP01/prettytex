@@ -34,6 +34,7 @@
 % Font
 \usepackage{amsfonts}
 %\usepackage{kpfonts}
+\usepackage{lmodern}
 
 % Figures
 \usepackage{graphicx}
