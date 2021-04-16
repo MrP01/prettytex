@@ -25,25 +25,29 @@
 \newcommand*\imati{\mat{I}}                                   % identity matrix (english)
 
 
-\newcommand*{\longleadsto}[1]{\begin{tikzpicture}
-  \draw [->, line join=round, decorate, decoration={
-    zigzag,
-    segment length=4,
-    amplitude=.9,
-    post=lineto,
-    post length=2pt}] (0,0) -- (#1,0);\end{tikzpicture}}
+\newcommand*{\longleadsto}[1]{                                %
+  \begin{tikzpicture}                                         %
+    \draw [->, line join=round, decorate, decoration={        %
+      zigzag,                                                 %
+      segment length=4,                                       % draws a zig-zag arrow of length #1 in cm
+      amplitude=.9,                                           %
+      post=lineto,                                            %
+      post length=2pt}] (0,0) -- (#1,0);                      %
+  \end{tikzpicture}                                           %
+}                                                             %
 
-\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{0.7}}}          % matrix row  operation
+\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{0.7}}}         % matrix row  operation
 
 % beautiful soltion by Stefan Kottwitz (https://tex.stackexchange.com/users/213/stefan-kottwitz)
 % Latex-Stackexchange post: 
 %   https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix
-\makeatletter                                      %
-\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{ %
-  \hskip -\arraycolsep                             % macro for augmented matrices, see readme.pdf for more
-  \let\@ifnextchar\new@ifnextchar                  % information
-  \array{#1}}                                      %
-\makeatother                                       %
+
+\makeatletter                                                 %
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{            %
+  \hskip -\arraycolsep                                        % macro for augmented matrices, see readme.pdf for more
+  \let\@ifnextchar\new@ifnextchar                             % information
+  \array{#1}}                                                 %
+\makeatother                                                  %
 
 %----------------------------------------------------------------------------------------------------------------------
 % calculus
@@ -54,8 +58,8 @@
 \newcommand*\Artanh{\mathrm{Artanh}}                          % Area tangens hyperbolicus
 \newcommand*\Arcoth{\mathrm{Arcoth}}                          % Area cotangens hyperbolicus
 \newcommand*\arccot{\mathrm{arccot}}                          % Arcus Cotangens
-\newcommand*\arcsec{\mathrm{arcsec}}
-\newcommand*\arccsc{\mathrm{arccsc}}
+\newcommand*\arcsec{\mathrm{arcsec}}                          % Arcus Secans
+\newcommand*\arccsc{\mathrm{arccsc}}                          % Arcus Cosecans
 \newcommand*\lims{\mathrm{lim}}                               % limes
 \newcommand*\sups{\mathrm{sup}}                               % supremum
 \newcommand*\infs{\mathrm{inf}}                               % infimum
@@ -76,6 +80,7 @@
 \newcommand*\curl{\mathrm{curl}}                              % curl of vector field (english)
 \newcommand*\divs{\mathrm{div}}                               % divergence of vector field
 \newcommand*\extd{\mathrm{D}}                                 % exterior derivative
+\newcommand*\ld{\mathrm{ld}}                                  % logarithmus dualis
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
@@ -83,8 +88,8 @@
 \newcommand*\bij{\leftrightarrow}                             % bijunction
 \newcommand*\subj{\rightarrow}                                % subjunction ->
 \newcommand*\lsubj{\leftarrow}                                % left subjunction <-
-\newcommand*\nsubj{\cancel{\subj}}                      % not subjunction
-\newcommand*\nlsubj{\cancel{\lsubj}}                      % not left subjunction
+\newcommand*\nsubj{\cancel{\subj}}                            % not subjunction
+\newcommand*\nlsubj{\cancel{\lsubj}}                          % not left subjunction
 \newcommand*\eqv{\Leftrightarrow}                             % eqvivalent
 \newcommand*\neqv{\cancel{\eqv}}                              % not equivalent
 \renewcommand{\implies}{\Rightarrow}                          % implies (with shorter arrow)
@@ -136,33 +141,41 @@
 %----------------------------------------------------------------------------------------------------------------------
 % signal transform: special tikz symbols
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\Ztransf{\begin{tikzpicture}[scale=0.6]           %
-                         \draw[white] (-0.1,0) rectangle (1.2,0.3);                  %
-                         \draw[fill=black] (0,0) rectangle (0.3,0.3);                % symbol for inverse z transform (uses squares to
-                         \draw (0.3,0.15) -- (0.8,0.15);                             % indicate a discrete input)
-                         \draw[fill=white] (0.8,0) rectangle (1.1,0.3);              %
-\end{tikzpicture}}                                            %
+\newcommand*\Ztransf{                                         %
+  \begin{tikzpicture}[scale=0.6]                              %
+    \draw[white] (-0.1,0) rectangle (1.2,0.3);                %
+    \draw[fill=black] (0,0) rectangle (0.3,0.3);              % symbol for inverse z transform (uses squares to
+    \draw (0.3,0.15) -- (0.8,0.15);                           % indicate a discrete input)
+    \draw[fill=white] (0.8,0) rectangle (1.1,0.3);            %
+  \end{tikzpicture}                                           %
+}                                                             %
 
-\newcommand*\ztransf{\begin{tikzpicture}[scale=0.6]           %
-                         \draw[white] (-0.1,0) rectangle (1.2,0.3);                  %
-                         \draw[fill=white] (0,0) rectangle (0.3,0.3);                % symbol for z transform (uses squares to indicate
-                         \draw (0.3,0.15) -- (0.8,0.15);                             % a discrete input)
-                         \draw[fill=black] (0.8,0) rectangle (1.1,0.3);              %
-\end{tikzpicture}}                                            %
+\newcommand*\ztransf{                                         %
+  \begin{tikzpicture}[scale=0.6]                              %
+    \draw[white] (-0.1,0) rectangle (1.2,0.3);                %
+    \draw[fill=white] (0,0) rectangle (0.3,0.3);              % symbol for z transform (uses squares to indicate
+    \draw (0.3,0.15) -- (0.8,0.15);                           % a discrete input)
+    \draw[fill=black] (0.8,0) rectangle (1.1,0.3);            %
+  \end{tikzpicture}                                           %
+}                                                             %               
 
-\newcommand*\Ltransf{\begin{tikzpicture}[scale=0.6]           %
-                         \draw[white] (-0.1,0) rectangle (1.2,0.3);                  %
-                         \draw[fill=black] (0,0) circle (0.15);                      % symbol for inverse laplace transform (uses circles to
-                         \draw (0.15,0) -- (0.8,0);                                  % indicate a continuous input)
-                         \draw[fill=white] (0.95,0) circle (0.15);                   %
-\end{tikzpicture}}                                            %
+\newcommand*\Ltransf{                                         %
+  \begin{tikzpicture}[scale=0.6]                              %
+    \draw[white] (-0.1,0) rectangle (1.2,0.3);                %
+    \draw[fill=black] (0,0) circle (0.15);                    % symbol for inverse laplace transform (uses circles to
+    \draw (0.15,0) -- (0.8,0);                                % indicate a continuous input)
+    \draw[fill=white] (0.95,0) circle (0.15);                 %
+  \end{tikzpicture}                                           %
+}                                                             %
 
-\newcommand*\ltransf{\begin{tikzpicture}[scale=0.6]           %
-                         \draw[white] (-0.1,0) rectangle (1.2,0.3);                  %
-                         \draw[fill=white] (0,0) circle (0.15);                      % symbol for laplace transform (uses circles to indicate
-                         \draw (0.15,0) -- (0.8,0);                                  % a continuous input)
-                         \draw[fill=black] (0.95,0) circle (0.15);                   %
-\end{tikzpicture}}                                            %
+\newcommand*\ltransf{                                         %
+  \begin{tikzpicture}[scale=0.6]                              %
+    \draw[white] (-0.1,0) rectangle (1.2,0.3);                %
+    \draw[fill=white] (0,0) circle (0.15);                    % symbol for laplace transform (uses circles to indicate
+    \draw (0.15,0) -- (0.8,0);                                % a continuous input)
+    \draw[fill=black] (0.95,0) circle (0.15);                 %
+  \end{tikzpicture}                                           %
+}                                                             %
 
 %----------------------------------------------------------------------------------------------------------------------
 % sets
