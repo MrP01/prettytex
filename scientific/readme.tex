@@ -4,7 +4,7 @@
 \usepackage{math}       % requires preamble
 
 \lstset{style=code_style} % sets the syntax highlighting of listings to code_style
-
+\renewcommand{\algcapname}{Alg}
 \begin{document}
   \section{General Information}
     The files \textit{math.sty} and \textit{preamble.sty} should provide you a simple yet effectie suite of
@@ -261,10 +261,48 @@
     this\footnote{https://tex.stackexchange.com/questions/12678/squiggly-arrows-in-tikz/442036\#442036[12.3.2021]} thread. It 
     allows you to draw a squiggly arrow with a specified length, which is passed as an argument to the call
     \lstinline|\longleadsto{<length>}|.
+    
+  \section{Pseudo-Code and Algorithms}
+    \lstinline|preamble.sty| defines the language \lstinline|pseudo|, which covers some common keywords for pseudo-code. Here are all defined keywords:
+    \begin{table}[H]
+      \centering
+      \begin{lstlisting}[language=pseudo]
+        control:
+          1) for    2 ) begin 3) end    4) input
+          5) if     6 ) then  7) output 8) return
+          9) while  10) name
+        stack/list operations:
+          1) view   2) push  3) pop    4) insert
+          5) delete
+        basic types:
+          1) bool   2) int   3) float  4) double
+          5) string 6) data  
+      \end{lstlisting}
+      \caption{Defined Keywords in \lstinline|pseudo|}
+    \end{table}
+    
+    To complete the pseudo-code, I found another beautiful solution here\footnote{https://tex.stackexchange.com/questions/111116/what-is-the-best-looking-pseudo-code-package}. A simple example:
+    \begin{algorithm}[language=pseudo,caption={Towers of Hanoi, recursive}]
+name: hanoi
+input: index n, Rod a, Rod b, Rod c
+hanoi(n, a, b, c):
+  if ( n > 0 ) begin
+    hanoi(n-1, a, c, b)
+    move(a, c)
+    hanoi(n-1, b, a, c)
+  end
+    \end{algorithm}
+    
+    The caption-name can be overwritten with a simple \verb|renewcommand{algcapname}{<name>}|. The environment accepts all \verb|lstlisting| arguments as-well as \verb|caption|:
+    
+    \begin{center}
+  \lstinputlisting[language={latex}]{algexample.tex}
+\end{center}
+    
   \section{Authors Note}
     Since I am currently studying Information and Computer Engineering, I've only written macros for 
     corresponding fields (i.e. electrical engineering). So currently there are no neat macros for Chemistry or
     advanced Physics, etc. Since this repository is public you can Issue a feature request and given some 
     time, it should be implemented in a corresponding style.
-
+  
 \end{document}

@@ -19,6 +19,7 @@
 \usepackage{longtable}                                      % for loooooooong tables
 \usepackage{xstring}                                        % conditionalize newcommands
 \usepackage{multirow}                                       % allow table cells to span multiple rows
+\usepackage{caption}                                        % make custom captions
 
 %----------------------------------------------------------------------------------------------------------------------
 % package loading: mathematics
@@ -82,7 +83,8 @@
 
 \usepgfplotslibrary{                                        % select specific additional libraries for pgf
     patchplots,                                             % allows for some crazy path manipulations
-    fillbetween                                             % able to easily fill area between two curves
+    fillbetween,                                            % able to easily fill area between two curves
+    groupplots                                              % allows for multiple subplot in one tikzpicture
 }
 
 \usetikzlibrary{                                            % select additional libraries for tikz
@@ -156,3 +158,46 @@
     keywordstyle=[4]\color{red}                             % style for custom keywords
     morestring=[b]'                                         % allows for single quote strings
 }
+
+%----------------------------------------------------------------------------------------------------------------------
+% language defitino for pseudo-code 
+%----------------------------------------------------------------------------------------------------------------------
+\lstdefinelanguage{pseudo}{
+  keywords=[1]{view, push, pop, insert, delete},
+  keywords=[2]{name,for,begin,end,input,if,then,output,return, while, else},
+  keywords=[3]{bool,int,float,double,string,data}
+  sensitive=true,
+  keywordstyle=[1]\color{blue},
+  keywordstyle=[2]\color{purple},
+  keywordstyle=[3]\color{red}
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% defines a new environment for pseudo-code algorithms and declares a new counter 
+%----------------------------------------------------------------------------------------------------------------------
+
+% beautiful solution by: https://tex.stackexchange.com/users/69177/pnpo
+% answered in: https://tex.stackexchange.com/questions/111116/what-is-the-best-looking-pseudo-code-package
+\newcounter{nalg}[section]
+\newcommand{\algcountlayer}{\thesection}
+\renewcommand{\thenalg}{\algcountlayer.\arabic{nalg}} 
+\newcommand{\algcapname}{Algorithm}
+\DeclareCaptionLabelFormat{algocaption}{\algcapname\quad\thenalg}
+
+\lstnewenvironment{algorithm}[1][] 
+{   
+  \refstepcounter{nalg} 
+  \captionsetup{labelformat=algocaption,labelsep=colon}
+  \lstset{
+    mathescape=true,
+    frame=tB,
+    numbers=left, 
+    numberstyle=\tiny,
+    basicstyle=\scriptsize, 
+    keywordstyle=\color{black}\bfseries,
+    numbers=left,
+    xleftmargin=.04\textwidth,
+    #1 
+  }
+}
+{}
