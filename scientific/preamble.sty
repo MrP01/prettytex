@@ -20,6 +20,7 @@
 \usepackage{xstring}                                        % conditionalize newcommands
 \usepackage{multirow}                                       % allow table cells to span multiple rows
 \usepackage{caption}                                        % make custom captions
+\usepackage{minted}
 
 %----------------------------------------------------------------------------------------------------------------------
 % package loading: mathematics
@@ -40,6 +41,8 @@
 \usepackage{pgfplots}                                       % loads tikz as well, used for plots/graphics
 \usepackage{tikz-3dplot}                                    % loads extra stuff for 3d-support in tikz
 \usepackage{graphicx}                                       % provides some useful tools for rotations, etc.
+\usepackage[straightvoltages,nooldvoltagedirection]{circuitikz}
+\usepackage{stackengine} 
 \usepackage{geometry}                                       % page layout control
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -93,7 +96,8 @@
   patterns,                                                 % adds some fill-patterns
   shapes.misc,                                              % more shapes for \draw
   patterns.meta,                                            % fine grained pattern control/definition
-  decorations.pathmorphing,                                 % fine grained pattern control/definition
+  decorations.pathmorphing,                                 % fine grained pattern control/definition,
+  decorations.markings,
   matrix,                                                   % draw matrix like structures
   decorations                                               % path decorations (e.g. curly line with 'snake')
 }
@@ -201,3 +205,92 @@
   }
 }
 {}
+
+%----------------------------------------------------------------------------------------------------------------------
+% misc
+%----------------------------------------------------------------------------------------------------------------------
+\setlength{\parindent}{0pt}
+
+%----------------------------------------------------------------------------------------------------------------------
+% flow components
+%----------------------------------------------------------------------------------------------------------------------
+
+\tikzset{bcomp/.style={blue,fill=blue!50}}
+\tikzset{rcomp/.style={red,fill=red!70}}
+\tikzset{gcomp/.style={green,fill=green!50}}
+\tikzset{ocomp/.style={orange,fill=orange!50}}
+\tikzset{pcomp/.style={,fill=purple!50}}
+\tikzset{ycomp/.style={blue,fill=yellow!50}}
+
+\tikzset{seqrdot/.style={red,circle,draw,minimum size=5pt, inner sep=0pt,fill=red!70}}
+\tikzset{seqgdot/.style={green,circle,draw,minimum size=5pt, inner sep=0pt,fill=green!70}}
+\tikzset{seqbdot/.style={blue,circle,draw,minimum size=5pt, inner sep=0pt,fill=blue!70}}
+\tikzset{seqodot/.style={orange,circle,draw,minimum size=5pt, inner sep=0pt,fill=orange!70}}
+\tikzset{seqpdot/.style={purple,circle,draw,minimum size=5pt, inner sep=0pt,fill=purple!70}}
+
+\makeatletter
+\pgfdeclareshape{oplus}
+{
+  \inheritsavedanchors[from=circle] 
+  \inheritanchorborder[from=circle]
+  \inheritanchor[from=circle]{north}
+  \inheritanchor[from=circle]{north west}
+  \inheritanchor[from=circle]{north east}
+  \inheritanchor[from=circle]{center}
+  \inheritanchor[from=circle]{west}
+  \inheritanchor[from=circle]{east}
+  \inheritanchor[from=circle]{mid}
+  \inheritanchor[from=circle]{mid west}
+  \inheritanchor[from=circle]{mid east}
+  \inheritanchor[from=circle]{base}
+  \inheritanchor[from=circle]{base west}
+  \inheritanchor[from=circle]{base east}
+  \inheritanchor[from=circle]{south}
+  \inheritanchor[from=circle]{south west}
+  \inheritanchor[from=circle]{south east}
+  \inheritbackgroundpath[from=circle]
+  \foregroundpath{
+    \centerpoint%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%  
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%  
+    \ifdim\pgf@xb<\pgf@yb%
+    \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+    \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathmoveto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{\pgfutil@tempdima}{0pt}}}
+    \pgfpathlineto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{-\pgfutil@tempdima}{0pt}}}
+    \pgfpathmoveto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{0pt}{-\pgfutil@tempdima}}}
+    \pgfpathlineto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{0pt}{\pgfutil@tempdima}}}
+    \pgfsetarrowsstart{}
+    \pgfsetarrowsend{}
+  }
+}
+\makeatother
+
+
+\tikzset{
+  european voltages,
+  res/.style={european resistor=$R_{#1}$},
+  ind/.style={inductor=$L_{#1}$},
+  cap/.style={capacitor=$C_{#1}$},
+  cur/.style={european current source=$I_{#1}$},
+  vol/.style={european voltage source=$U_{#1}$},
+  ctrc/.style={european controlled current source=$#1$},
+  ctrv/.style={european controlled voltage source=$#1$},
+  gnd/.style={rground},
+  imp/.style={generic=$\underline{Z}_{#1}$},
+  adm/.style={generic=$\phasor{Y}_{#1}$},
+  v/.style={color=blue}
+}
+
+\setminted[matlab]{
+  framesep=2mm,
+  baselinestretch=1.2,
+  fontsize=\footnotesize,
+  bgcolor=blue!10,
+  linenos
+}

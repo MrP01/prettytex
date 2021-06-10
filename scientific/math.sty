@@ -23,7 +23,7 @@
 \newcommand*\Cof{\mathrm{Cof}}                                % cofactor matrix
 \newcommand*\imate{\mat{E}}                                   % identity matrix (german)
 \newcommand*\imati{\mat{I}}                                   % identity matrix (english)
-
+\newcommand*\sv[1]{\langle #1 \rangle}
 
 \newcommand*{\longleadsto}[1]{                                %
   \begin{tikzpicture}                                         %
@@ -81,6 +81,11 @@
 \newcommand*\divs{\mathrm{div}}                               % divergence of vector field
 \newcommand*\extd{\mathrm{D}}                                 % exterior derivative
 \newcommand*\ld{\mathrm{ld}}                                  % logarithmus dualis
+\newcommand\ostar{                                            %
+  \stackMath\mathbin{                                         % symbol for cyclic convolution
+    \stackinset{c}{0ex}{c}{0ex}{\ast}{\bigcirc}}}             %
+\newcommand*\convc[1]{$\overset{#1}{\ostar}$}                 % cyclic convolution with length #1
+\newcommand*\argd[2]{\underset{#1}{\overset{#2}{\Delta}}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
@@ -102,9 +107,10 @@
 \newcommand*\efalse{\mathrm{F}}                               % symbol for false (english)  
 
 %----------------------------------------------------------------------------------------------------------------------
-% equations
+% algebra
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand*\feq{\overset{!}{=}}                              % should equal to
+
 
 %----------------------------------------------------------------------------------------------------------------------
 % constants
