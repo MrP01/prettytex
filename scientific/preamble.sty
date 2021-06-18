@@ -1,10 +1,12 @@
 \ProvidesPackage{preamble}
 
+
+
 %----------------------------------------------------------------------------------------------------------------------
 % package loading: general
 %----------------------------------------------------------------------------------------------------------------------
-\usepackage[utf8]{inputenc}                                 % allows ö,ä,ü in .tex source files
-\usepackage[T1]{fontenc}                                    % sets fontencoding
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 \usepackage{lmodern}                                        % sets lmoderm font
 \usepackage{import}                                         % allows for file-imports in documents
 \usepackage{babel}                                          % language control
@@ -44,6 +46,10 @@
 \usepackage[straightvoltages,nooldvoltagedirection]{circuitikz}
 \usepackage{stackengine} 
 \usepackage{geometry}                                       % page layout control
+
+\usepackage{newpxtext}
+\catcode`\ß=13
+\defß{\ss}
 
 %----------------------------------------------------------------------------------------------------------------------
 % package options: cellspace
