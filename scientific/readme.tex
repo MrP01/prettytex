@@ -1,0 +1,215 @@
+\documentclass{report}
+
+\usepackage{preamble}   % should be loaded before math
+\usepackage{math}       % requires preamble
+
+\begin{document}
+  \section{General Information}
+    The files \textit{math.sty} and \textit{preamble.sty} should provide you a simple yet effective suite of
+    macros for quick writing of mathematical/scientific papers. To properly load them you should include the
+    following in your preamble:
+    % listings does not directly support writing latex-code in the environment
+    \begin{minted}{latex}
+      \usepackage{preamble}
+      \usepackage{math}
+    \end{minted}
+
+    It is important that you maintain the order of the packages, since math.sty uses some packages included in
+    preamble.sty. Other than providing an extensive list of mathematical operators from math, there 
+    are some useful commands in preamble.sty too.  The one that I myself use quite often is
+    \mintinline{latex}{\col{<color>}{<text>}}. Although xcolor defines \mintinline{latex}{\textcolor},
+    it can get kind of ''clunky'' in tables or similar, so i wrote a shorter command.
+
+
+  \section{Symbol Index}
+    % \lstinline cannot be used in \multicolumn
+    % see (in german) https://golatex.de/tabelle-mit-multicolumn-und-lstinline-t20748.html
+    % TODO: find better/more elegant solution
+
+
+  \begin{center}
+    \begin{longtable}{Cl Cc Cc Cl Cc Cc}
+      \textbf{Symbol} & \textbf{Math-Mode} & \textbf{Result} &  \textbf{Symbol}      & \textbf{Math-Mode} & \textbf{Result}\\
+      \multicolumn{2}{Cl}{\textbf{Symbol}} & \multicolumn{2}{Cc}{\textbf{Math-Mode}} & \multicolumn{2}{Cc}{\textbf{Result}}\\
+      \hhline{======}
+      \multicolumn{6}{Cc}{\textit{Vectors}}\\
+      \hline
+      Column Vector & \mintinline{latex}{\pvec{x_1}{x_2}} & $\pvec{x_1}{x_2}$ & Dot-Product                                & \mintinline{latex}{\dotp{x_1}{x_2}} & $\dotp{x_1}{x_2}$\\
+      \multicolumn{2}{Cl}{Column Vector}                  & \multicolumn{2}{Cc}{\mintinline{latex}{\tvec{x_1}{x_2}{x_3}}}  & \multicolumn{2}{Cc}{$\tvec{x_1}{x_2}{x_3}$} \\
+      \multicolumn{2}{Cl}{Row Vector}                     & \multicolumn{2}{Cc}{\mintinline{latex}{\rpvec{x_1}{x_2}}}      & \multicolumn{2}{Cc}{$\rpvec{x_1}{x_2}$}\\
+      \multicolumn{2}{Cl}{Row Vector}                     & \multicolumn{2}{Cc}{\mintinline{latex}{\rtvec{x_1}{x_2}{x_3}}} &\multicolumn{2}{Cc}{$\rtvec{x_1}{x_2}{x_3}$}\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Matrices}}\\
+      \hline
+      Matrix      & \mintinline{latex}{\mat{M}} & $\mat{M}$ & Matrix (greek letters) & \mintinline{latex}{\gmat{\phi}} & $\gmat{\phi}$\\
+      Determinant & \mintinline{latex}{\det}    & $\det$\\
+      Row Operation (arrow) & \mintinline{latex}{\longleadsto{0.7}} & $\longleadsto{0.7}$ & Row Operation        & \mintinline{latex}{\rtrf{r_2: -2r_1}} & $\rtrf{r_2: -2r_1}$\\
+      Matrix-Rank (de)      & \mintinline{latex}{\Rang}             & $\Rang$             & Matrix-Rank (en)     & \mintinline{latex}{\Rank}              & $\Rank$\\
+      Matrix-Trace (de)     & \mintinline{latex}{\Spur}             & $\Spur$             & Matrix-Trace (en)    & \mintinline{latex}{\Trace}             & $\Trace$\\
+      Adjunct-Matrix        & \mintinline{latex}{\Adj}              & $\Adj$              & Cofactor-Matrix      & \mintinline{latex}{\Cof}               & $\Cof$\\
+      Identity-Matrix (de)  & \mintinline{latex}{\imate}            & $\imate$            & Identity-Matrix (en) & \mintinline{latex}{\imati}             & $\imati$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Calculus and Functions}}\\
+      \hline
+      Differential d          & \mintinline{latex}{\diff}         & $\diff$         & Exterior Derivative     & \mintinline{latex}{\extd|}             & $\extd$\\
+      Divergence              & \mintinline{latex}{\divs}         & $\divs$\\
+      Derivative              & \mintinline{latex}{\der{f}{x}}    & $\der{f}{x}$    & Partial Derivative      & \mintinline{latex}{\per{f}{x_1}}       & $\per{f}{x_1}$\\
+      n-th Derivative         & \mintinline{latex}{\ner{f}{x}{n}} & $\ner{f}{x}{n}$ & n-th Partial Derivative & \mintinline{latex}{\pnr{f}{x_1}{n}}    & $\pnr{f}{x_1}{n}$\\
+      Curl (de)               & \mintinline{latex}{\rot}          & $\rot$          & Curl (en)               & \mintinline{latex}{\curl}              & $\curl$\\
+      Limit (noarg)           & \mintinline{latex}{\lims}         & $\lims$         & Limit                   & \mintinline{latex}{\lim{n}{\infty}}    & $\lim{n}{\infty}$\\
+      Infimum (noarg)         & \mintinline{latex}{\infs}         & $\infs$         & Infimum                 & \mintinline{latex}{\inf{M}}            & $\inf{M}$\\
+      Supremum (noarg)        & \mintinline{latex}{\sups}         & $\sups$         & Supremum                & \mintinline{latex}{\sup{M}}            & $\sup{M}$\\ 
+      Limes Inferior (noarg)  & \mintinline{latex}{\liminfs}      & $\liminfs$      & Limes Inferior          & \mintinline{latex}{\liminf{n}{\infty}} & $\liminf{n}{\infty}$\\
+      Limes Superior  (noarg) & \mintinline{latex}{\limsups}      & $\limsups$      & Limes Superior          & \mintinline{latex}{\limsup{n}{\infty}} & $\limsup{n}{\infty}$\\
+      Function Image (de)     & \mintinline{latex}{\Bild}         & $\Bild$         & Function Image (en)     & \mintinline{latex}{\Img}               & $\Img$ \\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Additional Trigonometric Functions}}\\
+      \hline
+      \multicolumn{2}{Cl}{Area Sinus hyperbolicus}    & \multicolumn{2}{Cc}{\mintinline{latex}{\Arsinh}} & \multicolumn{2}{Cc}{$\Arsinh$}\\
+      \multicolumn{2}{Cl}{Area Cosinus hyperbolicus}  & \multicolumn{2}{Cc}{\mintinline{latex}{\Arcosh}} & \multicolumn{2}{Cc}{$\Arcosh$}\\
+      \multicolumn{2}{Cl}{Area Tangens hyperbolicus}  & \multicolumn{2}{Cc}{\mintinline{latex}{\Artanh}} & \multicolumn{2}{Cc}{$\Artanh$}\\
+      \multicolumn{2}{Cl}{Area Cotanges hyperbolicus} & \multicolumn{2}{Cc}{\mintinline{latex}{\Arcoth}} & \multicolumn{2}{Cc}{$\Arcoth$}\\
+      Arcus Cotangens & \mintinline{latex}{\arccot}   & $\arccot$\\
+      Arcus Secans    & \mintinline{latex}{\arcsec}   & $\arcsec$ & Arcus Cosecans                       & \mintinline{latex}{\arccsc} & $\arccsc$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Logic}}\\
+      \hline
+      Bijunction            & \mintinline{latex}{\bij}      & $\bij$ \\
+      Equivalent            & \mintinline{latex}{\eqv}      & $\eqv$      & Not Equivalent        & \mintinline{latex}{\neqv}      & $\neqv$\\
+      Right Subjunction     & \mintinline{latex}{\subj}     & $\subj$     & Left Subjunction      & \mintinline{latex}{\lsubj}     & $\lsubj$\\
+      Not Right Subjunction & \mintinline{latex}{\nsubj}    & $\nsubj$    & Not Left Subjunction  & \mintinline{latex}{\nlsubj}    & $\nlsubj$\\
+      Right Implication     & \mintinline{latex}{\implies}  & $\implies$  & Left Implication      & \mintinline{latex}{\limplies}  & $\limplies$\\
+      Not Right Implication & \mintinline{latex}{\nimplies} & $\nimplies$ & Not Left Implication  & \mintinline{latex}{\nlimplies} & $\nlimplies$\\
+      Symbol for True (de)  & \mintinline{latex}{\dtrue}    & $\dtrue$    & Symbol for True (en)  & \mintinline{latex}{\etrue}     & $\etrue$\\
+      Symbol for False (de) & \mintinline{latex}{\dfalse}   & $\dfalse$   & Symbol for False (en) & \mintinline{latex}{\efalse}    & $\efalse$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Equations}}\\
+      \hline
+      Should be equal to & \mintinline{latex}{\feq} & $\feq$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Constants}}\\
+      \hline
+      Imaginary Unit & \mintinline{latex}{\i} & $\i$ & Jimaginary Unit (EE) & \mintinline{latex}{\j} & $\j$\\
+      Euler's Number & \mintinline{latex}{\e} & $\e$\\
+      \hline 
+      \multicolumn{6}{Cc}{\textit{Number Theory}}\\
+      \hline
+      GCD (de) & \mintinline{latex}{\ggT} & $\ggT$ & GCD (en) & \mintinline{latex}{\gcd} & $\gcd$\\
+      LCM (de) & \mintinline{latex}{\kgV} & $\kgV$ & LCM (en) & \mintinline{latex}{\lcm} & $\lcm$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Signal Transforms}}\\
+      \hline
+      Laplace Transform   & \mintinline{latex}{\ltr{x}} & $\ltr{x}$ & Z Transform             & \mintinline{latex}{\ztr{x}}  & $\ztr{x}$\\
+      Laplace Transform   & \mintinline{latex}{\lap{x}} & $\lap{x}$ & Laplace Transform (inv) & \mintinline{latex}{\ilap{x}} & $\ilap{x}$\\
+      Z-Transform         & \mintinline{latex}{\zat{x}} & $\zat{x}$ & Z-Transform (inv)       & \mintinline{latex}{\izat{x}} & $\izat{x}$\\
+      Fourier Transform   & \mintinline{latex}{\frt}    & $\frt$ \\
+      Fourier Transform   & \mintinline{latex}{\fat{x}} & $\fat{x}$ & Fourier Transform (inv) & \mintinline{latex}{\ifat{x}}  & $\ifat{x}$\\
+      Fourier Series (de) & \mintinline{latex}{\frr}    & $\frr$    & Fourier Series (en)     & \mintinline{latex}{\frs}      & $\frs$\\
+      DFT                 & \mintinline{latex}{\dft}    & $\dft$    & DTFT                    & \mintinline{latex}{\dtft}     & $\dtft$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Custom TikZ-Symbols for Signal Transforms}}\\
+      \hline
+      Laplace Transform & \mintinline{latex}{\ltransf} & $\ltransf$ & Laplace Transform (inv) & \mintinline{latex}{\Ltransf} & $\Ltransf$\\
+      Z Transform       & \mintinline{latex}{\ztransf} & $\ztransf$ & Z Transform (inv)       & \mintinline{latex}{\Ztransf} & $\Ztransf$\\
+      \hline
+      \multicolumn{6}{Cc}{\textit{Sets}}\\
+      \hline
+      Natural Numbers    & \mintinline{latex}{\N} & $\N$ & Integers               & \mintinline{latex}{\Z} & $\Z$\\
+      Rational Numbers   & \mintinline{latex}{\Q} & $\Q$ & Irrational Numbers     & \mintinline{latex}{\I} & $\I$\\
+      Real Numbers       & \mintinline{latex}{\R} & $\R$ & Complex Numbers        & \mintinline{latex}{\C} & $\C$\\
+      Set of Primes      & \mintinline{latex}{\P} & $\P$ & Transcendental Numbers & \mintinline{latex}{\T} & $\T$\\
+      General Field (de) & \mintinline{latex}{\K} & $\K$ & General Field (en)     & \mintinline{latex}{\F} & $\F$\\
+      \hhline{======}\\
+      \caption{All symbols and operators from math.sty}
+    \end{longtable}
+  \end{center}
+
+  As you might have noticed, some of the entries in the table above feature either (de) or (en). These
+  typically refer to language-dependent Operators. A classic example is the Curl of a Vector-Field. In English, the
+  operator is either $\nabla\times\mat{V}$ or $\curl(\mat{V})$. In German however, the cross-product
+  $\nabla\times\mat{V}$ ist referred to as \textit{Rotation von $\mat{V}$}\footnote{Rotation of $\mat{V}$}. 
+  Hence the Operator $\rot(\mat{V})$.
+
+  There also exist some limits which take no arguments, which is listed with (noarg). This was mostly done
+  to provide a simple text command for just the operator. If you e.g. just want to write: 
+  \textit{The limes superior refers to the largest ...} and want to use the symbol $\limsups$ in text without any
+  subscript.
+
+  \section{A Word on Tables}
+    Tables in \LaTeX can be quite a pain, especially correct vertical spacing and alignment. To avoid maximum 
+    frustration, the package \mintinline{latex}{cellspace} is loaded. It allows to define a minimal distance to the top
+    and the bottom of a row. To enable this functionality in your tables, you need to modify your column-list by
+    adding \mintinline{latex}{S} in front of your column type, e.g. \mintinline{latex}{\begin{tabular}{Sc Sl Sr}}. 
+    \textbf{Note:} If you have \mintinline{latex}{siunitx} loaded\footnote{preamble loads this package} you need to
+    write \mintinline{latex}{Cc} instead.  
+
+    The standard value for space to top/bottom is 4pt. You can change this by modifying the corresponding commands
+    in preamble.sty:
+    \begin{itemize}
+      \item \mintinline{latex}{\setlength\cellspacetopline}  controls the spacing to the top
+      \item \mintinline{latex}{\setlength\cellspacebottomline} controls the spacing to the bottom
+    \end{itemize}
+
+    preamble also includes the \mintinline{latex}{longtable} package. This allows for tables to perform pagebreak. A
+    pagebreak can be manually inserted by typing \mintinline{latex}{\pagebreak} in the table-contents. In order for
+    this to work, the longtable-environment mustn't be in a table-environment. So wrap your longtable in
+    a center and put the caption as a row element. See \mintinline{latex}{readme.tex} for an example.
+  \newpage
+  \section{Augmented Matrices and Row Operations}
+    We now support augmented matrices. I took this beautiful solution from 
+    Stefan Kottwitz\footnote{https://tex.stackexchange.com/users/213/stefan-kottwitz[12.3.2021]}:
+    \begin{minted}{latex}
+      \makeatletter                                      
+      \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+        \hskip -\arraycolsep                             
+        \let\@ifnextchar\new@ifnextchar                  
+        \array{#1}}                                      
+      \makeatother                                       
+    \end{minted}
+    I found this solution on 
+    StackExchange\footnote{https://tex.stackexchange.com/questions/2233/whats-the-best-way-make-an-augmented-coefficient-matrix[12.3.2021]}. 
+    This modifies the amsmath-matrix environment, such that you can add a column-specification (like for tables) e.g.
+    [cc|c] and after the second column, a line will be drawn. A simple example:
+    \begin{minted}{latex}
+      \begin{bmatrix}[cc|c]
+        m_{11} & m_{12} & b_1\\
+        m_{21} & m_{21} & b_2
+      \end{bmatrix}
+    \end{minted}
+    Produces:
+    \begin{align*}
+      \begin{bmatrix}[cc|c]
+        m_{11} & m_{12} & b_1\\
+        m_{21} & m_{21} & b_2
+      \end{bmatrix}
+    \end{align*}
+
+    The good part about Kott's solution is, that you can still call \mintinline{latex}{\begin{bmatrix}} and related without
+    any column-specifications, so the following still  works:
+    \begin{minted}{latex}
+      \begin{bmatrix}
+        m_{11} & m_{12} & b_1\\
+        m_{21} & m_{21} & b_2
+      \end{bmatrix}
+    \end{minted}
+    Which produces:
+    \begin{align*}
+      \begin{bmatrix}
+        m_{11} & m_{12} & b_1\\
+        m_{21} & m_{21} & b_2
+      \end{bmatrix}
+    \end{align*}
+
+    For Row operations, I found Jake's\footnote{https://tex.stackexchange.com/users/2552/jake[12.3.2021]} solution in
+    this\footnote{https://tex.stackexchange.com/questions/12678/squiggly-arrows-in-tikz/442036\#442036[12.3.2021]} thread. It 
+    allows you to draw a squiggly arrow with a specified length, which is passed as an argument to the call
+    \mintinline{latex}{\longleadsto{<length>}}.
+    
+    
+  \section{Authors Note}
+    Since I am currently studying Information and Computer Engineering, I've only written macros for 
+    corresponding fields (i.e. electrical engineering). So currently there are no neat macros for Chemistry or
+    advanced Physics, etc. Since this repository is public you can Issue a feature request and given some 
+    time, it should be implemented in a corresponding style.
+  
+\end{document}

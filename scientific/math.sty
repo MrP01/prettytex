@@ -26,6 +26,7 @@
 \newcommand*\sv[1]{\langle #1 \rangle}
 
 \newcommand*{\longleadsto}[1]{                                %
+  \tikzexternaldisable                                        % disables externalization for this graphic
   \begin{tikzpicture}                                         %
     \draw [->, line join=round, decorate, decoration={        %
       zigzag,                                                 %
@@ -34,9 +35,10 @@
       post=lineto,                                            %
       post length=2pt}] (0,0) -- (#1,0);                      %
   \end{tikzpicture}                                           %
+  \tikzexternalenable                                         % re-enables externalization 
 }                                                             %
 
-\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{0.7}}}         % matrix row  operation
+\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{1}}}         % matrix row  operation
 
 % beautiful soltion by Stefan Kottwitz (https://tex.stackexchange.com/users/213/stefan-kottwitz)
 % Latex-Stackexchange post: 

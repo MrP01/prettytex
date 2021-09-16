@@ -1,1 +1,9 @@
 .idea/
+*.aux
+*.auxlock
+*.synctex.gz
+*.out
+*.log
+*.pygtex
+_minted-*
+scientific/.vscode/settings.json
