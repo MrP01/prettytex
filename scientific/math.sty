@@ -7,7 +7,7 @@
 \newcommand*\tvec[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}  % 3x1 column vector
 \newcommand*\rpvec[2]{\begin{bmatrix}#1&#2\end{bmatrix}}      % 1x2 row vector
 \newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}}   % 1x3 row vector
-\newcommand*\dotp[2]{\big\langle#1,#2\big\rangle}             % dot-product with arguemnts
+\newcommand*\dotp[2]{\left\langle#1,#2\right\rangle}             % dot-product with arguemnts
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
@@ -23,7 +23,7 @@
 \newcommand*\Cof{\mathrm{Cof}}                                % cofactor matrix
 \newcommand*\imate{\mat{E}}                                   % identity matrix (german)
 \newcommand*\imati{\mat{I}}                                   % identity matrix (english)
-\newcommand*\sv[1]{\langle #1 \rangle}
+\newcommand*\sv[1]{\left\langle #1 \right\rangle}
 
 \newcommand*{\longleadsto}[1]{                                %
   \tikzexternaldisable                                        % disables externalization for this graphic
@@ -70,8 +70,8 @@
 \renewcommand{\lim}[2]{\underset{#1\subj #2}{\lims}}          % limit with arguments
 \renewcommand{\limsup}[2]{\underset{#1\subj #2}{\limsups\;}}  % limes superior with arguments
 \renewcommand{\liminf}[2]{\underset{#1\subj #2}{\liminfs\;}}  % limes inferior with arguments
-\renewcommand{\sup}[1]{\sups\big(#1\big)}                     % supremum with argument
-\renewcommand{\inf}[1]{\infs\big(#1\big)}                     % infimum with argument
+\renewcommand{\sup}[1]{\sups\left(#1\right)}                     % supremum with argument
+\renewcommand{\inf}[1]{\infs\left(#1\right)}                     % infimum with argument
 \newcommand*\Bild{\mathrm{Bild}}                              % image of a function (german)
 \newcommand*\Img{\mathrm{Img}}                                % image of a function (english)
 \newcommand*\der[2]{\frac{\diff #1}{\diff #2}}                % derivative
@@ -134,15 +134,15 @@
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand*\ztr[1]{\tilde{#1}}                               % indication that #1 is a z-transform
 \newcommand*\ltr[1]{\overline{#1}}                            % indication that #1 is a laplace-transform
-\newcommand*\lap[1]{\mathcal{L}\big\{#1\big\}(s)}             % laplace transformation (with {}(s))
-\newcommand*\zat[1]{\mathcal{Z}\big\{#1\big\}(z)}             % z transformation (with {}(z))
-\newcommand*\izat[1]{\mathcal{Z}^{(-1)}\big\{#1\big\}}        % inverse z transformation
-\newcommand*\ilap[1]{\mathcal{L}^{(-1)}\big\{#1\big\}}        % inverse laplace transformation
-\newcommand*\ifat[1]{\mathcal{F}^{(-1)}\big\{#1\big\}}        % inverse fourier transformation
+\newcommand*\lap[1]{\mathcal{L}\left\{#1\right\}(s)}             % laplace transformation (with {}(s))
+\newcommand*\zat[1]{\mathcal{Z}\left\{#1\right\}(z)}             % z transformation (with {}(z))
+\newcommand*\izat[1]{\mathcal{Z}^{(-1)}\left\{#1\right\}}        % inverse z transformation
+\newcommand*\ilap[1]{\mathcal{L}^{(-1)}\left\{#1\right\}}        % inverse laplace transformation
+\newcommand*\ifat[1]{\mathcal{F}^{(-1)}\left\{#1\right\}}        % inverse fourier transformation
 \newcommand*\frr{\overset{\mathrm{FR}}{\longleftrightarrow}}  % fourier series (german)
 \newcommand*\frs{\overset{\mathrm{FS}}{\longleftrightarrow}}  % fourier series (english)
 \newcommand*\frt{\overset{\mathrm{FT}}{\longleftrightarrow}}  % fourier transformation 
-\newcommand*\fat[1]{\mathcal{F}\big\{#1\big\}(\omega)}        % alternative writing for Fourier-Transform
+\newcommand*\fat[1]{\mathcal{F}\left\{#1\right\}(\omega)}     % alternative writing for Fourier-Transform
 \newcommand*\dft{\overset{\mathrm{DFT}}{\longleftrightarrow}} % discrete fourier transform
 \newcommand*\dtft{\overset{\mathrm{DTFT}}{\longleftrightarrow}} % discrete time fourier transform
 

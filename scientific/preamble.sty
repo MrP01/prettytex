@@ -13,7 +13,7 @@
 \usepackage{multirow}               % allow table cells to span multiple rows
 \usepackage{minted}                 % fancy code highlighting
 \usepackage[hidelinks]{hyperref}    % clickable links in the pdf and toc in viewer
-\usepackage{longtable}
+\usepackage{longtable}              % looooong tables
 
 %---------------------------------------------------------------------------------------------------
 % package loading: mathematics
@@ -97,16 +97,37 @@
 
 %---------------------------------------------------------------------------------------------------
 % set equation numbering and custom environments
+% TODO: implement with different languages
 %---------------------------------------------------------------------------------------------------
-\newcommand{\theoremname}{Theorem}
-\newcommand{\definitionname}{Definition}
-\newcommand{\examplename}{Example}
-\newcommand{\notename}{Note}
+\newtheorem{prototheorem}{Satz}[section]
+\newenvironment{theorem}
+   {\colorlet{shadecolor}{orange!15}\begin{shaded}\begin{prototheorem}}
+   {\end{prototheorem}\end{shaded}}
 
-\newtheorem{definition}{\definitionname}[section]     % environment for definitions
-\newtheorem{theorem}{\theoremname}[section]           % environment for theorems
-\newtheorem{example}{\examplename}[section]           % environment for examples
-\newtheorem{note}{\notename}[section]                 % environment for notes
+\newtheorem{protodefinition}{Definition}[section]
+\newenvironment{definition}
+   {\colorlet{shadecolor}{blue!15}\begin{shaded}\begin{protodefinition}}
+   {\end{protodefinition}\end{shaded}}
+
+\newtheorem{protoexample}{Beispiel}[section]
+\newenvironment{example}
+   {\colorlet{shadecolor}{red!15}\begin{shaded}\begin{protoexample}}
+   {\end{protoexample}\end{shaded}}
+
+\newtheorem{protolemma}[prototheorem]{Lemma}
+\newenvironment{lemma}
+   {\colorlet{shadecolor}{purple!15}\begin{shaded}\begin{protolemma}}
+   {\end{protolemma}\end{shaded}}
+
+
+\newtheorem{protonotation}{Anmerkung}[section]
+\newenvironment{note}
+   {\colorlet{shadecolor}{yellow!15}\begin{shaded}\begin{protonotation}}
+   {\end{protonotation}\end{shaded}}
+
+\newenvironment{note*}
+  {\colorlet{shadecolor}{yellow!15}\begin{shaded}}
+  {\end{shaded}}
 
 %---------------------------------------------------------------------------------------------------
 % misc
@@ -209,5 +230,3 @@
   bgcolor=blue!10,
   linenos
 }
-
-\newcommand{\algcapname}{Algorithm}
