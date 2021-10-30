@@ -1,0 +1,51 @@
+\ProvidesPackage{base}
+
+%----------------------------------------------------------------------------------------------------------------------
+% essential package loading
+%----------------------------------------------------------------------------------------------------------------------
+% standard packages
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{fancyhdr}
+\usepackage[dvispnames]{xcolor}
+\usepackage{float}
+\usepackage{cellspace}
+\usepackage[theorems]{tcolorbox}
+\usepackage{geometry}
+\usepackage{hyperref}
+
+% mathematical packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{physics}
+
+%----------------------------------------------------------------------------------------------------------------------
+% package options
+%----------------------------------------------------------------------------------------------------------------------
+% cellspace
+\setlength\cellspacetoplimit{4pt}
+\setlength\cellspacebottomlimit{4pt}
+
+% geometry
+\geometry{
+    a4paper,
+    twoside,
+    left=1.75cm,
+    right=1.75cm,
+    top=1.25cm,
+    bottom=1.25cm,
+    includeheadfoot
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% colors
+%----------------------------------------------------------------------------------------------------------------------
+\definecolor{purple}{RGB}{180, 2, 212}
+\definecolor{green}{RGB}{0, 153, 51}
+\definecolor{red}{RGB}{204, 0, 0}
+\definecolor{blue}{RGB}{0, 102, 255}
+\definecolor{orange}{RGB}{227, 102, 0}

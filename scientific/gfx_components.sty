@@ -1,0 +1,80 @@
+\ProvidesPackage{gfx_components}
+
+%----------------------------------------------------------------------------------------------------------------------
+% generic flow component styles
+%----------------------------------------------------------------------------------------------------------------------
+\tikzset{bcomp/.style={draw,draw=blue,fill=blue!50,text=white}}
+\tikzset{rcomp/.style={draw,draw=red,fill=red!70,text=white}}
+\tikzset{gcomp/.style={draw,draw=green,fill=green!50,text=white}}
+\tikzset{ocomp/.style={draw,draw=orange,fill=orange!50,text=white}}
+\tikzset{pcomp/.style={draw,draw=purple,fill=purple!50,text=white}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% dots
+%----------------------------------------------------------------------------------------------------------------------
+\tikzset{bdot/.style={blue,circle,draw,minimum size=5pt,inner sep=0pt,fill=blue!70}}
+\tikzset{rdot/.style={red,circle,draw,minimum size=5pt,inner sep=0pt,fill=red!70}}
+\tikzset{gdot/.style={green,circle,draw,minimum size=5pt,inner sep=0pt,fill=green!70}}
+\tikzset{odot/.style={orange,circle,draw,minimum size=5pt, inner sep=0pt,fill=orange!70}}
+\tikzset{pdot/.style={purple,circle,draw,minimum size=5pt, inner sep=0pt,fill=purple!70}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% adder and multiplier
+%----------------------------------------------------------------------------------------------------------------------
+% node shape definition
+\makeatletter
+\pgfdeclareshape{oplus}
+{
+  \inheritsavedanchors[from=circle] 
+  \inheritanchorborder[from=circle]
+  \inheritanchor[from=circle]{north}
+  \inheritanchor[from=circle]{north west}
+  \inheritanchor[from=circle]{north east}
+  \inheritanchor[from=circle]{center}
+  \inheritanchor[from=circle]{west}
+  \inheritanchor[from=circle]{east}
+  \inheritanchor[from=circle]{mid}
+  \inheritanchor[from=circle]{mid west}
+  \inheritanchor[from=circle]{mid east}
+  \inheritanchor[from=circle]{base}
+  \inheritanchor[from=circle]{base west}
+  \inheritanchor[from=circle]{base east}
+  \inheritanchor[from=circle]{south}
+  \inheritanchor[from=circle]{south west}
+  \inheritanchor[from=circle]{south east}
+  \inheritbackgroundpath[from=circle]
+  \foregroundpath{
+    \centerpoint%
+    \pgf@xc=\pgf@x%
+    \pgf@yc=\pgf@y%
+    \pgfutil@tempdima=\radius%
+    \pgfmathsetlength{\pgf@xb}{\pgfkeysvalueof{/pgf/outer xsep}}%  
+    \pgfmathsetlength{\pgf@yb}{\pgfkeysvalueof{/pgf/outer ysep}}%  
+    \ifdim\pgf@xb<\pgf@yb%
+    \advance\pgfutil@tempdima by-\pgf@yb%
+    \else%
+    \advance\pgfutil@tempdima by-\pgf@xb%
+    \fi%
+    \pgfpathmoveto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{\pgfutil@tempdima}{0pt}}}
+    \pgfpathlineto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{-\pgfutil@tempdima}{0pt}}}
+    \pgfpathmoveto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{0pt}{-\pgfutil@tempdima}}}
+    \pgfpathlineto{\pgfpointadd{\pgfqpoint{\pgf@xc}{\pgf@yc}}{\pgfqpoint{0pt}{\pgfutil@tempdima}}}
+    \pgfsetarrowsstart{}
+    \pgfsetarrowsend{}
+  }
+}
+\makeatother
+
+% adder definitons
+\tikzset{badd/.style={oplus,bcomp}}
+\tikzset{radd/.style={oplus,rcomp}}
+\tikzset{gadd/.style={oplus,gcomp}}
+\tikzset{oadd/.style={oplus,ocomp}}
+\tikzset{padd/.style={oplus,pcomp}}
+
+% multiplier definitons
+\tikzset{badd/.style={oplus,bcomp,rotate=45}}
+\tikzset{radd/.style={oplus,rcomp,rotate=45}}
+\tikzset{gadd/.style={oplus,gcomp,rotate=45}}
+\tikzset{oadd/.style={oplus,ocomp,rotate=45}}
+\tikzset{padd/.style={oplus,pcomp,rotate=45}}

@@ -1,0 +1,113 @@
+\ProvidesPackage{math_base}
+
+%----------------------------------------------------------------------------------------------------------------------
+% sets
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\N{\mathbb{N}}
+\newcommand*\Z{\mathbb{Z}}
+\newcommand*\Q{\mathbb{Q}}
+\newcommand*\I{\mathbb{I}}
+\newcommand*\R{\mathbb{R}}
+\newcommand*\C{\mathbb{C}}
+\newcommand*\T{\mathbb{T}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand*\K{\mathbb{K}}
+\newcommand*\F{\mathbb{F}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% signal transforms
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\ztr[1]{\tilde{#1}}
+\newcommand*\ltr[1]{\overline{#1}}
+\newcommand*\lap[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand*\zat[1]{\mathcal{Z}\left\{#1\right\}}
+\newcommand*\izat[1]{\mathcal{Z}^{(-1)}\left\{#1\right\}}
+\newcommand*\ilap[1]{\mathcal{L}^{(-1)}\left\{#1\right\}}
+\newcommand*\ifat[1]{\mathcal{F}^{(-1)}\left\{#1\right\}}
+\newcommand*\frr{\overset{\mathrm{FR}}{\longleftrightarrow}}
+\newcommand*\frs{\overset{\mathrm{FS}}{\longleftrightarrow}}
+\newcommand*\frt{\overset{\mathrm{FT}}{\longleftrightarrow}}
+\newcommand*\fat[1]{\mathcal{F}\left\{#1\right\}}
+\newcommand*\ifat[1]{\mathcal{F}^{-1}\left\{#1\right\}}
+\newcommand*\dft{\overset{\mathrm{DFT}}{\longleftrightarrow}}
+\newcommand*\dtft{\overset{\mathrm{DTFT}}{\longleftrightarrow}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% constants
+%----------------------------------------------------------------------------------------------------------------------
+\renewcommand{\i}{\mathrm{i}}
+\renewcommand{\j}{\mathrm{j}}
+\newcommand*\e{\mathrm{e}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% number theory
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\ggT{\mathrm{ggT}}
+\newcommand*\kgV{\mathrm{kgV}}
+\renewcommand{\gcd}{\mathrm{gcd}}
+\newcommand*\lcm{\mathrm{lcm}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% algebra
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\feq{\overset{!}{=}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% logic 
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\bij{\leftrightarrow}
+\newcommand*\subj{\rightarrow}                                
+\newcommand*\lsubj{\leftarrow}
+\newcommand*\nsubj{\cancel{\subj}}
+\newcommand*\nlsubj{\cancel{\lsubj}}
+\newcommand*\eqv{\Leftrightarrow}
+\newcommand*\neqv{\cancel{\eqv}}                          
+\renewcommand{\implies}{\Rightarrow}
+\newcommand*\limplies{\Leftarrow}
+\newcommand*\nimplies{\cancel{\implies}}
+\newcommand*\nlimplies{\cancel{\limplies}}
+\newcommand*\dtrue{\mathrm{W}}
+\newcommand*\dfalse{\mathrm{F}}
+\newcommand*\etrue{\mathrm{T}}
+\newcommand*\efalse{\mathrm{F}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% vectors
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\pvec[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
+\newcommand*\tvec[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
+\newcommand*\rpvec[2]{\begin{bmatrix}#1&#2\end{bmatrix}}
+\newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}}
+\newcommand*\dotp[2]{\left\langle#1,#2\right\rangle}
+\newcommand*\sv[1]{\left\langle #1 \right\rangle}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% matrices
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\mat[1]{\mathbf{#1}}
+\newcommand*\gmat[1]{\boldsymbol#1}
+\newcommand*\Spur{\mathrm{Spur}}
+\newcommand*\Rang{\mathrm{Rang}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand*{\longleadsto}[1]{
+  \tikzexternaldisable
+  \begin{tikzpicture}
+    \draw [->, line join=round, decorate, decoration={
+      zigzag,
+      segment length=4,
+      amplitude=.9,
+      post=lineto,
+      post length=2pt}] (0,0) -- (#1,0);
+  \end{tikzpicture}
+  \tikzexternalenable
+}
+
+\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{1}}}
