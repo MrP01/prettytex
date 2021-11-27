@@ -4,7 +4,7 @@
 \usepackage{framed}
 \usepackage[theorems]{tcolorbox}
 
-% Leftbar-Frame
+% Leftbar box
 \renewenvironment{leftbar}[1][\hsize]{
   \def\FrameCommand{
     {\color{themecolor}\vrule width 3pt}%
@@ -14,6 +14,7 @@
   \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
 }{\endMakeFramed}
 
+% Theorem box
 \newcommand{\thmbox}[4]{
     \newtcbtheorem{#1}{#2}{
         coltitle=#3,
