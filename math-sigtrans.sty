@@ -1,8 +1,23 @@
 \ProvidesPackage{math_sigtrans}
 
+\newcommand*\ztr[1]{\tilde{#1}}
+\newcommand*\ltr[1]{\overline{#1}}
+\newcommand*\lap[1]{\mathcal{L}\left\{#1\right\}}
+\newcommand*\zat[1]{\mathcal{Z}\left\{#1\right\}}
+\newcommand*\izat[1]{\mathcal{Z}^{(-1)}\left\{#1\right\}}
+\newcommand*\ilap[1]{\mathcal{L}^{(-1)}\left\{#1\right\}}
+\newcommand*\ifat[1]{\mathcal{F}^{(-1)}\left\{#1\right\}}
+\newcommand*\frr{\overset{\mathrm{FR}}{\longleftrightarrow}}
+\newcommand*\frs{\overset{\mathrm{FS}}{\longleftrightarrow}}
+\newcommand*\frt{\overset{\mathrm{FT}}{\longleftrightarrow}}
+\newcommand*\fat[1]{\mathcal{F}\left\{#1\right\}}
+\newcommand*\dft{\overset{\mathrm{DFT}}{\longleftrightarrow}}
+\newcommand*\dtft{\overset{\mathrm{DTFT}}{\longleftrightarrow}}
+
 %----------------------------------------------------------------------------------------------------------------------
 % symbol definitions
 %----------------------------------------------------------------------------------------------------------------------
+\usepackage{tikz}
 
 \newcommand*\ztransf{
     \tikzexternaldisable
