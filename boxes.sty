@@ -1,0 +1,30 @@
+\ProvidesPackage{prettytex/boxes}
+\RequirePackage{prettytex/base}
+
+\usepackage{framed}
+\usepackage[theorems]{tcolorbox}
+
+% Leftbar-Frame
+\renewenvironment{leftbar}[1][\hsize]{
+  \def\FrameCommand{
+    {\color{themecolor}\vrule width 3pt}%
+    \hspace{0pt}
+    \fboxsep=.8cm\colorbox{lightgreybg}%
+  }
+  \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
+}{\endMakeFramed}
+
+\newcommand{\thmbox}[4]{
+    \newtcbtheorem{#1}{#2}{
+        coltitle=#3,
+        colback=#3!15,
+        colframe=#3,
+        boxrule=0.5pt,
+        leftrule=2pt,
+        fonttitle=\bfseries,
+        left=1mm,
+        theorem hanging indent/.try=0pt,
+        attach title to upper,
+        sharp corners
+    }{#4}
+}
