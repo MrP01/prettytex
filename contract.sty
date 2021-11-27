@@ -1,0 +1,14 @@
+\DeclareTranslation{English}{placeanddate}{place, date}
+\DeclareTranslation{German}{placeanddate}{Ort, Datum}
+
+\newcommand{\SignatureAndDate}[2][2.5in]{%
+  \noindent%
+  \begin{tabular}{@{}p{#1}@{}}
+    \\ \hline \\[-.75\normalbaselineskip]
+    #2
+  \end{tabular} \hspace{1in}
+  \begin{tabular}{@{}p{#1}@{}}
+    \\ \hline \\[-.75\normalbaselineskip]
+    \GetTranslation{placeanddate}
+  \end{tabular}
+}
