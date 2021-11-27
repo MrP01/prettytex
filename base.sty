@@ -1,8 +1,13 @@
-\ProvidesPackage{base}
+\ProvidesPackage{prettytex/base}
 
-%----------------------------------------------------------------------------------------------------------------------
-% essential package loading
-%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\babellang}{british}
+\newcommand{\silang}{EN}
+\DeclareOption{de}{
+  \renewcommand{\babellang}{ngerman}
+  \renewcommand{\silang}{DE}
+}
+\ProcessOptions\relax
+
 % standard packages
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
@@ -10,27 +15,27 @@
 \usepackage{fancyhdr}
 \usepackage[dvispnames]{xcolor}
 \usepackage{float}
-\usepackage{cellspace}
-\usepackage[theorems]{tcolorbox}
+\usepackage[column=C]{cellspace}
 \usepackage{geometry}
+\usepackage{url}
 \usepackage{hyperref}
+\usepackage{parskip}
+\usepackage[\babellang]{babel}
+\usepackage{translations}
 
-% mathematical packages
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{esint}
-\usepackage{bm}
-\usepackage{siunitx}
-\usepackage{physics}
+% optional, but important "enough"
+\usepackage[singlelinecheck=false]{caption}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\usepackage{xspace}
 
-%----------------------------------------------------------------------------------------------------------------------
-% package options
-%----------------------------------------------------------------------------------------------------------------------
-% cellspace
+% document geometry
 \setlength\cellspacetoplimit{4pt}
 \setlength\cellspacebottomlimit{4pt}
-
-% geometry
+\setlength{\parindent}{0em}
+\setlength{\parskip}{0.5em}
+\setlength{\headsep}{3em}
 \geometry{
     a4paper,
     twoside,
@@ -41,9 +46,7 @@
     includeheadfoot
 }
 
-%----------------------------------------------------------------------------------------------------------------------
 % colors
-%----------------------------------------------------------------------------------------------------------------------
 \definecolor{purple}{RGB}{180, 2, 212}
 \definecolor{green}{RGB}{0, 153, 51}
 \definecolor{red}{RGB}{204, 0, 0}
@@ -54,3 +57,10 @@
 \definecolor{themecolor3}{HTML}{E05263}
 \definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
 \definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=themecolor,
+    linkcolor=themecolor2,
+    citecolor=themecolor3,
+}

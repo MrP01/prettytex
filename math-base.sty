@@ -1,13 +1,21 @@
-\ProvidesPackage{prettytex/math_base}
+\ProvidesPackage{prettytex/math-base}
 \RequirePackage{prettytex/base}
 
 % mathematical packages
 \usepackage{amsmath}
 \usepackage{amssymb}
+\usepackage{amsthm}
 \usepackage{esint}
+\usepackage{esvect}
 \usepackage{bm}
 \usepackage{siunitx}
 \usepackage{physics}
+\sisetup{
+    separate-uncertainty,
+    locale=\silang,
+    per-mode=fraction,
+    number-unit-product=\,\,\,
+}
 
 %----------------------------------------------------------------------------------------------------------------------
 % sets
