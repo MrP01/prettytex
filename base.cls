@@ -23,14 +23,6 @@
 \setlength{\parskip}{0.5em}
 \setlength{\headsep}{3em}
 
-% Colors
-\usepackage{xcolor}
-\definecolor{themecolor}{HTML}{00A8FF}
-\definecolor{themecolor2}{HTML}{659157}
-\definecolor{themecolor3}{HTML}{E05263}
-\definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
-\definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
-
 % Font
 \usepackage{amsfonts}
 %\usepackage{kpfonts}
