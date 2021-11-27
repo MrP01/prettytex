@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[de]{prettytex/base}
+\usepackage[currency=euro]{prettytex/invoice}
+
+\date{long time ago}
+\newcommand{\invoiceNo}{0001}
+\newcommand{\balance}{1070.00}
+\newcommand{\duein}{15}  % days
+
+\newcommand{\me}{Die Griechen}
+\newcommand{\iban}{AT12 0000 1111 2222 3333}
+\newcommand{\bic}{ST123123}
+\newcommand{\clientName}{Die Stadt Troja}
+\newcommand{\project}{Das Trojanische Pferd}
+
+\setmetadata{\me}{\me}{\invoiceNo}{\clientName}
+
+\begin{document}
+	\makeheader{\me}{\invoiceNo}
+
+	\begin{infoSection}
+		\infoBox{Kunde}{
+			\clientName \\
+			Main Square 1 \\
+			1234 Troja
+		}
+		\infoBox{Projekt}{\project}
+		\infoBox{Kontakt}{Der trojanische Statthalter}
+		\infoSub{}{\small\slshape +1 234 567890}
+		\infoSub{\tiny}{\small\slshape \emaillink{hauptmann@troja.com}}
+		\noalign{\addvspace{8ex}}
+		\infoBox{}{
+			{\large\raisebox{.55\height}\currencysym\huge\formatcurrency{\balance} \arrowbase}
+			%	        {\small\color{subduedColor} due \duedate{\duein}}
+		}
+	\end{infoSection}
+	\begin{infoSection}
+		\infoBox{\arrowtarget Zahlung An}{
+			\me \\
+			Akropolis 1 \\
+			4321 Athen \\
+			Griechenland
+		}
+		\infoSub{}{\small\slshape +2 345 678901}
+		\infoSub{\tiny}{\small\slshape \emaillink{die-soldaten@griechenland.com}}
+		\infoBox{Konto IBAN}{\iban\\{\small\slshape BIC: \bic}}
+	\end{infoSection}
+
+	\drawarrow
+
+	\addvspace{4ex}
+
+	Sehr geehrte Damen und Herren,
+
+	Für meine Tätigkeiten am Projekt \textit{\project} erlaube ich mir, folgenden Betrag in
+	Rechnung zu stellen:
+
+	\begin{hoursItemization}
+		\lineitem{02/00 - 12/00}{92}{10.00}{
+			\item Aufstellung der Anforderungen für ein großes Holzpferd
+			\item Herstellung des trojanischen Pferdes
+		}
+		\lineitem{01/01 - 02/01}{10}{15.00}{
+			\item Lieferung des Pferdes vor die Stadttore Trojas
+		}
+
+		\beginsummary
+		\summaryline{Summe}{\currencysym\formatcurrency{\InvoiceTotal}}
+	\end{hoursItemization}
+
+	Ich ersuche Sie höflich, den oben angeführten Betrag von \currencysym\formatcurrency{\balance} auf mein Konto {\iban} zu überweisen.
+
+	Mit freundlichen Grüßen,\\
+	Peter Waldert
+
+	\addvspace{2ex}
+	\begin{flushright}
+		Das Rechnungsdatum entspricht dem Lieferdatum.\\
+		Umsatzsteuerfrei aufgrund der Kleinunternehmerregelung.
+	\end{flushright}
+\end{document}
