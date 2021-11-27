@@ -1,6 +1,9 @@
 # Write prettier LaTeX
 
-Some LaTeX templates and base classes for university.
+Some LaTeX templates and base classes for university, formal letters, legal things, etc.
+You can find the documentation [here](./docs/prettytex.pdf).
+
+Also, have a look at the [provided templates](./templates/).
 
 ## Usage
 In almost all cases, use an article base document, like so:
@@ -9,6 +12,10 @@ In almost all cases, use an article base document, like so:
 
 \usepackage{prettytex/base}
 \usepackage{prettytex/math}
+
+% or rather, if you use another language:
+\usepackage[de]{prettytex/base}
+\usepackage[de]{prettytex/math}
 ```
 
 This package uses a modular approach, you may want to load some of the following packages. Keep in mind that `prettytex/base` always comes first.
@@ -27,6 +34,8 @@ This package uses a modular approach, you may want to load some of the following
 \usepackage{prettytex/gfx-components}  % control flow shortcuts
 \usepackage{prettytex/gfx-circuits}  % shortcuts for electrical circuits
 ```
+
+Please be curious about the source code, you will find all answers inside.
 
 Have fun! If you find a problem, please open a corresponding issue.
 
