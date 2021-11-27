@@ -12,3 +12,11 @@
     \GetTranslation{placeanddate}
   \end{tabular}
 }
+
+\newcommand{\LawEnumeration}{
+  \makeatletter
+  \renewcommand{\@seccntformat}[1]{§\,\csname the#1\endcsname:\space}
+  \renewcommand{\labelenumi}{(\theenumi)}
+  \renewcommand{\p@enumii}{}
+  \makeatother
+}
