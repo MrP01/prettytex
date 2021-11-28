@@ -104,6 +104,19 @@
 
 \newcounter{colskipcount}
 
+\DeclareTranslation{English}{period}{Period}
+\DeclareTranslation{German}{period}{Zeitraum}
+\DeclareTranslation{English}{project}{Project}
+\DeclareTranslation{German}{project}{Projekt}
+\DeclareTranslation{English}{description}{Description}
+\DeclareTranslation{German}{description}{Beschreibung}
+\DeclareTranslation{English}{hours}{Hours}
+\DeclareTranslation{German}{hours}{Stunden}
+\DeclareTranslation{English}{rate}{Rate}
+\DeclareTranslation{German}{rate}{Rate}
+\DeclareTranslation{English}{costs}{Costs}
+\DeclareTranslation{German}{costs}{Kosten}
+
 \newenvironment{hoursItemization}{
     \setcounter{colskipcount}{5}
     \setlength\LTleft{0pt}
@@ -111,11 +124,11 @@
     \begin{longtable}{c @{\hspace{1.5em}} p{.53\textwidth} r @{} l r r}
     \hline
     \noalign{\smallskip}
-    {\itemizationHeaderStyle Zeitraum} &
-    {\itemizationHeaderStyle Beschreibung} &
-    \multicolumn{2}{l}{\itemizationHeaderStyle Stunden} &
-    {\itemizationHeaderStyle Rate} &
-    {\itemizationHeaderStyle Kosten}
+    {\itemizationHeaderStyle \GetTranslation{period}} &
+    {\itemizationHeaderStyle \GetTranslation{description}} &
+    \multicolumn{2}{l}{\itemizationHeaderStyle \GetTranslation{hours}} &
+    {\itemizationHeaderStyle \GetTranslation{rate}} &
+    {\itemizationHeaderStyle \GetTranslation{costs}}
     \\
     \noalign{\smallskip}
     \hline
@@ -136,12 +149,12 @@
     \begin{longtable}{c c @{\hspace{1.5em}} p{.5\textwidth} r @{} l r r}
     \hline
     \noalign{\smallskip}
-    {\itemizationHeaderStyle Zeitraum} &
-    {\itemizationHeaderStyle Projekt} &
-    {\itemizationHeaderStyle Beschreibung} &
-    \multicolumn{2}{l}{\itemizationHeaderStyle Stunden} &
-    {\itemizationHeaderStyle Rate} &
-    {\itemizationHeaderStyle Kosten}
+    {\itemizationHeaderStyle \GetTranslation{period}} &
+    {\itemizationHeaderStyle \GetTranslation{project}} &
+    {\itemizationHeaderStyle \GetTranslation{description}} &
+    \multicolumn{2}{l}{\itemizationHeaderStyle \GetTranslation{hours}} &
+    {\itemizationHeaderStyle \GetTranslation{rate}} &
+    {\itemizationHeaderStyle \GetTranslation{costs}}
     \\
     \noalign{\smallskip}
     \hline
