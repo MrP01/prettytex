@@ -1,12 +1,12 @@
 \ProvidesPackage{prettytex/gfx-circuits}
-\RequiresPackage{prettytex/gfx}
+\RequirePackage{prettytex/gfx}
 
 
 \newcommand{\circuitstyle}{european}
-\DeclareOptition{american}{\renewcommand{\circuitstyle}{american}}
+\DeclareOption{american}{\renewcommand{\circuitstyle}{american}}
 \ProcessOptions\relax
 
-\usepackage{\circuitstyle}{circuitkz}
+\usepackage[\circuitstyle,nooldvoltagedirection]{circuitikz}
 
 \tikzset{
   res/.style={european resistor=$R_{#1}$},
