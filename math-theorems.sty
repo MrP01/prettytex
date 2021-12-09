@@ -1,27 +1,36 @@
 \ProvidesPackage{prettytex/math-theorems}
 \RequirePackage{prettytex/boxes}
 
+\newcommand{\thmnum}{section}
+\DeclareOption{subsec}{
+  \renewcommand{\thmnum}{subsection}
+}
+\DeclareOption{chapter}{
+  \renewcommand{\thmnum}{chapter}
+}
+\ProcessOptions\relax
+
 \DeclareTranslation{English}{definitionname}{Definition}
 \DeclareTranslation{German}{definitionname}{Definition}
-\thmbox{definition}{\GetTranslation{definitionname}}{green}{def}
+\thmbox{definition}{\GetTranslation{definitionname}}{green}{def}{\thmnum}
 \newcommand{\tcb@cnt@definitionautorefname}{\GetTranslation{definitionname}}
 
 \DeclareTranslation{English}{theoremname}{Theorem}
 \DeclareTranslation{German}{theoremname}{Satz}
-\thmbox{theorem}{\GetTranslation{theoremname}}{blue}{thm}
+\thmbox{theorem}{\GetTranslation{theoremname}}{blue}{thm}{\thmnum}
 \newcommand{\tcb@cnt@theoremautorefname}{\GetTranslation{theoremname}}
 
 \DeclareTranslation{English}{remarkname}{remark}
 \DeclareTranslation{German}{remarkname}{Bemerkung}
-\thmbox{remark}{\GetTranslation{remarkname}}{yellow!30!orange}{remark}
+\thmbox{remark}{\GetTranslation{remarkname}}{yellow!30!orange}{remark}{\thmnum}
 \newcommand{\tcb@cnt@remarkautorefname}{\GetTranslation{remarkname}}
 
 \DeclareTranslation{English}{lemmaname}{Lemma}
 \DeclareTranslation{German}{lemmaname}{Lemma}
-\thmbox{lemma}{\GetTranslation{lemmaname}}{purple}{lemma}
+\thmbox{lemma}{\GetTranslation{lemmaname}}{purple}{lemma}{\thmnum}
 \newcommand{\tcb@cnt@lemmaautorefname}{\GetTranslation{lemmaname}}
 
 \DeclareTranslation{English}{corollaryname}{Corollary}
 \DeclareTranslation{German}{corollaryname}{Korollar}
-\thmbox{corollary}{\GetTranslation{corollaryname}}{orange}{corollary}
+\thmbox{corollary}{\GetTranslation{corollaryname}}{orange}{corollary}{\thmnum}
 \newcommand{\tcb@cnt@corollaryautorefname}{\GetTranslation{corollaryname}}

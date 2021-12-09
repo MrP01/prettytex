@@ -4,6 +4,7 @@
 \usepackage{framed}
 \usepackage[theorems]{tcolorbox}
 
+
 % Leftbar box
 \renewenvironment{leftbar}[1][\hsize]{
   \def\FrameCommand{
@@ -15,8 +16,8 @@
 }{\endMakeFramed}
 
 % Theorem box
-\newcommand{\thmbox}[4]{
-    \newtcbtheorem{#1}{#2}{
+\newcommand{\thmbox}[5]{
+    \newtcbtheorem[number within=#5]{#1}{#2}{
         coltitle=#3,
         colback=#3!15,
         colframe=#3,
