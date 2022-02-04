@@ -8,8 +8,15 @@
 \usepackage{esint}
 \usepackage{esvect}
 \usepackage{bm}
-\usepackage{physics}
+
+
 \usepackage{siunitx}
+
+% preserve original siunitx \qty functionality
+\let\svqty\qty
+\usepackage{physics}
+\let\qty\svqty
+
 \sisetup{
     separate-uncertainty,
     locale=UK,
