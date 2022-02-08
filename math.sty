@@ -19,6 +19,7 @@
 
 \DeclareOption{de}{
   \sisetup{locale=DE}
+  \renewcommand{\equationautorefname}{Gleichung}
 }
 \ProcessOptions\relax
 
@@ -84,7 +85,6 @@
 \newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}}
 \newcommand*\dotp[2]{\left\langle#1,#2\right\rangle}
 \newcommand*\sv[1]{\left\langle #1 \right\rangle}
-
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
