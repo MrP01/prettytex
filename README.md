@@ -48,3 +48,50 @@ git clone git@github.com:MrP01/prettytex.git /path/to/your/repo
 sudo ln -s /path/to/your/repo /usr/share/texlive/texmf-dist/tex/latex/prettytex
 sudo texhash
 ```
+
+
+## Getting minted to work
+
+Based on a sample-size of two (Kubuntu and Arch Linux) operating systems, the `minted` package can cause some problems
+when compiling, usually with the package `pygmentize` being missing on your system. You may install it with
+```bash
+sudo apt-get install pygmentize
+```
+on Debian based systems or:
+```bash
+sudo pacman -S pygmentize
+```
+on Arch Linux based systems. Now you only need to pass the `-shell-escape` flag to your latex-compiler. If you 
+are using the VSCode extension *Latex Workshop*, you need to edit the `settings.json` and add the flag to the 
+`args` of the recipe you are using. For example:
+```json
+"latex-workshop.latex.tools": [
+        {
+            "name": "latexmk",
+            "command": "latexmk",
+            "args": [
+                "-shell-escape", // <-- added the flag here
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "-pdf",
+                "-outdir=%OUTDIR%",
+                "%DOC%"
+            ],
+            "env": {}
+        },
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-shell-escape", // <-- added the flag here
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-file-line-error",
+                "%DOC%"
+            ],
+            "env": {}
+        }
+    ]
+```
+Keep in mind, that you have to pass `-shell-escape` before the `%DOC%` argument.
