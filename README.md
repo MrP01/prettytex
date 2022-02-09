@@ -33,6 +33,7 @@ This package uses a modular approach, you may want to load some of the following
 \usepackage{prettytex/gfx}  % base class for grapics related work
 \usepackage{prettytex/gfx-components}  % control flow shortcuts
 \usepackage{prettytex/gfx-circuits}  % shortcuts for electrical circuits
+\usepackage{prettytex/thesis}  % scientific thesis options (pre-defined bibliography, typing)
 ```
 
 Please be curious about the source code, you will find all answers inside.
