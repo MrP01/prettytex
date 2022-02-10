@@ -27,3 +27,4 @@ _minted-*
 .~lock*
 *.cb
 *.cb2
+*.auxlock
