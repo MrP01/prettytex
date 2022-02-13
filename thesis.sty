@@ -3,7 +3,26 @@
 
 \usepackage{microtype}
 \usepackage[all]{nowidow}
-\usepackage{lipsum}
 \usepackage{csquotes}
 \usepackage[backend=biber, style=alphabetic, maxbibnames=20]{biblatex}
 \usepackage[toc, acronym, style=long3col]{glossaries}
+
+\makeatletter
+\newcommand{\theRealAuthor}{\@thesisauthor}
+\makeatother
+
+% define the pagestyles
+\setlength{\headheight}{15.3pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand\headrule{}
+  \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
+}
+\fancypagestyle{normal}{
+  \fancyhf{}
+  \fancyhead[R]{\theRealAuthor \enspace \textcolor{themecolor3}{\textbullet}}
+  \fancyhead[L]{\leftmark}
+  \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
+  \renewcommand\headrule{\vspace{-0.18cm}\color{headrulecolor}\hrulefill}
+}
+\pagestyle{normal}
