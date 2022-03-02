@@ -3,7 +3,82 @@
 
 \usepackage{microtype}
 \usepackage[all]{nowidow}
-\usepackage{lipsum}
+\usepackage{lastpage}
 \usepackage{csquotes}
-\usepackage[backend=biber, style=alphabetic, maxbibnames=20]{biblatex}
+\usepackage[backend=biber, style=authoryear, maxbibnames=20]{biblatex}
 \usepackage[toc, acronym, style=long3col]{glossaries}
+
+\makeatletter
+\newcommand{\theRealAuthor}{\@thesisauthor}
+\makeatother
+
+\setlength\bibitemsep{0.12cm}
+
+\DeclareCiteCommand{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\cite}
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{citeyear}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand*{\parencite}[\mkbibparens]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+    \printtext[bibhyperref]{\usebibmacro{citeyear}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcite}[\mkbibfootnote]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+  \printtext[bibhyperref]{ \usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\footcitetext}[\mkbibfootnotetext]
+  {\usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printtext[bibhyperref]{\usebibmacro{cite}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\textcite}
+  {\boolfalse{cbx:parens}}
+   {\usebibmacro{citeindex}%
+     \printtext[bibhyperref]{\printnames{labelname}%
+       \printtext{ (\printfield{year}\printtext{)}}}}
+  {\ifbool{cbx:parens}
+   {\bibcloseparen\global\boolfalse{cbx:parens}}
+   {}%
+  \multicitedelim}
+  {\usebibmacro{textcite:postnote}}
+
+% define the pagestyles
+\setlength{\headheight}{15.3pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \renewcommand\headrule{}
+  \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
+}
+\fancypagestyle{normal}{
+  \fancyhf{}
+  \fancyhead[R]{\theRealAuthor \enspace \textcolor{themecolor3}{\textbullet}}
+  \fancyhead[L]{\leftmark}
+  \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
+  \renewcommand\headrule{\vspace{-0.18cm}\color{headrulecolor}\hrulefill}
+}
+\pagestyle{normal}

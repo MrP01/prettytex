@@ -1,0 +1,41 @@
+\documentclass{report}
+\usepackage{prettytex/base}
+\usepackage{prettytex/math}
+\usepackage{prettytex/math-theorems}
+\usepackage{prettytex/thesis}
+\usepackage{blindtext}
+\usepackage[bsc,claim,iaik]{iaikthesis}
+\addbibresource{sources.bib}
+
+\thesistitle{Musterarbeit}
+\thesisauthor{Max Mustermann}
+\thesisdate{March 2022}
+\supervisortitle{Supervisor}
+\supervisor{
+	Prof. Richard Feynman \\
+	\smallskip
+	Institute of Physics \\
+	Some University of Technology
+}
+\curriculum{Physics}
+
+\title{\@thesistitle}
+\author{\@thesisauthor}
+
+\makenoidxglossaries
+\newacronym{he}{HE}{Homomorphic Encryption}
+\newacronym{fhe}{FHE}{Fully Homomorphic Encryption}
+\newacronym{aes}{AES}{Advanced Encryption Standard}
+\newglossaryentry{xor}{name={\ensuremath{\oplus}}, sort=xor, description={exclusive-or (\textsc{Xor})}}
+
+\begin{document}
+  \printthesistitle
+  \include{chapters/abstract}
+  \tableofcontents
+  \include{chapters/introduction}
+  \blinddocument
+  \include{chapters/conclusion}
+  \printnoidxglossary[title={Notation}]
+  \printnoidxglossary[type=acronym]
+  \printbibliography[heading=bibintoc]
+\end{document}
