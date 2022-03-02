@@ -1,8 +1,12 @@
 \ProvidesPackage{prettytex/base}
 
 \newcommand{\babellang}{british}
+\newcommand{\slc}{false}
 \DeclareOption{de}{
   \renewcommand{\babellang}{ngerman}
+}
+\DeclareOption{singlelinecheck}{
+    \renewcommand{\slc}{true}
 }
 \ProcessOptions\relax
 
@@ -22,7 +26,7 @@
 \usepackage{translations}
 
 % optional, but important "enough"
-\usepackage[singlelinecheck=false]{caption}
+\usepackage[singlelinecheck=\slc]{caption}
 \usepackage{graphicx}
 \usepackage{enumitem}
 \usepackage{subcaption}
