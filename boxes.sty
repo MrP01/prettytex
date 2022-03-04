@@ -2,8 +2,9 @@
 \RequirePackage{prettytex/base}
 
 \usepackage{framed}
-\usepackage[theorems]{tcolorbox}
+\usepackage[many]{tcolorbox}
 
+\tcbuselibrary{skins}
 
 % Leftbar box
 \renewenvironment{leftbar}[1][\hsize]{
@@ -17,15 +18,18 @@
 
 % Theorem box
 \newcommand{\thmbox}[5]{
-    \newtcbtheorem[number within=#5]{#1}{#2}{
-        coltitle=#3,
-        colback=#3!15,
+    \newtcbtheorem[number within=#5]{#1}{#2}{    
+        theorem style=change apart,
+        breakable,
+        enhanced jigsaw,
+        title=#3,
         colframe=#3,
-        boxrule=0.5pt,
+        colback=white,
+        coltitle=black,
+        colbacktitle=#3!30,
+        boxrule=0pt,
         leftrule=2pt,
         fonttitle=\bfseries,
-        left=1mm,
-        attach title to upper,
         sharp corners
     }{#4}
 }
