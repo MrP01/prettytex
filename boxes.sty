@@ -16,6 +16,34 @@
   \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
 }{\endMakeFramed}
 
+
+% magic for setting tcolor-box theorem-counters
+% use with \settcbcounter{<thm-name>}{<num>}
+\makeatletter
+\newcommand{\providetcbcountername}[1]{%
+  \@ifundefined{c@tcb@cnt@#1}{%
+    --undefined--%
+  }{%
+    tcb@cnt@#1%
+  }
+}
+
+\newcommand{\settcbcounter}[2]{%
+  \@ifundefined{c@tcb@cnt@#1}{%
+    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
+  }{%
+    \setcounter{tcb@cnt@#1}{#2}%
+   }%
+}%
+
+\newcommand{\displaytcbcounter}[1]{% Wrapper for \the...
+  \@ifundefined{thetcb@cnt@#1}{%
+    \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
+  }{%
+    \csname thetcb@cnt@#1\endcsname% 
+  }%
+}
+
 % Theorem box
 \newcommand{\thmbox}[5]{
     \newtcbtheorem[number within=#5]{#1}{#2}{    
