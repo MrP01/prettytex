@@ -148,3 +148,7 @@ As stated in \autoref{def:convergence}, we see that ... in \ref{def:convergence}
 | `remark`         | Remark     | Bemerkung  | `remark`       |
 | `corollary`      | Corollary  | Korollar   | `corollary`    |
 
+## VSCode Snippets
+
+The file `vscode_snippets.json` provides valid snippets for vscode for use in latex-documents. Just copy the contents
+into your snippets file, or save it under `~/.config/Code/User/snippets/` with the name `latex.json`.

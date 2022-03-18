@@ -1,0 +1,126 @@
+{
+    "Sequence": {
+        "prefix": "seq",
+        "body": "($1_${2:n})_{${2:n}\\\\in ${3:\\\\N}}$0",
+        "description": "full sequence notation"
+    },
+    "Partial Sequence": {
+        "prefix": "pseq",
+        "body": "($1_{${2:n}_{${3:k}}})_{${3:k}\\\\in ${4:\\\\N}}$0",
+        "description": "partial sequence notation"
+    },
+    "Series": {
+        "prefix": "ser",
+        "body": "\\\\sum_{${1:k}=${2:1}}^{${3:\\\\infty}}$4_{${1:k}}",
+        "description": "full series notation"
+    },
+    "Set of Limit Point": {
+        "prefix": "hset",
+        "body": "\\\\mathcal{H}(($1_{${2:n}})_{${2:n}\\\\in ${3:\\\\N}})$0",
+        "description": "set of all limit-points"
+    },
+    "Open Ball": {
+        "prefix": "opb",
+        "body": "\\\\mathcal{B}_{${1:\\\\varepsilon}}(${2:x_0})$0",
+        "description": "open ball"
+    },
+    "Converges Against": {
+        "prefix": "conv",
+        "body": "\\\\overset{${1:n}\\\\rightarrow ${2:\\\\infty}}{\\\\longrightarrow}$0",
+        "description": "short limit notation"
+    },
+    "Conjugate": {
+        "prefix": "conj",
+        "body": "\\\\overline{$1}",
+        "description": "complex conjugate"
+    },
+    "Fraction": {
+        "prefix": "frac",
+        "body": "\\\\frac{$1}{$2}",
+        "description": "fraction"
+    },
+    "Sum": {
+        "prefix": "sum",
+        "body": "\\\\sum_{$1${4:=} $2}^{$3}",
+        "description": "sum"
+    },
+    "Integral": {
+        "prefix": "int",
+        "body": "${1:\\\\int}_{${2:}}^{${3:}}${4:f}(${5:x})\\\\;\\\\mathrm{d}${5:x}",
+        "description": "basic integral"
+    },
+    "Definition": {
+        "prefix": "def",
+        "body": "\\\\begin{definition}{$1}{$2}\n\t$0\n\\\\end{definition}",
+        "description": "create definition environment"
+    },
+    "Theorem": {
+        "prefix": "the",
+        "body": "\\\\begin{theorem}{$1}{$2}\n\t$0\n\\\\end{theorem}",
+        "description": "create theorem environment"
+    },
+    "Lemma": {
+        "prefix": "lem",
+        "body": "\\\\begin{lemma}{$1}{$2}\n\t$0\n\\\\end{lemma}",
+        "description": "create lemma environment"
+    },
+    "Remark": {
+        "prefix": "rem",
+        "body": "\\\\begin{remark}{$1}{$2}\n\t$0\n\\\\end{remark}",
+        "description": "create remark environment"
+    },
+    "Corollary": {
+        "prefix": "cor",
+        "body": "\\\\begin{corollary}{$1}{$2}\n\t$0\n\\\\end{corollary}",
+        "description": "create corollary environment"
+    },
+    "Enumerate": {
+        "prefix": "enum",
+        "body": "\\\\begin{enumerate}\n\t\\\\item $0\n\\\\end{enumerate}",
+        "description": "create enumeration environment"
+    },
+    "Roman Enumerate": {
+        "prefix": "rnum",
+        "body": "\\\\begin{enumerate}[label=\\\\roman*]\n\t\\\\item $0\n\\\\end{enumerate}",
+        "description": "create enumeration environment with roman numbering"
+    },
+    "Alph Enumerate": {
+        "prefix": "anum",
+        "body": "\\\\begin{enumerate}[label=\\\\alph*]\n\t\\\\item $0\n\\\\end{enumerate}",
+        "description": "create enumeration environment with alphabetic numbering"
+    },
+    "Limit": {
+        "prefix": "lim",
+        "body": "\\\\lim_{${1:n}\\\\subj ${2:\\\\infty}}$0",
+        "description": "create limit"
+    },
+    "Differential Quotient": {
+        "prefix": "diffq",
+        "body": "\\\\lim_{${1:x}\\\\subj ${2:x_0}}\\\\frac{${3:f}(${1:x})-${3:f}(${2:x_0})}{${1:x}-${2:x_0}}$0",
+        "description": "insert differential quotient"
+    },
+    "Derivative": {
+        "prefix": "der",
+        "body": "\\\\frac{\\\\dd ${1:f}}{\\\\dd ${2:x}}$0",
+        "description": "first derivative"
+    },
+    "nth-Derivative": {
+        "prefix": "nder",
+        "body": "\\\\frac{\\\\dd^{${3:n}} ${1:f}}{\\\\dd ${2:x}^{${3:n}}}$0",
+        "description": "nth derivative"
+    },
+    "Partial Derivative": {
+        "prefix": "per",
+        "body": "\\\\frac{\\\\partial ${1:f}}{\\\\partial ${2:x}}$0",
+        "description": "first partial derivative"
+    },
+    "nth Partial Derivative": {
+        "prefix": "nper",
+        "body": "\\\\frac{\\\\partial^{${3:n}} ${1:f}}{\\\\dd ${2:x}^{${3:n}}}$0",
+        "description": "nth partial derivative"
+    },
+    "Landau Notation": {
+        "prefix": "landau",
+        "body": "\\\\mathcal{O}($1)$0"
+    }
+}
