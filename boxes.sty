@@ -3,6 +3,7 @@
 
 \usepackage{framed}
 \usepackage[many]{tcolorbox}
+\usepackage{varwidth}
 
 \tcbuselibrary{skins}
 
@@ -45,19 +46,31 @@
 }
 
 % Theorem box
-\newcommand{\thmbox}[5]{
-    \newtcbtheorem[number within=#5]{#1}{#2}{    
-        theorem style=change apart,
-        breakable,
-        enhanced,
-        title=#3,
-        colframe=#3,
-        colback=white,
-        coltitle=black,
-        colbacktitle=#3!30,
-        boxrule=0pt,
-        leftrule=2pt,
-        fonttitle=\bfseries,
-        sharp corners
-    }{#4}
+% \newcommand{\thmbox}[5]{
+%     \newtcbtheorem[number within=#5]{#1}{#2}{    
+%         theorem style=change apart,
+%         breakable,
+%         enhanced,
+%         title=#3,
+%         colframe=#3,
+%         colback=white,
+%         coltitle=black,
+%         colbacktitle=#3!30,
+%         boxrule=0pt,
+%         leftrule=2pt,
+%         fonttitle=\bfseries,
+%         sharp corners
+%     }{#4}
+% }
+
+\newcommand{\thmbox}[5]{%
+  \newtcbtheorem[number within=#5]{#1}{#2}{%
+    enhanced jigsaw, frame empty, interior empty, colframe=#3!50,%
+    coltitle=#3,fonttitle=\bfseries,colbacktitle=#3!20,%
+    borderline={0.5mm}{0mm}{#3!50},%
+    colback=white,top=5mm,
+    attach boxed title to top center={yshift=-3mm},%
+    %varwidth boxed title,
+    breakable%
+  }{task}
 }
