@@ -116,13 +116,12 @@ In the file `math-theorems.sty` a few common mathematical environments are defin
 
 These are based on `tcolorbox` and are used like so:
 ```latex
-\begin{<env name>}{<optional env title>}{<optional reference key>}<br>
-    <br>
+\begin{<env name>}{<optional env title>}{<optional reference key>}
     <text>
 \end{<env name>}
 ```
 
-The `<br>` signal linebreaks. An example:
+An example:
 ```latex
 \begin{definition}{Convergence}{convergence}
 

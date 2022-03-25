@@ -23,7 +23,7 @@
 \newcommand{\prettytex}{\mintinline{latex}{prettytex} }
 
 \author{Moritz Mossböck}
-\date{2021}
+\date{2022}
 \title{Official \mintinline{latex}{prettytex} Documentation}
 
 \begin{document}
@@ -55,5 +55,24 @@ Additionally, some extensions are provided to extend base-functionality:
   \item \mintinline{latex}{gfx-components.sty}
   \item \mintinline{latex}{gfx-circuits.sty}
 \end{itemize}
+
+
+\section{Document Layout and Spacing}
+Document layout is specified in \verb|base.sty| with the package \verb|geometry|. We set the following options:
+\begin{minted}{latex}
+\geometry{
+  a4paper,
+  twoside,
+  left=2cm,
+  right=2cm,
+  top=1.25cm,
+  bottom=1.25cm,
+  includeheadfoot
+}
+\end{minted}
+
+As \verb|prettytex| was developed mainly for lab-reports, assignments and the likes, we set \verb|twoside| to 
+account for possibly printing the finished document. 
+
 
 \end{document}
