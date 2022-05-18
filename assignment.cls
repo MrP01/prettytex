@@ -17,7 +17,7 @@
 \RequirePackage{prettytex/math-theorems}
 \RequirePackage{prettytex/math-sigtrans}
 \RequirePackage{tikz-cd}
-\RequirePackage{titlesec, varwidth}
+\RequirePackage{titlesec, varwidth,lastpage}
 
 \newcommand{\name}{}
 \newcommand{\matrnum}{}
@@ -33,20 +33,11 @@
 
 \setcounter{section}{\assnum}
 
-\newtcbtheorem[number within=section]{task}{Task}{%
-    enhanced, frame empty, interior empty, colframe=green!50!white,%
-    coltitle=green,fonttitle=\bfseries,colbacktitle=green!20,%
-    borderline={0.5mm}{0mm}{green!20},%
-    attach boxed title to top center={yshift=-2.5mm},%
-    varwidth boxed title%
-}{task}
-
-
 \fancyhf{}
 \fancyhead[LE,RO]{\name\\\matrnum}
 \fancyhead[RE,LO]{\class\hspace{0.2cm}\term\\\classid}
 \fancyhead[C]{\bfseries \assname \numsymb \assnum\\\duedate}
-\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LE,RO]{\thepage / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{.25pt}
 \renewcommand{\footrulewidth}{.25pt}
 \pagestyle{fancy}
