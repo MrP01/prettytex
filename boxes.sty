@@ -17,10 +17,8 @@
   \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
 }{\endMakeFramed}
 
-
 % magic for setting tcolor-box theorem-counters
 % use with \settcbcounter{<thm-name>}{<num>}
-\makeatletter
 \newcommand{\providetcbcountername}[1]{%
   \@ifundefined{c@tcb@cnt@#1}{%
     --undefined--%
@@ -46,24 +44,8 @@
 }
 
 % Theorem box
-% \newcommand{\thmbox}[5]{
-%     \newtcbtheorem[number within=#5]{#1}{#2}{    
-%         theorem style=change apart,
-%         breakable,
-%         enhanced,
-%         title=#3,
-%         colframe=#3,
-%         colback=white,
-%         coltitle=black,
-%         colbacktitle=#3!30,
-%         boxrule=0pt,
-%         leftrule=2pt,
-%         fonttitle=\bfseries,
-%         sharp corners
-%     }{#4}
-% }
-
-\newcommand{\thmbox}[5]{%
+% round style:
+\newcommand{\thmbox}[5]{
   \newtcbtheorem[number within=#5]{#1}{#2}{%
     enhanced jigsaw, frame empty, interior empty, colframe=#3!50,%
     coltitle=#3,fonttitle=\bfseries,colbacktitle=#3!20,%
@@ -74,3 +56,24 @@
     breakable%
   }{#4}
 }
+
+\DeclareOption{sharp}{
+  \renewcommand{\thmbox}[5]{
+    % sharp style:
+    \newtcbtheorem[number within=#5]{#1}{#2}{    
+      theorem style=change apart,
+      breakable,
+      enhanced,
+      title=#3,
+      colframe=#3,
+      colback=white,
+      coltitle=black,
+      colbacktitle=#3!30,
+      boxrule=0pt,
+      leftrule=2pt,
+      fonttitle=\bfseries,
+      sharp corners
+    }{#4}
+  }
+}
+\ProcessOptions\relax
