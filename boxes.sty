@@ -46,7 +46,7 @@
 % Theorem box
 % round style:
 \newcommand{\thmbox}[5]{%
-  \newtcbtheorem[number within=#5, list inside={thmlist}, list type={thmlist}]{#1}{#2}{%
+  \newtcbtheorem[number within=#5, list inside={#4}, list type={thmlist}]{#1}{#2}{%
     enhanced jigsaw, frame empty, interior empty, colframe=#3!50,%
     coltitle=#3,fonttitle=\bfseries,colbacktitle=#3!20,%
     borderline={0.5mm}{0mm}{#3!50},%
