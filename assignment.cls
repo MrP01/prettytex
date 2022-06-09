@@ -31,12 +31,10 @@
 \newcommand{\taskname}{Task}
 \newcommand{\taskcolor}{orange}
 
-\setcounter{section}{\assnum}
-
 \fancyhf{}
 \fancyhead[LE,RO]{\name\\\matrnum}
 \fancyhead[RE,LO]{\class\hspace{0.2cm}\term\\\classid}
-\fancyhead[C]{\bfseries \assname \numsymb \assnum\\\duedate}
+\fancyhead[C]{\bfseries \assname\hspace{0.1cm}\numsymb \assnum\\\duedate}
 \fancyfoot[LE,RO]{\thepage / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{.25pt}
 \renewcommand{\footrulewidth}{.25pt}
@@ -49,3 +47,4 @@
 \setlength{\headheight}{25pt}
 
 \newtheorem{ex}{Task}[section]
+\setcounter{section}{\assnum}
