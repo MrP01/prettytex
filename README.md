@@ -103,18 +103,21 @@ are using the VSCode extension _Latex Workshop_, you need to edit the `settings.
         }
     ]
 ```
+
 Keep in mind, that you have to pass `-shell-escape` before the `%DOC%` argument.
 
 ## math-theorems
 
 In the file `math-theorems.sty` a few common mathematical environments are defined:
-* definition
-* theorem
-* remark
-* lemma
-* corollary
+
+- definition
+- theorem
+- remark
+- lemma
+- corollary
 
 These are based on `tcolorbox` and are used like so:
+
 ```latex
 \begin{<env name>}{<optional env title>}{<optional reference key>}
     <text>
@@ -122,10 +125,11 @@ These are based on `tcolorbox` and are used like so:
 ```
 
 An example:
+
 ```latex
 \begin{definition}{Convergence}{convergence}
 
-    Let $(a_n)_{n\in\mathbb{N}}$ be a sequence. We call it convergent, if the following 
+    Let $(a_n)_{n\in\mathbb{N}}$ be a sequence. We call it convergent, if the following
     condition is met:
     \begin{align*}
         \forall\varepsilon>0\colon \exists N\in\mathbb{N}\colon n\geq N
@@ -139,8 +143,17 @@ An example:
 As stated in \autoref{def:convergence}, we see that ... in \ref{def:convergence}
 ```
 
+Prettytex provides two thmbox styles, `round` (the default) and `sharp`.
+In order to use the `sharp` style, please
+
+```latex
+\PassOptionsToPackage{sharp}{prettytex/boxes}
+```
+
+### The provided math theorem environments
+
 | environment name | en_UK      | de_DE      | reference base |
-|------------------|------------|------------|----------------|
+| ---------------- | ---------- | ---------- | -------------- |
 | `definition`     | Definition | Definition | `def`          |
 | `theorem`        | Theorem    | Satz       | `thm`          |
 | `lemma`          | Lemma      | Lemma      | `lemma`        |
