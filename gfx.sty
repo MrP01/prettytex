@@ -32,6 +32,16 @@
 \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
     { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
 
+
+\pgfdeclarelayer{background}
+\pgfsetlayers{background,main}
+\tikzset{
+    expand bubble/.style={
+        preaction={draw},
+        white,fill,draw,
+    },
+}
+    
 %----------------------------------------------------------------------------------------------------------------------
 % externalization
 %----------------------------------------------------------------------------------------------------------------------
