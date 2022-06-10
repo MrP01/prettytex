@@ -27,6 +27,7 @@
 \usepackage{parskip}
 \usepackage[\babellang]{babel}
 \usepackage{translations}
+\usepackage[outline]{contour}
 
 % optional, but important "enough"
 \usepackage[singlelinecheck=\slc]{caption}
@@ -80,3 +81,6 @@
   \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
   \renewcommand\headrule{\color{headrulecolor}\hrulefill}
 }
+
+\contourlength{.06em}
+\newcommand{\cw}[1]{\contour{white}{#1}}
