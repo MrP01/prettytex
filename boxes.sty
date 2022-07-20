@@ -62,7 +62,7 @@
     % sharp style:
     \newtcbtheorem[number within=#5, list inside={#4}, list type={thmlist}]{#1}{#2}{%
       theorem style=change apart,
-      breakable,
+      % breakable,
       enhanced,
       title=#3,
       colframe=#3,
@@ -75,6 +75,8 @@
       sharp corners,
       enlarge top initially by=3mm,
       enlarge bottom finally by=3mm,
+      before skip=2mm,
+      after skip=2mm,
       separator sign colon,
       description delimiters={}{}
     }{#4}%

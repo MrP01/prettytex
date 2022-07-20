@@ -5,14 +5,16 @@
 \usepackage[all]{nowidow}
 \usepackage{lastpage}
 \usepackage[backend=biber, style=authoryear, maxbibnames=20]{biblatex}
-\usepackage[toc, acronym, style=long3col]{glossaries}
+\usepackage[toc, acronym, style=long3col, indexonlyfirst=true, nogroupskip=true]{glossaries}
 \usepackage{csquotes}
+\usepackage{titlesec}
 
 \makeatletter
 \newcommand{\theRealAuthor}{\@thesisauthor}
 \makeatother
 
 \setlength\bibitemsep{0.12cm}
+\setlength\glsdescwidth{0.8\linewidth}
 \captionsetup{margin=10pt,font=small,labelfont=bf}
 
 \DeclareCiteCommand{\cite}
@@ -67,6 +69,17 @@
    {}%
   \multicitedelim}
   {\usebibmacro{textcite:postnote}}
+
+\DeclareCiteCommand{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
 
 % define the pagestyles
 \setlength{\headheight}{15.3pt}
