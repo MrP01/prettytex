@@ -1,11 +1,14 @@
 \ProvidesPackage{prettytex/code}
 
 \usepackage{minted}
+\definecolor{codebackgroundcolor}{rgb}{0.95,0.95,0.95}
 \setminted{
     breaklines=true,
     python3=true,
     baselinestretch=1,
-    linenos=true
+    linenos=true,
+    bgcolor=codebackgroundcolor,
+    autogobble
 }
 \setmintedinline{
     breaklines=true
