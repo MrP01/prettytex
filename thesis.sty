@@ -15,7 +15,8 @@
 
 \setlength\bibitemsep{0.12cm}
 \setlength\glsdescwidth{0.8\linewidth}
-\captionsetup{margin=10pt,font=small,labelfont=bf}
+\captionsetup{font=small,labelfont=bf}
+\captionsetup[figure]{margin=10pt}
 
 \DeclareCiteCommand{\cite}
   {\usebibmacro{prenote}}
@@ -80,6 +81,12 @@
    \printtext[bibhyperref]{\printnames{labelname}}}
   {\multicitedelim}
   {\usebibmacro{postnote}}
+
+\DeclareCiteCommand{\citeyear}
+    {}
+    {\bibhyperref{\printdate}}
+    {\multicitedelim}
+    {}
 
 % define the pagestyles
 \setlength{\headheight}{15.3pt}
