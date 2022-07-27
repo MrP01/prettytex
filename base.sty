@@ -38,13 +38,15 @@
 % optional, but important "enough"
 \usepackage[singlelinecheck=\slc]{caption}
 \usepackage{graphicx}
-\usepackage[inline]{enumitem}
 \usepackage{subcaption}
 \usepackage{xspace}
 
-% document geometry
 \ifprettybeamer
-\else
+\else  % an A4 document
+  % optional packages
+  \usepackage[inline]{enumitem}
+
+  % document geometry
   \setlength\cellspacetoplimit{4pt}
   \setlength\cellspacebottomlimit{4pt}
   \setlength{\parindent}{0em}
