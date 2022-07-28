@@ -1,16 +1,22 @@
 \ProvidesPackage{prettytex/base}
 
 \newcommand{\babellang}{british}
-\newcommand{\slc}{false}
 \DeclareOption{de}{
   \renewcommand{\babellang}{ngerman}
 }
 \DeclareOption{en}{
   \renewcommand{\babellang}{british}
 }
+
+\newcommand{\slc}{false}
 \DeclareOption{singlelinecheck}{
     \renewcommand{\slc}{true}
 }
+
+\newif\ifprettybeamer
+\prettybeamerfalse
+\DeclareOption{beamer}{\prettybeamertrue}
+
 \ProcessOptions\relax
 
 % standard packages
@@ -23,7 +29,7 @@
 \usepackage[column=C]{cellspace}
 \usepackage{geometry}
 \usepackage{url}
-\usepackage[\babellang=true]{hyperref}
+\usepackage{hyperref}
 \usepackage{parskip}
 \usepackage[\babellang]{babel}
 \usepackage{translations}
@@ -32,25 +38,30 @@
 % optional, but important "enough"
 \usepackage[singlelinecheck=\slc]{caption}
 \usepackage{graphicx}
-\usepackage[inline]{enumitem}
 \usepackage{subcaption}
 \usepackage{xspace}
 
-% document geometry
-\setlength\cellspacetoplimit{4pt}
-\setlength\cellspacebottomlimit{4pt}
-\setlength{\parindent}{0em}
-\setlength{\parskip}{0.5em}
-\setlength{\headsep}{3em}
-\geometry{
-    a4paper,
-    twoside,
-    left=2cm,
-    right=2cm,
-    top=1.25cm,
-    bottom=1.25cm,
-    includeheadfoot
-}
+\ifprettybeamer
+\else  % an A4 document
+  % optional packages
+  \usepackage[inline]{enumitem}
+
+  % document geometry
+  \setlength\cellspacetoplimit{4pt}
+  \setlength\cellspacebottomlimit{4pt}
+  \setlength{\parindent}{0em}
+  \setlength{\parskip}{0.5em}
+  \setlength{\headsep}{3em}
+  \geometry{
+      a4paper,
+      twoside,
+      left=2cm,
+      right=2cm,
+      top=1.25cm,
+      bottom=1.25cm,
+      includeheadfoot
+  }
+\fi
 
 % colors
 \definecolor{purple}{RGB}{180, 2, 212}
@@ -64,6 +75,8 @@
 \definecolor{themecolor3}{HTML}{3D518C} % faint blue
 \definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
 \definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
+\definecolor{darkpurple}{HTML}{5a016a}
+\definecolor{lightgrey}{HTML}{dddddd}
 
 \hypersetup{
     colorlinks=true,
@@ -84,3 +97,5 @@
 
 \contourlength{.06em}
 \newcommand{\cw}[1]{\contour{white}{#1}}
+\newcommand{\todo}[1]{\colorbox{lightgrey}{TODO: #1}}
+
