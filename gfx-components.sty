@@ -24,7 +24,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % node shape definition
 \makeatletter
-\pgfdeclareshape{oplus}
+\pgfdeclareshape{poplus}
 {
   \inheritsavedanchors[from=circle] 
   \inheritanchorborder[from=circle]
@@ -67,15 +67,15 @@
 \makeatother
 
 % adder definitons
-\tikzset{badd/.style={oplus,bcomp}}
-\tikzset{radd/.style={oplus,rcomp}}
-\tikzset{gadd/.style={oplus,gcomp}}
-\tikzset{oadd/.style={oplus,ocomp}}
-\tikzset{padd/.style={oplus,pcomp}}
+\tikzset{badd/.style={poplus,bcomp}}
+\tikzset{radd/.style={poplus,rcomp}}
+\tikzset{gadd/.style={poplus,gcomp}}
+\tikzset{oadd/.style={poplus,ocomp}}
+\tikzset{padd/.style={poplus,pcomp}}
 
 % multiplier definitons
-\tikzset{badd/.style={oplus,bcomp,rotate=45}}
-\tikzset{radd/.style={oplus,rcomp,rotate=45}}
-\tikzset{gadd/.style={oplus,gcomp,rotate=45}}
-\tikzset{oadd/.style={oplus,ocomp,rotate=45}}
-\tikzset{padd/.style={oplus,pcomp,rotate=45}}
+\tikzset{badd/.style={poplus,bcomp,rotate=45}}
+\tikzset{radd/.style={poplus,rcomp,rotate=45}}
+\tikzset{gadd/.style={poplus,gcomp,rotate=45}}
+\tikzset{oadd/.style={poplus,ocomp,rotate=45}}
+\tikzset{padd/.style={poplus,pcomp,rotate=45}}
