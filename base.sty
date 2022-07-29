@@ -89,7 +89,9 @@
   \usepackage{lastpage}
   \pagestyle{fancy}
   \fancyhf{}
+  \makeatletter
   \fancyhead[R]{\@author \enspace \textcolor{darkred}{\textbullet}}
+  \makeatother
   \fancyhead[L]{\leftmark}
   \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
   \renewcommand\headrule{\color{headrulecolor}\hrulefill}
@@ -98,4 +100,4 @@
 \contourlength{.06em}
 \newcommand{\cw}[1]{\contour{white}{#1}}
 \newcommand{\todo}[1]{\colorbox{lightgrey}{TODO: #1}}
-
+\renewcommand{\th}{\textsuperscript{th}}

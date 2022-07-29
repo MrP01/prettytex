@@ -44,6 +44,10 @@
     bpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=black,fill=black!50,label distance=1mm}
 }
 
+\newcommand{\inputtikz}[1]{
+  \tikzsetnextfilename{#1}
+  \input{#1.tex}
+}
 
 %----------------------------------------------------------------------------------------------------------------------
 % externalization
