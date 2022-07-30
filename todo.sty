@@ -1,0 +1,53 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{prettytex/todo}
+
+\RequirePackage{prettytex/base}
+\RequirePackage{xkeyval}
+
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,textwidth=5cm]{todonotes}
+
+\newcounter{improvements}
+\newcounter{info}
+\newcounter{unsure}
+\newcounter{change}
+
+\newcommand{\unsurecolor}{red}
+\newcommand{\changecolor}{blue}
+\newcommand{\infocolor}{green}
+\newcommand{\improvementcolor}{orange}
+
+\paperwidth=\dimexpr \paperwidth + 6cm\relax
+\marginparwidth=\dimexpr \marginparwidth + 3cm\relax
+
+\NewDocumentCommand{\unsure}{O{} m m}{%
+    \refstepcounter{unsure}%
+    \tikzexternaldisable%
+    \todo[linecolor=\unsurecolor,backgroundcolor=white,bordercolor=\unsurecolor,#1]{%
+    \texit{#2}\\\textbf{Unsure \arabic{unsure}:}\\#3%
+    }\tikzexternalenable%
+}
+
+\NewDocumentCommand{\change}{O{} m m}{%
+    \refstepcounter{change}%
+    \tikzexternaldisable%
+    \todo[linecolor=\changecolor,backgroundcolor=white,bordercolor=\changecolor,#1]{%
+    \textit{#2}\\\textbf{Change \arabic{change}:}\\#3%
+    }\tikzexternalenable%
+}
+
+\NewDocumentCommand{\info}{O{} m m}{%
+    \refstepcounter{info}%
+    \tikzexternaldisable
+    \todo[linecolor=\infocolor,backgroundcolor=white,bordercolor=\infocolor,#1]{%
+        \textit{#2}\\\textbf{Info \arabic{info}:}\\#3%
+    }\tikzexternalenable%
+}
+
+\NewDocumentCommand{\improvement}{O{} m m}{%
+    \refstepcounter{improvements}%
+    \tikzexternaldisable%
+    \normalmarginpar%
+    \todo[linecolor=\improvementcolor,backgroundcolor=white,bordercolor=\improvementcolor,#1]{%
+        \textit{#2}\\\textbf{Improvement \arabic{improvements}:}\\#3%
+    }\tikzexternalenable%
+}
