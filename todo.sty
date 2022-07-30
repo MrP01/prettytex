@@ -2,52 +2,62 @@
 \ProvidesPackage{prettytex/todo}
 
 \RequirePackage{prettytex/base}
-\RequirePackage{xkeyval}
-
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny,textwidth=5cm]{todonotes}
 
-\newcounter{improvements}
-\newcounter{info}
-\newcounter{unsure}
-\newcounter{change}
+\DeclareOption{enable}{
 
-\newcommand{\unsurecolor}{red}
-\newcommand{\changecolor}{blue}
-\newcommand{\infocolor}{green}
-\newcommand{\improvementcolor}{orange}
+    \newcounter{improvements}
+    \newcounter{info}
+    \newcounter{unsure}
+    \newcounter{change}
 
-\paperwidth=\dimexpr \paperwidth + 6cm\relax
-\marginparwidth=\dimexpr \marginparwidth + 3cm\relax
+    \newcommand{\unsurecolor}{red}
+    \newcommand{\changecolor}{blue}
+    \newcommand{\infocolor}{green}
+    \newcommand{\improvementcolor}{orange}
 
-\NewDocumentCommand{\unsure}{O{} m m}{%
-    \refstepcounter{unsure}%
-    \tikzexternaldisable%
-    \todo[linecolor=\unsurecolor,backgroundcolor=white,bordercolor=\unsurecolor,#1]{%
-    \texit{#2}\\\textbf{Unsure \arabic{unsure}:}\\#3%
-    }\tikzexternalenable%
+    \paperwidth=\dimexpr \paperwidth + 6cm\relax
+    \marginparwidth=\dimexpr \marginparwidth + 3cm\relax
+
+
+    \NewDocumentCommand{\unsure}{O{} m m}{%
+        \refstepcounter{unsure}%
+        \tikzexternaldisable%
+        \todo[linecolor=\unsurecolor,backgroundcolor=white,bordercolor=\unsurecolor,#1]{%
+        \texit{#2}\\\textbf{Unsure \arabic{unsure}:}\\#3%
+        }\tikzexternalenable%
+    }
+
+    \NewDocumentCommand{\change}{O{} m m}{%
+        \refstepcounter{change}%
+        \tikzexternaldisable%
+        \todo[linecolor=\changecolor,backgroundcolor=white,bordercolor=\changecolor,#1]{%
+        \textit{#2}\\\textbf{Change \arabic{change}:}\\#3%
+        }\tikzexternalenable%
+    }
+
+    \NewDocumentCommand{\info}{O{} m m}{%
+        \refstepcounter{info}%
+        \tikzexternaldisable
+        \todo[linecolor=\infocolor,backgroundcolor=white,bordercolor=\infocolor,#1]{%
+            \textit{#2}\\\textbf{Info \arabic{info}:}\\#3%
+        }\tikzexternalenable%
+    }
+
+    \NewDocumentCommand{\improvement}{O{} m m}{%
+        \refstepcounter{improvements}%
+        \tikzexternaldisable%
+        \normalmarginpar%
+        \todo[linecolor=\improvementcolor,backgroundcolor=white,bordercolor=\improvementcolor,#1]{%
+            \textit{#2}\\\textbf{Improvement \arabic{improvements}:}\\#3%
+        }\tikzexternalenable%
+    }
 }
 
-\NewDocumentCommand{\change}{O{} m m}{%
-    \refstepcounter{change}%
-    \tikzexternaldisable%
-    \todo[linecolor=\changecolor,backgroundcolor=white,bordercolor=\changecolor,#1]{%
-    \textit{#2}\\\textbf{Change \arabic{change}:}\\#3%
-    }\tikzexternalenable%
+\DeclareOption{disable}{
+    \newcommand{\unsure}[3]{}
+    \newcommand{\change}[3]{}
+    \newcommand{\info}[3]{}
+    \newcommand{\improvement}[3]{}
 }
-
-\NewDocumentCommand{\info}{O{} m m}{%
-    \refstepcounter{info}%
-    \tikzexternaldisable
-    \todo[linecolor=\infocolor,backgroundcolor=white,bordercolor=\infocolor,#1]{%
-        \textit{#2}\\\textbf{Info \arabic{info}:}\\#3%
-    }\tikzexternalenable%
-}
-
-\NewDocumentCommand{\improvement}{O{} m m}{%
-    \refstepcounter{improvements}%
-    \tikzexternaldisable%
-    \normalmarginpar%
-    \todo[linecolor=\improvementcolor,backgroundcolor=white,bordercolor=\improvementcolor,#1]{%
-        \textit{#2}\\\textbf{Improvement \arabic{improvements}:}\\#3%
-    }\tikzexternalenable%
-}
+\ProcessOptions\relax
