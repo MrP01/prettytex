@@ -117,6 +117,31 @@
 \DeclareTranslation{English}{costs}{Costs}
 \DeclareTranslation{German}{costs}{Kosten}
 
+\newenvironment{projectItemization}{
+    \setcounter{colskipcount}{3}
+    \setlength\LTleft{0pt}
+    \setlength\LTright{0pt}
+    \begin{longtable}{c @{\hspace{1.5em}} p{.65\textwidth} r @{} r}
+    \hline
+    \noalign{\smallskip}
+    {\itemizationHeaderStyle \GetTranslation{period}} &
+    {\itemizationHeaderStyle \GetTranslation{description}} &
+    % \multicolumn{2}{l}{\itemizationHeaderStyle \GetTranslation{hours}} &
+    % {\itemizationHeaderStyle \GetTranslation{rate}} &
+    {\itemizationHeaderStyle \GetTranslation{costs}}
+    \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\bigskip}
+    \endhead
+    \noalign{\bigskip}
+    \hline
+    \endfoot
+    \endlastfoot
+}{
+    \end{longtable}
+}
+
 \newenvironment{hoursItemization}{
     \setcounter{colskipcount}{5}
     \setlength\LTleft{0pt}
@@ -201,6 +226,16 @@
     \else%
         \@formatFraction{\Numerator}%
     \fi%
+}
+
+\newcommand{\lineitemnohours}[3]{
+    {\itemizationRowStyle #1} &
+    \begin{minipage}[t]{.6\textwidth}
+        \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #3 \end{itemize}
+    \end{minipage} &
+    {\itemizationRowStyle \currencysym #2}
+    \\
+    \noalign{\medskip}
 }
 
 \newcommand{\lineitem}[4]{
