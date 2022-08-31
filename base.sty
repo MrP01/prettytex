@@ -41,6 +41,9 @@
 \usepackage{subcaption}
 \usepackage{xspace}
 
+\renewcommand{\headrulewidth}{.25pt}
+\renewcommand{\footrulewidth}{.25pt}
+
 \ifprettybeamer
 \else  % an A4 document
   % optional packages
@@ -103,3 +106,31 @@
 \newcommand{\cw}[1]{\contour{white}{#1}}
 % \newcommand{\todo}[1]{\colorbox{lightgrey}{TODO: #1}}
 \renewcommand{\th}{\textsuperscript{th}~}
+
+% quick formatting
+\newcommand{\ebf}[1]{\emph{\textbf{#1}}}
+\newcommand{\ibf}[1]{\textit{\textbf{#1}}}
+\newcommand{\ubf}[1]{\underline{\textbf{#1}}}
+\newcommand{\obf}[1]{\overline{\textbf{#1}}}
+\newcommand{\eubf}[1]{\underline{\ebf{#1}}}
+\newcommand{\eobf}[1]{\overline{\ebf{#1}}}
+\newcommand{\iubf}[1]{\underline{\ibf{#1}}}
+\newcommand{\iobf}[1]{\overline{\ibf{#1}}}
+
+\makeatletter
+\newcommand\listfigures{%
+\subsection*{\listfigurename}%
+  \@mkboth{\MakeUppercase\listfigurename}%
+          {\MakeUppercase\listfigurename}%
+\@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\newcommand\listtables{%
+\subsection*{\listtablename}%
+  \@mkboth{\MakeUppercase\listtablename}%
+          {\MakeUppercase\listtablename}%
+\@starttoc{lot}%
+}
+\makeatother

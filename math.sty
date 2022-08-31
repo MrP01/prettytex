@@ -8,8 +8,8 @@
 \usepackage{esint}
 \usepackage{esvect}
 \usepackage{bm}
-
 \usepackage{siunitx}
+
 % preserve original siunitx \qty functionality
 \let\svqty\qty
 \usepackage{physics}
@@ -26,82 +26,164 @@
   \sisetup{locale=DE}
   \renewcommand{\equationautorefname}{Gleichung}
 }
+\DeclareOption{vargreek}{
+  \renewcommand{\phi}{\varphi}
+  \renewcommand{\epsilon}{\varepsilon}
+  \renewcommand{\rho}{\varrho}
+}
 \ProcessOptions\relax
 
-\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand*\twoheadrightarrowtail{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% calculus and topology
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\FD{\mathrm{D}} % frechét-derivative
+\newcommand*\idd{\;\dd} % integral d
+\newcommand*\seq[3]{(#1_{#2})_{#2\in #3}} % classical sequence
+\newcommand*\nseq[1]{\seq{#1}{n}{\N}} % sequence with index n
+\newcommand*\kseq[1]{\seq{#1}{k}{\N}} % sequence with index k
+\newcommand*\hset[1]{\mathcal{H}(\nseq{#1})} % set of accumulation points
+\newcommand*\conv[2]{\overset{#1\subj#2}{\longrightarrow}} % converges against as #1 goes to #2
+
 
 %----------------------------------------------------------------------------------------------------------------------
 % sets
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\N{\mathbb{N}}
-\newcommand*\Z{\mathbb{Z}}
-\newcommand*\Q{\mathbb{Q}}
-\newcommand*\I{\mathbb{I}}
-\newcommand*\R{\mathbb{R}}
-\newcommand*\C{\mathbb{C}}
-\newcommand*\T{\mathbb{T}}
-\renewcommand{\P}{\mathbb{P}}
-\newcommand*\K{\mathbb{K}}
-\newcommand*\F{\mathbb{F}}
+\newcommand*\N{\mathbb{N}} % natural numbers
+\newcommand*\Z{\mathbb{Z}} % integer numbers
+\newcommand*\Q{\mathbb{Q}} % rational numbers
+\newcommand*\I{\mathbb{I}} % irrational numbers
+\newcommand*\D{\mathbb{D}} % open complex unit circle
+\newcommand*\R{\mathbb{R}} % real numbers
+\newcommand*\C{\mathbb{C}} % complex numbers
+\newcommand*\T{\mathbb{T}} % transcendental numbers
+\renewcommand{\P}{\mathbb{P}} % primes
+\newcommand*\K{\mathbb{K}} % general field (de)
+\newcommand*\F{\mathbb{F}} % general field (en)
+\renewcommand{\Re}{\mathfrak{Re}} % real part of complex number
+\renewcommand{\Im}{\mathfrak{Im}} % imaginary part of complex number
+
+\newcommand*\intr{\mathrm{int}} % open kernel of set
+\newcommand*\intrs[1]{\overset{\circ}{#1}} % open kernel of set
+\newcommand*\vol{\mathrm{vol}} % „volume“ of set
+
+\newcommand{\disj}{\charfusion[\mathbin]{\cup}{\cdot}} % disjoint set conjunction
+\newcommand{\bigdisj}{\charfusion[\mathop]{\bigcup}{\cdot}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % constants
 %----------------------------------------------------------------------------------------------------------------------
-\renewcommand{\i}{\mathrm{i}}
-\renewcommand{\j}{\mathrm{j}}
-\newcommand*\e{\mathrm{e}}
+\renewcommand{\i}{\mathrm{i}} % imaginary unit
+\renewcommand{\j}{\mathrm{j}} % jmaginary unit
+\newcommand*\e{\mathrm{e}} % eulers number
 
 %----------------------------------------------------------------------------------------------------------------------
 % number theory
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\ggt{\mathrm{ggT}}
-\newcommand*\kgV{\mathrm{kgV}}
-\renewcommand{\gcd}{\mathrm{gcd}}
-\newcommand*\lcm{\mathrm{lcm}}
+\newcommand*\ggt{\mathrm{ggT}} % greates common divisor (de)
+\newcommand*\kgV{\mathrm{kgV}} % least common multiple (de)
+\renewcommand{\gcd}{\mathrm{gcd}} % gcd (en)
+\newcommand*\lcm{\mathrm{lcm}} % lcm (en)
+\newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % stirling number first kind
+\newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}} % striling number second kind
+\newcommand*\cycle[1]{\begin{pmatrix}#1\end{pmatrix}} % cycle notation
+\newcommand*\supp{\mathrm{supp}} % carrier (i.e. supplier)
 
 %----------------------------------------------------------------------------------------------------------------------
 % algebra
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\feq{\overset{!}{=}}
-\newcommand*\Hom{\mathrm{Hom}}
-\newcommand*\im{\mathrm{im}}
+\newcommand*\feq{\overset{!}{=}} % should be equal to (force-equal)
+\newcommand*\Hom{\mathrm{Hom}} % set of homeomorphisms
+\newcommand*\im{\mathrm{im}} % image of function
+\newcommand*\id{\mathrm{id}} % identity
+\newcommand*\dsum{\dot{+}} % direct sum
+\newcommand*\sign{\mathrm{sign}} % sign (either sign or signature)
+\newcommand*\conj[1]{\overline{#1}} % complex conjugate
+\newcommand*\Grad{\mathrm{Grad}} % order of polynomial (de)
+\newcommand*\GL{\col{purple}{\mathrm{GL}}} % general linear group
+\newcommand*\SL{\col{purple}{\mathrm{SL}}} % special linear group
+\newcommand*\epimorph{\twoheadrightarrow} % mapping is epimorphism (injective)
+\newcommand*\monmorph{\rightarrowtail} % mapping is monomorphism (surjective)
+\newcommand*\isomorph{\twoheadrightarrowtail} % mapping is isomorphism (bijective)
+\newcommand*\Aut{\mathrm{Aut}} % set of automorphisms
+\newcommand*\End{\mathrm{End}} % set of endomorphisms
+\newcommand*\ran{\mathrm{ran}} % range of mapping
+
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\bij{\leftrightarrow}
-\newcommand*\subj{\rightarrow}                                
-\newcommand*\lsubj{\leftarrow}
-\newcommand*\nsubj{\cancel{\subj}}
-\newcommand*\nlsubj{\cancel{\lsubj}}
-\newcommand*\eqv{\Leftrightarrow}
-\newcommand*\neqv{\cancel{\eqv}}                          
-\renewcommand{\implies}{\Rightarrow}
-\newcommand*\limplies{\Leftarrow}
-\newcommand*\nimplies{\cancel{\implies}}
-\newcommand*\nlimplies{\cancel{\limplies}}
-\newcommand*\dtrue{\mathrm{w}}
-\newcommand*\dfalse{\mathrm{f}}
-\newcommand*\etrue{\mathrm{t}}
-\newcommand*\efalse{\mathrm{f}}
+\newcommand*\bij{\leftrightarrow} % bijection
+\newcommand*\subj{\rightarrow} % right-subjunction                 
+\newcommand*\lsubj{\leftarrow} % left-subjunction
+\newcommand*\xor{\dot{\vee}} % exclusive or
+
+\newcommand*\nsubj{\cancel{\subj}} % not right subjunctive
+\newcommand*\nlsubj{\cancel{\lsubj}} % not left subjunctive
+\newcommand*\eqv{\Leftrightarrow} % eqvivalent
+\newcommand*\neqv{\cancel{\eqv}} % not equivalent            
+\renewcommand{\implies}{\Rightarrow} % right implication
+\newcommand*\limplies{\Leftarrow} % left implication
+\newcommand*\nimplies{\cancel{\implies}} % not right implication
+\newcommand*\nlimplies{\cancel{\limplies}} % not left implication
+\newcommand*\dtrue{\mathrm{w}} % true (de)
+\newcommand*\dfalse{\mathrm{f}} % false (de)
+\newcommand*\etrue{\mathrm{t}} % true (en)
+\newcommand*\efalse{\mathrm{f}} % false (en)
 
 %----------------------------------------------------------------------------------------------------------------------
 % vectors
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\pvec[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
-\newcommand*\tvec[3]{\begin{bmatrix}#1\\#2\\#3\end{bmatrix}}
-\newcommand*\rpvec[2]{\begin{bmatrix}#1&#2\end{bmatrix}}
-\newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}}
-\newcommand*\dotp[2]{\left\langle#1,#2\right\rangle}
-\newcommand*\sv[1]{\left\langle #1 \right\rangle}
+\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand*\pvec[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % shorthand for column 2d vectors
+\newcommand*\rpvec[2]{\begin{bmatrix}#1&#2\end{bmatrix}} % shorthand for 2d row vectors
+\newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}} % shorthand for 3d row vectors
+\newcommand*\dotp[2]{\left\langle#1,#2\right\rangle} % general dot-product with scaling delimiters
+\newcommand*\sv[1]{\left\langle #1 \right\rangle} % signal vector notation with scaling delimiters
+\newcommand{\hvec}[1]{\hat{\vec{#1}}} % vector with hat
+\newcommand{\tvec}[1]{\tilde{\vec{#1}}} % vector with tilde
+\newcommand{\bvec}[1]{\bar{\vec{#1}}} % vector with bar
+\newcommand{\lspan}{\col{purple}{\mathrm{span}}} % span of vectors
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\mat[1]{\mathrm{\col{orange!75}{#1}}}
-\newcommand*\gmat[1]{#1}
-\newcommand*\Spur{\mathrm{Spur}}
-\newcommand*\Rang{\mathrm{Rang}}
+\newcommand*\bmat[1]{\begin{bmatrix}#1\end{bmatrix}} % thank me later (shorthand for writing bmatrices)
+
+\newcommand{\diag}{\col{purple}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
+\newcommand{\cols}{\mathrm{col}} % column space of matrix (en)
+\newcommand{\rows}{\mathrm{row}} % row space of matrix (en)
+\newcommand{\Eig}{\col{purple}{\mathrm{Eig}}} % eigendata of matrix
+\newcommand{\Gram}{\col{purple}{\mathrm{Gram}}} % Gram matrix
+\newcommand*\ind{\col{purple}{\mathrm{ind}}} % index of matrix
+\newcommand*\detm[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert} % shorthand determiant
+\newcommand*\hateq{\overset{\scriptscriptstyle\wedge}{=}} % matrices are congruent
+
+
+
+\newcommand*\mat[1]{\mathrm{\col{orange!75}{#1}}} % matrix typing
+\newcommand{\tmat}[1]{\tilde{\mat{#1}}} % matrix with tilde
+\newcommand{\cmat}[1]{\mat{\mathcal{#1}}} % calligraphic matrix
+\newcommand*\gmat[1]{#1} % greek letter matrix (deprecated)
+
+\newcommand*\zrg{\mathrm{zrg}} % row rank of matrix (de)
+\newcommand*\srg{\mathrm{srg}} % column rank of matrix (de)
+
+\newcommand*\spur{\mathrm{spur}} % matrix trace (de)
+\newcommand*\Spur{\mathrm{Spur}} % matrix trace (de)
+\renewcommand{\trace}{\mathrm{trace}} % matrix trace (en)
+\renewcommand{\Trace}{\mathrm{Trace}} % matrix trace (en)
+
+\newcommand*\rg{\mathrm{rang}} % rank of matrix (de)
+\newcommand*\rang{\mathrm{rang}} % rank of matrix (de)
+\newcommand*\Rang{\mathrm{Rang}} % matrix rank (de)
+
+\newcommand*\rk{\mathrm{rk}} % rank of matrix (en)
+\renewcommand{\rank}{\mathrm{rank}} % rank of matrix (en)
+\newcommand*\Rank{\mathrm{Rank}} % rank of matrix (en)
+
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
@@ -123,23 +205,31 @@
   \tikzexternalenable
 }
 
-\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{1}}}
+\newcommand*\rtrf[1]{\overset{#1}{\longleadsto{1}}} % matrix row transformation
 
 %----------------------------------------------------------------------------------------------------------------------
 % exotic trig functions
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\Arsinh{\mathrm{Arsinh}}
-\newcommand*\Arcosh{\mathrm{Arcosh}}
-\newcommand*\Artanh{\mathrm{Artanh}}
-\newcommand*\Arcoth{\mathrm{Arcoth}}
-\newcommand*\Arsech{\mathrm{Arsech}}
-\newcommand*\Arcsch{\mathrm{Arcsch}}
-\newcommand*\sinc{\mathrm{sinc}}
-\newcommand*\sinnc{\mathrm{si}}
-\newcommand*\Si{\mathrm{Si}}
-\newcommand*\Li{\mathrm{Li}}
+\newcommand*\Arsinh{\mathrm{Arsinh}} % Area sinus hyperbolicus
+\newcommand*\Arcosh{\mathrm{Arcosh}} % Area cosinus hyperbolicus
+\newcommand*\Artanh{\mathrm{Artanh}} % Area tangens hyperbolicus
+\newcommand*\Arcoth{\mathrm{Arcoth}} % Area cotangens hyperbolicus
+\newcommand*\Arsech{\mathrm{Arsech}} % Area secans hyperbolicus
+\newcommand*\Arcsch{\mathrm{Arcsch}} % Area cosecancs hyperbolicus
+\newcommand*\sinc{\mathrm{sinc}} % sinus cardinalis (de, not normalised)
+\newcommand*\sinnc{\mathrm{si}} % sinus cardinalis (de, normalised)
+\newcommand*\Si{\mathrm{Si}} % integral sinus
+\newcommand*\Li{\mathrm{Li}} % integral logarithmus naturlis
 
 
 % other
-\newcommand*\idd{\;\dd}
-\newcommand*\bmat[1]{\begin{bmatrix}#1\end{bmatrix}} % thank me later
+
+\newcommand*\floor[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\bar}[1]{\overline{#1}} % overline (again)
+
+
+% for small calligraphic letters
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathscall}{OT1}{pzc}{m}{it}

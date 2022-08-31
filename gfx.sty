@@ -10,6 +10,9 @@
 %----------------------------------------------------------------------------------------------------------------------
 \pgfplotsset{compat=1.18}
 
+\newcommand{\TikZ}{Ti\textit{k}Z }
+
+
 \usepgfplotslibrary{
     patchplots,
     fillbetween,
@@ -42,8 +45,25 @@
     ppoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=purple,fill=purple!50,label distance=1mm},
     ypoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=yellow,fill=yellow!50,label distance=1mm},
     cpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=cyan,fill=cyan!50,label distance=1mm},
-    bapoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=black,fill=black!50,label distance=1mm}
+    bapoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=black,fill=black!50,label distance=1mm},
+    point/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm}
 }
+
+% graph dots
+\tikzset{
+    bluegdot/.style = {circle,fill=blue!50,draw=blue,inner sep=0pt,minimum size=.2cm},
+    redgdot/.style = {circle,fill=red!70,draw=red,inner sep=0pt,minimum size=.2cm},
+    greengdot/.style = {circle,fill=green!50,draw=green,inner sep=0pt,minimum size=.2cm},
+    graygdot/.style = {circle,fill=gray!50,draw=gray!50!black,inner sep=0pt,minimum size=.2cm},
+    purplegdot/.style = {circle,fill=purple!50,draw=purple,inner sep=0pt,minimum size=.2cm},
+    orangegdot/.style = {circle,fill=orange!50,draw=orange,inner sep=0pt,minimum size=.2cm}
+}
+
+\tikzstyle{darrow} = [thick, decoration={markings,mark=at position
+   1 with {\arrow[semithick]{open triangle 60}}},
+   double distance=1.4pt, shorten >= 5.5pt,
+   preaction = {decorate},
+   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
 
 \newcommand{\figureloc}{figures}
 
@@ -51,3 +71,4 @@
   \tikzsetnextfilename{#1}
   \input{\figureloc/#1.tex}
 }
+
