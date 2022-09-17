@@ -9,6 +9,8 @@
 \usepackage{esvect}
 \usepackage{bm}
 \usepackage{siunitx}
+\usepackage{nicematrix}
+\usepackage{pgf}
 
 
 % preserve original siunitx \qty functionality
@@ -105,6 +107,7 @@
 \newcommand{\conj}[1]{\overline{#1}} % complex conjugate (legacy, use \bar or conj-snippet)
 \newcommand{\Grad}{\col{purple}{\mathrm{Grad}}} % order of polynomial (de)
 \newcommand{\GL}{\col{purple}{\mathrm{GL}}} % general linear group
+\newcommand{\GF}{\col{purple}{\mathrm{GF}}}
 \newcommand{\SL}{\col{purple}{\mathrm{SL}}} % special linear group
 \newcommand{\epimorph}{\twoheadrightarrow} % mapping is epimorphism (injective)
 \newcommand{\monmorph}{\rightarrowtail} % mapping is monomorphism (surjective)
@@ -112,7 +115,10 @@
 \newcommand{\Aut}{\col{purple}{\mathrm{Aut}}} % set of automorphisms
 \newcommand{\End}{\col{purple}{\mathrm{End}}} % set of endomorphisms
 \newcommand{\ran}{\col{purple}{\mathrm{ran}}} % range of mapping
-
+\renewcommand{\dim}{\col{purple}{\mathrm{dim}}}
+\renewcommand{\ker}{\col{purple}{\mathrm{ker}}}
+\newcommand{\dspan}{\col{purple}{\mathrm{span}}}
+\renewcommand{\deg}{\col{purple}{\mathrm{deg}}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
@@ -139,11 +145,11 @@
 % vectors
 %----------------------------------------------------------------------------------------------------------------------
 \renewcommand{\vec}[1]{\bm{#1}}
-\newcommand*\pvec[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % shorthand for column 2d vectors
-\newcommand*\rpvec[2]{\begin{bmatrix}#1&#2\end{bmatrix}} % shorthand for 2d row vectors
-\newcommand*\rtvec[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}} % shorthand for 3d row vectors
-\newcommand*\dotp[2]{\left\langle#1,#2\right\rangle} % general dot-product with scaling delimiters
-\newcommand*\sv[1]{\left\langle #1 \right\rangle} % signal vector notation with scaling delimiters
+\newcommand{\pvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % shorthand for column 2d vectors
+\newcommand{\rpvec}[2]{\begin{bmatrix}#1&#2\end{bmatrix}} % shorthand for 2d row vectors
+\newcommand{\rtvec}[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}} % shorthand for 3d row vectors
+\newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle} % general dot-product with scaling delimiters
+\newcommand{\sv}[1]{\left\langle #1 \right\rangle} % signal vector notation with scaling delimiters
 \newcommand{\hvec}[1]{\hat{\vec{#1}}} % vector with hat
 \newcommand{\tvec}[1]{\tilde{\vec{#1}}} % vector with tilde
 \newcommand{\bvec}[1]{\bar{\vec{#1}}} % vector with bar
@@ -152,7 +158,8 @@
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand*\bmat[1]{\begin{bmatrix}#1\end{bmatrix}} % thank me later (shorthand for writing bmatrices)
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} % thank me later (shorthand for writing bmatrices)
+\newcommand{\fbmat}[1]{\begin{bNiceMatrix}#1\end{bNiceMatrix}} % same as \bmat, \Cdots & co are „nicer“ ;)
 
 \newcommand{\diag}{\col{purple}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
 \newcommand{\cols}{\col{purple}{\mathrm{col}}} % column space of matrix (en)
@@ -162,6 +169,8 @@
 \newcommand{\ind}{\col{purple}{\mathrm{ind}}} % index of matrix
 \newcommand{\detm}[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert} % shorthand determiant
 \newcommand{\hateq}{\overset{\scriptscriptstyle\wedge}{=}} % matrices are congruent
+
+\newcommand{\spec}{\col{purple}{\mathrm{spec}}} % set of eigenvalues of linear map
 
 \newcommand{\mat}[1]{\mathrm{\col{orange!95!black}{#1}}} % matrix typing
 \newcommand{\tmat}[1]{\tilde{\mat{#1}}} % matrix with tilde
@@ -213,7 +222,19 @@
   \tikzexternalenable
 }
 
-\newcommand{\rtrf}[1]{\overset{#1}{\longleadsto{1}}} % matrix row transformation
+\newcommand{\rtrf}[1]{%
+  \tikzexternaldisable%
+  \begin{tikzpicture}%
+    \draw [->, line join=round, decorate, decoration={%
+      zigzag,%
+      segment length=4,%
+      amplitude=.9,%
+      post=lineto,%
+      post length=2pt}] (0,0) -- (1.5cm,0)%
+      node[midway,above]{$\substack{#1}$};%
+  \end{tikzpicture}%
+  \tikzexternalenable%
+} % matrix row transformation
 
 %----------------------------------------------------------------------------------------------------------------------
 % exotic trig functions
@@ -231,11 +252,11 @@
 
 
 % other
+\newcounter{dispcount}
 
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
 \renewcommand{\bar}[1]{\overline{#1}} % overline (again)
-
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}
