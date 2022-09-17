@@ -4,6 +4,8 @@
 \usepackage{framed}
 \usepackage[many]{tcolorbox}
 \usepackage{varwidth}
+\usepackage{footnote}
+\usepackage{etoolbox}
 
 % allow tikz-externalization
 \tcbsetforeverylayer{shield externalize}
@@ -48,6 +50,8 @@
 % Theorem box
 % round style:
 \newcommand{\thmbox}[5]{%
+  \BeforeBeginEnvironment{#1}{\savenotes}%
+  \AfterEndEnvironment{#1}{\spewnotes}%
   \newtcbtheorem[number within=#5, list inside={#4}, list type={thmlist}]{#1}{#2}{%
     enhanced jigsaw, frame empty, interior empty, colframe=#3!50,%
     coltitle=#3,fonttitle=\bfseries\itshape,colbacktitle=#3!20,%
@@ -61,6 +65,8 @@
 
 \DeclareOption{sharp}{
   \renewcommand{\thmbox}[5]{%
+  \BeforeBeginEnvironment{#1}{\savenotes}%
+  \AfterEndEnvironment{#1}{\spewnotes}%
     % sharp style:
     \newtcbtheorem[number within=#5, list inside={#4}, list type={thmlist}]{#1}{#2}{%
       theorem style=change apart,
