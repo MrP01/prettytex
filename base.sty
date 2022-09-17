@@ -135,3 +135,25 @@
 \@starttoc{lot}%
 }
 \makeatother
+
+% misc
+
+\newcommand{\rom}[1]{%
+  \setcounter{dispcount}{#1}%
+  \roman{dispcount}%
+}
+
+\newcommand{\Rom}[1]{%
+  \setcounter{dispcount}{#1}%
+  \Roman{dispcount}%
+}
+
+\newcommand{\alp}[1]{%
+  \setcounter{dispcount}{#1}%
+  \alph{dispcount}%
+}
+
+\newcommand{\Alp}[1]{%
+  \setcounter{dispcount}{#1}%
+  \Alph{dispcount}%
+}
