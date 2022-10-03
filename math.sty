@@ -18,6 +18,9 @@
 \usepackage{physics}
 \let\qty\svqty
 
+\newcommand{\matrixcolor}{orange}
+\newcommand{\operatorcolor}{purple}
+
 \sisetup{
     separate-uncertainty,
     locale=UK,
@@ -69,12 +72,14 @@
 \renewcommand{\Re}{\mathfrak{Re}} % real part of complex number
 \renewcommand{\Im}{\mathfrak{Im}} % imaginary part of complex number
 
-\newcommand*\intr{\col{purple}{\mathrm{int}}} % open kernel of set
+\newcommand*\intr{\col{\operatorcolor}{\mathrm{int}}} % open kernel of set
 \newcommand*\intrs[1]{\overset{\circ}{#1}} % open kernel of set
-\newcommand*\vol{\col{purple}{\mathrm{vol}}} % „volume“ of set
+\newcommand*\vol{\col{\operatorcolor}{\mathrm{vol}}} % „volume“ of set
 
 \newcommand{\disj}{\charfusion[\mathbin]{\cup}{\cdot}} % disjoint set conjunction
-\newcommand{\bigdisj}{\charfusion[\mathop]{\bigcup}{\cdot}}
+\newcommand{\bigdisj}{\oset{\bigcup}}
+
+\newcommand{\co}{\col{\operatorcolor}{\mathrm{co}}} % convex hull
 
 %----------------------------------------------------------------------------------------------------------------------
 % constants
@@ -86,39 +91,39 @@
 %----------------------------------------------------------------------------------------------------------------------
 % number theory
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand{\ggt}{\col{purple}{\mathrm{ggT}}} % greates common divisor (de)
-\newcommand{\kgV}{\col{purple}{\mathrm{kgV}}} % least common multiple (de)
-\renewcommand{\gcd}{\col{purple}{\mathrm{gcd}}} % gcd (en)
-\newcommand{\lcm}{\col{purple}{\mathrm{lcm}}} % lcm (en)
+\newcommand{\ggt}{\col{\operatorcolor}{\mathrm{ggT}}} % greates common divisor (de)
+\newcommand{\kgV}{\col{\operatorcolor}{\mathrm{kgV}}} % least common multiple (de)
+\renewcommand{\gcd}{\col{\operatorcolor}{\mathrm{gcd}}} % gcd (en)
+\newcommand{\lcm}{\col{\operatorcolor}{\mathrm{lcm}}} % lcm (en)
 \newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % stirling number first kind
 \newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}} % striling number second kind
 \newcommand{\cycle}[1]{\begin{pmatrix}#1\end{pmatrix}} % cycle notation
-\newcommand{\supp}{\col{purple}{\mathrm{supp}}} % carrier (i.e. supplier)
+\newcommand{\supp}{\col{\operatorcolor}{\mathrm{supp}}} % carrier (i.e. supplier)
 
 %----------------------------------------------------------------------------------------------------------------------
 % algebra
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand*\feq{\overset{!}{=}} % should be equal to (force-equal)
-\newcommand{\Hom}{\col{purple}{\mathrm{Hom}}} % set of homeomorphisms
-\newcommand{\im}{\col{purple}{\mathrm{im}}} % image of function
-\newcommand{\id}{\col{purple}{\mathrm{id}}} % identity
+\newcommand{\Hom}{\col{\operatorcolor}{\mathrm{Hom}}} % set of homeomorphisms
+\newcommand{\im}{\col{\operatorcolor}{\mathrm{im}}} % image of function
+\newcommand{\id}{\col{\operatorcolor}{\mathrm{id}}} % identity
 \newcommand{\dsum}{\dot{+}} % direct sum
-\newcommand{\sign}{\col{purple}{\mathrm{sign}}} % sign (either sign or signature)
+\newcommand{\sign}{\col{\operatorcolor}{\mathrm{sign}}} % sign (either sign or signature)
 \newcommand{\conj}[1]{\overline{#1}} % complex conjugate (legacy, use \bar or conj-snippet)
-\newcommand{\Grad}{\col{purple}{\mathrm{Grad}}} % order of polynomial (de)
-\newcommand{\GL}{\col{purple}{\mathrm{GL}}} % general linear group
-\newcommand{\GF}{\col{purple}{\mathrm{GF}}}
-\newcommand{\SL}{\col{purple}{\mathrm{SL}}} % special linear group
+\newcommand{\Grad}{\col{\operatorcolor}{\mathrm{Grad}}} % order of polynomial (de)
+\newcommand{\GL}{\col{\operatorcolor}{\mathrm{GL}}} % general linear group
+\newcommand{\GF}{\col{\operatorcolor}{\mathrm{GF}}}
+\newcommand{\SL}{\col{\operatorcolor}{\mathrm{SL}}} % special linear group
 \newcommand{\epimorph}{\twoheadrightarrow} % mapping is epimorphism (injective)
 \newcommand{\monmorph}{\rightarrowtail} % mapping is monomorphism (surjective)
 \newcommand{\isomorph}{\twoheadrightarrowtail} % mapping is isomorphism (bijective)
-\newcommand{\Aut}{\col{purple}{\mathrm{Aut}}} % set of automorphisms
-\newcommand{\End}{\col{purple}{\mathrm{End}}} % set of endomorphisms
-\newcommand{\ran}{\col{purple}{\mathrm{ran}}} % range of mapping
-\renewcommand{\dim}{\col{purple}{\mathrm{dim}}}
-\renewcommand{\ker}{\col{purple}{\mathrm{ker}}}
-\newcommand{\dspan}{\col{purple}{\mathrm{span}}}
-\renewcommand{\deg}{\col{purple}{\mathrm{deg}}}
+\newcommand{\Aut}{\col{\operatorcolor}{\mathrm{Aut}}} % set of automorphisms
+\newcommand{\End}{\col{\operatorcolor}{\mathrm{End}}} % set of endomorphisms
+\newcommand{\ran}{\col{\operatorcolor}{\mathrm{ran}}} % range of mapping
+\renewcommand{\dim}{\col{\operatorcolor}{\mathrm{dim}}}
+\renewcommand{\ker}{\col{\operatorcolor}{\mathrm{ker}}}
+\newcommand{\dspan}{\col{\operatorcolor}{\mathrm{span}}}
+\renewcommand{\deg}{\col{\operatorcolor}{\mathrm{deg}}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
@@ -153,7 +158,8 @@
 \newcommand{\hvec}[1]{\hat{\vec{#1}}} % vector with hat
 \newcommand{\tvec}[1]{\tilde{\vec{#1}}} % vector with tilde
 \newcommand{\bvec}[1]{\bar{\vec{#1}}} % vector with bar
-\newcommand{\lspan}{\col{purple}{\mathrm{span}}} % span of vectors
+\newcommand{\lspan}{\col{\operatorcolor}{\mathrm{span}}} % span of vectors
+\newcommand{\vgamma}{\vec{\gamma}} % shortcut for vector gamma (common for curves)
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
@@ -161,45 +167,48 @@
 \newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} % thank me later (shorthand for writing bmatrices)
 \newcommand{\fbmat}[1]{\begin{bNiceMatrix}#1\end{bNiceMatrix}} % same as \bmat, \Cdots & co are „nicer“ ;)
 
-\newcommand{\diag}{\col{purple}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
-\newcommand{\cols}{\col{purple}{\mathrm{col}}} % column space of matrix (en)
-\newcommand{\rows}{\col{purple}{\mathrm{row}}} % row space of matrix (en)
-\newcommand{\Eig}{\col{purple}{\mathrm{Eig}}} % eigendata of matrix
-\newcommand{\Gram}{\col{purple}{\mathrm{Gram}}} % Gram matrix
-\newcommand{\ind}{\col{purple}{\mathrm{ind}}} % index of matrix
+\newcommand{\diag}{\col{\operatorcolor}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
+\newcommand{\cols}{\col{\operatorcolor}{\mathrm{col}}} % column space of matrix (en)
+\newcommand{\rows}{\col{\operatorcolor}{\mathrm{row}}} % row space of matrix (en)
+\newcommand{\Eig}{\col{\operatorcolor}{\mathrm{Eig}}} % eigendata of matrix
+\newcommand{\Gram}{\col{\operatorcolor}{\mathrm{Gram}}} % Gram matrix
+\newcommand{\ind}{\col{\operatorcolor}{\mathrm{ind}}} % index of matrix
 \newcommand{\detm}[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert} % shorthand determiant
 \newcommand{\hateq}{\overset{\scriptscriptstyle\wedge}{=}} % matrices are congruent
+\renewcommand{\det}{\col{\operatorcolor}{\mathrm{det}}}
 
-\newcommand{\spec}{\col{purple}{\mathrm{spec}}} % set of eigenvalues of linear map
+\newcommand{\spec}{\col{\operatorcolor}{\mathrm{spec}}} % set of eigenvalues of linear map
+\newcommand{\Ann}{\col{\operatorcolor}{\mathrm{Ann}}} % annihilator of matrix
 
-\newcommand{\mat}[1]{\mathrm{\col{orange!95!black}{#1}}} % matrix typing
+\newcommand{\mat}[1]{\mathrm{\col{\matrixcolor!95!black}{#1}}} % matrix typing
 \newcommand{\tmat}[1]{\tilde{\mat{#1}}} % matrix with tilde
 \newcommand{\cmat}[1]{\mat{\mathcal{#1}}} % calligraphic matrix
 \newcommand{\gmat}[1]{\mat{#1}} % greek letter matrix (deprecated)
+\newcommand{\hmat}[1]{\hat{\mat{#1}}} % matrix with hat
 
-\newcommand{\zrg}{\col{purple}{\mathrm{zrg}}} % row rank of matrix (de)
-\newcommand{\rrk}{\col{purple}{\mathrm{rrk}}} % row rank of matrix (en)
-\newcommand{\srg}{\col{purple}{\mathrm{srg}}} % column rank of matrix (de)
-\newcommand{\crk}{\col{purple}{\mathrm{crk}}} % column rank of matrix (en)
+\newcommand{\zrg}{\col{\operatorcolor}{\mathrm{zrg}}} % row rank of matrix (de)
+\newcommand{\rrk}{\col{\operatorcolor}{\mathrm{rrk}}} % row rank of matrix (en)
+\newcommand{\srg}{\col{\operatorcolor}{\mathrm{srg}}} % column rank of matrix (de)
+\newcommand{\crk}{\col{\operatorcolor}{\mathrm{crk}}} % column rank of matrix (en)
 
-\newcommand{\spur}{\col{purple}{\mathrm{spur}}} % matrix trace (de)
-\newcommand{\spr}{\col{purple}{\mathrm{sp}}}    % matrix trace (de)
-\newcommand{\Spur}{\col{purple}{\mathrm{Spur}}} % matrix trace (de)
-\newcommand{\Spr}{\col{purple}{\mathrm{Sp}}}    % matrix trace (de)
+\newcommand{\spur}{\col{\operatorcolor}{\mathrm{spur}}} % matrix trace (de)
+\newcommand{\spr}{\col{\operatorcolor}{\mathrm{sp}}}    % matrix trace (de)
+\newcommand{\Spur}{\col{\operatorcolor}{\mathrm{Spur}}} % matrix trace (de)
+\newcommand{\Spr}{\col{\operatorcolor}{\mathrm{Sp}}}    % matrix trace (de)
 
-\renewcommand{\trace}{\col{purple}{\mathrm{trace}}} % matrix trace (en)
-\renewcommand{\tr}{\col{purple}{\mathrm{tr}}}       % matrix trace (en)
-\renewcommand{\Trace}{\col{purple}{\mathrm{Trace}}} % matrix trace (en)
-\renewcommand{\Tr}{\col{purple}{\mathrm{Tr}}}       % matrix trace (en)
+\renewcommand{\trace}{\col{\operatorcolor}{\mathrm{trace}}} % matrix trace (en)
+\renewcommand{\tr}{\col{\operatorcolor}{\mathrm{tr}}}       % matrix trace (en)
+\renewcommand{\Trace}{\col{\operatorcolor}{\mathrm{Trace}}} % matrix trace (en)
+\renewcommand{\Tr}{\col{\operatorcolor}{\mathrm{Tr}}}       % matrix trace (en)
 
-\newcommand{\rg}{\col{purple}{\mathrm{rg}}} % rank of matrix (de)
-\newcommand{\Rg}{\col{purple}{\mathrm{Rg}}} % rank of matrix (de)
-\newcommand{\rang}{\col{purple}{\mathrm{rang}}} % rank of matrix (de)
-\newcommand{\Rang}{\col{purple}{\mathrm{Rang}}} % matrix rank (de)
+\newcommand{\rg}{\col{\operatorcolor}{\mathrm{rg}}} % rank of matrix (de)
+\newcommand{\Rg}{\col{\operatorcolor}{\mathrm{Rg}}} % rank of matrix (de)
+\newcommand{\rang}{\col{\operatorcolor}{\mathrm{rang}}} % rank of matrix (de)
+\newcommand{\Rang}{\col{\operatorcolor}{\mathrm{Rang}}} % matrix rank (de)
 
-\newcommand{\rk}{\col{purple}{\mathrm{rk}}} % rank of matrix (en)
-\renewcommand{\rank}{\col{purple}{\mathrm{rank}}} % rank of matrix (en)
-\newcommand{\Rank}{\col{purple}{\mathrm{Rank}}} % rank of matrix (en)
+\newcommand{\rk}{\col{\operatorcolor}{\mathrm{rk}}} % rank of matrix (en)
+\renewcommand{\rank}{\col{\operatorcolor}{\mathrm{rank}}} % rank of matrix (en)
+\newcommand{\Rank}{\col{\operatorcolor}{\mathrm{Rank}}} % rank of matrix (en)
 
 
 \makeatletter
@@ -257,6 +266,8 @@
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
 \renewcommand{\bar}[1]{\overline{#1}} % overline (again)
+\newcommand{\oset}[2]{\overset{#1}{#2}}
+\newcommand{\uset}[2]{\underset{#1}{#2}}
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}
