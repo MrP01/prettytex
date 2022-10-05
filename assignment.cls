@@ -18,6 +18,8 @@
 \RequirePackage{prettytex/math-sigtrans}
 \RequirePackage{tikz-cd}
 \RequirePackage{titlesec, varwidth,lastpage}
+\usepackage{mathdots}
+
 
 \newcommand{\name}{}
 \newcommand{\matrnum}{}
@@ -29,7 +31,7 @@
 \newcommand{\duedate}{\today}
 \newcommand{\numsymb}{\textnumero}
 \newcommand{\taskname}{Task}
-\newcommand{\taskcolor}{orange}
+\newcommand{\taskcolor}{green}
 
 \fancyhf{}
 \fancyhead[LE,RO]{\name\\\matrnum}
@@ -45,6 +47,28 @@
 \titleformat{\section}[block]{\Large\bfseries\filcenter}{\assname\hspace{0.2cm}\numsymb\hspace{0.2cm}\assnum}{1em}{}
 
 \setlength{\headheight}{25pt}
+
+\DeclareOption{section}{%
+    \newtcbtheorem[number within=section]{task}{\taskname}{%
+        enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
+        coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
+        borderline={0.5mm}{0mm}{\taskcolor!20},%
+        attach boxed title to top center={yshift=-2.5mm},%
+        varwidth boxed title%
+    }{task}%
+}
+\DeclareOption{count}{%
+    \newtcbtheorem{task}{\taskname}{%
+        enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
+        coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
+        borderline={0.5mm}{0mm}{\takscolor!20},%
+        attach boxed title to top center={yshift=-2.5mm},%
+        varwidth boxed title%
+    }{task}%
+}
+\ProcessOptions\relax
+
+
 
 \newtheorem{ex}{Task}[section]
 \setcounter{section}{\assnum}
