@@ -8,7 +8,7 @@
 \LoadClass{article}
 
 
-\RequirePackage[singlelinecheck,\lang]{prettytex/base}
+\RequirePackage[\lang,singlelinecheck]{prettytex/base}
 \RequirePackage{prettytex/math}
 \RequirePackage{prettytex/gfx}
 \RequirePackage{prettytex/gfx-circuits}
@@ -34,10 +34,10 @@
 \newcommand{\taskcolor}{green}
 
 \fancyhf{}
-\fancyhead[LE,RO]{\name\\\matrnum}
-\fancyhead[RE,LO]{\class\hspace{0.2cm}\term\\\classid}
+\fancyhead[L]{\name\\\matrnum}
+\fancyhead[R]{\class\hspace{0.2cm}\term\\\classid}
 \fancyhead[C]{\bfseries \assname\hspace{0.1cm}\numsymb \assnum\\\duedate}
-\fancyfoot[LE,RO]{\thepage / \pageref{LastPage}}
+\fancyfoot[L]{\thepage / \pageref{LastPage}}
 \renewcommand{\headrulewidth}{.25pt}
 \renewcommand{\footrulewidth}{.25pt}
 \pagestyle{fancy}
@@ -51,7 +51,7 @@
 \DeclareOption{section}{%
     \newtcbtheorem[number within=section]{task}{\taskname}{%
         enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
-        coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
+        coltitle=\taskcolor,fonttitle=\bfseries\itshape,colbacktitle=\taskcolor!20,%
         borderline={0.5mm}{0mm}{\taskcolor!20},%
         attach boxed title to top center={yshift=-2.5mm},%
         varwidth boxed title%
@@ -60,15 +60,13 @@
 \DeclareOption{count}{%
     \newtcbtheorem{task}{\taskname}{%
         enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
-        coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
-        borderline={0.5mm}{0mm}{\takscolor!20},%
+        coltitle=\taskcolor,fonttitle=\bfseries\itshape,colbacktitle=\taskcolor!20,%
+        borderline={0.5mm}{0mm}{\taskcolor!20},%
         attach boxed title to top center={yshift=-2.5mm},%
         varwidth boxed title%
     }{task}%
 }
 \ProcessOptions\relax
-
-
 
 \newtheorem{ex}{Task}[section]
 \setcounter{section}{\assnum}
