@@ -51,7 +51,7 @@
   \newtcbtheorem[number within=section]{task}{\taskname}{%
       enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
       coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
-      borderline={0.5mm}{0mm}{\taskcolor!20},%
+      borderline={0.5mm}{0mm}{\taskcolor!20},top=3.2mm,%
       attach boxed title to top center={yshift=-2.5mm},%
       varwidth boxed title%
   }{task}%
@@ -60,7 +60,7 @@
   \newtcbtheorem{task}{\taskname}{%
       enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
       coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
-      borderline={0.5mm}{0mm}{\taskcolor!20},%
+      borderline={0.5mm}{0mm}{\taskcolor!20},top=3.2mm,%
       attach boxed title to top center={yshift=-2.5mm},%
       varwidth boxed title%
   }{task}%
