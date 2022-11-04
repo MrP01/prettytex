@@ -79,5 +79,7 @@
 }
 \ProcessOptions\relax
 
+\newcommand{\tcb@cnt@taskautorefname}{\taskname}
+
 \newtheorem{ex}{Task}[section]
 \setcounter{section}{\assnum}
