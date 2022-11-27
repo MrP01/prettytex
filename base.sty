@@ -29,12 +29,11 @@
 \usepackage[column=C]{cellspace}
 \usepackage{geometry}
 \usepackage{url}
-\usepackage{hyperref}
+\usepackage[colorlinks=true]{hyperref}
 \usepackage{parskip}
 \usepackage[\babellang]{babel}
 \usepackage{translations}
 \usepackage[outline]{contour}
-
 
 % optional, but important "enough"
 \usepackage[singlelinecheck=\slc]{caption}
@@ -84,11 +83,16 @@
 
 \newcommand{\col}[2]{\textcolor{#1}{#2}}
 
-\hypersetup{
-    colorlinks=true,
+\AtBeginDocument{
+  \hypersetup{
+    pdfborderstyle={/S/U/W 1},
     urlcolor=themecolor,
-    linkcolor=themecolor2,
+    urlbordercolor=black,
+    linkcolor=black,
+    linkbordercolor=themecolor,
     citecolor=themecolor3,
+    citebordercolor=black,
+  }
 }
 
 \newcommand{\autoheadings}{
@@ -138,7 +142,6 @@
 \makeatother
 
 % misc
-
 \newcommand{\rom}[1]{%
   \setcounter{dispcount}{#1}%
   \roman{dispcount}%
