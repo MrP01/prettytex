@@ -47,6 +47,13 @@
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand{\FD}{\mathrm{D}} % frechét-derivative
 \newcommand{\idd}{\;\dd} % integral d
+\newcommand{\ddx}{\dd x} % dx
+\newcommand{\ddy}{\dd y} % dy
+\newcommand{\dds}{\dd s} % dy
+\newcommand{\ddz}{\dd z} % dy
+\newcommand{\ddu}{\dd u} % dy
+\newcommand{\ddv}{\dd v} % dy
+\newcommand{\ddt}{\dd t} % dy
 \newcommand{\seq}[3]{(#1_{#2})_{#2\in #3}} % classical sequence
 \newcommand{\nseq}[1]{\seq{#1}{n}{\N}} % sequence with index n
 \newcommand{\kseq}[1]{\seq{#1}{k}{\N}} % sequence with index k
@@ -68,6 +75,7 @@
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\C}{\mathbb{C}} % complex numbers
 \newcommand{\T}{\mathbb{T}} % transcendental numbers
+\renewcommand{\S}{\mathbb{S}} % 
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\U}{\mathbb{U}}
 \renewcommand{\H}{\mathbb{H}} % upper complex plane
@@ -166,6 +174,18 @@
 \newcommand{\bvec}[1]{\bar{\vec{#1}}} % vector with bar
 \newcommand{\lspan}{\col{\operatorcolor}{\mathrm{span}}} % span of vectors
 \newcommand{\vgamma}{\vec{\gamma}} % shortcut for vector gamma (common for curves)
+\newcommand{\valpha}{\vec{\alpha}}
+\newcommand{\vphi}{\vec{\varphi}}
+\newcommand{\vbeta}{\vec{\beta}}
+\newcommand{\vecx}{\vec{x}}
+\newcommand{\vecy}{\vec{y}}
+\newcommand{\vecz}{\vec{z}}
+\newcommand{\vecv}{\vec{v}}
+\newcommand{\vecw}{\vec{w}}
+\newcommand{\vece}{\vec{e}}
+\newcommand{\zvec}{\vec{0}}
+\newcommand{\vecp}{\vec{p}}
+\newcommand{\vecl}{\vec{l}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
@@ -182,7 +202,6 @@
 \newcommand{\detm}[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert} % shorthand determiant
 \newcommand{\hateq}{\overset{\scriptscriptstyle\wedge}{=}} % matrices are congruent
 \renewcommand{\det}{\col{\operatorcolor}{\mathrm{det}}}
-
 \newcommand{\spec}{\col{\operatorcolor}{\mathrm{spec}}} % set of eigenvalues of linear map
 \newcommand{\Ann}{\col{\operatorcolor}{\mathrm{Ann}}} % annihilator of matrix
 
@@ -272,8 +291,23 @@
 \newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
 \renewcommand{\bar}[1]{\overline{#1}} % overline (again)
+\newcommand{\ubar}[1]{\underline{#1}} % underline
 \newcommand{\oset}[2]{\overset{#1}{#2}}
 \newcommand{\uset}[2]{\underset{#1}{#2}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cZ}{\mathcal{Z}}
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}
