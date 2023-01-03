@@ -8,6 +8,15 @@
 \DeclareOption{chapter}{
   \renewcommand{\thmnum}{chapter}
 }
+\DeclareOption{cleveref}{
+  \crefname{figure}{figure}{figures}
+  \crefname{equation}{equation}{equations}
+  \crefname{tcb@cnt@definition}{definition}{definitions}
+  \crefname{tcb@cnt@theorem}{theorem}{theorems}
+  \crefname{tcb@cnt@lemma}{lemma}{lemmata}
+  \crefname{tcb@cnt@corollary}{corollary}{corollaries}
+  \crefname{tcb@cnt@remark}{remark}{remarks}
+}
 \ProcessOptions\relax
 
 \DeclareTranslation{English}{definitionname}{Definition}
