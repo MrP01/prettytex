@@ -13,11 +13,12 @@
 \RequirePackage{prettytex/gfx-circuits}
 \RequirePackage{prettytex/gfx-components}
 \RequirePackage{prettytex/boxes}
-\RequirePackage{prettytex/math-theorems}
 \RequirePackage{prettytex/math-sigtrans}
+\RequirePackage{prettytex/math-theorems}
 \RequirePackage{tikz-cd}
 \RequirePackage{titlesec, varwidth,lastpage}
 \usepackage{mathdots}
+\usepackage{cleveref}
 
 \newcommand{\name}{}
 \newcommand{\matrnum}{}
@@ -83,3 +84,8 @@
 
 \newtheorem{ex}{Task}[section]
 \setcounter{section}{\assnum}
+
+\makeatletter
+\crefname{tcb@cnt@task}{task}{tasks}
+\Crefname{tcb@cnt@task}{Task}{Tasks}
+\makeatother
