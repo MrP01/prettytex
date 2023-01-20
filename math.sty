@@ -113,7 +113,7 @@
 \newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % stirling number first kind
 \newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}} % striling number second kind
 \newcommand{\cycle}[1]{\begin{pmatrix}#1\end{pmatrix}} % cycle notation
-\newcommand{\supp}{\col{\operatorcolor}{\mathrm{supp}}} % carrier (i.e. supplier)
+\DeclareMathOperator{\supp}{\col{\operatorcolor}{\mathrm{supp}}} % carrier (i.e. supplier)
 
 %----------------------------------------------------------------------------------------------------------------------
 % algebra
@@ -140,6 +140,7 @@
 \renewcommand{\ker}{\col{\operatorcolor}{\mathrm{ker}}}
 \newcommand{\dspan}{\col{\operatorcolor}{\mathrm{span}}}
 \renewcommand{\deg}{\col{\operatorcolor}{\mathrm{deg}}}
+\DeclareMathOperator{\odeg}{\col{\operatorcolor}{\mathrm{deg}}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
@@ -178,6 +179,8 @@
 \newcommand{\vgamma}{\vec{\gamma}} % shortcut for vector gamma (common for curves)
 \newcommand{\valpha}{\vec{\alpha}}
 \newcommand{\vphi}{\vec{\varphi}}
+\newcommand{\vsig}{\vec{\sigma}}
+\newcommand{\vxi}{\vec{\xi}}
 \newcommand{\vbeta}{\vec{\beta}}
 \newcommand{\vmu}{\vec{\mu}}
 \newcommand{\vrho}{\vec{\varrho}}

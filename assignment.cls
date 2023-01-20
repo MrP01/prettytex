@@ -49,6 +49,8 @@
 \setlength{\headsep}{1.5em}
 
 \DeclareOption{section}{%
+\BeforeBeginEnvironment{#1}{\savenotes}%
+  \AfterEndEnvironment{#1}{\spewnotes}%
   \newtcbtheorem[number within=section]{task}{\taskname}{%
       enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
       coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%

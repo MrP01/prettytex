@@ -56,3 +56,10 @@
   keywordstyle=[2]\color{purple},
   keywordstyle=[3]\color{red}
 }
+
+\makeatletter
+\@ifpackageloaded{cleveref}{
+  \crefname{lstlisting}{algorithm}{algorithms}
+  \Crefname{lstlisting}{Algorithm}{Algorithms}
+}{}
+\makeatother
