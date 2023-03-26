@@ -13,6 +13,8 @@
 \newcommand{\TikZ}{Ti\textit{k}Z }
 
 
+
+
 \usepgfplotslibrary{
     patchplots,
     fillbetween,
@@ -71,3 +73,10 @@
   \tikzsetnextfilename{#1}
   \input{\figureloc/#1.tex}
 }
+
+\newcommand{\tikzexternal}{tikz}
+
+\DeclareOption{external}{
+    \tikzexternalize[prefix=\tikzexternal/]
+}
+\ProcessOptions\relax
