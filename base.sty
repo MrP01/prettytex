@@ -12,6 +12,9 @@
 \DeclareOption{singlelinecheck}{
     \renewcommand{\slc}{true}
 }
+\newif\ifcollink
+\collinkfalse
+\DeclareOption{collink}{\collinktrue}
 
 \newif\ifprettybeamer
 \prettybeamerfalse
@@ -83,6 +86,16 @@
 
 \newcommand{\col}[2]{\textcolor{#1}{#2}}
 
+
+
+\ifcollink
+\AtBeginDocument{
+  \hypersetup{
+    urlcolor=themecolor,
+    linkcolor=themecolor2,
+    citecolor=themecolor3
+  }
+}\else 
 \AtBeginDocument{
   \hypersetup{
     pdfborderstyle={/S/U/W 1},
@@ -94,6 +107,7 @@
     citebordercolor=black,
   }
 }
+\fi
 
 \newcommand{\autoheadings}{
   \usepackage{lastpage}
