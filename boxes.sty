@@ -2,7 +2,7 @@
 \RequirePackage{prettytex/base}
 
 \usepackage{framed}
-\usepackage[many]{tcolorbox}
+\usepackage[most]{tcolorbox}
 \usepackage{varwidth}
 \usepackage{footnote}
 \usepackage{etoolbox}
@@ -47,8 +47,18 @@
   }%
 }
 
+\newcommand{\wrapthm}[2]{%
+    \tcolorboxenvironment{#1}{enhanced jigsaw,
+    enhanced jigsaw, colframe=#2!50,%
+    coltitle=green,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
+    borderline={0.5mm}{0mm}{#2!50},%
+    colback=white,sharp corners%
+    }
+}
+
+
 % Theorem box
-% round style:
+% default style:
 \newcommand{\thmbox}[5]{%
   \BeforeBeginEnvironment{#1}{\savenotes}%
   \AfterEndEnvironment{#1}{\spewnotes}%
@@ -59,7 +69,6 @@
     colback=white,top=5mm,%
     attach boxed title to top center={yshift=-3mm},%
     %varwidth boxed title,
-    breakable%
   }{#4}%
   % \makeatletter%
   % \crefname{tcb@cnt@#1}{#1}{#1}%
