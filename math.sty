@@ -76,7 +76,7 @@
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\C}{\mathbb{C}} % complex numbers
 \newcommand{\T}{\mathbb{T}} % transcendental numbers
-\renewcommand{\S}{\mathbb{S}} % 
+\newcommand{\Sp}{\mathbb{S}} % 
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\U}{\mathbb{U}}
 \renewcommand{\H}{\mathbb{H}} % upper complex plane
@@ -113,7 +113,7 @@
 \newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % stirling number first kind
 \newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}} % striling number second kind
 \newcommand{\cycle}[1]{\begin{pmatrix}#1\end{pmatrix}} % cycle notation
-\newcommand{\supp}{\col{\operatorcolor}{\mathrm{supp}}} % carrier (i.e. supplier)
+\DeclareMathOperator{\supp}{\col{\operatorcolor}{\mathrm{supp}}} % carrier (i.e. supplier)
 
 %----------------------------------------------------------------------------------------------------------------------
 % algebra
@@ -136,10 +136,14 @@
 \newcommand{\Aut}{\col{\operatorcolor}{\mathrm{Aut}}} % set of automorphisms
 \newcommand{\End}{\col{\operatorcolor}{\mathrm{End}}} % set of endomorphisms
 \newcommand{\ran}{\col{\operatorcolor}{\mathrm{ran}}} % range of mapping
-\renewcommand{\dim}{\col{\operatorcolor}{\mathrm{dim}}}
-\renewcommand{\ker}{\col{\operatorcolor}{\mathrm{ker}}}
+\let\dim\relax
+\DeclareMathOperator{\dim}{\col{\operatorcolor}{\mathrm{dim}}}
+\let\ker\relax
+\DeclareMathOperator{\ker}{\col{\operatorcolor}{\mathrm{ker}}}
 \newcommand{\dspan}{\col{\operatorcolor}{\mathrm{span}}}
-\renewcommand{\deg}{\col{\operatorcolor}{\mathrm{deg}}}
+\let\deg\relax
+\DeclareMathOperator{\deg}{\col{\operatorcolor}{\mathrm{deg}}}
+\DeclareMathOperator{\odeg}{\col{\operatorcolor}{\mathrm{deg}}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % logic 
@@ -178,10 +182,13 @@
 \newcommand{\vgamma}{\vec{\gamma}} % shortcut for vector gamma (common for curves)
 \newcommand{\valpha}{\vec{\alpha}}
 \newcommand{\vphi}{\vec{\varphi}}
+\newcommand{\vsig}{\vec{\sigma}}
+\newcommand{\vxi}{\vec{\xi}}
 \newcommand{\vbeta}{\vec{\beta}}
 \newcommand{\vmu}{\vec{\mu}}
 \newcommand{\vrho}{\vec{\varrho}}
 \newcommand{\vecx}{\vec{x}}
+\newcommand{\vecs}{\vec{s}}
 \newcommand{\veca}{\vec{a}}
 \newcommand{\vech}{\vec{h}}
 \newcommand{\vecb}{\vec{b}}
@@ -199,6 +206,7 @@
 \newcommand{\vecr}{\vec{r}}
 \newcommand{\vecg}{\vec{g}}
 \newcommand{\vect}{\vec{t}}
+\newcommand{\vecd}{\vec{d}}
 \newcommand{\vecll}{\vec{\ell}}
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -297,7 +305,7 @@
 \newcommand{\sinnc}{\mathrm{si}} % sinus cardinalis (de, normalised)
 \newcommand{\Si}{\mathrm{Si}} % integral sinus
 \newcommand{\Li}{\mathrm{Li}} % integral logarithmus naturlis
-
+\DeclareMathOperator{\ld}{\mathrm{ld}}
 
 % other
 \newcounter{dispcount}
@@ -309,6 +317,7 @@
 \newcommand{\oset}[2]{\overset{#1}{#2}}
 \newcommand{\uset}[2]{\underset{#1}{#2}}
 \newcommand{\cS}{\mathcal{S}}
+\newcommand{\cF}{\mathcal{F}}
 \newcommand{\cB}{\mathcal{B}}
 \newcommand{\cE}{\mathcal{E}}
 \newcommand{\cD}{\mathcal{D}}
@@ -324,6 +333,17 @@
 \newcommand{\cZ}{\mathcal{Z}}
 \newcommand{\cX}{\mathcal{X}}
 \newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cV}{\mathcal{V}}
+
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sR}{\mathscr{R}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sB}{\mathscr{B}}
+
+\newcommand{\tvecx}{\tvec{x}}
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}

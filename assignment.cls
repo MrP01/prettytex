@@ -9,7 +9,7 @@
 
 \RequirePackage[singlelinecheck,\lang]{prettytex/base}
 \RequirePackage{prettytex/math}
-\RequirePackage{prettytex/gfx}
+\RequirePackage[external]{prettytex/gfx}
 \RequirePackage{prettytex/gfx-circuits}
 \RequirePackage{prettytex/gfx-components}
 \RequirePackage{prettytex/boxes}
@@ -49,7 +49,20 @@
 \setlength{\headsep}{1.5em}
 
 \DeclareOption{section}{%
+\BeforeBeginEnvironment{#1}{\savenotes}%
+  \AfterEndEnvironment{#1}{\spewnotes}%
   \newtcbtheorem[number within=section]{task}{\taskname}{%
+      enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
+      coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
+      borderline={0.5mm}{0mm}{\taskcolor!20},top=3.2mm,%
+      attach boxed title to top center={yshift=-2.5mm},%
+      varwidth boxed title%
+  }{task}%
+}
+\DeclareOption{ssection}{%
+\BeforeBeginEnvironment{#1}{\savenotes}%
+  \AfterEndEnvironment{#1}{\spewnotes}%
+  \newtcbtheorem[number within=subsection]{task}{\taskname}{%
       enhanced, frame empty, interior empty, colframe=\taskcolor!50!white,%
       coltitle=\taskcolor,fonttitle=\bfseries,colbacktitle=\taskcolor!20,%
       borderline={0.5mm}{0mm}{\taskcolor!20},top=3.2mm,%
