@@ -2,7 +2,6 @@
 \RequirePackage{prettytex/boxes}
 \RequirePackage{cleveref}
 
-
 \newcommand{\thmnum}{section}
 \DeclareOption{subsec}{
   \renewcommand{\thmnum}{subsection}
@@ -13,11 +12,6 @@
 \DeclareOption{cleveref}{
   \crefname{figure}{figure}{figures}
   \crefname{equation}{equation}{equations}
-  \crefname{tcb@cnt@definition}{definition}{definitions}
-  \crefname{tcb@cnt@theorem}{theorem}{theorems}
-  \crefname{tcb@cnt@lemma}{lemma}{lemmata}
-  \crefname{tcb@cnt@corollary}{corollary}{corollaries}
-  \crefname{tcb@cnt@remark}{remark}{remarks}
 }
 \ProcessOptions\relax
 
@@ -48,12 +42,12 @@
 
 \makeatletter
 \@ifpackageloaded{cleveref}{\crefname{tcb@cnt@definition}{definition}{definitions}
-\Crefname{tcb@cnt@definition}{Definition}{Definitions}
-\crefname{tcb@cnt@theorem}{theorem}{theorems}
-\Crefname{tcb@cnt@theorem}{Theorem}{Theorems}
-\crefname{tcb@cnt@lemma}{lemma}{lemmata}
-\Crefname{tcb@cnt@lemma}{Lemma}{Lemmata}
-\crefname{tcb@cnt@corollary}{corollary}{corollaries}
-\Crefname{tcb@cnt@corollary}{Corollary}{Corollaries}}{}
+  \Crefname{tcb@cnt@definition}{Definition}{Definitions}
+  \crefname{tcb@cnt@theorem}{theorem}{theorems}
+  \Crefname{tcb@cnt@theorem}{Theorem}{Theorems}
+  \crefname{tcb@cnt@lemma}{lemma}{lemmata}
+  \Crefname{tcb@cnt@lemma}{Lemma}{Lemmata}
+  \crefname{tcb@cnt@corollary}{corollary}{corollaries}
+  \Crefname{tcb@cnt@corollary}{Corollary}{Corollaries}}{}
 
 \makeatother
