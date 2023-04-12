@@ -1,54 +1,52 @@
 \RequirePackage{prettytex/base}
 
-
 \usepackage{listings}
 
 \newcounter{nalg}[section]
-\renewcommand{\thenalg}{\arabic{nalg}} 
-\DeclareCaptionLabelFormat{algocaption}{Algorithm \thenalg} 
+\renewcommand{\thenalg}{\arabic{nalg}}
+\DeclareCaptionLabelFormat{algocaption}{}
 
-
-\lstnewenvironment{algorithm}[1][] 
-{   
-  \refstepcounter{nalg} 
+\lstnewenvironment{algorithm}[1][]
+{
+  \refstepcounter{nalg}
   \captionsetup{labelformat=algocaption,labelsep=colon}
   \lstset{
     mathescape=true,
     escapechar={|},
     frame=tB,
-    numbers=left, 
+    numbers=left,
     numberstyle=\tiny,
-    basicstyle=\scriptsize, 
+    basicstyle=\footnotesize,
     keywordstyle=\color{black}\bfseries,
     numbers=left,
     xleftmargin=.04\textwidth,
-    #1 
+    #1
   }
 }
 {}
 
-\lstdefinestyle{code_style}{                                % defines a new style 'code_style'
-    backgroundcolor=\color{backcolour},                     % sets the background color of the entire block
-    commentstyle=\color{codegreen},                         % sets the color of comments to codegreen
-    keywordstyle=\color{magenta},                           % sets the color of keywords to magenta
-    numberstyle=\tiny\color{codegray},                      % makes line-numbers small and colors them gray
-    stringstyle=\color{green},                              % sets the color of strings to green
-    basicstyle=\ttfamily\footnotesize,                      % sets the font and size
-    breakatwhitespace=false,                                % disable linebreaks at whitespace
-    breaklines=true,                                        % enable automatic linebreaks of long lines
-    captionpos=b,                                           % sets caption position to bottom
-    keepspaces=true,                                        % converts tabs to spaces and keeps them for column width
-    showspaces=false,                                       % disables space-indication with symbol
-    showstringspaces=false,                                 % disables space-indication symbols in strings
-    showtabs=false,                                         % disables tab-indication with symbol
-    tabsize=1,                                              % sets conversion size of tabs
-    numbers=left,                                           % sets position of line number
-    numbersep=5pt                                           % sets distance between line number
+\lstdefinestyle{code_style}{                              % defines a new style 'code_style'
+  backgroundcolor=\color{backcolour},                     % sets the background color of the entire block
+  commentstyle=\color{codegreen},                         % sets the color of comments to codegreen
+  keywordstyle=\color{magenta},                           % sets the color of keywords to magenta
+  numberstyle=\tiny\color{codegray},                      % makes line-numbers small and colors them gray
+  stringstyle=\color{green},                              % sets the color of strings to green
+  basicstyle=\ttfamily\normalsize,                        % sets the font and size
+  breakatwhitespace=false,                                % disable linebreaks at whitespace
+  breaklines=true,                                        % enable automatic linebreaks of long lines
+  captionpos=b,                                           % sets caption position to bottom
+  keepspaces=true,                                        % converts tabs to spaces and keeps them for column width
+  showspaces=false,                                       % disables space-indication with symbol
+  showstringspaces=false,                                 % disables space-indication symbols in strings
+  showtabs=false,                                         % disables tab-indication with symbol
+  tabsize=1,                                              % sets conversion size of tabs
+  numbers=left,                                           % sets position of line number
+  numbersep=5pt                                           % sets distance between line number
 }
 
 \lstdefinelanguage{pseudo}{
-  keywords=[1]{new_list, view, push, pop, insert,delete,, is_empty, size, move, top,QR, continue, break,swap,col,row,
-  forwsubs,backsubs,LUP},
+  keywords=[1]{new_list, view, push, pop, insert,delete, is_empty, size, move, top, QR, continue, break, swap, col, row,
+      forwsubs, backsubs, LUP},
   keywords=[2]{for,begin,end,input,if,then,output,return, name, while,do,else,let,set},
   keywords=[3]{true,false, error},
   sensitive=true,
