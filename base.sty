@@ -10,7 +10,7 @@
 
 \newcommand{\slc}{false}
 \DeclareOption{singlelinecheck}{
-    \renewcommand{\slc}{true}
+  \renewcommand{\slc}{true}
 }
 \newif\ifcollink
 \collinkfalse
@@ -59,13 +59,13 @@
   \setlength{\parskip}{0.5em}
   \setlength{\headsep}{3em}
   \geometry{
-      a4paper,
-      %twoside,
-      left=2cm,
-      right=2cm,
-      top=1.25cm,
-      bottom=1.25cm,
-      includeheadfoot
+    a4paper,
+    %twoside,
+    left=2cm,
+    right=2cm,
+    top=1.25cm,
+    bottom=1.25cm,
+    includeheadfoot
   }
 \fi
 
@@ -86,28 +86,26 @@
 
 \newcommand{\col}[2]{\textcolor{#1}{#2}}
 
-
-
 \ifcollink
-\AtBeginDocument{
-  \hypersetup{
-    urlcolor=themecolor,
-    linkcolor=themecolor2,
-    citecolor=themecolor3
+  \AtBeginDocument{
+    \hypersetup{
+      urlcolor=themecolor,
+      linkcolor=themecolor2,
+      citecolor=themecolor3
+    }
+  }\else
+  \AtBeginDocument{
+    \hypersetup{
+      pdfborderstyle={/S/U/W 1},
+      pdfborder=0 0 1,
+      urlcolor=themecolor,
+      urlbordercolor=black,
+      linkcolor=black,
+      linkbordercolor=themecolor,
+      citecolor=themecolor3,
+      citebordercolor=black,
+    }
   }
-}\else 
-\AtBeginDocument{
-  \hypersetup{
-    pdfborderstyle={/S/U/W 1},
-    pdfborder=0 0 1,
-    urlcolor=themecolor,
-    urlbordercolor=black,
-    linkcolor=black,
-    linkbordercolor=themecolor,
-    citecolor=themecolor3,
-    citebordercolor=black,
-  }
-}
 \fi
 
 \newcommand{\autoheadings}{
@@ -140,19 +138,19 @@
 
 \makeatletter
 \newcommand\listfigures{%
-\subsection*{\listfigurename}%
+  \subsection*{\listfigurename}%
   \@mkboth{\MakeUppercase\listfigurename}%
-          {\MakeUppercase\listfigurename}%
-\@starttoc{lof}%
+  {\MakeUppercase\listfigurename}%
+  \@starttoc{lof}%
 }
 \makeatother
 
 \makeatletter
 \newcommand\listtables{%
-\subsection*{\listtablename}%
+  \subsection*{\listtablename}%
   \@mkboth{\MakeUppercase\listtablename}%
-          {\MakeUppercase\listtablename}%
-\@starttoc{lot}%
+  {\MakeUppercase\listtablename}%
+  \@starttoc{lot}%
 }
 \makeatother
 
