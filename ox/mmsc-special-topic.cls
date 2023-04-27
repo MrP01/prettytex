@@ -25,7 +25,7 @@
     \Large \topictitle \\
     \vspace{.3cm}
 
-    \normalsize An \ifthenelse{\equal{#1}{casestudy}}{MMSC Case Study}{MMSC Special Topic}
+    \normalsize An MMSC \ifthenelse{\equal{#1}{casestudy}}{Case Study}{Special Topic}
     on \textcolor{themecolor3}{\textsc{\course}}\\
     \normalsize Candidate Number: \textcolor{themecolor3}{\candidatenumber}
     \vspace{.3cm}
