@@ -7,7 +7,7 @@
 
 \LoadClass{article}
 
-\RequirePackage[singlelinecheck,\lang]{prettytex/base}
+\RequirePackage[singlelinecheck,\lang, collink]{prettytex/base}
 \RequirePackage{prettytex/math}
 \RequirePackage[external]{prettytex/gfx}
 \RequirePackage{prettytex/gfx-circuits}
