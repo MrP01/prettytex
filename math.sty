@@ -14,10 +14,6 @@
 
 
 
-% preserve original siunitx \qty functionality
-\let\svqty\qty
-\usepackage{physics}
-\let\qty\svqty
 
 \newcommand{\matrixcolor}{orange!85!black}
 \newcommand{\operatorcolor}{purple!85!black}
@@ -47,6 +43,7 @@
 % calculus and topology
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand{\FD}{\mathrm{D}} % frechét-derivative
+\newcommand{\dd}{\mathrm{d}}
 \newcommand{\idd}{\;\dd} % integral d
 \newcommand{\ddx}{\dd x} % dx
 \newcommand{\ddy}{\dd y} % dy
@@ -76,7 +73,7 @@
 \newcommand{\R}{\mathbb{R}} % real numbers
 \newcommand{\C}{\mathbb{C}} % complex numbers
 \newcommand{\T}{\mathbb{T}} % transcendental numbers
-\newcommand{\Sp}{\mathbb{S}} % 
+\renewcommand{\S}{\mathbb{S}} % 
 \newcommand{\V}{\mathbb{V}}
 \newcommand{\U}{\mathbb{U}}
 \renewcommand{\H}{\mathbb{H}} % upper complex plane
@@ -155,10 +152,9 @@
 
 \newcommand{\nsubj}{\cancel{\subj}} % not right subjunctive
 \newcommand{\nlsubj}{\cancel{\lsubj}} % not left subjunctive
-\newcommand{\eqv}{\Leftrightarrow} % eqvivalent
+\newcommand{\eqv}{\Longleftrightarrow} % eqvivalent
 \newcommand{\neqv}{\cancel{\eqv}} % not equivalent            
-\renewcommand{\implies}{\Rightarrow} % right implication
-\newcommand{\limplies}{\Leftarrow} % left implication
+\newcommand{\limplies}{\Longleftarrow} % left implication
 \newcommand{\nimplies}{\cancel{\implies}} % not right implication
 \newcommand{\nlimplies}{\cancel{\limplies}} % not left implication
 \newcommand{\dtrue}{\mathrm{w}} % true (de)
@@ -212,7 +208,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}} % thank me later (shorthand for writing bmatrices)
+\newcommand{\bmat}[2][1]{{\renewcommand{\arraystretch}{#1}\begin{bmatrix}#2\end{bmatrix}}} % thank me later (shorthand for writing bmatrices)
 \newcommand{\fbmat}[1]{\begin{bNiceMatrix}#1\end{bNiceMatrix}} % same as \bmat, \Cdots & co are „nicer“ ;)
 
 \newcommand{\diag}{\col{\operatorcolor}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
@@ -243,10 +239,10 @@
 \newcommand{\Spur}{\col{\operatorcolor}{\mathrm{Spur}}} % matrix trace (de)
 \newcommand{\Spr}{\col{\operatorcolor}{\mathrm{Sp}}}    % matrix trace (de)
 
-\renewcommand{\trace}{\col{\operatorcolor}{\mathrm{trace}}} % matrix trace (en)
-\renewcommand{\tr}{\col{\operatorcolor}{\mathrm{tr}}}       % matrix trace (en)
-\renewcommand{\Trace}{\col{\operatorcolor}{\mathrm{Trace}}} % matrix trace (en)
-\renewcommand{\Tr}{\col{\operatorcolor}{\mathrm{Tr}}}       % matrix trace (en)
+\newcommand{\trace}{\col{\operatorcolor}{\mathrm{trace}}} % matrix trace (en)
+\newcommand{\tr}{\col{\operatorcolor}{\mathrm{tr}}}       % matrix trace (en)
+\newcommand{\Trace}{\col{\operatorcolor}{\mathrm{Trace}}} % matrix trace (en)
+\newcommand{\Tr}{\col{\operatorcolor}{\mathrm{Tr}}}       % matrix trace (en)
 
 \newcommand{\rg}{\col{\operatorcolor}{\mathrm{rg}}} % rank of matrix (de)
 \newcommand{\Rg}{\col{\operatorcolor}{\mathrm{Rg}}} % rank of matrix (de)
@@ -254,7 +250,7 @@
 \newcommand{\Rang}{\col{\operatorcolor}{\mathrm{Rang}}} % matrix rank (de)
 
 \newcommand{\rk}{\col{\operatorcolor}{\mathrm{rk}}} % rank of matrix (en)
-\renewcommand{\rank}{\col{\operatorcolor}{\mathrm{rank}}} % rank of matrix (en)
+\newcommand{\rank}{\col{\operatorcolor}{\mathrm{rank}}} % rank of matrix (en)
 \newcommand{\Rank}{\col{\operatorcolor}{\mathrm{Rank}}} % rank of matrix (en)
 
 
