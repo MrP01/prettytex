@@ -12,9 +12,6 @@
 
 \newcommand{\TikZ}{Ti\textit{k}Z }
 
-
-
-
 \usepgfplotslibrary{
     patchplots,
     fillbetween,
@@ -37,7 +34,6 @@
 
 \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
     { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
-
 
 \tikzset{
     bpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm},
