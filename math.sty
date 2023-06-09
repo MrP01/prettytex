@@ -44,7 +44,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand{\FD}{\mathrm{D}} % frechét-derivative
 \newcommand{\dd}{\mathrm{d}}
-\newcommand{\idd}{\;\dd} % integral d
+\newcommand{\idd}{\;\dd} % integral d (with space)
 \newcommand{\ddx}{\dd x} % dx
 \newcommand{\ddy}{\dd y} % dy
 \newcommand{\dds}{\dd s} % dy
@@ -52,13 +52,15 @@
 \newcommand{\ddu}{\dd u} % dy
 \newcommand{\ddv}{\dd v} % dy
 \newcommand{\ddt}{\dd t} % dy
+\newcommand{\hess}{\col{\operatorcolor}{\mathrm{H}}} % hessian matrix
+\newcommand{\jac}{\col{\operatorcolor}{\mathrm{J}}} % jacobian matrix
+
+% deprecated
 \newcommand{\seq}[3]{(#1_{#2})_{#2\in #3}} % classical sequence
 \newcommand{\nseq}[1]{\seq{#1}{n}{\N}} % sequence with index n
 \newcommand{\kseq}[1]{\seq{#1}{k}{\N}} % sequence with index k
 \newcommand{\hset}[1]{\mathcal{H}(\nseq{#1})} % set of accumulation points
 \newcommand{\conv}[2]{\overset{#1\subj#2}{\longrightarrow}} % converges against as #1 goes to #2
-\newcommand{\hess}{\col{\operatorcolor}{\mathrm{H}}} % hessian matrix
-\newcommand{\jac}{\col{\operatorcolor}{\mathrm{J}}} % jacobian matrix
 
 
 
@@ -165,15 +167,19 @@
 %----------------------------------------------------------------------------------------------------------------------
 % vectors
 %----------------------------------------------------------------------------------------------------------------------
-\renewcommand{\vec}[1]{\bm{#1}}
 \newcommand{\pvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % shorthand for column 2d vectors
 \newcommand{\rpvec}[2]{\begin{bmatrix}#1&#2\end{bmatrix}} % shorthand for 2d row vectors
 \newcommand{\rtvec}[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}} % shorthand for 3d row vectors
 \newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle} % general dot-product with scaling delimiters
 \newcommand{\sv}[1]{\left\langle #1 \right\rangle} % signal vector notation with scaling delimiters
+
+\renewcommand{\vec}[1]{\bm{#1}}
 \newcommand{\hvec}[1]{\hat{\vec{#1}}} % vector with hat
 \newcommand{\tvec}[1]{\tilde{\vec{#1}}} % vector with tilde
 \newcommand{\bvec}[1]{\bar{\vec{#1}}} % vector with bar
+\newcommand{\uvec}[1]{\ubar{\vec{#1}}}
+\newcommand{\zvec}{\vec{0}}
+
 \newcommand{\lspan}{\col{\operatorcolor}{\mathrm{span}}} % span of vectors
 \newcommand{\vgamma}{\vec{\gamma}} % shortcut for vector gamma (common for curves)
 \newcommand{\valpha}{\vec{\alpha}}
@@ -183,26 +189,6 @@
 \newcommand{\vbeta}{\vec{\beta}}
 \newcommand{\vmu}{\vec{\mu}}
 \newcommand{\vrho}{\vec{\varrho}}
-\newcommand{\vecx}{\vec{x}}
-\newcommand{\vecs}{\vec{s}}
-\newcommand{\veca}{\vec{a}}
-\newcommand{\vech}{\vec{h}}
-\newcommand{\vecb}{\vec{b}}
-\newcommand{\vecc}{\vec{c}}
-\newcommand{\vecy}{\vec{y}}
-\newcommand{\vecz}{\vec{z}}
-\newcommand{\vecv}{\vec{v}}
-\newcommand{\vecw}{\vec{w}}
-\newcommand{\vece}{\vec{e}}
-\newcommand{\zvec}{\vec{0}}
-\newcommand{\vecp}{\vec{p}}
-\newcommand{\vecl}{\vec{l}}
-\newcommand{\vecf}{\vec{f}}
-\newcommand{\vecu}{\vec{u}}
-\newcommand{\vecr}{\vec{r}}
-\newcommand{\vecg}{\vec{g}}
-\newcommand{\vect}{\vec{t}}
-\newcommand{\vecd}{\vec{d}}
 \newcommand{\vecll}{\vec{\ell}}
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -225,9 +211,11 @@
 
 \newcommand{\mat}[1]{\mathrm{\col{\matrixcolor!95!black}{#1}}} % matrix typing
 \newcommand{\tmat}[1]{\tilde{\mat{#1}}} % matrix with tilde
-\newcommand{\cmat}[1]{\mat{\mathcal{#1}}} % calligraphic matrix
-\newcommand{\gmat}[1]{\mat{#1}} % greek letter matrix (deprecated)
 \newcommand{\hmat}[1]{\hat{\mat{#1}}} % matrix with hat
+\newcommand{\cmat}[1]{\mat{\mathcal{#1}}} % calligraphic matrix
+\newcommand{\barmat}[1]{\bar{\mat{#1}}}
+\newcommand{\umat}[1]{\ubar{\mat{#1}}}
+\newcommand{\gmat}[1]{\mat{#1}} % greek letter matrix (deprecated), use \mat instead
 
 \newcommand{\zrg}{\col{\operatorcolor}{\mathrm{zrg}}} % row rank of matrix (de)
 \newcommand{\rrk}{\col{\operatorcolor}{\mathrm{rrk}}} % row rank of matrix (en)
@@ -339,7 +327,6 @@
 \newcommand{\sT}{\mathscr{T}}
 \newcommand{\sB}{\mathscr{B}}
 
-\newcommand{\tvecx}{\tvec{x}}
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}

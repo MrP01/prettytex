@@ -80,3 +80,14 @@
     \tikzexternalize[prefix=\tikzexternal/]
 }
 \ProcessOptions\relax
+
+\tikzset{
+    curve/.style=%
+        {decoration=%
+            {%
+                markings,
+                mark=between positions 0 and 1 step (1/#1)*\pgfdecoratedpathlength with{\arrow{latex}}
+            },%
+            postaction=decorate},
+    curve/.default=11
+}
