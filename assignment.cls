@@ -14,7 +14,6 @@
 \RequirePackage{prettytex/gfx-components}
 \RequirePackage{prettytex/boxes}
 \RequirePackage{prettytex/math-sigtrans}
-\RequirePackage{prettytex/math-theorems}
 \RequirePackage{tikz-cd}
 \RequirePackage{titlesec, varwidth,lastpage}
 \usepackage{mathdots}
