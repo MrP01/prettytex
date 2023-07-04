@@ -12,9 +12,6 @@
 \usepackage{nicematrix}
 \usepackage{pgf}
 
-
-
-
 \newcommand{\matrixcolor}{orange!85!black}
 \newcommand{\operatorcolor}{purple!85!black}
 
@@ -38,7 +35,6 @@
 
 \newcommand*\twoheadrightarrowtail{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
 
-
 %----------------------------------------------------------------------------------------------------------------------
 % calculus and topology
 %----------------------------------------------------------------------------------------------------------------------
@@ -61,8 +57,6 @@
 \newcommand{\kseq}[1]{\seq{#1}{k}{\N}} % sequence with index k
 \newcommand{\hset}[1]{\mathcal{H}(\nseq{#1})} % set of accumulation points
 \newcommand{\conv}[2]{\overset{#1\subj#2}{\longrightarrow}} % converges against as #1 goes to #2
-
-
 
 %----------------------------------------------------------------------------------------------------------------------
 % sets
@@ -241,6 +235,7 @@
 \newcommand{\rank}{\col{\operatorcolor}{\mathrm{rank}}} % rank of matrix (en)
 \newcommand{\Rank}{\col{\operatorcolor}{\mathrm{Rank}}} % rank of matrix (en)
 
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
@@ -326,7 +321,6 @@
 \newcommand{\sR}{\mathscr{R}}
 \newcommand{\sT}{\mathscr{T}}
 \newcommand{\sB}{\mathscr{B}}
-
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}
