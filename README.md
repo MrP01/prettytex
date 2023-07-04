@@ -26,9 +26,10 @@ This package uses a modular approach, you may want to load some of the following
 \documentclass{article}
 
 \usepackage{prettytex/base}  % You always want this
-\usepackage{prettytex/boxes}  % thmbox and leftbar (box environments)
+\usepackage{prettytex/boxes}  % thmbox and leftbar (box environments), also wrapthm
 \usepackage{prettytex/math}  % standard math tools (requires base)
-\usepackage{prettytex/math-theorems}  % some theorem-style environments (requires boxes)
+\usepackage{prettytex/mathematicians}  % hyperrefs to wikipedia to common mathematicians
+\usepackage{prettytex/shortcuts}  % shortcuts for vectors and matrices
 \usepackage{prettytex/math-sigtrans}  % utilities for signal transforms (requires math)
 \usepackage{prettytex/code}  % configuration for the minted package for including code
 \usepackage{prettytex/contract}  % useful commands for contracts and legal stuff
@@ -108,57 +109,16 @@ Keep in mind, that you have to pass `-shell-escape` before the `%DOC%` argument.
 
 ## math-theorems
 
-In the file `math-theorems.sty` a few common mathematical environments are defined:
-
-- definition
-- theorem
-- remark
-- lemma
-- corollary
-
-These are based on `tcolorbox` and are used like so:
+If you already used prettytex in the past, then you probably remember the tcolorbox-theorems. These have been 
+deprecated (they are still present in ``math-theorems.sty`` for legacy reasons) in favour of a more Tex-aligned 
+approach. Tcolorbox allows to wrap common ams-math theorems with styles. Hence we provide the simple 
+``\wrapthm{<env>}{<colour>}`` command, which allows you to specify a theorem-environment and a colour to wrap
+said environment in. Then you may use the environment as usual. An example for your preamble:
 
 ```latex
-\begin{<env name>}{<optional env title>}{<optional reference key>}
-    <text>
-\end{<env name>}
+\newtheorem{theorem}{Theorem}
+\wrapthm{theorem}{blue}
 ```
-
-An example:
-
-```latex
-\begin{definition}{Convergence}{convergence}
-
-    Let $(a_n)_{n\in\mathbb{N}}$ be a sequence. We call it convergent, if the following
-    condition is met:
-    \begin{align*}
-        \forall\varepsilon>0\colon \exists N\in\mathbb{N}\colon n\geq N
-        \Rightarrow |a_n-a|<\varepsilon
-    \end{align*}
-    Where $a$ is the limit of the sequence.
-\end{definition}
-
-...
-
-As stated in \autoref{def:convergence}, we see that ... in \ref{def:convergence}
-```
-
-Prettytex provides two thmbox styles, `round` (the default) and `sharp`.
-In order to use the `sharp` style, please
-
-```latex
-\PassOptionsToPackage{sharp}{prettytex/boxes}
-```
-
-### The provided math theorem environments
-
-| environment name | en_UK      | de_DE      | reference base |
-| ---------------- | ---------- | ---------- | -------------- |
-| `definition`     | Definition | Definition | `def`          |
-| `theorem`        | Theorem    | Satz       | `thm`          |
-| `lemma`          | Lemma      | Lemma      | `lemma`        |
-| `remark`         | Remark     | Bemerkung  | `remark`       |
-| `corollary`      | Corollary  | Korollar   | `corollary`    |
 
 ## VSCode Snippets
 
