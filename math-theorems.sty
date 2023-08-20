@@ -43,12 +43,16 @@
 \newcommand{\tcb@cnt@corollaryautorefname}{\GetTranslation{corollaryname}}
 
 \makeatletter
-\@ifpackageloaded{cleveref}{\crefname{tcb@cnt@definition}{definition}{definitions}
+\@ifpackageloaded{cleveref}{
+  \crefname{tcb@cnt@definition}{definition}{definitions}
   \Crefname{tcb@cnt@definition}{Definition}{Definitions}
   \crefname{tcb@cnt@theorem}{theorem}{theorems}
   \Crefname{tcb@cnt@theorem}{Theorem}{Theorems}
   \crefname{tcb@cnt@lemma}{lemma}{lemmata}
   \Crefname{tcb@cnt@lemma}{Lemma}{Lemmata}
+  \crefname{tcb@cnt@remark}{remark}{remarks}
+  \Crefname{tcb@cnt@remark}{Remark}{Remarks}
   \crefname{tcb@cnt@corollary}{corollary}{corollaries}
-  \Crefname{tcb@cnt@corollary}{Corollary}{Corollaries}}{}
+  \Crefname{tcb@cnt@corollary}{Corollary}{Corollaries}
+}{}
 \makeatother
