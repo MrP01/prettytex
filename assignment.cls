@@ -47,6 +47,16 @@
 \setlength{\headheight}{25pt}
 \setlength{\headsep}{1.5em}
 
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Satz}
+\newtheorem{lemma}{Lemma}
+\newtheorem{corollary}{Korollar}
+
+\wrapthm{definition}{themecolor2}
+\wrapthm{theorem}{blue}
+\wrapthm{lemma}{purple}
+\wrapthm{corollary}{orange}
+
 \DeclareOption{section}{%
 \BeforeBeginEnvironment{#1}{\savenotes}%
   \AfterEndEnvironment{#1}{\spewnotes}%

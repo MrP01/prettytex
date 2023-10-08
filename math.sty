@@ -7,7 +7,8 @@
 \usepackage{amsthm}
 \usepackage{esint}
 \usepackage{esvect}
-\usepackage{bm}
+\usepackage{upgreek}
+\usepackage{bm, bbm}
 \usepackage{siunitx}
 \usepackage{nicematrix}
 \usepackage{pgf}
@@ -15,8 +16,9 @@
 
 
 
-\newcommand{\matrixcolor}{orange!85!black}
-\newcommand{\operatorcolor}{purple!85!black}
+\newcommand{\qqtext}[1]{\qquad\text{#1}\qquad}
+\newcommand{\matrixcolor}{black}
+\newcommand{\operatorcolor}{blue!65!black}
 
 \sisetup{
     separate-uncertainty,
@@ -38,11 +40,19 @@
 
 \newcommand*\twoheadrightarrowtail{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
 
+%----------------------------------------------------------------------------------------------------------------------
+% sets
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\set}[1]{{\left\{#1\right\}}}
+\renewcommand{\brack}[1]{{\left[#1\right]}}
+\newcommand{\parenth}[1]{{\left(#1\right)}}
+\newcommand{\cell}[1]{{\left(#1\right]}}
+\newcommand{\icell}[1]{{\left[#1\right)}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % calculus and topology
 %----------------------------------------------------------------------------------------------------------------------
-\newcommand{\FD}{\mathrm{D}} % frechét-derivative
+\newcommand{\FD}{\mathrm{d}} % frechét-derivative
 \newcommand{\dd}{\mathrm{d}}
 \newcommand{\idd}{\;\dd} % integral d (with space)
 \newcommand{\ddx}{\dd x} % dx
@@ -55,6 +65,11 @@
 \newcommand{\hess}{\col{\operatorcolor}{\mathrm{H}}} % hessian matrix
 \newcommand{\jac}{\col{\operatorcolor}{\mathrm{J}}} % jacobian matrix
 
+\newcommand{\leb}{\uplambda}
+\newcommand{\abs}[1]{{\left|#1\right|}}
+\newcommand{\1}{\mathbbm{1}}
+
+
 % deprecated
 \newcommand{\seq}[3]{(#1_{#2})_{#2\in #3}} % classical sequence
 \newcommand{\nseq}[1]{\seq{#1}{n}{\N}} % sequence with index n
@@ -62,7 +77,35 @@
 \newcommand{\hset}[1]{\mathcal{H}(\nseq{#1})} % set of accumulation points
 \newcommand{\conv}[2]{\overset{#1\subj#2}{\longrightarrow}} % converges against as #1 goes to #2
 
+\newcommand{\invt}{^{-t}}
+\newcommand{\laplace}{\triangle}
+\let\div\relax
+\DeclareMathOperator{\div}{\col{\operatorcolor}{\mathrm{div}}}
 
+
+\RenewDocumentCommand{\lim}{}{\qopname \relax m{\col{\operatorcolor}{lim}}}
+\RenewDocumentCommand{\liminf}{}{\qopname \relax m{\col{\operatorcolor}{lim\:inf}}}
+\RenewDocumentCommand{\limsup}{}{\qopname \relax m{\col{\operatorcolor}{lim\:sup}}}
+\RenewDocumentCommand{\inf}{}{\qopname \relax m{\col{\operatorcolor}{inf}}}
+\RenewDocumentCommand{\sup}{}{\qopname \relax m{\col{\operatorcolor}{sup}}}
+\RenewDocumentCommand{\max}{}{\qopname \relax m{\col{\operatorcolor}{max}}}
+\RenewDocumentCommand{\min}{}{\qopname \relax m{\col{\operatorcolor}{min}}}
+\RenewDocumentCommand{\arg}{}{\qopname \relax m{\col{\operatorcolor}{arg}}}
+
+\NewDocumentCommand{\argmin}{}{\qopname \relax m{\col{\operatorcolor}{arg\:min}}}
+\NewDocumentCommand{\argmax}{}{\qopname \relax m{\col{\operatorcolor}{arg\:max}}}
+\NewDocumentCommand{\inter}{}{\qopname \relax m{\col{\operatorcolor}{int}}}
+\NewDocumentCommand{\cls}{}{\qopname \relax m{\col{\operatorcolor}{cls}}}
+\NewDocumentCommand{\ext}{}{\qopname \relax m{\col{\operatorcolor}{ext}}}
+\NewDocumentCommand{\diam}{}{\qopname \relax m{\col{\operatorcolor}{diam}}}
+\NewDocumentCommand{\uniflim}{}{\qopname \relax m{\col{\operatorcolor}{unif\:lim}}}
+\NewDocumentCommand{\apexlim}{}{\qopname \relax m{\col{\operatorcolor}{apex\:lim}}}
+
+\DeclareMathOperator{\atan}{\qopname \relax m{atan2}}
+
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\limn}{\lim_{n\to\infty}}
+\newcommand{\limk}{\lim_{k\to\infty}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % sets
@@ -173,11 +216,11 @@
 \newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle} % general dot-product with scaling delimiters
 \newcommand{\sv}[1]{\left\langle #1 \right\rangle} % signal vector notation with scaling delimiters
 
-\renewcommand{\vec}[1]{\bm{#1}}
-\newcommand{\hvec}[1]{\hat{\vec{#1}}} % vector with hat
-\newcommand{\tvec}[1]{\tilde{\vec{#1}}} % vector with tilde
-\newcommand{\bvec}[1]{\bar{\vec{#1}}} % vector with bar
-\newcommand{\uvec}[1]{\ubar{\vec{#1}}}
+\renewcommand{\vec}[1]{{\bm{#1}}}
+\newcommand{\hvec}[1]{{\hat{\vec{#1}}}} % vector with hat
+\newcommand{\tvec}[1]{{\tilde{\vec{#1}}}} % vector with tilde
+\newcommand{\bvec}[1]{{\bar{\vec{#1}}}} % vector with bar
+\newcommand{\uvec}[1]{{\ubar{\vec{#1}}}}
 \newcommand{\zvec}{\vec{0}}
 
 \newcommand{\lspan}{\col{\operatorcolor}{\mathrm{span}}} % span of vectors
@@ -190,6 +233,9 @@
 \newcommand{\vmu}{\vec{\mu}}
 \newcommand{\vrho}{\vec{\varrho}}
 \newcommand{\vecll}{\vec{\ell}}
+
+\newcommand{\norm}[1]{{\left\|#1\right\|}}
+\newcommand{\inorm}[1]{{\left\|#1\right\|_\infty}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % matrices
@@ -241,6 +287,9 @@
 \newcommand{\rank}{\col{\operatorcolor}{\mathrm{rank}}} % rank of matrix (en)
 \newcommand{\Rank}{\col{\operatorcolor}{\mathrm{Rank}}} % rank of matrix (en)
 
+\newcommand{\frob}{_\mathrm{F}}
+\newcommand{\fnorm}[1]{\norm{#1}\frob}
+\newcommand{\onorm}[1]{{\norm{#1}_\mathrm{O}}}
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
@@ -289,6 +338,12 @@
 \newcommand{\sinnc}{\mathrm{si}} % sinus cardinalis (de, normalised)
 \newcommand{\Si}{\mathrm{Si}} % integral sinus
 \newcommand{\Li}{\mathrm{Li}} % integral logarithmus naturlis
+\newcommand{\arccot}{\mathrm{arccot}}
+\newcommand{\arcsec}{\mathrm{arcsec}}
+\newcommand{\arccsc}{\mathrm{arccsc}}
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+
 \DeclareMathOperator{\ld}{\mathrm{ld}}
 
 % other
@@ -300,6 +355,9 @@
 \newcommand{\ubar}[1]{\underline{#1}} % underline
 \newcommand{\oset}[2]{\overset{#1}{#2}}
 \newcommand{\uset}[2]{\underset{#1}{#2}}
+\newcommand{\obra}[1]{\overbrace{#1}}
+\newcommand{\ubra}[1]{\underbrace{#1}}
+
 \newcommand{\cS}{\mathcal{S}}
 \newcommand{\cF}{\mathcal{F}}
 \newcommand{\cB}{\mathcal{B}}
@@ -332,3 +390,12 @@
 \DeclareFontFamily{OT1}{pzc}{}
 \DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
 \DeclareMathAlphabet{\mathscall}{OT1}{pzc}{m}{it}
+\newcommand{\sco}{\mathscall{o}}
+\newcommand{\transpose}{\mathsf{t}}
+\renewcommand{\complement}{\mathsf{c}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\tran}{^\transpose}
+\newcommand{\compl}{^\complement}
+\newcommand{\eset}{\emptyset}
+\newcommand{\sset}{\subseteq}

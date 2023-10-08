@@ -16,6 +16,10 @@
 \collinkfalse
 \DeclareOption{collink}{\collinktrue}
 
+\newif\ifparskip
+\parskiptrue
+\DeclareOption{noparskip}{\parskipfalse}
+
 \newif\ifprettybeamer
 \prettybeamerfalse
 \DeclareOption{beamer}{\prettybeamertrue}
@@ -33,7 +37,11 @@
 \usepackage{geometry}
 \usepackage{url}
 \usepackage[colorlinks=true]{hyperref}
+
+\ifparskip
 \usepackage{parskip}
+\fi
+
 \usepackage[\babellang]{babel}
 \usepackage{translations}
 \usepackage[outline]{contour}
@@ -55,8 +63,10 @@
   % document geometry
   \setlength\cellspacetoplimit{4pt}
   \setlength\cellspacebottomlimit{4pt}
+  \ifparskip
   \setlength{\parindent}{0em}
   \setlength{\parskip}{0.5em}
+  \fi
   \setlength{\headsep}{3em}
   \geometry{
     a4paper,
@@ -89,8 +99,8 @@
 \ifcollink
   \AtBeginDocument{
     \hypersetup{
-      urlcolor=themecolor,
-      linkcolor=themecolor2,
+      urlcolor=darkpurple,
+      linkcolor=themecolor3,
       citecolor=themecolor3
     }
   }\else
