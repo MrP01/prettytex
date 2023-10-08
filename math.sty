@@ -57,11 +57,12 @@
 \newcommand{\idd}{\;\dd} % integral d (with space)
 \newcommand{\ddx}{\dd x} % dx
 \newcommand{\ddy}{\dd y} % dy
-\newcommand{\dds}{\dd s} % dy
-\newcommand{\ddz}{\dd z} % dy
-\newcommand{\ddu}{\dd u} % dy
-\newcommand{\ddv}{\dd v} % dy
-\newcommand{\ddt}{\dd t} % dy
+\newcommand{\ddz}{\dd z} % dz
+\newcommand{\ddu}{\dd u} % du
+\newcommand{\ddv}{\dd v} % dv
+\newcommand{\ddr}{\dd r} % dr
+\newcommand{\dds}{\dd s} % ds
+\newcommand{\ddt}{\dd t} % dt
 \newcommand{\hess}{\col{\operatorcolor}{\mathrm{H}}} % hessian matrix
 \newcommand{\jac}{\col{\operatorcolor}{\mathrm{J}}} % jacobian matrix
 
@@ -290,6 +291,7 @@
 \newcommand{\frob}{_\mathrm{F}}
 \newcommand{\fnorm}[1]{\norm{#1}\frob}
 \newcommand{\onorm}[1]{{\norm{#1}_\mathrm{O}}}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
@@ -384,7 +386,6 @@
 \newcommand{\sR}{\mathscr{R}}
 \newcommand{\sT}{\mathscr{T}}
 \newcommand{\sB}{\mathscr{B}}
-
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}

@@ -1,6 +1,6 @@
 \ProvidesPackage{prettytex/math-theorems}
 \RequirePackage{prettytex/boxes}
-\RequirePackage{cleveref}
+\RequirePackage[nameinlink]{cleveref}
 
 % This is deprecated, use wrapthm instead
 
@@ -19,36 +19,40 @@
 
 \DeclareTranslation{English}{definitionname}{Definition}
 \DeclareTranslation{German}{definitionname}{Definition}
-\thmbox{definition}{\GetTranslation{definitionname}}{themecolor2}{def}{\thmnum}
+\thmbox{definition}{\GetTranslation{definitionname}}{themecolor2}{def}{\thmnum}{standard}
 \newcommand{\tcb@cnt@definitionautorefname}{\GetTranslation{definitionname}}
 
 \DeclareTranslation{English}{theoremname}{Theorem}
 \DeclareTranslation{German}{theoremname}{Satz}
-\thmbox{theorem}{\GetTranslation{theoremname}}{themecolor}{thm}{\thmnum}
+\thmbox{theorem}{\GetTranslation{theoremname}}{themecolor}{thm}{\thmnum}{standard}
 \newcommand{\tcb@cnt@theoremautorefname}{\GetTranslation{theoremname}}
 
 \DeclareTranslation{English}{remarkname}{Remark}
 \DeclareTranslation{German}{remarkname}{Bemerkung}
-\thmbox{remark}{\GetTranslation{remarkname}}{yellow!30!orange}{remark}{\thmnum}
+\thmbox{remark}{\GetTranslation{remarkname}}{yellow!30!orange}{remark}{\thmnum}{plain}
 \newcommand{\tcb@cnt@remarkautorefname}{\GetTranslation{remarkname}}
 
 \DeclareTranslation{English}{lemmaname}{Lemma}
 \DeclareTranslation{German}{lemmaname}{Lemma}
-\thmbox{lemma}{\GetTranslation{lemmaname}}{purple}{lemma}{\thmnum}
+\thmbox{lemma}{\GetTranslation{lemmaname}}{purple}{lemma}{\thmnum}{standard}
 \newcommand{\tcb@cnt@lemmaautorefname}{\GetTranslation{lemmaname}}
 
 \DeclareTranslation{English}{corollaryname}{Corollary}
 \DeclareTranslation{German}{corollaryname}{Korollar}
-\thmbox{corollary}{\GetTranslation{corollaryname}}{orange}{corollary}{\thmnum}
+\thmbox{corollary}{\GetTranslation{corollaryname}}{orange}{corollary}{\thmnum}{plain}
 \newcommand{\tcb@cnt@corollaryautorefname}{\GetTranslation{corollaryname}}
 
 \makeatletter
-\@ifpackageloaded{cleveref}{\crefname{tcb@cnt@definition}{definition}{definitions}
+\@ifpackageloaded{cleveref}{
+  \crefname{tcb@cnt@definition}{definition}{definitions}
   \Crefname{tcb@cnt@definition}{Definition}{Definitions}
   \crefname{tcb@cnt@theorem}{theorem}{theorems}
   \Crefname{tcb@cnt@theorem}{Theorem}{Theorems}
   \crefname{tcb@cnt@lemma}{lemma}{lemmata}
   \Crefname{tcb@cnt@lemma}{Lemma}{Lemmata}
+  \crefname{tcb@cnt@remark}{remark}{remarks}
+  \Crefname{tcb@cnt@remark}{Remark}{Remarks}
   \crefname{tcb@cnt@corollary}{corollary}{corollaries}
-  \Crefname{tcb@cnt@corollary}{Corollary}{Corollaries}}{}
+  \Crefname{tcb@cnt@corollary}{Corollary}{Corollaries}
+}{}
 \makeatother

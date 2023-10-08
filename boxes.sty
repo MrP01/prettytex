@@ -77,12 +77,12 @@
 }
 
 \DeclareOption{sharp}{
-  \renewcommand{\thmbox}[5]{%
+  \renewcommand{\thmbox}[6]{%
   \BeforeBeginEnvironment{#1}{\savenotes}%
   \AfterEndEnvironment{#1}{\spewnotes}%
     % sharp style:
     \newtcbtheorem[number within=#5, list inside={#4}, list type={thmlist}]{#1}{#2}{%
-      theorem style=change apart,
+      theorem style=#6,
       % breakable,
       enhanced,
       title=#3,
