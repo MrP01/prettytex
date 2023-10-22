@@ -8,7 +8,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % pgfplots options
 %----------------------------------------------------------------------------------------------------------------------
-\pgfplotsset{compat=1.18}
+\pgfplotsset{compat=newest}
 
 \newcommand{\TikZ}{Ti\textit{k}Z }
 
@@ -35,8 +35,13 @@
 \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
 { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
 
+\pgfplotsset{
+  clean/.style={axis line style={draw=none}, tick style={draw=none},xticklabels={},yticklabels={}}
+}
+
 \tikzset{
   bpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm},
+  bwpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=white,label distance=1mm},
   rpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=red,fill=red!70,label distance=1mm},
   gpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=green,fill=green!50,label distance=1mm},
   opoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=orange,fill=orange!50,label distance=1mm},
