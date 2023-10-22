@@ -29,24 +29,24 @@
 }
 
 \tikzset{
-    declare function={% in case of CVS which switches the arguments of atan2
-        atan3(\a,\b)=ifthenelse(atan2(0,1)==90, atan2(\a,\b), atan2(\b,\a));
+  declare function={% in case of CVS which switches the arguments of atan2
+      atan3(\a,\b)=ifthenelse(atan2(0,1)==90, atan2(\a,\b), atan2(\b,\a));
     },
-    kinky cross radius/.initial=+.125cm,
-    @kinky cross/.initial=+,
-    kinky crosses/.is choice,
-    kinky crosses/left/.style={@kinky cross=-},
-    kinky crosses/right/.style={@kinky cross=+},
-    kinky cross/.style args={(#1)--(#2)}{
-        to path={
-            let \p{@kc@}=($(\tikztotarget)-(\tikztostart)$),
-            \n{@kc@}={atan3(\p{@kc@})+180} in
-            -- ($(intersection of \tikztostart--{\tikztotarget} and #1--#2)!%
+  kinky cross radius/.initial=+.125cm,
+  @kinky cross/.initial=+,
+  kinky crosses/.is choice,
+  kinky crosses/left/.style={@kinky cross=-},
+  kinky crosses/right/.style={@kinky cross=+},
+  kinky cross/.style args={(#1)--(#2)}{
+      to path={
+          let \p{@kc@}=($(\tikztotarget)-(\tikztostart)$),
+          \n{@kc@}={atan3(\p{@kc@})+180} in
+          -- ($(intersection of \tikztostart--{\tikztotarget} and #1--#2)!%
             \pgfkeysvalueof{/tikz/kinky cross radius}!(\tikztostart)$)
-            arc [ radius     =\pgfkeysvalueof{/tikz/kinky cross radius},
-            start angle=\n{@kc@},
-            delta angle=\pgfkeysvalueof{/tikz/@kinky cross}180 ]
-            -- (\tikztotarget)
+          arc [ radius     =\pgfkeysvalueof{/tikz/kinky cross radius},
+              start angle=\n{@kc@},
+              delta angle=\pgfkeysvalueof{/tikz/@kinky cross}180 ]
+          -- (\tikztotarget)
         }
     }
 }

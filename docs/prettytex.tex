@@ -27,39 +27,39 @@
 \title{Official \mintinline{latex}{prettytex} Documentation}
 
 \begin{document}
-\pagenumbering{gobble}
-\maketitle
-\tableofcontents
-\newpage
-\pagenumbering{arabic}
+  \pagenumbering{gobble}
+  \maketitle
+  \tableofcontents
+  \newpage
+  \pagenumbering{arabic}
 
-\section{About}
-The goal of \prettytex is to compress commonly used preambles into single style files, in order to provide a 
-standardized preamble for your Latex-documents. However, not every invoice needs custom-signal-transforms symbols
-and a mathematical proof does not necessarily need styles for generating invoices, hence we modularized the 
-preamble. The following (base) styles are currently available:
-\begin{itemize}
-  \item \mintinline{latex}{base.sty}
-  \item \mintinline{latex}{math.sty}
-  \item \mintinline{latex}{gfx.sty}
-  \item \mintinline{latex}{code.sty}
-  \item \mintinline{latex}{boxes.sty}
-  \item \mintinline{latex}{invoice.sty}
-  \item \mintinline{latex}{contract.sty}
-\end{itemize}
+  \section{About}
+  The goal of \prettytex is to compress commonly used preambles into single style files, in order to provide a
+  standardized preamble for your Latex-documents. However, not every invoice needs custom-signal-transforms symbols
+  and a mathematical proof does not necessarily need styles for generating invoices, hence we modularized the
+  preamble. The following (base) styles are currently available:
+  \begin{itemize}
+    \item \mintinline{latex}{base.sty}
+    \item \mintinline{latex}{math.sty}
+    \item \mintinline{latex}{gfx.sty}
+    \item \mintinline{latex}{code.sty}
+    \item \mintinline{latex}{boxes.sty}
+    \item \mintinline{latex}{invoice.sty}
+    \item \mintinline{latex}{contract.sty}
+  \end{itemize}
 
-Additionally, some extensions are provided to extend base-functionality:
-\begin{itemize}
-  \item \mintinline{latex}{math-theorems.sty}
-  \item \mintinline{latex}{math-sigtrans.sty}
-  \item \mintinline{latex}{gfx-components.sty}
-  \item \mintinline{latex}{gfx-circuits.sty}
-\end{itemize}
+  Additionally, some extensions are provided to extend base-functionality:
+  \begin{itemize}
+    \item \mintinline{latex}{math-theorems.sty}
+    \item \mintinline{latex}{math-sigtrans.sty}
+    \item \mintinline{latex}{gfx-components.sty}
+    \item \mintinline{latex}{gfx-circuits.sty}
+  \end{itemize}
 
 
-\section{Document Layout and Spacing}
-Document layout is specified in \verb|base.sty| with the package \verb|geometry|. We set the following options:
-\begin{minted}{latex}
+  \section{Document Layout and Spacing}
+  Document layout is specified in \verb|base.sty| with the package \verb|geometry|. We set the following options:
+  \begin{minted}{latex}
 \geometry{
   a4paper,
   twoside,
@@ -71,8 +71,8 @@ Document layout is specified in \verb|base.sty| with the package \verb|geometry|
 }
 \end{minted}
 
-As \verb|prettytex| was developed mainly for lab-reports, assignments and the likes, we set \verb|twoside| to 
-account for possibly printing the finished document. 
+  As \verb|prettytex| was developed mainly for lab-reports, assignments and the likes, we set \verb|twoside| to
+  account for possibly printing the finished document.
 
 
 \end{document}
