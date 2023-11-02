@@ -13,60 +13,60 @@
 \newcommand{\TikZ}{Ti\textit{k}Z }
 
 \usepgfplotslibrary{
-    patchplots,
-    fillbetween,
-    groupplots,
-    units
+  patchplots,
+  fillbetween,
+  groupplots,
+  units
 }
 
 \usetikzlibrary{
-    calc,
-    arrows.meta,
-    patterns,
-    patterns.meta,
-    shapes.misc,
-    matrix,
-    decorations,
-    decorations.pathmorphing,
-    decorations.markings,
-    external
+  calc,
+  arrows.meta,
+  patterns,
+  patterns.meta,
+  shapes.misc,
+  matrix,
+  decorations,
+  decorations.pathmorphing,
+  decorations.markings,
+  external
 }
 
 \def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
-    { \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+{ \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
 
 \pgfplotsset{
-    clean/.style={axis line style={draw=none}, tick style={draw=none},xticklabels={},yticklabels={}}
+  clean/.style={axis line style={draw=none}, tick style={draw=none},xticklabels={},yticklabels={}}
 }
 
 \tikzset{
-    bpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm},
-    bwpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=white,label distance=1mm},
-    rpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=red,fill=red!70,label distance=1mm},
-    gpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=green,fill=green!50,label distance=1mm},
-    opoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=orange,fill=orange!50,label distance=1mm},
-    ppoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=purple,fill=purple!50,label distance=1mm},
-    ypoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=yellow,fill=yellow!50,label distance=1mm},
-    cpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=cyan,fill=cyan!50,label distance=1mm},
-    bapoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=black,fill=black!50,label distance=1mm},
-    point/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm}
+  bpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm},
+  bwpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=white,label distance=1mm},
+  rpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=red,fill=red!70,label distance=1mm},
+  gpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=green,fill=green!50,label distance=1mm},
+  opoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=orange,fill=orange!50,label distance=1mm},
+  ppoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=purple,fill=purple!50,label distance=1mm},
+  ypoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=yellow,fill=yellow!50,label distance=1mm},
+  cpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=cyan,fill=cyan!50,label distance=1mm},
+  bapoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=black,fill=black!50,label distance=1mm},
+  point/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm}
 }
 
 % graph dots
 \tikzset{
-    bluegdot/.style = {circle,fill=blue!50,draw=blue,inner sep=0pt,minimum size=.2cm},
-    redgdot/.style = {circle,fill=red!70,draw=red,inner sep=0pt,minimum size=.2cm},
-    greengdot/.style = {circle,fill=green!50,draw=green,inner sep=0pt,minimum size=.2cm},
-    graygdot/.style = {circle,fill=gray!50,draw=gray!50!black,inner sep=0pt,minimum size=.2cm},
-    purplegdot/.style = {circle,fill=purple!50,draw=purple,inner sep=0pt,minimum size=.2cm},
-    orangegdot/.style = {circle,fill=orange!50,draw=orange,inner sep=0pt,minimum size=.2cm}
+  bluegdot/.style = {circle,fill=blue!50,draw=blue,inner sep=0pt,minimum size=.2cm},
+  redgdot/.style = {circle,fill=red!70,draw=red,inner sep=0pt,minimum size=.2cm},
+  greengdot/.style = {circle,fill=green!50,draw=green,inner sep=0pt,minimum size=.2cm},
+  graygdot/.style = {circle,fill=gray!50,draw=gray!50!black,inner sep=0pt,minimum size=.2cm},
+  purplegdot/.style = {circle,fill=purple!50,draw=purple,inner sep=0pt,minimum size=.2cm},
+  orangegdot/.style = {circle,fill=orange!50,draw=orange,inner sep=0pt,minimum size=.2cm}
 }
 
 \tikzstyle{darrow} = [thick, decoration={markings,mark=at position
-   1 with {\arrow[semithick]{open triangle 60}}},
-   double distance=1.4pt, shorten >= 5.5pt,
-   preaction = {decorate},
-   postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+    1 with {\arrow[semithick]{open triangle 60}}},
+double distance=1.4pt, shorten >= 5.5pt,
+preaction = {decorate},
+postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
 
 \newcommand{\figureloc}{figures}
 
@@ -78,17 +78,17 @@
 \newcommand{\tikzexternal}{tikz}
 
 \DeclareOption{external}{
-    \tikzexternalize[prefix=\tikzexternal/]
+  \tikzexternalize[prefix=\tikzexternal/]
 }
 \ProcessOptions\relax
 
 \tikzset{
-    curve/.style=%
-        {decoration=%
-            {%
-                markings,
-                mark=between positions 0 and 1 step (1/#1)*\pgfdecoratedpathlength with{\arrow{latex}}
-            },%
-            postaction=decorate},
-    curve/.default=11
+  curve/.style=%
+    {decoration=%
+        {%
+          markings,
+          mark=between positions 0 and 1 step (1/#1)*\pgfdecoratedpathlength with{\arrow{latex}}
+        },%
+      postaction=decorate},
+  curve/.default=11
 }

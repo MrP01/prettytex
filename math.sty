@@ -21,10 +21,10 @@
 \newcommand{\operatorcolor}{blue!65!black}
 
 \sisetup{
-    separate-uncertainty,
-    locale=UK,
-    per-mode=fraction,
-    number-unit-product=\,\,\,
+  separate-uncertainty,
+  locale=UK,
+  per-mode=fraction,
+  number-unit-product=\,\,\,
 }
 
 \DeclareOption{de}{
@@ -47,7 +47,7 @@
 \renewcommand{\brack}[1]{{\left[#1\right]}}
 \newcommand{\parenth}[1]{{\left(#1\right)}}
 \newcommand{\cell}[1]{{\left(#1\right]}}
-\newcommand{\icell}[1]{{\left[#1\right)}}
+      \newcommand{\icell}[1]{{\left[#1\right)}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % calculus and topology
@@ -304,11 +304,11 @@
   \tikzexternaldisable
   \begin{tikzpicture}
     \draw [->, line join=round, decorate, decoration={
-      zigzag,
-      segment length=4,
-      amplitude=.9,
-      post=lineto,
-      post length=2pt}] (0,0) -- (#1,0);
+          zigzag,
+          segment length=4,
+          amplitude=.9,
+          post=lineto,
+          post length=2pt}] (0,0) -- (#1,0);
   \end{tikzpicture}
   \tikzexternalenable
 }
@@ -317,12 +317,12 @@
   \tikzexternaldisable%
   \begin{tikzpicture}%
     \draw [->, line join=round, decorate, decoration={%
-      zigzag,%
-      segment length=4,%
-      amplitude=.9,%
-      post=lineto,%
-      post length=2pt}] (0,0) -- (1.5cm,0)%
-      node[midway,above]{$\substack{#1}$};%
+          zigzag,%
+          segment length=4,%
+          amplitude=.9,%
+          post=lineto,%
+          post length=2pt}] (0,0) -- (1.5cm,0)%
+    node[midway,above]{$\substack{#1}$};%
   \end{tikzpicture}%
   \tikzexternalenable%
 } % matrix row transformation

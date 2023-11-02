@@ -36,7 +36,7 @@
     \GenericError{Error}{counter name #1 is no tcb counter }{}{}%
   }{%
     \setcounter{tcb@cnt@#1}{#2}%
-   }%
+  }%
 }%
 
 \newcommand{\displaytcbcounter}[1]{% Wrapper for \the...
@@ -48,12 +48,12 @@
 }
 
 \newcommand{\wrapthm}[2]{%
-    \tcolorboxenvironment{#1}{enhanced jigsaw,
+  \tcolorboxenvironment{#1}{enhanced jigsaw,
     enhanced jigsaw, colframe=#2!50,%
     coltitle=green,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
     borderline={0.5mm}{0mm}{#2!50},%
     colback=white,colback=#2!5
-    }
+  }
 }
 
 
@@ -78,8 +78,8 @@
 
 \DeclareOption{sharp}{
   \renewcommand{\thmbox}[6]{%
-  \BeforeBeginEnvironment{#1}{\savenotes}%
-  \AfterEndEnvironment{#1}{\spewnotes}%
+    \BeforeBeginEnvironment{#1}{\savenotes}%
+    \AfterEndEnvironment{#1}{\spewnotes}%
     % sharp style:
     \newtcbtheorem[number within=#5, list inside={#4}, list type={thmlist}]{#1}{#2}{%
       theorem style=#6,

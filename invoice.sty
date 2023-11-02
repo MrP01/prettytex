@@ -7,7 +7,7 @@
 % To handle key=value options in class definition
 \RequirePackage{kvoptions}
 \SetupKeyvalOptions{%
-    prefix=dapper@
+  prefix=dapper@
 }
 % Default currency option is "dollar"
 \DeclareStringOption[dollar]{currency}[dollar]
@@ -48,37 +48,37 @@
 
 %%%%% Commands %%%%%
 \newcommand*{\setmetadata}[4]{
-    \hypersetup{
-        bookmarksopen  = false,
-        bookmarksdepth = 2,% to show sections and subsections
-        pdfauthor      = {#1},
-        pdftitle       = {#2 --- Invoice \##3 for #4},
-        pdfsubject     = {Invoice \##3},
-        pdfkeywords    = {invoice, #2, #4}
-    }
+  \hypersetup{
+    bookmarksopen  = false,
+    bookmarksdepth = 2,% to show sections and subsections
+    pdfauthor      = {#1},
+    pdftitle       = {#2 --- Invoice \##3 for #4},
+    pdfsubject     = {Invoice \##3},
+    pdfkeywords    = {invoice, #2, #4}
+  }
 }
 
 \newcommand*{\twocolumnlayout}[2]{
-    \begin{tabular}[t]{@{} p{.5\linewidth} @{} p{.5\linewidth} @{}} #1 & #2 \end{tabular}
+  \begin{tabular}[t]{@{} p{.5\linewidth} @{} p{.5\linewidth} @{}} #1 & #2 \end{tabular}
 }
 
 \sodef\invoiceSpacing{}{.15em}{.4em}{.4em}
 \newcommand*{\makeheader}[2]{
-    \begin{minipage}[t]{.5\linewidth} {\headerStyle #1} \end{minipage}
-    \hfill
-    \begin{tabular}[t]{@{} c @{}}
-        {\headerStyle \invoiceSpacing{Honorarnote} \##2} \\
-        {\titleStyle \today}
-    \end{tabular}
+  \begin{minipage}[t]{.5\linewidth} {\headerStyle #1} \end{minipage}
+  \hfill
+  \begin{tabular}[t]{@{} c @{}}
+    {\headerStyle \invoiceSpacing{Honorarnote} \##2} \\
+    {\titleStyle \today}
+  \end{tabular}
 
-    \addvspace{8ex}
+  \addvspace{8ex}
 }
 
 \newcommand*{\duedate}[1]{%
-    \setdatetoday%
-    \addtocounter{datenumber}{#1}%
-    \setdatebynumber{\thedatenumber}%
-    \datedate%
+  \setdatetoday%
+  \addtocounter{datenumber}{#1}%
+  \setdatebynumber{\thedatenumber}%
+  \datedate%
 }
 
 \newcommand*{\infoSectionStyle}{\hspace{2em}}
@@ -86,17 +86,17 @@
 
 \newenvironment{infoSection}{\infoSectionStyle \tabular[t]{@{} r @{\hspace{0.5em}} l}}{\endtabular}
 \newcommand{\infoBox}[2]{
-    {\titleStyle #1} & \begin{minipage}[t]{.35\textwidth} #2 \end{minipage} \\
-    \noalign{\addvspace{2ex}}
+  {\titleStyle #1} & \begin{minipage}[t]{.35\textwidth} #2 \end{minipage} \\
+  \noalign{\addvspace{2ex}}
 }
 \newcommand{\infoSub}[2]{
-    \noalign{\vspace{-1.8ex}}
-    {\color{subduedColor} #1} & \begin{minipage}[t]{.35\textwidth} \infoSubStyle #2 \end{minipage} \\
-    \noalign{\addvspace{2ex}}
+  \noalign{\vspace{-1.8ex}}
+  {\color{subduedColor} #1} & \begin{minipage}[t]{.35\textwidth} \infoSubStyle #2 \end{minipage} \\
+  \noalign{\addvspace{2ex}}
 }
 
 \newcommand{\emaillink}[1]{%
-    \href{mailto:#1}{#1}%
+  \href{mailto:#1}{#1}%
 }
 
 \newcommand*{\itemizationRowStyle}[0]{\small}
@@ -118,13 +118,13 @@
 \DeclareTranslation{German}{costs}{Kosten}
 
 \newenvironment{projectItemization}{
-    \setcounter{colskipcount}{3}
-    \setlength\LTleft{0pt}
-    \setlength\LTright{0pt}
-    \begin{longtable}{c @{\hspace{1.5em}} p{.65\textwidth} r @{} r}
+  \setcounter{colskipcount}{3}
+  \setlength\LTleft{0pt}
+  \setlength\LTright{0pt}
+  \begin{longtable}{c @{\hspace{1.5em}} p{.65\textwidth} r @{} r}
     \hline
     \noalign{\smallskip}
-    {\itemizationHeaderStyle \GetTranslation{period}} &
+    {\itemizationHeaderStyle \GetTranslation{period}}      &
     {\itemizationHeaderStyle \GetTranslation{description}} &
     % \multicolumn{2}{l}{\itemizationHeaderStyle \GetTranslation{hours}} &
     % {\itemizationHeaderStyle \GetTranslation{rate}} &
@@ -138,21 +138,21 @@
     \hline
     \endfoot
     \endlastfoot
-}{
-    \end{longtable}
+    }{
+  \end{longtable}
 }
 
 \newenvironment{hoursItemization}{
-    \setcounter{colskipcount}{5}
-    \setlength\LTleft{0pt}
-    \setlength\LTright{0pt}
-    \begin{longtable}{c @{\hspace{1.5em}} p{.53\textwidth} r @{} l r r}
+  \setcounter{colskipcount}{5}
+  \setlength\LTleft{0pt}
+  \setlength\LTright{0pt}
+  \begin{longtable}{c @{\hspace{1.5em}} p{.53\textwidth} r @{} l r r}
     \hline
     \noalign{\smallskip}
-    {\itemizationHeaderStyle \GetTranslation{period}} &
-    {\itemizationHeaderStyle \GetTranslation{description}} &
+    {\itemizationHeaderStyle \GetTranslation{period}}                  &
+    {\itemizationHeaderStyle \GetTranslation{description}}             &
     \multicolumn{2}{l}{\itemizationHeaderStyle \GetTranslation{hours}} &
-    {\itemizationHeaderStyle \GetTranslation{rate}} &
+    {\itemizationHeaderStyle \GetTranslation{rate}}                    &
     {\itemizationHeaderStyle \GetTranslation{costs}}
     \\
     \noalign{\smallskip}
@@ -163,22 +163,22 @@
     \hline
     \endfoot
     \endlastfoot
-}{
-    \end{longtable}
+    }{
+  \end{longtable}
 }
 
 \newenvironment{hoursItemizationWithProject}{
-    \setcounter{colskipcount}{6}
-    \setlength\LTleft{0pt}
-    \setlength\LTright{0pt}
-    \begin{longtable}{c c @{\hspace{1.5em}} p{.5\textwidth} r @{} l r r}
+  \setcounter{colskipcount}{6}
+  \setlength\LTleft{0pt}
+  \setlength\LTright{0pt}
+  \begin{longtable}{c c @{\hspace{1.5em}} p{.5\textwidth} r @{} l r r}
     \hline
     \noalign{\smallskip}
-    {\itemizationHeaderStyle \GetTranslation{period}} &
-    {\itemizationHeaderStyle \GetTranslation{project}} &
-    {\itemizationHeaderStyle \GetTranslation{description}} &
+    {\itemizationHeaderStyle \GetTranslation{period}}                  &
+    {\itemizationHeaderStyle \GetTranslation{project}}                 &
+    {\itemizationHeaderStyle \GetTranslation{description}}             &
     \multicolumn{2}{l}{\itemizationHeaderStyle \GetTranslation{hours}} &
-    {\itemizationHeaderStyle \GetTranslation{rate}} &
+    {\itemizationHeaderStyle \GetTranslation{rate}}                    &
     {\itemizationHeaderStyle \GetTranslation{costs}}
     \\
     \noalign{\smallskip}
@@ -189,103 +189,103 @@
     \hline
     \endfoot
     \endlastfoot
-}{
-    \end{longtable}
+    }{
+  \end{longtable}
 }
 
 \gdef\InvoiceTotal{0}
 
 \newcommand*{\calcamount}[2]{%
-    \FPmul\t{#1}{#2}%
-    \formatcurrency{\t}%
-%
-    \FPadd\gt{\InvoiceTotal}{\t}%
-    \global\let\InvoiceTotal\gt%
+  \FPmul\t{#1}{#2}%
+  \formatcurrency{\t}%
+  %
+  \FPadd\gt{\InvoiceTotal}{\t}%
+  \global\let\InvoiceTotal\gt%
 }
 
 \newcommand*\@formatFraction[1]{
-    \ifnum\Numerator=25 ¼\fi%
-    \ifnum\Numerator=50 ½\fi%
-    \ifnum\Numerator=75 ¾\fi%
+  \ifnum\Numerator=25 ¼\fi%
+  \ifnum\Numerator=50 ½\fi%
+  \ifnum\Numerator=75 ¾\fi%
 }
 
 \newcommand*\@formatHoursLeft[1]{
-    \pgfmathtruncatemacro{\WholePortion}{int(#1)}%
-    \pgfmathtruncatemacro{\Numerator}{100*(#1-\WholePortion)}%
-    \ifnum\WholePortion=0%
-        \@formatFraction{\Numerator}%
-    \else%
-        \WholePortion%
-    \fi%
+  \pgfmathtruncatemacro{\WholePortion}{int(#1)}%
+  \pgfmathtruncatemacro{\Numerator}{100*(#1-\WholePortion)}%
+  \ifnum\WholePortion=0%
+    \@formatFraction{\Numerator}%
+  \else%
+    \WholePortion%
+  \fi%
 }
 
 \newcommand*\@formatHoursRight[1]{
-    \pgfmathtruncatemacro{\WholePortion}{int(#1)}%
-    \pgfmathtruncatemacro{\Numerator}{100*(#1-\WholePortion)}%
-    \ifnum\WholePortion=0%
-    \else%
-        \@formatFraction{\Numerator}%
-    \fi%
+  \pgfmathtruncatemacro{\WholePortion}{int(#1)}%
+  \pgfmathtruncatemacro{\Numerator}{100*(#1-\WholePortion)}%
+  \ifnum\WholePortion=0%
+  \else%
+    \@formatFraction{\Numerator}%
+  \fi%
 }
 
 \newcommand{\lineitemnohours}[3]{
-    {\itemizationRowStyle #1} &
-    \begin{minipage}[t]{.6\textwidth}
-        \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #3 \end{itemize}
-    \end{minipage} &
-    {\itemizationRowStyle \currencysym #2}
-    \\
-    \noalign{\medskip}
+  {\itemizationRowStyle #1} &
+  \begin{minipage}[t]{.6\textwidth}
+    \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #3 \end{itemize}
+  \end{minipage} &
+  {\itemizationRowStyle \currencysym #2}
+  \\
+  \noalign{\medskip}
 }
 
 \newcommand{\lineitem}[4]{
-    {\itemizationRowStyle #1} &
-    \begin{minipage}[t]{.6\textwidth}
-        \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #4 \end{itemize}
-    \end{minipage} &
-    {\itemizationRowStyle \@formatHoursLeft{#2}} &
-    {\itemizationRowStyle \@formatHoursRight{#2}} &
-    {\itemizationRowStyle \currencysym \num{#3}} &
-    {\itemizationRowStyle \currencysym\calcamount{#2}{#3}}
-    \\
-    \noalign{\medskip}
+  {\itemizationRowStyle #1} &
+  \begin{minipage}[t]{.6\textwidth}
+    \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #4 \end{itemize}
+  \end{minipage} &
+  {\itemizationRowStyle \@formatHoursLeft{#2}} &
+  {\itemizationRowStyle \@formatHoursRight{#2}} &
+  {\itemizationRowStyle \currencysym \num{#3}} &
+  {\itemizationRowStyle \currencysym\calcamount{#2}{#3}}
+  \\
+  \noalign{\medskip}
 }
 
 \newcommand{\lineitemp}[5]{
-    {\itemizationRowStyle #1} &
-    {\itemizationRowStyle #4} &
-    \begin{minipage}[t]{0.5\textwidth}
-        \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #5 \end{itemize}
-    \end{minipage} &
-    {\itemizationRowStyle \@formatHoursLeft{#2}} &
-    {\itemizationRowStyle \@formatHoursRight{#2}} &
-    {\itemizationRowStyle \currencysym#3} &
-    {\itemizationRowStyle \currencysym\calcamount{#2}{#3}}
-    \\
-    \noalign{\medskip}
+  {\itemizationRowStyle #1} &
+  {\itemizationRowStyle #4} &
+  \begin{minipage}[t]{0.5\textwidth}
+    \begin{itemize}[leftmargin=0pt, labelsep=1pt, itemsep=0pt] \itemizationRowStyle #5 \end{itemize}
+  \end{minipage} &
+  {\itemizationRowStyle \@formatHoursLeft{#2}} &
+  {\itemizationRowStyle \@formatHoursRight{#2}} &
+  {\itemizationRowStyle \currencysym#3} &
+  {\itemizationRowStyle \currencysym\calcamount{#2}{#3}}
+  \\
+  \noalign{\medskip}
 }
 
 \newcommand{\beginsummary}{
-    \noalign{\bigskip}
-    \hline
-    \noalign{\medskip}
+  \noalign{\bigskip}
+  \hline
+  \noalign{\medskip}
 }
 
 \newcommand*{\summaryline}[2]{
-    \multicolumn{\thecolskipcount}{r}{\itemizationHeaderStyle #1} & #2 \\
+  \multicolumn{\thecolskipcount}{r}{\itemizationHeaderStyle #1} & #2 \\
 }
 
 \newcommand*{\tikzmark}[1]{\tikz[overlay,remember picture] \node ({#1}) {};}
 \newcommand*{\arrowbase}{\tikzmark{@p1}}
 \newcommand*{\arrowtarget}{\tikzmark{@p2}}
 \newcommand*{\drawarrow}{
-    \tikz[overlay,remember picture] {
-        \draw[->,thick,color=subduedColor] ($(@p1)+(0.75em,1.5ex)$) -| ($(@p2)+(-2em,0.7ex)$) -- ($(@p2)+(-0.5em,0.7ex)$);
-    }
+  \tikz[overlay,remember picture] {
+    \draw[->,thick,color=subduedColor] ($(@p1)+(0.75em,1.5ex)$) -| ($(@p2)+(-2em,0.7ex)$) -- ($(@p2)+(-0.5em,0.7ex)$);
+  }
 }
 
 \newcommand*{\formatcurrency}[1]{%
-    \num[group-minimum-digits=3, round-mode=places, round-precision=2]{#1}%
+  \num[group-minimum-digits=3, round-mode=places, round-precision=2]{#1}%
 }
 
 % Implementation by Werner (http://tex.stackexchange.com/a/176815/35707)
@@ -313,19 +313,19 @@
 % page numbers in footer if more than 1 page
 % Copied from moderncv
 \AtEndPreamble{%
-    \AtBeginDocument{%
-        \@ifundefined{r@lastpage}{}{%
-            \ifthenelse{\pageref{lastpage}>1}{%
-                \newlength{\pagenumberwidth}%
-                \settowidth{\pagenumberwidth}{\thepage/\pageref{lastpage}}%
-                \fancypagestyle{plain}{%
-                    \fancyfoot[r]{\parbox[b]{\pagenumberwidth}{\thepage/\pageref{lastpage}}}%
-                }%
-                \pagestyle{plain}%
-            }{}%
+  \AtBeginDocument{%
+    \@ifundefined{r@lastpage}{}{%
+      \ifthenelse{\pageref{lastpage}>1}{%
+        \newlength{\pagenumberwidth}%
+        \settowidth{\pagenumberwidth}{\thepage/\pageref{lastpage}}%
+        \fancypagestyle{plain}{%
+          \fancyfoot[r]{\parbox[b]{\pagenumberwidth}{\thepage/\pageref{lastpage}}}%
         }%
-        \AtEndDocument{\label{lastpage}}%
+        \pagestyle{plain}%
+      }{}%
     }%
+    \AtEndDocument{\label{lastpage}}%
+  }%
 }
 \pagestyle{plain}
 
