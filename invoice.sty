@@ -110,12 +110,36 @@
 \DeclareTranslation{German}{project}{Projekt}
 \DeclareTranslation{English}{description}{Description}
 \DeclareTranslation{German}{description}{Beschreibung}
+\DeclareTranslation{English}{single}{Single}
+\DeclareTranslation{German}{single}{Einzeln}
+\DeclareTranslation{English}{count}{Count}
+\DeclareTranslation{German}{count}{Anzahl}
 \DeclareTranslation{English}{hours}{Hours}
 \DeclareTranslation{German}{hours}{Stunden}
 \DeclareTranslation{English}{rate}{Rate}
 \DeclareTranslation{German}{rate}{Rate}
 \DeclareTranslation{English}{costs}{Costs}
 \DeclareTranslation{German}{costs}{Kosten}
+
+\newenvironment{costItemization}{
+  \setcounter{colskipcount}{4}
+  \setlength\LTleft{0pt}
+  \setlength\LTright{0pt}
+  \begin{longtable}{l @{\hspace{1.0em}} l @{\extracolsep{\fill}} r r r}
+    \hline
+    \noalign{\smallskip}
+    {\itemizationHeaderStyle \GetTranslation{period}}      &
+    {\itemizationHeaderStyle \GetTranslation{description}} &
+    {\itemizationHeaderStyle \GetTranslation{single}}      &
+    {\itemizationHeaderStyle \GetTranslation{count}}       &
+    {\itemizationHeaderStyle \GetTranslation{costs}}
+    \\
+    \noalign{\smallskip}
+    \hline
+    \noalign{\medskip}
+    }{
+  \end{longtable}
+}
 
 \newenvironment{projectItemization}{
   \setcounter{colskipcount}{3}
@@ -193,7 +217,7 @@
   \end{longtable}
 }
 
-\gdef\InvoiceTotal{0}
+\gdef\InvoiceTotal{0.0}
 
 \newcommand*{\calcamount}[2]{%
   \FPmul\t{#1}{#2}%
@@ -202,6 +226,9 @@
   \FPadd\gt{\InvoiceTotal}{\t}%
   \global\let\InvoiceTotal\gt%
 }
+
+\newcommand{\printInvoiceTotal}{\FPeval\gt{round(InvoiceTotal:2)}\num{\gt}}
+\newcommand{\printTotal}[1]{\FPeval\gt{round(#1:2)}\num{\gt}}
 
 \newcommand*\@formatFraction[1]{
   \ifnum\Numerator=25 ¼\fi%
@@ -245,8 +272,18 @@
   \end{minipage} &
   {\itemizationRowStyle \@formatHoursLeft{#2}} &
   {\itemizationRowStyle \@formatHoursRight{#2}} &
-  {\itemizationRowStyle \currencysym \num{#3}} &
-  {\itemizationRowStyle \currencysym\calcamount{#2}{#3}}
+  {\itemizationRowStyle \currencysym~\num{#3}} &
+  {\itemizationRowStyle \currencysym~\calcamount{#2}{#3}}
+  \\
+  \noalign{\medskip}
+}
+
+\newcommand{\countitem}[4]{
+  {\itemizationRowStyle #1} &
+  {\itemizationRowStyle #4} &
+  {\itemizationRowStyle \currencysym~\num{#2}} &
+  {\itemizationRowStyle \num{#3}} &
+  {\itemizationRowStyle \currencysym~\calcamount{#2}{#3}}
   \\
   \noalign{\medskip}
 }

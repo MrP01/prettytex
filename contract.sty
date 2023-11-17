@@ -13,6 +13,18 @@
   \end{tabular}
 }
 
+\newcommand{\SignaturePair}[3][2.5in]{%
+  \noindent%
+  \begin{tabular}{@{}p{#1}@{}}
+    \\ \hline \\[-.75\normalbaselineskip]
+    #2
+  \end{tabular} \hspace{1in}
+  \begin{tabular}{@{}p{#1}@{}}
+    \\ \hline \\[-.75\normalbaselineskip]
+    #3
+  \end{tabular}
+}
+
 \newcommand{\LawEnumeration}{
   \renewcommand{\thesection}{§\,\arabic{section}}
   \renewcommand{\theenumii}{}
