@@ -1,0 +1,318 @@
+\ProvidesPackage{prettytex/math}
+\RequirePackage{prettytex/base}
+
+
+%%----------------------------------------------------------------------------------------------------------------------
+% package loading
+%%----------------------------------------------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{bm, bbm}
+\usepackage{upgreek}
+\usepackage{nicematrix}
+
+%%----------------------------------------------------------------------------------------------------------------------
+% general / auxilliary macros / formatting
+%%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\qqtext}[1]{\qquad\text{#1}\qquad}
+\newcommand{\matrixcolor}{black}
+\newcommand{\operatorcolor}{blue!65!black}
+
+\newcommand{\basetrace}{trace}
+\newcommand{\baserank}{rank}
+
+\renewcommand{\epsilon}{\varepsilon} % the default epsilon is ugly :shrug:
+\newcommand{\feq}{\overset{!}{=}} % should be equal to (force-equal)
+\renewcommand{\Re}{\mathfrak{Re}}
+\renewcommand{\Im}{\mathfrak{Im}}
+
+\newcommand{\floorl}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\ceil}[1]{\lceil#1\right}
+\newcommand{\ceill}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\oset}[2]{\overset{#1}{#2}}
+\newcommand{\uset}[2]{\underset{#1}{#2}}
+\newcommand{\obra}[1]{\overbrace{#1}}
+\newcommand{\ubra}[1]{\underbrace{#1}}
+
+% for small calligraphic letters
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathscall}{OT1}{pzc}{m}{it}
+\newcommand{\sco}{\mathscall{o}}
+
+%%----------------------------------------------------------------------------------------------------------------------
+% package options
+%%----------------------------------------------------------------------------------------------------------------------
+\DeclareOption{vargreek}{
+    \renewcommand{\phi}{\varphi}
+    \renewcommand{\rho}{\varrho}
+}
+\DeclareOption{nocols}{\renewcommand{\operatorcolor}{black}}
+\DeclareOption{de}{
+    \renewcommand{\basetrace}{spur}
+    \renewcommand{\baserank}{rang}
+}
+
+\ProcessOptions\relax
+
+%----------------------------------------------------------------------------------------------------------------------
+% constants
+%----------------------------------------------------------------------------------------------------------------------
+\renewcommand{\i}{\mathrm{i}} % imaginary unit
+\renewcommand{\j}{\mathrm{j}} % jmaginary unit
+\newcommand{\e}{\mathrm{e}} % euler's number
+
+%%----------------------------------------------------------------------------------------------------------------------
+% renewed commands
+%%----------------------------------------------------------------------------------------------------------------------
+\renewcommand{\complement}{\mathsf{c}}
+
+%%----------------------------------------------------------------------------------------------------------------------
+% sets, topology and measure theory
+%%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\set}[1]{{\left\{#1\right\}}}
+\newcommand{\sm}{\setminus}
+\newcommand{\compl}{^\complement}
+\newcommand{\eset}{\emptyset}
+\newcommand{\sset}{\subseteq}
+\newcommand{\inv}{^{-1}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\T}{\mathbb{T}}
+\renewcommand{\S}{\mathbb{S}}
+\renewcommand{\H}{\mathbb{H}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+
+\DeclareMathOperator{\interior}{\qopname \relax m{\col{\operatorcolor}{int}}}
+\DeclareMathOperator{\cls}{\qopname \relax m{\col{\operatorcolor}{cls}}}
+\DeclareMathOperator{\diam}{\qopname \relax m{\col{\operatorcolor}{diam}}}
+\DeclareMathOperator{\ext}{\qopname \relax m{\col{\operatorcolor}{ext}}}
+\newcommand{\inter}{^\circ}
+\DeclareMathOperator{\supp}{\qopname \relax m{\col{\operatorcolor}{supp}}}
+
+
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\fU}{\mathfrak{U}}
+
+\DeclareMathOperator{\leb}{\uplambda}
+\DeclareMathOperator{\borel}{\upbeta}
+\DeclareMathOperator{\vol}{\qopname \relax m{\col{\operatorcolor}{vol}}}
+
+
+%%----------------------------------------------------------------------------------------------------------------------
+% calculus
+%%----------------------------------------------------------------------------------------------------------------------
+\DeclareMathOperator{\FD}{\qopname \relax m{d}}
+\DeclareMathOperator{\dd}{\qopname \relax m{d}}
+\newcommand{\idd}{\;\dd}
+\DeclareMathOperator{\hess}{\qopname \relax m{\col{\operatorcolor}{H}}}
+\DeclareMathOperator{\jac}{\qopname \relax m{\col{\operatorcolor}{J}}}
+
+\newcommand{\derx}[1]{\frac{\dd #1}{\dd x}}
+\newcommand{\nderx}[1]{\frac{\dd^n #1}{\dd x^n}}
+\newcommand{\kderx}[1]{\frac{\dd^k #1}{\dd x^k}}
+\newcommand{\nder}[1]{#1^{(n)}}
+\newcommand{\kder}[1]{#1^{(k)}}
+
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\labs}[1]{\left|#1\right|}
+
+\let\lim\relax
+\let\sup\relax
+\let\inf\relax
+\let\min\relax
+\let\max\relax
+\let\arg\relax
+\let\liminf\relax
+\let\limsup\relax
+\let\div\relax
+
+\DeclareMathOperator{\div}{\qopname \relax m{\col{\operatorcolor}{div}}}
+\DeclareMathOperator{\lim}{\qopname \relax m{\col{\operatorcolor}{lim}}}
+\DeclareMathOperator{\sup}{\qopname \relax m{\col{\operatorcolor}{sup}}}
+\DeclareMathOperator{\inf}{\qopname \relax m{\col{\operatorcolor}{inf}}}
+\DeclareMathOperator{\min}{\qopname \relax m{\col{\operatorcolor}{min}}}
+\DeclareMathOperator{\max}{\qopname \relax m{\col{\operatorcolor}{max}}}
+\DeclareMathOperator{\arg}{\qopname \relax m{\col{\operatorcolor}{arg}}}
+\DeclareMathOperator{\liminf}{\qopname \relax m{\col{\operatorcolor}{lim\:inf}}}
+\DeclareMathOperator{\limsup}{\qopname \relax m{\col{\operatorcolor}{lim\:sup}}}
+\DeclareMathOperator{\argmin}{\qopname \relax m{\col{\operatorcolor}{arg\:min}}}
+\DeclareMathOperator{\argmax}{\qopname \relax m{\col{\operatorcolor}{arg\:max}}}
+\DeclareMathOperator{\uniflim}{\qopname \relax m{\col{\operatorcolor}{unif\:lim}}}
+\DeclareMathOperator{\apexlim}{\qopname \relax m{\col{\operatorcolor}{apex\:lim}}}
+\DeclareMathOperator{\laplace}{\triangle}
+
+\newcommand{\limh}{\lim_{h\to 0}}
+\newcommand{\limt}{\lim_{t\to 0}}
+\newcommand{\limx}{\lim_{x\to x_0}}
+\newcommand{\limz}{\lim_{z\to z_0}}
+\newcommand{\limn}{\lim_{n\to \infty}}
+\newcommand{\limk}{\lim_{k\to \infty}}
+
+\newcommand{\seqn}[1]{(#1_n)_{n\in\N}}
+\newcommand{\seqnz}[1]{(#1_n)_{n\in\N_0}}
+\newcommand{\seqk}[1]{(#1_k)_{k\in\N}}
+\newcommand{\seqkz}[1]{(#1_k)_{k\in\N_0}}
+
+%%----------------------------------------------------------------------------------------------------------------------
+% algebra
+%%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\Hom}{\col{\operatorcolor}{\mathrm{Hom}}}
+\DeclareMathOperator{\im}{\qopname \relax m{\col{\operatorcolor}{im}}}
+\newcommand{\id}{\col{\operatorcolor}{\mathrm{id}}}
+\newcommand{\sign}{\col{\operatorcolor}{\mathrm{sign}}}
+\newcommand{\GL}{\col{\operatorcolor}{\mathrm{GL}}} % general linear group
+\newcommand{\SL}{\col{\operatorcolor}{\mathrm{SL}}} % special linear group
+\newcommand{\SO}{\col{\operatorcolor}{\mathrm{SO}}} % special orthogonal group
+\newcommand{\epimorph}{\twoheadrightarrow} % mapping is epimorphism (injective)
+\newcommand{\monmorph}{\rightarrowtail} % mapping is monomorphism (surjective)
+\newcommand{\isomorph}{\twoheadrightarrowtail} % mapping is isomorphism (bijective)
+\newcommand{\Aut}{\col{\operatorcolor}{\mathrm{Aut}}} % set of automorphisms
+\newcommand{\End}{\col{\operatorcolor}{\mathrm{End}}} % set of endomorphisms
+\newcommand{\ran}{\col{\operatorcolor}{\mathrm{ran}}} % range of mapping
+\newcommand{\dspan}{\col{\operatorcolor}{\mathrm{span}}}
+\let\dim\relax
+\let\ker\relax
+\let\deg\relax
+\DeclareMathOperator{\dim}{\qopname \relax m{\col{\operatorcolor}{dim}}}
+\DeclareMathOperator{\ker}{\qopname\relax m{\col{\operatorcolor}{ker}}}
+\DeclareMathOperator{\deg}{\qopname \relax m{\col{\operatorcolor}{deg}}}
+
+%%----------------------------------------------------------------------------------------------------------------------
+% linear algebra
+%%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\transpose}{\mathsf{t}}
+\newcommand{\tran}{^\transpose}
+\newcommand{\itran}{^{-\transpose}}
+
+\newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle}
+
+
+\renewcommand{\vec}[1]{{\bm{#1}}}
+\newcommand{\hvec}[1]{{\hat{\vec{#1}}}} % vector with hat
+\newcommand{\tvec}[1]{{\tilde{\vec{#1}}}} % vector with tilde
+\newcommand{\bvec}[1]{{\bar{\vec{#1}}}} % vector with bar
+\newcommand{\uvec}[1]{{\ubar{\vec{#1}}}}
+\newcommand{\zvec}{\vec{0}}
+
+\newcommand{\norm}[1]{{\|#1\|}}
+\newcommand{\lnorm}[1]{{\left\|#1\right\|}}
+\newcommand{\inorm}[1]{{\|#1\|_\infty}}
+\newcommand{\linorm}[1]{{\left\|#1\right\|_\infty}}
+
+\newcommand{\bmat}[2][1]{{\renewcommand{\arraystretch}{#1}\begin{bmatrix}#2\end{bmatrix}}}
+\newcommand{\fbmat}[1]{\begin{bNiceMatrix}#1\end{bNiceMatrix}}
+
+\newcommand{\diag}{\col{\operatorcolor}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
+\newcommand{\Eig}{\col{\operatorcolor}{\mathrm{Eig}}} % eigendata of matrix
+\newcommand{\Gram}{\col{\operatorcolor}{\mathrm{Gram}}} % Gram matrix
+\newcommand{\detm}[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert} % shorthand determiant
+\newcommand{\hateq}{\overset{\scriptscriptstyle\wedge}{=}} % matrices are congruent
+\let\det\relax
+\DeclareMathOperator{\det}{\col{\operatorcolor}{\mathrm{det}}}
+\DeclareMathOperator{\spec}{\qopname \relax m{\col{\operatorcolor}{spec}}} % set of eigenvalues of linear map
+\DeclareMathOperator{\Ann}{\col{\operatorcolor}{\mathrm{Ann}}} % annihilator of matrix
+\DeclareMathOperator{\Adj}{\col{\operatorcolor}{\mathrm{Adj}}} % annihilator of matrix
+\DeclareMathOperator{\Cof}{\col{\operatorcolor}{\mathrm{Cof}}} % annihilator of matrix
+
+\newcommand{\mat}[1]{\mathrm{\col{\matrixcolor!95!black}{#1}}} % matrix typing
+\newcommand{\tmat}[1]{\tilde{\mat{#1}}} % matrix with tilde
+\newcommand{\hmat}[1]{\hat{\mat{#1}}} % matrix with hat
+\newcommand{\barmat}[1]{\bar{\mat{#1}}}
+\newcommand{\umat}[1]{\ubar{\mat{#1}}}
+
+\newcommand{\spur}{\col{\operatorcolor}{\mathrm{\basetrace}}}
+\newcommand{\spr}{\col{\operatorcolor}{\mathrm{\basetrace}}}
+\newcommand{\Spur}{\col{\operatorcolor}{\mathrm{\basetrace}}
+\newcommand{\Spr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
+\newcommand{\trace}{\col{\operatorcolor}{\mathrm{\basetrace}}
+\newcommand{\tr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
+\newcommand{\Trace}{\col{\operatorcolor}{\mathrm{\basetrace}}
+\newcommand{\Tr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
+
+\newcommand{\rg}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\Rg}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\rang}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\Rang}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\rk}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\Rk}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\rank}{\col{\operatorcolor}{\mathrm{\baserank}}}
+\newcommand{\Rank}{\col{\operatorcolor}{\mathrm{\baserank}}}
+
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand*{\longleadsto}[1]{
+  \tikzexternaldisable
+  \begin{tikzpicture}
+    \draw [->, line join=round, decorate, decoration={
+          zigzag,
+          segment length=4,
+          amplitude=.9,
+          post=lineto,
+          post length=2pt}] (0,0) -- (#1,0);
+  \end{tikzpicture}
+  \tikzexternalenable
+}
+
+\newcommand{\rtrf}[1]{%
+  \tikzexternaldisable%
+  \begin{tikzpicture}%
+    \draw [->, line join=round, decorate, decoration={%
+          zigzag,%
+          segment length=4,%
+          amplitude=.9,%
+          post=lineto,%
+          post length=2pt}] (0,0) -- (1.5cm,0)%
+    node[midway,above]{$\substack{#1}$};%
+  \end{tikzpicture}%
+  \tikzexternalenable%
+} % matrix row transformation
+
+%----------------------------------------------------------------------------------------------------------------------
+% number theory
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\ggt}{\col{\operatorcolor}{\mathrm{ggT}}} % greatets common divisor (de)
+\newcommand{\kgv}{\col{\operatorcolor}{\mathrm{kgV}}} % least common multiple (de)
+\renewcommand{\gcd}{\col{\operatorcolor}{\mathrm{gcd}}} % gcd (en)
+\newcommand{\lcm}{\col{\operatorcolor}{\mathrm{lcm}}} % lcm (en)
+\newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % stirling number first kind
+\newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}} % striling number second kind
+\newcommand{\cycle}[1]{\begin{pmatrix}#1\end{pmatrix}} % cycle notation
+
+%----------------------------------------------------------------------------------------------------------------------
+% exotic trig functions
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\Arsinh}{\mathrm{Arsinh}} % Area sinus hyperbolicus
+\newcommand{\Arcosh}{\mathrm{Arcosh}} % Area cosinus hyperbolicus
+\newcommand{\Artanh}{\mathrm{Artanh}} % Area tangens hyperbolicus
+\newcommand{\Arcoth}{\mathrm{Arcoth}} % Area cotangens hyperbolicus
+\newcommand{\Arsech}{\mathrm{Arsech}} % Area secans hyperbolicus
+\newcommand{\Arcsch}{\mathrm{Arcsch}} % Area cosecancs hyperbolicus
+\newcommand{\sinc}{\mathrm{sinc}} % sinus cardinalis (de, not normalised)
+\newcommand{\sinnc}{\mathrm{si}} % sinus cardinalis (de, normalised)
+\newcommand{\Si}{\mathrm{Si}} % integral sinus
+\newcommand{\Li}{\mathrm{Li}} % integral logarithmus naturlis
+\newcommand{\arccot}{\mathrm{arccot}}
+\newcommand{\arcsec}{\mathrm{arcsec}}
+\newcommand{\arccsc}{\mathrm{arccsc}}
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+\DeclareMathOperator{\atan}{\qopname \relax m{atan2}}
+\DeclareMathOperator{\ld}{\mathrm{ld}}
