@@ -1,0 +1,402 @@
+\ProvidesPackage{prettytex/math}
+\RequirePackage{prettytex/base}
+
+% mathematical packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{esint}
+\usepackage{esvect}
+\usepackage{upgreek}
+\usepackage{bm, bbm}
+\usepackage{siunitx}
+\usepackage{nicematrix}
+\usepackage{pgf}
+
+
+
+
+\newcommand{\qqtext}[1]{\qquad\text{#1}\qquad}
+\newcommand{\matrixcolor}{black}
+\newcommand{\operatorcolor}{blue!65!black}
+
+\sisetup{
+  separate-uncertainty,
+  locale=UK,
+  per-mode=fraction,
+  number-unit-product=\,\,\,
+}
+
+\DeclareOption{de}{
+  \sisetup{locale=DE}
+  \renewcommand{\equationautorefname}{Gleichung}
+}
+\DeclareOption{vargreek}{
+  \renewcommand{\phi}{\varphi}
+  \renewcommand{\epsilon}{\varepsilon}
+  \renewcommand{\rho}{\varrho}
+}
+\ProcessOptions\relax
+
+\newcommand*\twoheadrightarrowtail{\mathrel{\rightarrowtail\kern-1.9ex\twoheadrightarrow}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% sets
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\set}[1]{{\left\{#1\right\}}}
+\renewcommand{\brack}[1]{{\left[#1\right]}}
+\newcommand{\parenth}[1]{{\left(#1\right)}}
+\newcommand{\cell}[1]{{\left(#1\right]}}
+      \newcommand{\icell}[1]{{\left[#1\right)}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% calculus and topology
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\FD}{\mathrm{d}} % frechét-derivative
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\idd}{\;\dd} % integral d (with space)
+\newcommand{\ddx}{\dd x} % dx
+\newcommand{\ddy}{\dd y} % dy
+\newcommand{\ddz}{\dd z} % dz
+\newcommand{\ddu}{\dd u} % du
+\newcommand{\ddv}{\dd v} % dv
+\newcommand{\ddr}{\dd r} % dr
+\newcommand{\dds}{\dd s} % ds
+\newcommand{\ddt}{\dd t} % dt
+\newcommand{\hess}{\col{\operatorcolor}{\mathrm{H}}} % hessian matrix
+\newcommand{\jac}{\col{\operatorcolor}{\mathrm{J}}} % jacobian matrix
+
+\newcommand{\leb}{\uplambda}
+\newcommand{\abs}[1]{{\left|#1\right|}}
+\newcommand{\1}{\mathbbm{1}}
+
+
+% deprecated
+\newcommand{\seq}[3]{(#1_{#2})_{#2\in #3}} % classical sequence
+\newcommand{\nseq}[1]{\seq{#1}{n}{\N}} % sequence with index n
+\newcommand{\kseq}[1]{\seq{#1}{k}{\N}} % sequence with index k
+\newcommand{\hset}[1]{\mathcal{H}(\nseq{#1})} % set of accumulation points
+\newcommand{\conv}[2]{\overset{#1\subj#2}{\longrightarrow}} % converges against as #1 goes to #2
+
+\newcommand{\invt}{^{-t}}
+\newcommand{\laplace}{\triangle}
+\let\div\relax
+\DeclareMathOperator{\div}{\col{\operatorcolor}{\mathrm{div}}}
+
+
+\RenewDocumentCommand{\lim}{}{\qopname \relax m{\col{\operatorcolor}{lim}}}
+\RenewDocumentCommand{\liminf}{}{\qopname \relax m{\col{\operatorcolor}{lim\:inf}}}
+\RenewDocumentCommand{\limsup}{}{\qopname \relax m{\col{\operatorcolor}{lim\:sup}}}
+\RenewDocumentCommand{\inf}{}{\qopname \relax m{\col{\operatorcolor}{inf}}}
+\RenewDocumentCommand{\sup}{}{\qopname \relax m{\col{\operatorcolor}{sup}}}
+\RenewDocumentCommand{\max}{}{\qopname \relax m{\col{\operatorcolor}{max}}}
+\RenewDocumentCommand{\min}{}{\qopname \relax m{\col{\operatorcolor}{min}}}
+\RenewDocumentCommand{\arg}{}{\qopname \relax m{\col{\operatorcolor}{arg}}}
+
+\NewDocumentCommand{\argmin}{}{\qopname \relax m{\col{\operatorcolor}{arg\:min}}}
+\NewDocumentCommand{\argmax}{}{\qopname \relax m{\col{\operatorcolor}{arg\:max}}}
+\NewDocumentCommand{\inter}{}{\qopname \relax m{\col{\operatorcolor}{int}}}
+\NewDocumentCommand{\cls}{}{\qopname \relax m{\col{\operatorcolor}{cls}}}
+\NewDocumentCommand{\ext}{}{\qopname \relax m{\col{\operatorcolor}{ext}}}
+\NewDocumentCommand{\diam}{}{\qopname \relax m{\col{\operatorcolor}{diam}}}
+\NewDocumentCommand{\uniflim}{}{\qopname \relax m{\col{\operatorcolor}{unif\:lim}}}
+\NewDocumentCommand{\apexlim}{}{\qopname \relax m{\col{\operatorcolor}{apex\:lim}}}
+
+\DeclareMathOperator{\atan}{\qopname \relax m{atan2}}
+
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\limn}{\lim_{n\to\infty}}
+\newcommand{\limk}{\lim_{k\to\infty}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% sets
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\N}{\mathbb{N}} % natural numbers
+\newcommand{\Z}{\mathbb{Z}} % integer numbers
+\newcommand{\Q}{\mathbb{Q}} % rational numbers
+\newcommand{\I}{\mathbb{I}} % irrational numbers
+\newcommand{\D}{\mathbb{D}} % open complex unit circle
+\newcommand{\R}{\mathbb{R}} % real numbers
+\newcommand{\C}{\mathbb{C}} % complex numbers
+\newcommand{\T}{\mathbb{T}} % transcendental numbers
+\renewcommand{\S}{\mathbb{S}} % 
+\newcommand{\V}{\mathbb{V}}
+\newcommand{\U}{\mathbb{U}}
+\renewcommand{\H}{\mathbb{H}} % upper complex plane
+\renewcommand{\P}{\mathbb{P}} % primes
+\newcommand{\K}{\mathbb{K}} % general field (de)
+\newcommand{\F}{\mathbb{F}} % general field (en)
+\renewcommand{\Re}{\mathfrak{Re}} % real part of complex number
+\renewcommand{\Im}{\mathfrak{Im}} % imaginary part of complex number
+
+\newcommand*\intr{\col{\operatorcolor}{\mathrm{int}}} % open kernel of set
+\newcommand*\intrs[1]{\overset{\circ}{#1}} % open kernel of set
+\newcommand*\vol{\col{\operatorcolor}{\mathrm{vol}}} % „volume“ of set
+
+\newcommand{\disj}{\charfusion[\mathbin]{\cup}{\cdot}} % disjoint set conjunction
+\newcommand{\bigdisj}{\oset{\bigcup}}
+
+\newcommand{\co}{\col{\operatorcolor}{\mathrm{co}}} % convex hull
+
+%----------------------------------------------------------------------------------------------------------------------
+% constants
+%----------------------------------------------------------------------------------------------------------------------
+\renewcommand{\i}{\mathrm{i}} % imaginary unit
+\renewcommand{\j}{\mathrm{j}} % jmaginary unit
+\newcommand{\e}{\mathrm{e}} % eulers number
+\newcommand{\cs}{\mathrm{c}} % lightspeed
+
+%----------------------------------------------------------------------------------------------------------------------
+% number theory
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\ggt}{\col{\operatorcolor}{\mathrm{ggT}}} % greates common divisor (de)
+\newcommand{\kgV}{\col{\operatorcolor}{\mathrm{kgV}}} % least common multiple (de)
+\renewcommand{\gcd}{\col{\operatorcolor}{\mathrm{gcd}}} % gcd (en)
+\newcommand{\lcm}{\col{\operatorcolor}{\mathrm{lcm}}} % lcm (en)
+\newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % stirling number first kind
+\newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}} % striling number second kind
+\newcommand{\cycle}[1]{\begin{pmatrix}#1\end{pmatrix}} % cycle notation
+\DeclareMathOperator{\supp}{\col{\operatorcolor}{\mathrm{supp}}} % carrier (i.e. supplier)
+
+%----------------------------------------------------------------------------------------------------------------------
+% algebra
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand*\feq{\overset{!}{=}} % should be equal to (force-equal)
+\newcommand{\Hom}{\col{\operatorcolor}{\mathrm{Hom}}} % set of homeomorphisms
+\newcommand{\im}{\col{\operatorcolor}{\mathrm{im}}} % image of function
+\newcommand{\id}{\col{\operatorcolor}{\mathrm{id}}} % identity
+\newcommand{\dsum}{\dot{+}} % direct sum
+\newcommand{\sign}{\col{\operatorcolor}{\mathrm{sign}}} % sign (either sign or signature)
+\newcommand{\conj}[1]{\overline{#1}} % complex conjugate (legacy, use \bar or conj-snippet)
+\newcommand{\Grad}{\col{\operatorcolor}{\mathrm{Grad}}} % order of polynomial (de)
+\newcommand{\GL}{\col{\operatorcolor}{\mathrm{GL}}} % general linear group
+\newcommand{\GF}{\col{\operatorcolor}{\mathrm{GF}}}
+\newcommand{\SL}{\col{\operatorcolor}{\mathrm{SL}}} % special linear group
+\newcommand{\SO}{\col{\operatorcolor}{\mathrm{SO}}} % special orthogonal group
+\newcommand{\epimorph}{\twoheadrightarrow} % mapping is epimorphism (injective)
+\newcommand{\monmorph}{\rightarrowtail} % mapping is monomorphism (surjective)
+\newcommand{\isomorph}{\twoheadrightarrowtail} % mapping is isomorphism (bijective)
+\newcommand{\Aut}{\col{\operatorcolor}{\mathrm{Aut}}} % set of automorphisms
+\newcommand{\End}{\col{\operatorcolor}{\mathrm{End}}} % set of endomorphisms
+\newcommand{\ran}{\col{\operatorcolor}{\mathrm{ran}}} % range of mapping
+\let\dim\relax
+\DeclareMathOperator{\dim}{\col{\operatorcolor}{\mathrm{dim}}}
+\let\ker\relax
+\DeclareMathOperator{\ker}{\col{\operatorcolor}{\mathrm{ker}}}
+\newcommand{\dspan}{\col{\operatorcolor}{\mathrm{span}}}
+\let\deg\relax
+\DeclareMathOperator{\deg}{\col{\operatorcolor}{\mathrm{deg}}}
+\DeclareMathOperator{\odeg}{\col{\operatorcolor}{\mathrm{deg}}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% logic 
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\bij}{\leftrightarrow} % bijection
+\newcommand{\subj}{\rightarrow} % right-subjunction                 
+\newcommand{\lsubj}{\leftarrow} % left-subjunction
+\newcommand{\xor}{\dot{\vee}} % exclusive or (non-standard symbol)
+
+\newcommand{\nsubj}{\cancel{\subj}} % not right subjunctive
+\newcommand{\nlsubj}{\cancel{\lsubj}} % not left subjunctive
+\newcommand{\eqv}{\Longleftrightarrow} % eqvivalent
+\newcommand{\neqv}{\cancel{\eqv}} % not equivalent            
+\newcommand{\limplies}{\Longleftarrow} % left implication
+\newcommand{\nimplies}{\cancel{\implies}} % not right implication
+\newcommand{\nlimplies}{\cancel{\limplies}} % not left implication
+\newcommand{\dtrue}{\mathrm{w}} % true (de)
+\newcommand{\dfalse}{\mathrm{f}} % false (de)
+\newcommand{\etrue}{\mathrm{t}} % true (en)
+\newcommand{\efalse}{\mathrm{f}} % false (en)
+
+%----------------------------------------------------------------------------------------------------------------------
+% vectors
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\pvec}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}} % shorthand for column 2d vectors
+\newcommand{\rpvec}[2]{\begin{bmatrix}#1&#2\end{bmatrix}} % shorthand for 2d row vectors
+\newcommand{\rtvec}[3]{\begin{bmatrix}#1&#2&#3\end{bmatrix}} % shorthand for 3d row vectors
+\newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle} % general dot-product with scaling delimiters
+\newcommand{\sv}[1]{\left\langle #1 \right\rangle} % signal vector notation with scaling delimiters
+
+\renewcommand{\vec}[1]{{\bm{#1}}}
+\newcommand{\hvec}[1]{{\hat{\vec{#1}}}} % vector with hat
+\newcommand{\tvec}[1]{{\tilde{\vec{#1}}}} % vector with tilde
+\newcommand{\bvec}[1]{{\bar{\vec{#1}}}} % vector with bar
+\newcommand{\uvec}[1]{{\ubar{\vec{#1}}}}
+\newcommand{\zvec}{\vec{0}}
+
+\newcommand{\lspan}{\col{\operatorcolor}{\mathrm{span}}} % span of vectors
+\newcommand{\vgamma}{\vec{\gamma}} % shortcut for vector gamma (common for curves)
+\newcommand{\valpha}{\vec{\alpha}}
+\newcommand{\vphi}{\vec{\varphi}}
+\newcommand{\vsig}{\vec{\sigma}}
+\newcommand{\vxi}{\vec{\xi}}
+\newcommand{\vbeta}{\vec{\beta}}
+\newcommand{\vmu}{\vec{\mu}}
+\newcommand{\vrho}{\vec{\varrho}}
+\newcommand{\vecll}{\vec{\ell}}
+
+\newcommand{\norm}[1]{{\|#1\|}}
+\newcommand{\lnorm}[1]{{\left\|#1\right\|}}
+\newcommand{\inorm}[1]{{\left\|#1\right\|_\infty}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% matrices
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\bmat}[2][1]{{\renewcommand{\arraystretch}{#1}\begin{bmatrix}#2\end{bmatrix}}} % thank me later (shorthand for writing bmatrices)
+\newcommand{\fbmat}[1]{\begin{bNiceMatrix}#1\end{bNiceMatrix}} % same as \bmat, \Cdots & co are „nicer“ ;)
+
+\newcommand{\diag}{\col{\operatorcolor}{\mathrm{diag}}} % diagonal of matrix / diagonal matrix (definition dependent)
+\newcommand{\cols}{\col{\operatorcolor}{\mathrm{col}}} % column space of matrix (en)
+\newcommand{\rows}{\col{\operatorcolor}{\mathrm{row}}} % row space of matrix (en)
+\newcommand{\Eig}{\col{\operatorcolor}{\mathrm{Eig}}} % eigendata of matrix
+\newcommand{\Gram}{\col{\operatorcolor}{\mathrm{Gram}}} % Gram matrix
+\newcommand{\ind}{\col{\operatorcolor}{\mathrm{ind}}} % index of matrix
+\newcommand{\detm}[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert} % shorthand determiant
+\newcommand{\hateq}{\overset{\scriptscriptstyle\wedge}{=}} % matrices are congruent
+\renewcommand{\det}{\col{\operatorcolor}{\mathrm{det}}}
+\newcommand{\spec}{\col{\operatorcolor}{\mathrm{spec}}} % set of eigenvalues of linear map
+\newcommand{\Ann}{\col{\operatorcolor}{\mathrm{Ann}}} % annihilator of matrix
+
+\newcommand{\mat}[1]{\mathrm{\col{\matrixcolor!95!black}{#1}}} % matrix typing
+\newcommand{\tmat}[1]{\tilde{\mat{#1}}} % matrix with tilde
+\newcommand{\hmat}[1]{\hat{\mat{#1}}} % matrix with hat
+\newcommand{\cmat}[1]{\mat{\mathcal{#1}}} % calligraphic matrix
+\newcommand{\barmat}[1]{\bar{\mat{#1}}}
+\newcommand{\umat}[1]{\ubar{\mat{#1}}}
+\newcommand{\gmat}[1]{\mat{#1}} % greek letter matrix (deprecated), use \mat instead
+
+\newcommand{\zrg}{\col{\operatorcolor}{\mathrm{zrg}}} % row rank of matrix (de)
+\newcommand{\rrk}{\col{\operatorcolor}{\mathrm{rrk}}} % row rank of matrix (en)
+\newcommand{\srg}{\col{\operatorcolor}{\mathrm{srg}}} % column rank of matrix (de)
+\newcommand{\crk}{\col{\operatorcolor}{\mathrm{crk}}} % column rank of matrix (en)
+
+\newcommand{\spur}{\col{\operatorcolor}{\mathrm{spur}}} % matrix trace (de)
+\newcommand{\spr}{\col{\operatorcolor}{\mathrm{sp}}}    % matrix trace (de)
+\newcommand{\Spur}{\col{\operatorcolor}{\mathrm{Spur}}} % matrix trace (de)
+\newcommand{\Spr}{\col{\operatorcolor}{\mathrm{Sp}}}    % matrix trace (de)
+
+\newcommand{\trace}{\col{\operatorcolor}{\mathrm{trace}}} % matrix trace (en)
+\newcommand{\tr}{\col{\operatorcolor}{\mathrm{tr}}}       % matrix trace (en)
+\newcommand{\Trace}{\col{\operatorcolor}{\mathrm{Trace}}} % matrix trace (en)
+\newcommand{\Tr}{\col{\operatorcolor}{\mathrm{Tr}}}       % matrix trace (en)
+
+\newcommand{\rg}{\col{\operatorcolor}{\mathrm{rg}}} % rank of matrix (de)
+\newcommand{\Rg}{\col{\operatorcolor}{\mathrm{Rg}}} % rank of matrix (de)
+\newcommand{\rang}{\col{\operatorcolor}{\mathrm{rang}}} % rank of matrix (de)
+\newcommand{\Rang}{\col{\operatorcolor}{\mathrm{Rang}}} % matrix rank (de)
+
+\newcommand{\rk}{\col{\operatorcolor}{\mathrm{rk}}} % rank of matrix (en)
+\newcommand{\rank}{\col{\operatorcolor}{\mathrm{rank}}} % rank of matrix (en)
+\newcommand{\Rank}{\col{\operatorcolor}{\mathrm{Rank}}} % rank of matrix (en)
+
+\newcommand{\frob}{_\mathrm{F}}
+\newcommand{\fnorm}[1]{\norm{#1}\frob}
+\newcommand{\onorm}[1]{{\norm{#1}_\mathrm{O}}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand*{\longleadsto}[1]{
+  \tikzexternaldisable
+  \begin{tikzpicture}
+    \draw [->, line join=round, decorate, decoration={
+          zigzag,
+          segment length=4,
+          amplitude=.9,
+          post=lineto,
+          post length=2pt}] (0,0) -- (#1,0);
+  \end{tikzpicture}
+  \tikzexternalenable
+}
+
+\newcommand{\rtrf}[1]{%
+  \tikzexternaldisable%
+  \begin{tikzpicture}%
+    \draw [->, line join=round, decorate, decoration={%
+          zigzag,%
+          segment length=4,%
+          amplitude=.9,%
+          post=lineto,%
+          post length=2pt}] (0,0) -- (1.5cm,0)%
+    node[midway,above]{$\substack{#1}$};%
+  \end{tikzpicture}%
+  \tikzexternalenable%
+} % matrix row transformation
+
+%----------------------------------------------------------------------------------------------------------------------
+% exotic trig functions
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\Arsinh}{\mathrm{Arsinh}} % Area sinus hyperbolicus
+\newcommand{\Arcosh}{\mathrm{Arcosh}} % Area cosinus hyperbolicus
+\newcommand{\Artanh}{\mathrm{Artanh}} % Area tangens hyperbolicus
+\newcommand{\Arcoth}{\mathrm{Arcoth}} % Area cotangens hyperbolicus
+\newcommand{\Arsech}{\mathrm{Arsech}} % Area secans hyperbolicus
+\newcommand{\Arcsch}{\mathrm{Arcsch}} % Area cosecancs hyperbolicus
+\newcommand{\sinc}{\mathrm{sinc}} % sinus cardinalis (de, not normalised)
+\newcommand{\sinnc}{\mathrm{si}} % sinus cardinalis (de, normalised)
+\newcommand{\Si}{\mathrm{Si}} % integral sinus
+\newcommand{\Li}{\mathrm{Li}} % integral logarithmus naturlis
+\newcommand{\arccot}{\mathrm{arccot}}
+\newcommand{\arcsec}{\mathrm{arcsec}}
+\newcommand{\arccsc}{\mathrm{arccsc}}
+\newcommand{\sech}{\mathrm{sech}}
+\newcommand{\csch}{\mathrm{csch}}
+
+\DeclareMathOperator{\ld}{\mathrm{ld}}
+
+% other
+\newcounter{dispcount}
+
+\newcommand{\floor}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\ceil}[1]{\left\lceil#1\right\rceil}
+\renewcommand{\bar}[1]{\overline{#1}} % overline (again)
+\newcommand{\ubar}[1]{\underline{#1}} % underline
+\newcommand{\oset}[2]{\overset{#1}{#2}}
+\newcommand{\uset}[2]{\underset{#1}{#2}}
+\newcommand{\obra}[1]{\overbrace{#1}}
+\newcommand{\ubra}[1]{\underbrace{#1}}
+
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cZ}{\mathcal{Z}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cV}{\mathcal{V}}
+
+\newcommand{\sH}{\mathscr{H}}
+\newcommand{\sR}{\mathscr{R}}
+\newcommand{\sT}{\mathscr{T}}
+\newcommand{\sB}{\mathscr{B}}
+
+% for small calligraphic letters
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathscall}{OT1}{pzc}{m}{it}
+\newcommand{\sco}{\mathscall{o}}
+\newcommand{\transpose}{\mathsf{t}}
+\renewcommand{\complement}{\mathsf{c}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\tran}{^\transpose}
+\newcommand{\compl}{^\complement}
+\newcommand{\eset}{\emptyset}
+\newcommand{\sset}{\subseteq}
