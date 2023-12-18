@@ -63,13 +63,16 @@
 }
 
 \sodef\invoiceSpacing{}{.15em}{.4em}{.4em}
+\newcommand{\makeheaderpart}[1]{
+  \begin{tabular}[t]{@{} c @{}}
+    {\headerStyle \invoiceSpacing{Honorarnote} \##1} \\
+    {\titleStyle \today}
+  \end{tabular}
+}
 \newcommand*{\makeheader}[2]{
   \begin{minipage}[t]{.5\linewidth} {\headerStyle #1} \end{minipage}
   \hfill
-  \begin{tabular}[t]{@{} c @{}}
-    {\headerStyle \invoiceSpacing{Honorarnote} \##2} \\
-    {\titleStyle \today}
-  \end{tabular}
+  \makeheaderpart{#2}
 
   \addvspace{8ex}
 }
