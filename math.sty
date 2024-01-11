@@ -1,7 +1,6 @@
 \ProvidesPackage{prettytex/math}
 \RequirePackage{prettytex/base}
 
-
 %%----------------------------------------------------------------------------------------------------------------------
 % package loading
 %%----------------------------------------------------------------------------------------------------------------------
@@ -49,15 +48,14 @@
 % package options
 %%----------------------------------------------------------------------------------------------------------------------
 \DeclareOption{vargreek}{
-    \renewcommand{\phi}{\varphi}
-    \renewcommand{\rho}{\varrho}
+  \renewcommand{\phi}{\varphi}
+  \renewcommand{\rho}{\varrho}
 }
 \DeclareOption{nocols}{\renewcommand{\operatorcolor}{black}}
 \DeclareOption{de}{
-    \renewcommand{\basetrace}{spur}
-    \renewcommand{\baserank}{rang}
+  \renewcommand{\basetrace}{spur}
+  \renewcommand{\baserank}{rang}
 }
-
 \ProcessOptions\relax
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -102,7 +100,6 @@
 \newcommand{\inter}{^\circ}
 \DeclareMathOperator{\supp}{\qopname \relax m{\col{\operatorcolor}{supp}}}
 
-
 \newcommand{\fc}{\mathfrak{c}}
 \newcommand{\fU}{\mathfrak{U}}
 
@@ -110,13 +107,20 @@
 \DeclareMathOperator{\borel}{\upbeta}
 \DeclareMathOperator{\vol}{\qopname \relax m{\col{\operatorcolor}{vol}}}
 
-
 %%----------------------------------------------------------------------------------------------------------------------
 % calculus
 %%----------------------------------------------------------------------------------------------------------------------
 \DeclareMathOperator{\FD}{\qopname \relax m{d}}
 \DeclareMathOperator{\dd}{\qopname \relax m{d}}
 \newcommand{\idd}{\;\mathrm{d}}
+\newcommand{\ddx}{\dd x} % dx
+\newcommand{\ddy}{\dd y} % dy
+\newcommand{\ddz}{\dd z} % dz
+\newcommand{\ddu}{\dd u} % du
+\newcommand{\ddv}{\dd v} % dv
+\newcommand{\ddr}{\dd r} % dr
+\newcommand{\dds}{\dd s} % ds
+\newcommand{\ddt}{\dd t} % dt
 \DeclareMathOperator{\hess}{\qopname \relax m{\col{\operatorcolor}{H}}}
 \DeclareMathOperator{\jac}{\qopname \relax m{\col{\operatorcolor}{J}}}
 
@@ -199,7 +203,6 @@
 
 \newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle}
 
-
 \renewcommand{\vec}[1]{{\bm{#1}}}
 \newcommand{\hvec}[1]{{\hat{\vec{#1}}}} % vector with hat
 \newcommand{\tvec}[1]{{\tilde{\vec{#1}}}} % vector with tilde
@@ -236,11 +239,11 @@
 \newcommand{\spur}{\col{\operatorcolor}{\mathrm{\basetrace}}}
 \newcommand{\spr}{\col{\operatorcolor}{\mathrm{\basetrace}}}
 \newcommand{\Spur}{\col{\operatorcolor}{\mathrm{\basetrace}}
-\newcommand{\Spr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
+  \newcommand{\Spr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
 \newcommand{\trace}{\col{\operatorcolor}{\mathrm{\basetrace}}
-\newcommand{\tr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
+  \newcommand{\tr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
 \newcommand{\Trace}{\col{\operatorcolor}{\mathrm{\basetrace}}
-\newcommand{\Tr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
+  \newcommand{\Tr}{\col{\operatorcolor}{\mathrm{\basetrace}}}}
 
 \newcommand{\rg}{\col{\operatorcolor}{\mathrm{\baserank}}}
 \newcommand{\Rg}{\col{\operatorcolor}{\mathrm{\baserank}}}
