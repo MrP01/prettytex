@@ -38,6 +38,7 @@
 \newcommand{\uset}[2]{\underset{#1}{#2}}
 \newcommand{\obra}[1]{\overbrace{#1}}
 \newcommand{\ubra}[1]{\underbrace{#1}}
+\newcommand{\parenth}[1]{\left(#1\right)}
 
 % for small calligraphic letters
 \DeclareFontFamily{OT1}{pzc}{}
@@ -114,8 +115,8 @@
 %%----------------------------------------------------------------------------------------------------------------------
 % calculus
 %%----------------------------------------------------------------------------------------------------------------------
-\DeclareMathOperator{\FD}{\qopname \relax m{d}}
-\DeclareMathOperator{\dd}{\qopname \relax m{d}}
+\newcommand{\FD}{\mathrm{d}}
+\newcommand{\dd}{\mathrm{d}}
 \newcommand{\idd}{\;\mathrm{d}}
 \DeclareMathOperator{\hess}{\qopname \relax m{\col{\operatorcolor}{H}}}
 \DeclareMathOperator{\jac}{\qopname \relax m{\col{\operatorcolor}{J}}}
@@ -152,7 +153,7 @@
 \DeclareMathOperator*{\argmax}{\qopname \relax m{\col{\operatorcolor}{arg\:max}}}
 \DeclareMathOperator*{\uniflim}{\qopname \relax m{\col{\operatorcolor}{unif\:lim}}}
 \DeclareMathOperator*{\apexlim}{\qopname \relax m{\col{\operatorcolor}{apex\:lim}}}
-\DeclareMathOperator*{\laplace}{\triangle}
+\DeclareMathOperator*{\laplace}{{\triangle}}
 
 \newcommand{\limh}{\lim_{h\to 0}}
 \newcommand{\limt}{\lim_{t\to 0}}
