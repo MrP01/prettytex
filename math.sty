@@ -111,16 +111,17 @@
 % calculus
 %%----------------------------------------------------------------------------------------------------------------------
 \DeclareMathOperator{\FD}{\qopname \relax m{d}}
-\DeclareMathOperator{\dd}{\qopname \relax m{d}}
+% \DeclareMathOperator{\dd}{\qopname \relax m{d}}
+\newcommand{\dd}{\mathrm{d}}
 \newcommand{\idd}{\;\mathrm{d}}
-\newcommand{\ddx}{\dd x} % dx
-\newcommand{\ddy}{\dd y} % dy
-\newcommand{\ddz}{\dd z} % dz
-\newcommand{\ddu}{\dd u} % du
-\newcommand{\ddv}{\dd v} % dv
-\newcommand{\ddr}{\dd r} % dr
-\newcommand{\dds}{\dd s} % ds
-\newcommand{\ddt}{\dd t} % dt
+\newcommand{\ddx}{\mathrm{d} x} % dx
+\newcommand{\ddy}{\mathrm{d} y} % dy
+\newcommand{\ddz}{\mathrm{d} z} % dz
+\newcommand{\ddu}{\mathrm{d} u} % du
+\newcommand{\ddv}{\mathrm{d} v} % dv
+\newcommand{\ddr}{\mathrm{d} r} % dr
+\newcommand{\dds}{\mathrm{d} s} % ds
+\newcommand{\ddt}{\mathrm{d} t} % dt
 \DeclareMathOperator{\hess}{\qopname \relax m{\col{\operatorcolor}{H}}}
 \DeclareMathOperator{\jac}{\qopname \relax m{\col{\operatorcolor}{J}}}
 
