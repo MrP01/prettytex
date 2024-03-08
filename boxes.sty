@@ -51,9 +51,18 @@
 \newcommand{\wrapthm}[2]{%
   \tcolorboxenvironment{#1}{enhanced jigsaw,
     enhanced jigsaw, colframe=#2!50,%
-    coltitle=green,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
+    ,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
     borderline={0.5mm}{0mm}{#2!50},%
-    colback=white,colback=#2!5
+    colback=#2!5
+  }
+}
+
+\newcommand{\miniwrap}[2]{%
+  \tcolorboxenvironment{#1}{enhanced jigsaw,
+    colframe=#2!50,%
+    ,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
+    borderline={0.5mm}{0mm}{#2!50},%
+    colback=white
   }
 }
 
