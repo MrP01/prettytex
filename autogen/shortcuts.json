@@ -1,0 +1,195 @@
+{
+    "alphabets": {
+        "latin": [
+            "a",
+            "b",
+            "c",
+            "d",
+            "e",
+            "f",
+            "g",
+            "h",
+            "i",
+            "j",
+            "k",
+            "l",
+            "m",
+            "n",
+            "o",
+            "p",
+            "q",
+            "r",
+            "s",
+            "t",
+            "u",
+            "v",
+            "w",
+            "x",
+            "y",
+            "z"
+        ],
+        "Latin": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E",
+            "F",
+            "G",
+            "H",
+            "I",
+            "J",
+            "K",
+            "L",
+            "M",
+            "N",
+            "O",
+            "P",
+            "Q",
+            "R",
+            "S",
+            "T",
+            "U",
+            "V",
+            "W",
+            "X",
+            "Y",
+            "Z"
+        ],
+        "greek": [
+            "alpha",
+            "beta",
+            "gamma",
+            "delta",
+            "epsilon",
+            "eta",
+            "theta",
+            "iota",
+            "kappa",
+            "lambda",
+            "mu",
+            "nu",
+            "xi",
+            "pi",
+            "rho",
+            "sigma",
+            "tau",
+            "upsilon",
+            "phi",
+            "chi",
+            "psi",
+            "omega"
+        ],
+        "Greek": [
+            "Gamma",
+            "Delta",
+            "Theta",
+            "Lambda",
+            "Xi",
+            "Pi",
+            "Sigma",
+            "Ypsilon",
+            "Phi",
+            "Psi",
+            "Omega"
+        ]
+    },
+    "format-specifiers": [
+        {
+            "name": "base",
+            "prefix": "",
+            "macro": ""
+        },
+        {
+            "name": "tilde",
+            "prefix": "t",
+            "macro": "tilde"
+        },
+        {
+            "name": "underbar",
+            "prefix": "u",
+            "macro": "ubar"
+        },
+        {
+            "name": "overbar",
+            "prefix": "b",
+            "macro": "bar"
+        },
+        {
+            "name": "hat",
+            "prefix": "h",
+            "macro": "hat"
+        },
+        {
+            "name": "calligraphic",
+            "prefix": "c",
+            "macro": "mathcal"
+        },
+        {
+            "name": "fraktur",
+            "prefix": "f",
+            "macro": "mathfrak"
+        },
+        {
+            "name": "script",
+            "prefix": "s",
+            "macro": "mathscr"
+        }
+    ],
+    "create": [
+        "vector",
+        "matrix",
+        "common"
+    ],
+    "batch": [
+        {
+            "name": "vector",
+            "template": "$p:vec:$x",
+            "macro": "vec",
+            "exclude": {
+                "alphabets": [
+                    "Latin",
+                    "Greek"
+                ],
+                "letters": []
+            },
+            "formats": [
+                "base",
+                "tilde",
+                "hat"
+            ]
+        },
+        {
+            "name": "matrix",
+            "template": "$p:mat:$x",
+            "macro": "mat",
+            "exclude": {
+                "alphabets": [
+                    "latin",
+                    "greek",
+                    "Greek"
+                ],
+                "letters": []
+            },
+            "formats": [
+                "base",
+                "tilde",
+                "hat"
+            ]
+        },
+        {
+            "name": "common",
+            "template": "$p$x",
+            "macro": "",
+            "exclude": {
+                "alphabets": ["Greek", "greek"],
+                "letters": []
+            },
+            "formats": [
+                "calligraphic",
+                "fraktur",
+                "script"
+            ]
+        }
+    ]
+}
