@@ -39,7 +39,6 @@
 \renewcommand{\headrulewidth}{.25pt}
 \renewcommand{\footrulewidth}{.25pt}
 \pagestyle{fancy}
-\usepackage{esvect}
 
 \allowdisplaybreaks
 \titleformat{\section}[block]{\Large\bfseries\filcenter}{\assname\hspace{0.2cm}\numsymb\hspace{0.2cm}\assnum}{1em}{}
@@ -52,10 +51,10 @@
 \newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Korollar}
 
-\wrapthm{definition}{themecolor2}
-\wrapthm{theorem}{blue}
-\wrapthm{lemma}{purple}
-\wrapthm{corollary}{orange}
+\miniwrap{definition}{themecolor2}
+\miniwrap{theorem}{blue}
+\miniwrap{lemma}{purple}
+\miniwrap{corollary}{orange}
 
 \DeclareOption{section}{%
 \BeforeBeginEnvironment{#1}{\savenotes}%
