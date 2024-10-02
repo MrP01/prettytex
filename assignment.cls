@@ -9,14 +9,14 @@
 
 \RequirePackage[singlelinecheck,\lang, collink]{prettytex/base}
 \RequirePackage{prettytex/math}
-\RequirePackage[external]{prettytex/gfx}
+\RequirePackage{prettytex/gfx}
 \RequirePackage{prettytex/gfx-circuits}
 \RequirePackage{prettytex/gfx-components}
 \RequirePackage{prettytex/boxes}
 \RequirePackage{prettytex/math-sigtrans}
 \RequirePackage{tikz-cd}
 \RequirePackage{titlesec, varwidth,lastpage}
-\usepackage{mathdots}
+%\usepackage{mathdots}
 \usepackage{cleveref}
 
 \newcommand{\name}{}
