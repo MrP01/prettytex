@@ -29,3 +29,4 @@ _minted-*
 *.cb2
 *.auxlock
 docs/prettytex.pyg
+test/
