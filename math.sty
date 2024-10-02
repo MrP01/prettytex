@@ -190,7 +190,9 @@
 \newcommand{\isomorph}{\twoheadrightarrowtail} % mapping is isomorphism (bijective)
 \newcommand{\Aut}{\col{\operatorcolor}{\mathrm{Aut}}} % set of automorphisms
 \newcommand{\End}{\col{\operatorcolor}{\mathrm{End}}} % set of endomorphisms
-\newcommand{\ran}{\col{\operatorcolor}{\mathrm{ran}}} % range of mapping
+\DeclareMathOperator{\ran}{\qopname \relax m{ran}}
+\DeclareMathOperator{\dom}{\qopname \relax m{dom}}
+
 \newcommand{\dspan}{\col{\operatorcolor}{\mathrm{span}}}
 \let\dim\relax
 \let\ker\relax
