@@ -7,6 +7,12 @@
 \usepackage{footnote}
 \usepackage{etoolbox}
 \usepackage{amsthm}
+\usepackage{thmtools}
+
+\newif\ifcref
+\creffalse
+\DeclareOption{cref}{\creftrue}
+\ProcessOptions\relax
 
 % allow tikz-externalization
 \tcbsetforeverylayer{shield externalize}
@@ -116,3 +122,20 @@
 \ProcessOptions\relax
 
 \newcommand*\l@thmlist{\@dottedtocline{1}{1.5em}{3.3em}}
+
+
+\ifcref
+  \newcommand{\declareEnvList}[4]{%
+    \newlist{#1list}{enumerate}{1}
+    \setlist[#1list]{label=(\roman{#1listi}), ref=#2.(\roman{#1listi}), noitemsep}
+    \Crefname{list#1}{#3}{#3}
+    \crefname{list#1}{#4}{#4}
+    \addtotheorempostheadhook[#1]{\crefalias{#1listi}{list#1}}
+  }
+\else
+  \newcommand{\declareEnvList}[2]{%
+    \newlist{#1list}{enumerate}{1}
+    \setlist[#1list]{label=(\roman{#1listi}), ref=#2.(\roman{#1listi}), noitemsep}
+    \addtotheorempostheadhook[#1]{\crefalias{#1listi}{list#1}}
+  }
+\fi
