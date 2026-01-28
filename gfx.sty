@@ -70,10 +70,17 @@ preaction = {decorate},
 postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
 
 \newcommand{\figureloc}{figures}
+\newcommand{\diagramloc}{diagrams}
 
 \newcommand{\inputtikz}[1]{
   \tikzsetnextfilename{#1}
   \input{\figureloc/#1.tex}
+}
+
+\newcommand{\inputdiagram}[1]{
+  \tikzexternaldisable
+  \input{\diagramloc/#1.tex}
+  \tikzexternalenable
 }
 
 \newcommand{\tikzexternal}{tikz}
