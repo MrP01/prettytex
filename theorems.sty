@@ -1,0 +1,106 @@
+\ProvidesPackage{prettytex/theorems}
+\RequirePackage{prettytex/base}
+\RequirePackage{prettytex/boxes}
+
+
+\newcommand{\theoremname}{Theorem}
+\newcommand{\lemmaname}{Lemma}
+\newcommand{\propositionname}{Proposition}
+\newcommand{\corollaryname}{Corollary}
+\newcommand{\definitionname}{Definition}
+\newcommand{\remarkname}{Remark}
+\newcommand{\remarksname}{Remarks}
+\newcommand{\examplename}{Example}
+\newcommand{\examplesname}{Examples}
+\newcommand{\axiomname}{Axiom}
+\newcommand{\axiomsname}{Axioms}
+\newcommand{\principlename}{Principle}
+\newcommand{\principlesname}{Principles}
+
+
+
+\DeclareOption{de}{
+    \renewcommand{\theoremname}{Satz}
+    \renewcommand{\lemmaname}{Lemma}
+    \renewcommand{\propositionname}{Proposition}
+    \renewcommand{\corollaryname}{Korollar}
+    \renewcommand{\definitionname}{Definition}
+    \renewcommand{\remarkname}{Bemerkung}
+    \renewcommand{\remarksname}{Bemerkungen}
+    \renewcommand{\examplename}{Beispiel}
+    \renewcommand{\examplesname}{Beispiele}
+    \renewcommand{\axiomname}{Axiom}
+    \renewcommand{\axiomsname}{Axiome}
+    \renewcommand{\principlename}{Prinzip}
+    \renewcommand{\principlesname}{Prinzipien}
+
+    \Crefname{theorem}{Satz}{Sätze}
+    \Crefname{lemma}{Lemma}{Lemmata}
+    \Crefname{proposition}{Proposition}{Propositionen}
+    \Crefname{corollary}{Korollar}{Korollare}
+    \Crefname{Definition}{Definition}{Definitionen}
+    \Crefname{remark}{Bemerkung}{Bemerkungen}
+    \Crefname{remarks}{Bemerkung}{Bemerkungen}
+    \Crefname{example}{Beispiel}{Beispiele}
+    \Crefname{axiom}{Axiom}{Axiome}
+    \Crefname{axioms}{Axiom}{Axiome}
+    \Crefname{principle}{Prinzip}{Prinzipien}
+    \Crefname{principles}{Prinzipien}{Prinzipien}
+
+}
+\DeclareOption{en}{}
+\ProcessOptions\relax
+
+\newcommand{\theoremcolour}{themecolor3}
+\newcommand{\definitioncolour}{themecolor2}
+\newcommand{\lemmacolour}{darkpurple}
+\newcommand{\corollarycolour}{darkpink}
+\newcommand{\axiomcolour}{themecolor4}
+\newcommand{\principlecolour}{darkred}
+
+\newtheorem{theorem}{\theoremname}[section]
+\newtheorem{corollary}[theorem]{\corollaryname}
+\newtheorem{lemma}[theorem]{\lemmaname}
+\newtheorem{proposition}[theorem]{\propositionname}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{\definitionname}
+\newtheorem{axiom}[theorem]{\axiomname}
+\newtheorem{axioms}[theorem]{\axiomsname}
+\newtheorem{principle}[theorem]{\principlename}
+\newtheorem{principles}[theorem]{\principlesname}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{\remarkname}
+\newtheorem{remarks}[theorem]{\remarksname}
+\newtheorem*{remark*}{\remarkname}
+\newtheorem{example}[theorem]{\examplename}
+\newtheorem{examples}[theorem]{\examplesname}
+
+
+
+
+\miniwrap{definition}{\definitioncolour}
+\miniwrap{theorem}{\theoremcolour}
+\miniwrap{proposition}{\theoremcolour}
+\miniwrap{lemma}{\lemmacolour}
+\miniwrap{corollary}{\corollarycolour}
+\miniwrap{axiom}{\axiomcolour}
+\miniwrap{axioms}{\axiomcolour}
+\miniwrap{principle}{\principlecolour}
+\miniwrap{principles}{\principlecolour}
+
+
+\declareEnvList{theorem}{\thetheorem}{\theoremname}{\MakeLowercase{\theoremname}}
+\declareEnvList{lemma}{\thelemma}{\lemmaname}{\MakeLowercase{\lemmaname}}
+\declareEnvList{corollary}{\thecorollary}{\corollaryname}{\MakeLowercase{\corollaryname}}
+\declareEnvList{proposition}{\theproposition}{\propositionname}{\MakeLowercase{\propositionname}}
+\declareEnvList{definition}{\thedefinition}{\definitionname}{\MakeLowercase{\definitionname}}
+\declareEnvList{axiom}{\theaxiom}{\axiomname}{\MakeLowercase{\axiomname}}
+\declareEnvList{axioms}{\theaxioms}{\axiomname}{\MakeLowercase{\axiomname}}
+\declareEnvList{principle}{\theprinciple}{\principlename}{\MakeLowercase{\principlename}}
+\declareEnvList{principles}{\theprinciples}{\principlename}{\MakeLowercase{\principlena}}
+\declareEnvList{remark}{\theremark}{\remarkname}{\MakeLowercase{\remarkname}}
+\declareEnvList{remarks}{\theremarks}{\remarksname}{\MakeLowercase{\remarksname}}
+\declareEnvList{example}{\theexample}{\examplename}{\MakeLowercase{\examplename}}
+\declareEnvList{examples}{\theexamples}{\examplename}{\MakeLowercase{\examplesname}}
