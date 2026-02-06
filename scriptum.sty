@@ -24,6 +24,8 @@
 \usepackage[title]{appendix}
 \usepackage{tikz-cd}
 
+
+\newcommand{\lecturerSurname}{}
 \newcommand{\lecturerName}{ }
 \newcommand{\lecturerTitle}{ }
 \newcommand{\institute}{ }
@@ -54,7 +56,7 @@
 \DeclareTranslation{English}{basednotes}{based on notes from and written by}
 \DeclareTranslation{German}{basednotes}{basierend auf Notizen und geschrieben von}
 
-\title{\Large \lecture \\\small[\lectureID]\\\vspace{0.5cm}\GetTranslation{readby}: \lecturerTitle \lecturerName \\\GetTranslation{atthe} \institute \\\university }
+\title{\Large \lecture \\\small[\lectureID]\\\vspace{0.5cm}\GetTranslation{readby}: \lecturerTitle \lecturerName{} \lecturerSurname \\\GetTranslation{atthe} \institute \\\university }
 \author{\small \GetTranslation{basednotes}:\\\student}
 \date{\term }
 
@@ -63,9 +65,71 @@
     pdfauthor = {\student}
 }
 
-\newcommand{\closingQuote}{}
-\newcommand{\closingQuoteSource}{}
+\newcommand{\openingQuote}{a very thoughful quote}
+\newcommand{\openingQuoteSource}{the person who said it}
+\newcommand{\makeOpeningQuote}{\begin{center}\openingQuote\\\vspace{0.25cm}\slshape\small {\openingQuoteSource}\end{center}}
+
+
+\newcommand{\closingQuote}{another very thoughtful quote}
+\newcommand{\closingQuoteSource}{the person who said it}
 \newcommand{\makeClosingQuote}{%
 \newpage\thispagestyle{empty}\hspace{0pt}\vfill\begin{center}\closingQuote \\\vspace{0.5cm}\small\closingQuoteSource \end{center}\vfill}
 
+\DeclareTranslation{English}{shortoverviewthmhierarchy}{A short overview on the hierarchy of statements in these notes}
+\DeclareTranslation{German}{shortoverviewthmhierarchy}{Eine kurze Übersicht über die Hierarchie der Aussagen in diesem Skriptum}
+
+\newcommand{\majorResultKey}{}
+\newcommand{\majorResultName}{}
+
+\DeclareTranslation{English}{theoremhierarchy}{Theorem: A theorem is considered a major result, such as \hyperref[\majorResultKey]{\majorResultName}.}
+\DeclareTranslation{English}{propositionhierarchy}{Proposition: Propositions are „weaker“ than theorems in the sense, that they are for less important statements.}
+\DeclareTranslation{English}{lemmahierarchy}{Lemma: Lemmata are used as auxiliary results in order to simplify a long proof. Some statements may still be called Lemma based on historical developments.}
+\DeclareTranslation{English}{corollaryhierarchy}{Corollary: A corollary is a direct consequence of one of the above and only requires an application of the already proven statement(s).}
+
+\DeclareTranslation{German}{theoremhierarchy}{Satz: Unter einem Satz verstehen wir ein bedeutendes Ergebnis, wie etwa \hyperref[\majorResultKey]{\majorResultName}.}
+\DeclareTranslation{German}{propositionhierarchy}{Proposition: Propositionen sind „schwächer“ als Sätze in dem Sinn, da sie für weniger wichtige Ergebnisse stehen.}
+\DeclareTranslation{German}{lemmahierarchy}{Lemma: Lemmata sind Hilfsresultate, die zur Vereinfachung eines langen Beweises dienen. Einige Aussagen werden aus geschichtlichen Gründen immer noch Lemma genannt.}
+\DeclareTranslation{German}{corollaryhierarchy}{Korollar: Ein Korollar ist eine direkte Konsequenz aus einer der vorherigen Aussagen und benötigt nur eine Anwendung der zuvor beweisenen Aussage(n).}
+
+\newcommand{\makeHierarchy}{%
+\GetTranslation{shortoverviewthmhierarchy}:
+\begin{enumerate}
+    \item \GetTranslation{theoremhierarchy}
+    \item \GetTranslation{propositionhierarchy}
+    \item \GetTranslation{lemmahierarchy}
+    \item \GetTranslation{corollaryhierarchy}
+\end{enumerate}
+}
+
+\DeclareTranslation{English}{mastercourseremark}{As this is a course from the master's programm of mathematics in Graz, some proofs may be considered elementary and are thus omitted. This is indicated that the $\qedsymbol$ is already at the end of the statment.}
+\DeclareTranslation{German}{mastercourseremark}{Da es sich hierbei um eine Lehrveranstaltung aus dem Masterprogramm \textit{Mathematics} in Graz handelt, werden manche Beweise als elementar angesehen und daher ausgelassen. Das wird dadurch angezeigt, dass $\qedsymbol$ bereits am Ende der Aussage steht.}
+
+\newcommand{\makeMasterRemark}{\GetTranslation{mastercourseremark}}
+
+
+\DeclareTranslation{English}{correctnessremark}{While this text is basically a transcript of the lecture by professor \lecturerSurname, I do not guarantee correctness of the presented results. As with any mathematical text, you should read with focus, and verify things by yourself.}
+\DeclareTranslation{German}{correctnessremark}{Dieses Skript ist mehr oder weniger ein Transkript der Vorlesung von Professor \lecturerSurname, daher garantiere ich keine Korrektheit der präsentierten Ergebnisse. Wie bei jedem mathematischen Text sollten Sie aufmerksam lesen und Ergebnisse selbst nachweisen.}
+
+\newcommand{\makeCorrectnessRemark}{\GetTranslation{correctnessremark}}
+
+\DeclareTranslation{English}{correctnesserrors}{The mistakes, that are by no means present, are most likely of a very abstract nature, or stem from a lack of understanding on my side. If you happen to notice any errors, please contact me personally or via E-Mail:}
+\DeclareTranslation{German}{correctnesserrors}{Die Fehler, die zweifelsohne in diesem Text sind, sind vermutlich sehr abstrakter Natur, oder stammen von einem unvollständigen Verständnis meinerseits. Falls Sie Fehler finden, kontaktieren Sie mich bitte entweder persönlich oder per E-Mail:}
+
+\newcommand{\makeErrorsRemark}{\GetTranslation{correctnesserrors}}
+
+\DeclareTranslation{English}{license}{License}
+\DeclareTranslation{German}{license}{Lizenz}
+\newcommand{\makeLicense}{\subsection*{\GetTranslation{license}}\doclicenseThis}
+
+\newcommand{\makeFullBeginningRemarks}[1]{
+    \makeHierarchy{}
+
+    \makeMasterRemark{}
+
+    \makeCorrectnessRemark{}
+
+    \makeErrorsRemark{} \href{#1}{#1}
+
+    \makeLicense
+}
 
