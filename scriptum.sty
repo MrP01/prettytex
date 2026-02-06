@@ -1,0 +1,71 @@
+\ProvidesPackage{prettytex/scriptum}
+
+
+\newcommand{\scriptlang}{en}
+\DeclareOption{de}{
+    \renewcommand{\scriptlang}{de}
+}
+\DeclareOption{en}{
+    \renewcommand{\scriptlang}{en}
+}
+\ProcessOptions\relax
+
+
+\usepackage{imakeidx}
+\usepackage[\scriptlang, collink, singlelinecheck]{prettytex/base}
+\usepackage[nocols]{prettytex/math}
+\usepackage{prettytex/gfx}
+\usepackage[cref]{prettytex/boxes}
+\usepackage{prettytex/shortcuts}
+\usepackage{prettytex/mathematicians}
+\usepackage{cleveref}
+\usepackage[\scriptlang]{prettytex/theorems}
+\usepackage[type={CC}, modifier={by-nc-sa},version={4.0}]{doclicense}
+\usepackage[title]{appendix}
+\usepackage{tikz-cd}
+
+\newcommand{\lecturerName}{ }
+\newcommand{\lecturerTitle}{ }
+\newcommand{\institute}{ }
+\newcommand{\lecture}{ }
+\newcommand{\lectureID}{ }
+\newcommand{\term}{ }
+\newcommand{\university}{ }
+\newcommand{\student}{ }
+
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep,label=(\roman*)}
+\makeindex[intoc]
+
+\fancyhf{}
+\fancyhead[C]{\leftmark}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{\rightmark}
+
+\pagestyle{fancy}
+\numberwithin{equation}{section}
+
+\DeclareTranslation{English}{readby}{read by}
+\DeclareTranslation{German}{readby}{gelesen von}
+
+\DeclareTranslation{English}{atthe}{at the}
+\DeclareTranslation{German}{atthe}{am}
+
+\DeclareTranslation{English}{basednotes}{based on notes from and written by}
+\DeclareTranslation{German}{basednotes}{basierend auf Notizen und geschrieben von}
+
+\title{\Large \lecture \\\small[\lectureID]\\\vspace{0.5cm}\GetTranslation{readby}: \lecturerTitle \lecturerName \\\GetTranslation{atthe} \institute \\\university }
+\author{\small \GetTranslation{basednotes}:\\\student}
+\date{\term }
+
+\hypersetup{
+    pdftitle = {\lecture},
+    pdfauthor = {\student}
+}
+
+\newcommand{\closingQuote}{}
+\newcommand{\closingQuoteSource}{}
+\newcommand{\makeClosingQuote}{%
+\newpage\thispagestyle{empty}\hspace{0pt}\vfill\begin{center}\closingQuote \\\vspace{0.5cm}\small\closingQuoteSource \end{center}\vfill}
+
+
