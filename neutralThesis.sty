@@ -1,0 +1,92 @@
+\ProvidesPackage{prettytex/neutralThesis}
+
+\RequirePackage{prettytex/base}
+
+
+%%---------------------------------------------------------------------------------------------------------------------
+% setup
+%%---------------------------------------------------------------------------------------------------------------------
+
+% author
+\def\@thesisauthor{\@author}
+\newcommand{\thesisauthor}[1]{\def\@thesisauthor{#1}}
+
+% title
+\def\@thesistitle{\@title}
+\newcommand{\thesistitle}[1]{\def\@thesistitle{#1}}
+
+% date
+\def\@thesisdate{\@date}
+\newcommand{\thesisdate}[1]{\def\@thesisdate{#1}}
+
+% degree
+\def\@academicdegree{Master of Science}
+\newcommand{\academicdegree}[1]{\def\@academicdegree{#1}}
+
+% programme
+\def\@degreeprogramme{Mathematics}
+\newcommand{\curriculum}[1]{\def\@degreeprogramme{#1}}
+
+% programme type
+\def\@programmetype{Master}
+\newcommand{\programmetype}[1]{\def\@programmetype{#1}}
+
+% university
+\def\@university{ETH Zürich}
+\newcommand{\university}[1]{\def\@university{#1}}
+
+% institue
+\def\@institute{Mathematics}
+\newcommand{\institute}[1]{\def\@institute{#1}}
+
+% location
+\def\@location{Zürich}
+\newcommand{\location}[1]{\def\@location{#1}}
+
+% supervisor
+\def\@supervisor{An awesome person with lots of titles}
+\newcommand{\supervisor}[1]{\def\@supervisor{#1}}
+
+% logo
+\def\@logolocation{logo.pdf}
+\newcommand{\logolocation}[1]{\def\@logolocation{#1}}
+
+
+\ifdefined\usefamilyofkomafont
+  \def\tugraz@titlefont{\usefamilyofkomafont{disposition}}
+\else
+  \def\tugraz@titlefont{}
+\fi
+
+%%---------------------------------------------------------------------------------------------------------------------
+% titlepage
+%%---------------------------------------------------------------------------------------------------------------------
+\newcommand{\printthesistitle}{%
+    \newgeometry{bottom=2.7cm,left=2.5cm,right=2.5cm,top=1cm}
+    \thispagestyle{empty}
+    \cleardoublepage
+    \begin{center}
+        \includegraphics{\@logolocation}
+    \end{center}
+    \vskip3cm
+    \centering
+    
+    {\fontsize{14pt}{16pt}\selectfont\@thesisauthor \par}
+    \vskip1.2cm
+
+    {\fontsize{16pt}{20pt}\selectfont\bfseries\@thesistitle \par}
+    \vfill
+
+    {\bfseries\fontsize{12pt}{14pt}\selectfont\uppercase\expandafter{\@programmetype}'S THESIS}
+
+    {\@programmetype's degree programme:\\\@degreeprogramme}
+    \vskip 1.2cm
+
+    {\bfseries\fontsize{10pt}{12pt}\selectfont Supervisor \par}
+
+    {\fontsize{10pt}{12pt}\selectfont \@supervisor\\\smallskip\@institute\\\@university \par}
+    \vskip1.4cm
+
+    {\fontsize{8pt}{11pt}\selectfont \@location, \@thesisdate \par}
+    \restoregeometry
+}
