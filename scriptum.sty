@@ -25,15 +25,25 @@
 \usepackage{tikz-cd}
 
 
-\newcommand{\lecturerSurname}{}
-\newcommand{\lecturerName}{ }
-\newcommand{\lecturerTitle}{ }
-\newcommand{\institute}{ }
-\newcommand{\lecture}{ }
-\newcommand{\lectureID}{ }
-\newcommand{\term}{ }
-\newcommand{\university}{ }
-\newcommand{\student}{ }
+\def\@lecturerSurname{Surname}
+\def\@lecturerName{Name}
+\def\@lecturerTitle{Title}
+\def\@institute{Institute}
+\def\@lecture{Lecture}
+\def\@lectureID{Lecture ID}
+\def\@term{Term}
+\def\@university{University}
+\def\@student{Student}
+
+\newcommand{\lecturerSurname}[1]{\def\@lecturerSurname{#1}}
+\newcommand{\lecturerName}[1]{\def\@lecturerName{#1}}
+\newcommand{\lecturerTitle}[1]{\def\@lecturerTitle{#1}}
+\newcommand{\institute}[1]{\def\@institute{#1}}
+\newcommand{\lecture}[1]{\def\@lecture{#1}}
+\newcommand{\lectureID}[1]{\def\@lectureID{#1}}
+\newcommand{\term}[1]{\def\@term{#1}}
+\newcommand{\university}[1]{\def\@university{#1}}
+\newcommand{\student}[1]{\def\@student{#1}}
 
 \setlist[itemize]{noitemsep}
 \setlist[enumerate]{noitemsep,label=(\roman*)}
@@ -56,37 +66,40 @@
 \DeclareTranslation{English}{basednotes}{based on notes from and written by}
 \DeclareTranslation{German}{basednotes}{basierend auf Notizen und geschrieben von}
 
-\title{\Large \lecture \\\small[\lectureID]\\\vspace{0.5cm}\GetTranslation{readby}: \lecturerTitle{} \lecturerName{} \lecturerSurname \\\GetTranslation{atthe} \institute \\\university }
-\author{\small \GetTranslation{basednotes}:\\\student}
-\date{\term }
-
-\hypersetup{
-    pdftitle = {\lecture},
-    pdfauthor = {\student}
-}
-
-\newcommand{\openingQuote}{a very thoughful quote}
-\newcommand{\openingQuoteSource}{the person who said it}
-\newcommand{\makeOpeningQuote}{\begin{center}\openingQuote\\\vspace{0.25cm}\slshape\small {\openingQuoteSource}\end{center}}
+\title{\Large\textbf{\@lecture} \\\small[\@lectureID]\\\vspace{0.5cm}\GetTranslation{readby}: \@lecturerTitle{} \@lecturerName{} \@lecturerSurname \\\GetTranslation{atthe} \@institute \\\@university }
+\author{\small \GetTranslation{basednotes}:\\\@student}
+\date{\@term}
 
 
-\newcommand{\closingQuote}{another very thoughtful quote}
-\newcommand{\closingQuoteSource}{the person who said it}
+
+\def\@openingQuote{Opening quote}
+\def\@openingQuoteSource{Source}
+\newcommand{\openingQuote}[1]{\def\@openingQuote{#1}}
+\newcommand{\openingQuoteSource}[1]{\def\@openingQuoteSource{#1}}
+\newcommand{\makeOpeningQuote}{\begin{center}\@openingQuote\\\vspace{0.25cm}\slshape\small {\@openingQuoteSource}\end{center}}
+
+\def\@closingQuote{Closing quote}
+\def\@closginQuoteSource{Source}
+\newcommand{\closingQuote}[1]{\def\@closingQuote{#1}}
+\newcommand{\closingQuoteSource}[1]{\def\@closingQuoteSource{#1}}
 \newcommand{\makeClosingQuote}{%
-\newpage\thispagestyle{empty}\hspace{0pt}\vfill\begin{center}\closingQuote \\\vspace{0.5cm}\small\closingQuoteSource \end{center}\vfill}
+\newpage\thispagestyle{empty}\hspace{0pt}\vfill\begin{center}\@closingQuote \\\vspace{0.5cm}\small\@closingQuoteSource \end{center}\vfill}
 
 \DeclareTranslation{English}{shortoverviewthmhierarchy}{A short overview on the hierarchy of statements in these notes}
 \DeclareTranslation{German}{shortoverviewthmhierarchy}{Eine kurze Übersicht über die Hierarchie der Aussagen in diesem Skriptum}
 
-\newcommand{\majorResultKey}{}
-\newcommand{\majorResultName}{}
 
-\DeclareTranslation{English}{theoremhierarchy}{Theorem: A theorem is considered a major result, such as \hyperref[\majorResultKey]{\majorResultName}.}
+\def\@majorResultKey{}
+\def\@majorResultName{}
+\newcommand{\majorResultKey}[1]{\def\@majorResultKey{#1}}
+\newcommand{\majorResultName}[1]{\def\@majorResultName{#1}}
+
+\DeclareTranslation{English}{theoremhierarchy}{Theorem: A theorem is considered a major result, such as \hyperref[\@majorResultKey]{\@majorResultName}.}
 \DeclareTranslation{English}{propositionhierarchy}{Proposition: Propositions are „weaker“ than theorems in the sense, that they are for less important statements.}
 \DeclareTranslation{English}{lemmahierarchy}{Lemma: Lemmata are used as auxiliary results in order to simplify a long proof. Some statements may still be called Lemma based on historical developments.}
 \DeclareTranslation{English}{corollaryhierarchy}{Corollary: A corollary is a direct consequence of one of the above and only requires an application of the already proven statement(s).}
 
-\DeclareTranslation{German}{theoremhierarchy}{Satz: Unter einem Satz verstehen wir ein bedeutendes Ergebnis, wie etwa \hyperref[\majorResultKey]{\majorResultName}.}
+\DeclareTranslation{German}{theoremhierarchy}{Satz: Unter einem Satz verstehen wir ein bedeutendes Ergebnis, wie etwa \hyperref[\@majorResultKey]{\@majorResultName}.}
 \DeclareTranslation{German}{propositionhierarchy}{Proposition: Propositionen sind „schwächer“ als Sätze in dem Sinn, da sie für weniger wichtige Ergebnisse stehen.}
 \DeclareTranslation{German}{lemmahierarchy}{Lemma: Lemmata sind Hilfsresultate, die zur Vereinfachung eines langen Beweises dienen. Einige Aussagen werden aus geschichtlichen Gründen immer noch Lemma genannt.}
 \DeclareTranslation{German}{corollaryhierarchy}{Korollar: Ein Korollar ist eine direkte Konsequenz aus einer der vorherigen Aussagen und benötigt nur eine Anwendung der zuvor beweisenen Aussage(n).}
@@ -107,8 +120,8 @@
 \newcommand{\makeMasterRemark}{\GetTranslation{mastercourseremark}}
 
 
-\DeclareTranslation{English}{correctnessremark}{While this text is basically a transcript of the lecture by professor \lecturerSurname, I do not guarantee correctness of the presented results. As with any mathematical text, you should read with focus, and verify things by yourself.}
-\DeclareTranslation{German}{correctnessremark}{Dieses Skript ist mehr oder weniger ein Transkript der Vorlesung von Professor \lecturerSurname, daher garantiere ich keine Korrektheit der präsentierten Ergebnisse. Wie bei jedem mathematischen Text sollten Sie aufmerksam lesen und Ergebnisse selbst nachweisen.}
+\DeclareTranslation{English}{correctnessremark}{While this text is basically a transcript of the lecture by professor \@lecturerSurname, I do not guarantee correctness of the presented results. As with any mathematical text, you should read with focus, and verify things by yourself.}
+\DeclareTranslation{German}{correctnessremark}{Dieses Skript ist mehr oder weniger ein Transkript der Vorlesung von Professor \@lecturerSurname, daher garantiere ich keine Korrektheit der präsentierten Ergebnisse. Wie bei jedem mathematischen Text sollten Sie aufmerksam lesen und Ergebnisse selbst nachweisen.}
 
 \newcommand{\makeCorrectnessRemark}{\GetTranslation{correctnessremark}}
 
@@ -133,7 +146,7 @@
     \makeLicense
 }
 
-\DeclareTranslation{English}{oneTimeOffering}{The lecture \emph{\lecture} was offered by \lecturerName{}\lecturerSurname{} as an elective subject at the \university{}. It is, at the time of writing, not offered as a recurring course.}
-\DeclareTranslation{German}{oneTimeOffering}{Die Lehrveranstaltung \emph{\lecture} wurde von \lecturerName{}\lecturerSurname{} einmalig auf der \university{} gehalten. Sie wird, zum Zeitpunkt des Schreibens, in keinem regelmäßigen Zyklus angeboten.}
+\DeclareTranslation{English}{oneTimeOffering}{The lecture \emph{\@lecture} was offered by \@lecturerName \@lecturerSurname as an elective subject at the \@university. It is, at the time of writing, not offered as a recurring course.}
+\DeclareTranslation{German}{oneTimeOffering}{Die Lehrveranstaltung \emph{\@lecture} wurde von \@lecturerName \@lecturerSurname einmalig auf der \@university gehalten. Sie wird, zum Zeitpunkt des Schreibens, in keinem regelmäßigen Zyklus angeboten.}
 
 \newcommand{\makeOneTimeRemark}{\begin{displayquote}\GetTranslation{oneTimeOffering}\end{displayquote}}
