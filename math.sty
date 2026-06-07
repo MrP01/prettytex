@@ -101,7 +101,8 @@
 \DeclareMathOperator{\cls}{\qopname \relax m{\col{\operatorcolor}{cls}}}
 \DeclareMathOperator{\diam}{\qopname \relax m{\col{\operatorcolor}{diam}}}
 \DeclareMathOperator{\ext}{\qopname \relax m{\col{\operatorcolor}{ext}}}
-\newcommand{\inter}{^\circ}
+\newcommand{\intr}[1]{\mathring{#1}}
+\newcommand{\inter}[1]{\mathring{#1}}
 \DeclareMathOperator{\supp}{\qopname \relax m{\col{\operatorcolor}{supp}}}
 
 \newcommand{\fc}{\mathfrak{c}}
@@ -135,6 +136,7 @@
 \newcommand{\kder}[1]{#1^{(k)}}
 
 \newcommand{\abs}[1]{|#1|}
+\newcommand{\absc}{\abs{\cdot}}
 \newcommand{\labs}[1]{\left|#1\right|}
 
 \let\lim\relax
@@ -163,6 +165,7 @@
 \DeclareMathOperator*{\argmax}{\qopname \relax m{\col{\operatorcolor}{arg\:max}}}
 \DeclareMathOperator*{\uniflim}{\qopname \relax m{\col{\operatorcolor}{unif\:lim}}}
 \DeclareMathOperator*{\apexlim}{\qopname \relax m{\col{\operatorcolor}{apex\:lim}}}
+\DeclareMathOperator*{\Arg}{\qopname \relax m{\col{\operatorcolor}{Arg}}}
 \newcommand{\laplace}{{\triangle}}
 
 \newcommand{\limh}{\lim_{h\to 0}}
@@ -171,11 +174,18 @@
 \newcommand{\limz}{\lim_{z\to z_0}}
 \newcommand{\limn}{\lim_{n\to \infty}}
 \newcommand{\limk}{\lim_{k\to \infty}}
+\newcommand{\liminfn}{\liminf_{n\to\infty}}
+\newcommand{\limsupn}{\limsup_{n\to\infty}}
+\newcommand{\liminfk}{\liminf_{k\to\infty}}
+\newcommand{\limsupk}{\limsup_{k\to\infty}}
+
 
 \newcommand{\seqn}[1]{(#1_n)_{n\in\N}}
 \newcommand{\seqnz}[1]{(#1_n)_{n\in\N_0}}
 \newcommand{\seqk}[1]{(#1_k)_{k\in\N}}
 \newcommand{\seqkz}[1]{(#1_k)_{k\in\N_0}}
+\newcommand{\iseq}[1]{(#1_i)_{i\in I}}
+\newcommand{\jseq}[1]{(#1_j)_{j\in J}}
 
 %%----------------------------------------------------------------------------------------------------------------------
 % algebra
@@ -333,3 +343,25 @@
 \newcommand{\csch}{\mathrm{csch}}
 \DeclareMathOperator{\atan}{\qopname \relax m{atan2}}
 \DeclareMathOperator{\ld}{\mathrm{ld}}
+
+
+%%----------------------------------------------------------------------------------------------------------------------
+% overset relational stuff
+%%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\refrel}[2]{\oset{\text{\ref{#1}}}{#2}}
+\newcommand{\refeq}[1]{\refrel{#1}{=}}
+\newcommand{\refleq}[1]{\refrel{#1}{\leq}}
+\newcommand{\refle}[1]{\refrel{#1}{<}}
+\newcommand{\refgeq}[1]{\refrel{#1}{\geq}}
+\newcommand{\refge}[1]{\refrel{#1}{>}}
+\newcommand{\refimpl}[1]{\refrel{#1}{\implies}}
+\newcommand{\refimpliedb}[1]{\refrel{#1}{\impliedby}}
+\newcommand{\refeqv}[1]{\refrel{#1}{\eqv}}
+
+\newcommand{\almosteverywhere}{\mathrm{ae}}
+\newcommand{\aerel}[1]{\oset{\almosteverywhere}{#1}}
+\newcommand{\aeeq}{\aerel{=}}
+\newcommand{\aeleq}{\aerel{\leq}}
+\newcommand{\aele}{\aerel{<}}
+\newcommand{\aegeq}{\aerel{\geq}}
+\newcommand{\aege}{\aerel{>}}
