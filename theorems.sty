@@ -3,6 +3,12 @@
 \RequirePackage{prettytex/boxes}
 
 
+\makeatletter 
+\renewcommand\thmt@autorefsetup{%
+  \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
+}
+\makeatletter
+
 \newcommand{\theoremname}{Theorem}
 \newcommand{\lemmaname}{Lemma}
 \newcommand{\propositionname}{Proposition}
