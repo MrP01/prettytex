@@ -31,3 +31,4 @@ _minted-*
 docs/prettytex.pyg
 test/
 legacy/
+test*
