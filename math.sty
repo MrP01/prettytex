@@ -225,7 +225,7 @@
 \newcommand{\itran}{^{-\transpose}}
 
 \newcommand{\dotp}[2]{\left\langle#1,#2\right\rangle}
-
+\let\arrvec\vec
 \renewcommand{\vec}[1]{{\bm{#1}}}
 \newcommand{\hvec}[1]{{\hat{\vec{#1}}}} % vector with hat
 \newcommand{\tvec}[1]{{\tilde{\vec{#1}}}} % vector with tilde
@@ -358,6 +358,7 @@
 \newcommand{\refimpl}[1]{\refrel{#1}{\implies}}
 \newcommand{\refimpliedb}[1]{\refrel{#1}{\impliedby}}
 \newcommand{\refeqv}[1]{\refrel{#1}{\eqv}}
+\newcommand{\refiso}[1]{\refrel{#1}{\cong}}
 
 \newcommand{\almosteverywhere}{\mathrm{ae}}
 \newcommand{\aerel}[1]{\oset{\almosteverywhere}{#1}}
