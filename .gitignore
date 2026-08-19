@@ -30,3 +30,4 @@ _minted-*
 *.auxlock
 docs/prettytex.pyg
 test/
+legacy/
