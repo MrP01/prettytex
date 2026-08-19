@@ -1,0 +1,310 @@
+%----------------------------------------------------------------------------------------------------------------------
+% Package: prettytex/base
+%
+% version: 1.0@refactor
+% author : lphilmossb
+%
+% description: 
+% The base of prettytex. This is required whenever you want to use prettytex, as it provides common settings like 
+% language, but also sets up the page layout, provides some formatting macros, the colour suite and so on.
+%
+%
+% disclaimer:
+% this file is not a drop-in-replacement for prettytex/base from the main branch of the project, as package
+% options are now handled via xkveyval. However, other than that, everything else *should* be still work the same.
+% For information on the options, see below or the documentation.
+% 
+%----------------------------------------------------------------------------------------------------------------------
+\ProvidesPackage{prettytex/base}
+\wlog{Thank you for using prettytex. Making TeX prettier since 2020}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Options
+%
+% macros:
+%
+% | macro           | description                                                                           |
+% |-----------------|---------------------------------------------------------------------------------------|
+% | prettytexLang   | the language to use, only set via package option (see below)                          |
+%
+% options:
+%
+% | option          | description                                                                           | type    |
+% |-----------------|---------------------------------------------------------------------------------------|---------|
+% | lang            | the language to use throughout the document (mainly used for babel)                   | string  |
+% | singleLineCheck | the package `caption` provides the option `singlelinecheck` which allows to toggle    | boolean |
+% |                 | whether or not captions of floats are centered (indented) or not via a boolean flag   |         |
+% |                 | false disables centered captions                                                      |         |
+% | colouredLinks   | whether or not to use coloured links for references, hyperrefs etc.                   | boolean |
+% | parSkip         | the parskip package introduces some small amount of vertical space between individual | boolean |
+% |                 | paragraphs instead of indenting the new paragraph (if true, the package is loaded)    |         |
+% | beamer          | if this is true, the default page layout is disabled                                  | boolean |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\RequirePackage{xkeyval}
+
+% macros for package options
+\newcommand{\prettytexLang}{}
+
+% boolean flags
+\define@boolkey{prettytex}{singleLineCheck}[true]{}
+\define@boolkey{prettytex}{colouredLinks}[true]{}
+\define@boolkey{prettytex}{parSkip}[false]{}
+\define@boolkey{prettytex}{beamer}[false]{}
+
+% key-value options
+\define@key{prettytex}{lang}[british]{\renewcommand{\prettytexLang}{#1}}
+
+% processing and handling
+\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/base}{Unknown option: `\CurrentOption`. I will ignore it!}}
+\ProcessOptionsX<prettytex>\relax
+
+%----------------------------------------------------------------------------------------------------------------------
+% Package loading
+%
+% packages:
+%
+% | package      | description 
+% |--------------|
+% | fontenc      | T1 font encoding (german umlaute like ö,ä,ü are proper glyphs and not accented glyphs)
+% |              | also better copy-paste behaviour       
+% | inputenc     | allows for utf8 character to be used in source files (e.g. ö,ä,ü, ß etc.) 
+% | lmodern      | use latin modern instead of computer modern
+% | float        | allows for better control of float placement
+% | geometry     | used for page layout (mostly margins)
+% | url          |
+% | xcolor       |
+% | cellspace    |
+% | hyperref     | place clickable links in the text (if enabled via options, links are coloured)
+% | translations | allow for automatic translations of text (e.g. theorem names)
+% | contour      | give text an outline of any colour and width 
+% | babel        | language managment of the entire project 
+% | xspace       | 
+% | subcaption   |
+% | graphicx     |
+% | parskip      | only loaded if enabled via package option (see above for more description)
+% | enumitem     | more control over enums
+% 
+% TODO: look up what all these packages do and give a quick description
+% TODO: explain missing package options here
+%----------------------------------------------------------------------------------------------------------------------
+% basic document stuff
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{url}
+
+\ifKV@prettytex@colouredLinks
+    \usepackage[colorlinks=true,hypertexnames=false]{hyperref}
+\else
+    \usepackage[colorlinks=false,hypertexnames=false]{hyperref}
+\fi
+
+% layout and co
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[column=C]{cellspace}
+\usepackage{geometry}
+\usepackage{xspace}
+
+% if enabled via options: load parskip
+\ifKV@prettytex@parSkip
+    \usepackage{parskip}
+\fi
+
+% language
+\usepackage[\prettytexLang]{babel}
+\usepackage{translations}
+
+% graphics etc
+\usepackage[table]{xcolor}
+\usepackage[outline]{contour}
+\usepackage{graphicx}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Page layout
+%----------------------------------------------------------------------------------------------------------------------
+% the rule widths on top and bottom of the page (these are from fancyhdr)
+\renewcommand{\headrulewidth}{.25pt}
+\renewcommand{\footrulewidth}{.25pt}
+
+% disable page layout if we want to make a beamer presentation, 
+\ifKV@prettytex@beamer
+\else  % an A4 document
+  % optional packages
+  \usepackage[inline]{enumitem}
+
+  % document geometry
+  \setlength\cellspacetoplimit{4pt}
+  \setlength\cellspacebottomlimit{4pt}
+  \ifKV@prettytex@parSkip
+    \setlength{\parindent}{0em}
+    \setlength{\parskip}{0.75em}
+  \fi
+  \setlength{\headsep}{3em}
+  \geometry{
+    a4paper,
+    %twoside,
+    left=2cm,
+    right=2cm,
+    top=1.25cm,
+    bottom=1.25cm,
+    includeheadfoot
+  }
+\fi
+
+%----------------------------------------------------------------------------------------------------------------------
+% Colours
+%----------------------------------------------------------------------------------------------------------------------
+% regular colours
+\definecolor{purple}{RGB}{180, 2, 212} % #b402d4
+\definecolor{green}{RGB}{0, 153, 51} % #009933
+\definecolor{red}{RGB}{204, 0, 0} % #cc0000
+\definecolor{blue}{RGB}{0, 102, 255} % #0066ff
+\definecolor{orange}{RGB}{227, 102, 0} % #e36600
+\definecolor{darkred}{HTML}{E05263} % #E05263
+\definecolor{darkpurple}{HTML}{5a016a} % #5a016a
+\definecolor{pastelpurple}{HTML}{A589D1} % #A589D1
+\definecolor{pastelpink}{HTML}{F8C8DC} % #F8C8DC
+\definecolor{lightgrey}{HTML}{dddddd} % #dddddd
+\definecolor{darkpink}{HTML}{e6acac} % #e6acac
+
+% themecolours
+\definecolor{themecolor}{HTML}{00A8FF} % light blue #00A8FF
+\definecolor{themecolor2}{HTML}{659157} % olive green #659157
+\definecolor{themecolor3}{HTML}{3D518C} % faint blue #3D518C
+\definecolor{themecolor4}{HTML}{f25f5c} % bittwersweet #f25f5c
+
+% format colours
+\definecolor{lightgreybg}{rgb}{0.97,0.97,0.97}
+\definecolor{headrulecolor}{rgb}{0.8,0.8,0.8}
+
+% brand colours
+\definecolor{sigmared}{HTML}{af0f1e} % #af0f1e
+\definecolor{sigmayellow}{HTML}{ffd500} % #ffd500
+\definecolor{discord}{HTML}{5865f2} % #5865f2
+
+% set-up coloured links, if enabled via package options
+\ifKV@prettytex@colouredLinks
+    \AtBeginDocument{
+        \hypersetup{
+            urlcolor=darkpurple,
+            linkcolor=themecolor3,
+            citecolor=themecolor3
+        }
+    }
+\else
+    \AtBeginDocument{
+        \hypersetup{
+            pdfborderstyle={/S/U/W 1},
+            pdfborder=0 0 1,
+            urlcolor=themecolor,
+            urlbordercolor=black,
+            linkcolor=black,
+            linkbordercolor=themecolor,
+            citecolor=themecolor3,
+            citebordercolor=black,
+        }
+    }
+\fi
+
+%----------------------------------------------------------------------------------------------------------------------
+% Quick formatting macros
+%
+% macros:
+%
+% | macro | arguments    | description                                                                         |
+% |-------|--------------|-------------------------------------------------------------------------------------|
+% | ebf   | text         | formats `text` to be bold-faced and emphasised                                      |
+% | ibf   | text         | formats `text` to be bold-faced and italicised                                      |
+% | ubf   | text         | formats `text` to be bold-faced and underlined                                      |
+% | obf   | text         | formats `text` to be bold-faced and overlined                                       |
+% | eubf  | text         | formats `text` to be bold-faced, emphasised and underlined                          |
+% | eobf  | text         | formats `text` to be bold-faced, emphasised and overlined                           |
+% | iubf  | text         | formats `text` to be bold-faced, italicised and underlined                          |
+% | iobf  | text         | formats `text` to be bold-faced, italicised and overlined                           |
+% | what  | text         | alias for `widehat`                                                                 |
+% | col   | colour, text | change colour of `text` to `colour` instead of the default (which is usually black) |
+% | REFL  | text         | this is meant to be used when you want to reference something that does not yet     |
+% |       |              | exist (e.g. if you jump between sections and need thm 10.4 but only got up to 10.1) |
+% |       |              | `text` is coloured red to indicate the missing reference                            |
+% | cw    | text         | give `text` a white contour                                                         |
+% | th    | text         | write the th as a text-superscript (for dates and such)                             |
+%
+% TODO: find a better name for `th` that keeps the shortness
+%----------------------------------------------------------------------------------------------------------------------
+% just format
+\newcommand{\ebf}[1]{\emph{\textbf{#1}}}
+\newcommand{\ibf}[1]{\textit{\textbf{#1}}}
+\newcommand{\ubf}[1]{\underline{\textbf{#1}}}
+\newcommand{\obf}[1]{\overline{\textbf{#1}}}
+\newcommand{\eubf}[1]{\underline{\ebf{#1}}}
+\newcommand{\eobf}[1]{\overline{\ebf{#1}}}
+\newcommand{\iubf}[1]{\underline{\ibf{#1}}}
+\newcommand{\iobf}[1]{\overline{\ibf{#1}}}
+\newcommand{\what}[1]{\widehat{#1}}
+
+% colouring
+\newcommand{\col}[2]{\textcolor{#1}{#2}}
+\newcommand{\REFL}[1]{\col{red}{#1}}
+
+% contour
+\contourlength{.06em}
+\newcommand{\cw}[1]{\contour{white}{#1}}
+
+% other
+% \newcommand{\todo}[1]{\colorbox{lightgrey}{TODO: #1}}
+\renewcommand{\th}{\textsuperscript{th}~}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Miscellaneous stuff
+%
+% macros:
+%
+% | macro     | arguments | description                                                             |
+% |-----------|-----------|-------------------------------------------------------------------------|
+% | tightlist |           | remove vertical spacing from all lists in the document                  |
+% | rom       | number    | conver `number` to a lowercase roman numeral                            |
+% | Rom       | number    | conver `number` to an uppercase roman numeral                           |
+% | alp       | number    | conver `number` to an lowercase alph-value (i.e. a for 1, b for 2 etc)  |
+% | Alp       | number    | same as `alp` but uppercase                                             |
+%
+% TODO: find out what listfigures, listtables and autoheadings do
+%----------------------------------------------------------------------------------------------------------------------
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\newcommand{\rom}[1]{\setcounter{dispcount}{#1}\roman{dispcount}}
+\newcommand{\Rom}[1]{\setcounter{dispcount}{#1}\Roman{dispcount}}
+\newcommand{\alp}[1]{\setcounter{dispcount}{#1}\alph{dispcount}}
+\newcommand{\Alp}[1]{\setcounter{dispcount}{#1}\Alph{dispcount}}
+
+\makeatletter
+\newcommand\listfigures{%
+  \subsection*{\listfigurename}%
+  \@mkboth{\MakeUppercase\listfigurename}%
+  {\MakeUppercase\listfigurename}%
+  \@starttoc{lof}%
+}
+\makeatother
+
+\makeatletter
+\newcommand\listtables{%
+  \subsection*{\listtablename}%
+  \@mkboth{\MakeUppercase\listtablename}%
+  {\MakeUppercase\listtablename}%
+  \@starttoc{lot}%
+}
+\makeatother
+
+\newcommand{\autoheadings}{
+  \usepackage{lastpage}
+  \pagestyle{fancy}
+  \fancyhf{}
+  \makeatletter
+  \fancyhead[R]{\@author \enspace \textcolor{darkred}{\textbullet}}
+  \makeatother
+  \fancyhead[L]{\leftmark}
+  \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
+  \renewcommand\headrule{\color{headrulecolor}\hrulefill}
+}
