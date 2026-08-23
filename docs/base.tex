@@ -1,0 +1,162 @@
+\section{\textsl{base}}\label{sec:base}
+
+\pbase{} is the entry-point of \prettytex{}. It is required by all other packages. It is used to set global options like language, page layout and such and loads elementary packages. 
+
+
+\subsection{Package options}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|p{12cm}|l}
+        \hline\textbf{option} & \textbf{description} & \textbf{type}\\\hline
+        lang & the language to use throughout the document (mainly used for babel), expect valid babel language & \verb|string|\\
+        singleLineCheck & the package \textsl{caption} provides the option singlelinecheck which allows to toggle whether or not captions of floats are centered (indented) or not via a boolean flag. \verb|false| disables centered captions, default is \verb|true| & \verb|boolean|\\
+        colouredLinks & whether or not to use colouredLinks for reference, hyperrefs etc. default is \verb|true|. If \verb|false|, links will instead be highlighet by a coloured underline & \verb|boolean|\\
+        parSkip & the \textsl{parskip} package introduces some small amount of vertical space between paragraphs instead of indenting the new paragraph. If \verb|true|, the pacakge is loaded. Default is \verb|false| & \verb|boolean|\\
+        beamer & the \textsl{beamer} package clashes heavily with external page layouts, this if this option is passed, our page layout is disabled. Default is \verb|false| & \verb|boolean|
+    \end{tabular}
+    \caption{Package options for \pbase{}}
+    \label{tab:base_options}
+\end{table}
+
+
+\subsection{Loaded packages}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|p{8cm}|p{4cm}}
+        \hline\textbf{package} & \textbf{description} & \textbf{options}\\\hline
+        \textsl{fontenc} & T1 font encoding ensures that non-ascii characters like the german umlaute (ö,ä etc) are actual glyphs instead of accented letters. This also improves copy-paste behavior & T1\\
+        \textsl{inputenc} & allows for utf8 characters to bes used in source files (e.g. ä.ö. etc) & utf8\\
+        \textsl{lmodern} & use latin modern font instead of computer modern\\
+        \textsl{float} & allows for better control of float placement\\
+        \textsl{geometry} & used for page layout (mostly for margins)\\
+        \textsl{xcolor} & & table\\
+        \textsl{cellspace} & &column=C\\
+        \textsl{hyperref} & place clickable links in the text (if enabled via options, links are coloured instead of underlined) & hypertextnames=false\\
+        \textsl{translations} & allows for automatic translations of text (e.g. theorem names)\\
+        \textsl{contour} & give text an outline of any colour and width & outline\\
+        \textsl{xspace}&\\
+        \textsl{subcaption}&\\
+        \textsl{graphicx}&\\
+        \textsl{parksip} & only loaded if enabled via option, see \ref{tab:base_options} for explanation\\
+        \textsl{enumitem} & more control over enums, specifically their labelling, only loaded if beamer is \verb|false| & inline
+    \end{tabular}
+    \caption{Packages loaded by \pbase{}}
+\end{table}
+
+\subsection{Document geometry}
+
+The options passed to geometry are
+\begin{multicols}{3}
+    \begin{itemize}
+        \item a4paper,
+        \item left=2cm,
+        \item right=2cm,
+        \item top=1.25cm
+        \item bottom=1.25cm
+        \item includeheadfoot
+    \end{itemize}
+\end{multicols}
+
+
+\subsection{Colours}
+
+\prettytex{} provides a few colours:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|lll |l}
+        \hline\textbf{color-name}          & \textbf{defined as} & \textbf{R} & \textbf{G} & \textbf{B} & \textbf{hex-code}\\\hline
+        \col{purple}{purple}               & RGB  & 180  & 2    & 212  & \#b402d4\\
+        \col{green}{green}                 & RGB  & 0    & 153  & 51   & \#009933\\
+        \col{red}{red}                     & RGB  & 204  & 0    & 0    & \#cc0000\\
+        \col{blue}{blue}                   & RBG  & 0    & 102  & 255  & \#0066ff\\
+        \col{orange}{orange}               & RGB  & 227  & 102  & 0    & \#e36600\\
+        \col{darkred}{darkred}             & HTML &      &      &      & \#e05263\\
+        \col{darkpurple}{darkpurple}       & HTML &      &      &      & \#5a016a\\
+        \col{pastelpurple}{pastelpurple}   & HTML &      &      &      & \#a580d1\\
+        \col{pastelpink}{pastelpink}  (pastelpink)     & HTML &      &      &      & \#f8c8dc\\
+        \col{lightgrey}{lightgrey} (lightgrey)        & HTML &      &      &      & \#dddddd\\
+        \col{darkpink}{darkpink}           & HTML &      &      &      & \#e6acac\\\hline
+        \col{themecolor}{themecolor}       & HTML &      &      &      & \#00a8ff\\
+        \col{themecolor2}{themecolor2}     & HTML &      &      &      & \#659157\\
+        \col{themecolor3}{themecolor3}     & HTML &      &      &      & \#3d518c\\
+        \col{themecolor4}{themecolor4}     & HTML &      &      &      & \#f25f5c\\\hline
+        \col{lightgreybg}{lightgreybg}  (lightgreybg)   & rgb  & 0.97 & 0.97 & 0.97 & \\
+        \col{headrulecolor}{headrulecolor} (headrulecolor) & rgb  & 0.8  & 0.8  & 0.8  & \\\hline
+        \col{sigmared}{sigmared}           & HTML &      &      &      & \#af0f1e\\
+        \col{sigmayellow}{sigmayellow}     & HTML &      &      &      & \#ffd500\\
+        \col{discord}{discord}             & HTML &      &      &      & \#5865f2
+    \end{tabular}
+    \caption{Colours defined by \prettytex{}}
+\end{table}
+
+
+\subsection{Formatting}
+
+We also provide some formatting macros:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l}
+        \hline\textbf{macro} & \textbf{expands to}\\\hline
+        HighlightColour & pastelpurple\\
+        InfoColour & themecolor\\
+        WarnColour & orange\\
+        ErrorColour & red
+    \end{tabular}
+    \caption{\prettytex-macros}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example}\\\hline
+        ebf & \verb|text| & emphasised and bold-faced text             & \ebf{example}\\
+        ibf & \verb|text| & italicised and bold-faced text             & \ibf{example}\\
+        ibf & \verb|text| & underlined and bold-faced text             & \ubf{example}\\
+        %ibf & \verb|text| & overlined and bold-faced text              & \obf{example}\\
+        eubf & \verb|text| & emphasised, underlined and bold-faced text & \eubf{example}\\
+        %eobf & \verb|text| & emphasised, overlined and bold-faced text  & \eobf{example}\\
+        iubf & \verb|text| & italicised, underlined and bold-faced text & \iubf{example}\\\hline
+        %ibf & \verb|text| & italicised, overlined and bold-faced text  & \iobf{example}\\
+        %what & \verb|text| & italicised and bold-faced text             & \what{example}\\
+        col & \verb|colour|, \verb|text| & write text in colour         & \col{green}{example}\\
+        REFL & text & highlight reference, that does not yet exist                & \REFL{example}\\
+        highlight & text & highlight text      & \highlight{example}\\
+        info & text & info text      & \info{example}\\
+        warn & text & warn text      & \warn{example}\\
+        error & text & error text      & \error{example}\\
+    \end{tabular}
+    \caption{Formatting macros}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{6cm}|l}
+        \hline\textbf{macro} & \textbf{arguments}               & \textbf{description} & \textbf{example/output}\\\hline
+        cw                   & \verb|text| or \verb|expression| & give the passed argument a white outline with width .06em & \cw{example}\\
+        th                   &                                  & write th as superscript (for dates) & 4\th\\
+        prettytex            &                                  & write prettytex in pacakge format & \prettytex
+    \end{tabular}
+    \caption{Miscellaneous macros}
+\end{table}
+
+\subsection{Miscellaneous}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\
+        tightlist & & remove vertical spacing from all lists\\
+        rom & \verb|positive integer| & convert input to lowercase roman numeral & \rom{42}\\
+        Rom & \verb|positive integer| & convert input to uppercase roman numeral & \Rom{69}\\
+        alp & \verb|integer in [1,26]| & convert input to lowercase alph-value    & \alp{24}\\
+        Alp & \verb|integer in [1,26]| & convert input to uppercase alph-value    & \Alp{16}\\
+        listfigures & & &\\
+        listtables & & &\\
+        autoheadings & & &\\
+    \end{tabular}
+    \caption{Miscellaneous macros from \pbase}
+\end{table}
