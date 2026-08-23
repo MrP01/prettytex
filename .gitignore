@@ -32,3 +32,4 @@ docs/prettytex.pyg
 test/
 legacy/
 test*
+installer/prettytex

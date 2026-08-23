@@ -1,0 +1,1145 @@
+%----------------------------------------------------------------------------------------------------------------------
+% @package: prettytex/math
+%
+% @version: 1.0.0 @ refactor
+% @author : lphilmossb
+%
+% @description: 
+% 
+% 
+%
+% @disclaimer:
+%
+% This file is not a drop-in-replacement for prettytex/base from the main branch of the project, as package
+% options are now handled via xkveyval. Furthermore, the colouring of operators was removed.
+%
+% @notes:
+%
+% This packages hase a few macros which are preceded by `prettytexMath`, these are used to make symbols like Hom,
+% dim or deg more modular. These macros are always referred to by just the part after `prettytexMath`, i.e.
+% when you read `Endomorphisms` in reference to a macro, it actually refers to `prettytexMathEndomorphisms`. This is
+% heavily used in the tables where these macros are defined. To avoid any confusion, prettytexMath-macros are always
+% listed separately, see e.g. the sections on Topology or Algebra.
+% 
+% This split is done to ensure all things that are MathOperators can easily be changed by just
+% redefining the corresponding prettytexMath macro, for example, if we wish to change our notation for the range
+% from `ran` to `range`, instead of redefining the MathOperator `\range`, we simply redefine `Range` to `range` as
+% such:
+%
+%       \renewcommand{\prettytexMathRange}{range}
+% 
+%----------------------------------------------------------------------------------------------------------------------
+\ProvidesPackage{prettytex/math}
+\RequirePackage{prettytex/base}
+\RequirePackage{xparse}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Package loading
+%
+% @ packages:
+%
+% | package    | description 
+% |------------|
+% | amsmath    | 
+% | amssymb    |
+% | esint      |
+% | bm         |
+% | upgreek    | provides non-italiciced greek letters
+% | nicematrix |
+% 
+% TODO: look up what all these packages do and give a quick description
+%----------------------------------------------------------------------------------------------------------------------
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{esint}
+\usepackage{bm}
+\usepackage{upgreek}
+\usepackage{nicematrix}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Package Options
+%
+% options:
+%
+% | option   | description                                 | type    |
+% |----------|---------------------------------------------|---------|
+% | vargreek | replace rho and epsilon with their variangs | boolean |
+%
+%----------------------------------------------------------------------------------------------------------------------
+% boolean flags
+\define@boolkey{prettytex}{vargreek}[true]{}
+
+% processing and handling
+\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/math}{Unknown option: `\CurrentOption`. I will ignore it!}}
+\ProcessOptionsX<prettytex>\relax
+
+\ifKV@prettytex@vargreek
+\renewcommand{\rho}{\varrho}
+\renewcommand{\epsilon}{\varepsilon}
+\fi
+
+%----------------------------------------------------------------------------------------------------------------------
+% Fonts
+%
+% | alphabet  | description                                                                    |
+% |-----------|--------------------------------------------------------------------------------|
+% | mathscall | lowercase calligraphic letters, motivation was Landau symbols (specifically o) |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\DeclareFontFamily{OT1}{pzc}{}
+\DeclareFontShape{OT1}{pzc}{m}{it}{<-> s * [1.10] pzcmi7t}{}
+\DeclareMathAlphabet{\mathscall}{OT1}{pzc}{m}{it}
+\newcommand{\sco}{\mathscall{o}}
+
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+% Section 2: Macros
+%----------------------------------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% Formatting and such
+%
+% macros:
+%
+% | macro   | arguments              | description                                                      |
+% |---------|------------------------|------------------------------------------------------------------|
+% | qqtext  | text                   | meant to be used in equations, results in: qquad <text> qquad    |
+% | qtext   | text                   | same as qqtext, but with quad instead of qquad                   |
+% | bar     | expression             | overline the argument (motivation was bar is used when speaking) |
+% | ubar    | expression             | alias for underline                                              |
+% | oset    | expression, expression | alias for overset, set #1 above #2                               |
+% | uset    | expression, expression | alias for underset, set #1 below #2                              |
+% | obra    | expression             | put brace above #1, scales automatically                         |
+% | ubra    | expression             | put brace below #1, scales automatically                         |
+% | parenth | expression             | macro name is an abbreviation of parenthesis, put #1 in          | 
+% |         |                        | automatically scaled parenthesis                                 | 
+% | eqv     |                        | equivalence arrow (logic)
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\qqtext}[1]{\qquad\text{#1}\qquad}
+\newcommand{\qtext}[1]{\quad\text{#1}\quad}
+\renewcommand{\bar}[1]{\overline{#1}}
+\newcommand{\ubar}[1]{\underline{#1}}
+\newcommand{\oset}[2]{\overset{#1}{#2}}
+\newcommand{\uset}[2]{\underset{#1}{#2}}
+\newcommand{\obra}[1]{\overbrace{#1}}
+\newcommand{\ubra}[1]{\underbrace{#1}}
+\newcommand{\parenth}[1]{\left(#1\right)}
+\newcommand{\eqv}{\Longleftrightarrow}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Sets
+%
+% prettytexMath:
+%
+% | macro      | expands to |
+% |------------|------------|
+% | Complement | mathsf{c}  |
+%
+% macros:
+%
+% | macro      | arguments  | description                                                                 |
+% |------------|------------|-----------------------------------------------------------------------------|
+% | set        | expression | shortcut for set builder notation, removes need to manually write \{ and \} |
+% | sm         |            | alias for setminus                                                          |
+% | compl      |            | place the complement in the superscript of the previous expression          |
+% | eset       |            | alias for emptyset                                                          |
+% | sset       |            | alias for subseteq                                                          |
+% | psset      |            | alias for subset                                                            |
+% | Sset       |            | alias for supseteq                                                          |
+% | pSset      |            | alias for supset                                                            |
+% | inv        |            | places -1 in the superscript of the previous expression                     |
+%
+%----------------------------------------------------------------------------------------------------------------------
+%prettytexMath
+\newcommand{\prettytexMathComplement}{\mathsf{c}}
+
+% macros
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\sm}{\setminus}
+\newcommand{\compl}{^\prettytexMathComplement}
+\newcommand{\eset}{\emptyset}
+\newcommand{\sset}{\subseteq}
+\newcommand{\psset}{\subset}
+\newcommand{\Sset}{\supseteq}
+\newcommand{\pSset}{\supset}
+\newcommand{\inv}{^{-1}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Numbers
+%
+% prettytexMath:
+%
+% | macro                    | expands to   |
+% |--------------------------|--------------|
+% | ComplexArgument          | Arg          |
+% | Real                     | mathfrak{Re} |
+% | Imag                     | mathfrak{Im} |
+% | AbsoluteValuePlaceholder | cdot         |
+%
+% operators:
+%
+% | operator | description                        |
+% |----------|------------------------------------|
+% | Re       | real part of complex number        |
+% | Im       | imaginary part of complex number   |
+% | Arg      | argument (angle) of complex number |
+%
+% macros:
+%
+% | macro      | arguments  | description                               |
+% |------------|------------|-------------------------------------------|
+% | N          |            | the natural numbers                       |
+% | Z          |            | the integers                              |
+% | Q          |            | the rational numbers                      |
+% | R          |            | the real numbers                          |
+% | C          |            | the complex numbers                       |
+% | I          |            | the irrational numbers                    |
+% | D          |            | the open disk                             |
+% | T          |            | the transcendental numbers                |
+% | S          |            | the unit sphere                           |
+% | H          |            | the upper half plane                      |
+% | P          |            | the primes / or a probability measure     |
+% | K          |            | general field (from the german “körper“)  |
+% | F          |            | general field                             |
+% | i          |            | imaginary unit                            |
+% | j          |            | jmaginary unit (for electrical engineers) |
+% | e          |            | Euler's number                            |
+% | floorl     | expression | floor function with scaling delimiters    |
+% | floor      | expression | floor function                            |
+% | ceil       | expression | ceiling function                          |
+% | ceill      | expression | ceiling function with scaling delimiters  |
+% | abs        | expression | absolute value of expressions             |
+% | absc       |            | |.| (used to view abstract value as map)  |
+% | labs       | expression | absolute value with scaling delimiters    |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\let\Re\relax
+\let\Im\relax
+
+% prettytexMath
+\newcommand{\prettytexMathComplexArgument}{Arg}
+\newcommand{\prettytexMathReal}{\mathfrak{Re}}
+\newcommand{\prettytexMathImag}{\mathfrak{Im}}
+\newcommand{\prettytexMathAbsoluteValuePlaceholder}{\cdot}
+
+% typical number sets
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+
+% operators
+\DeclareMathOperator{\Re}{\qopname \relax m{\prettytexMathReal}}
+\DeclareMathOperator{\Im}{\qopname \relax m{\prettytexMathImag}}
+\DeclareMathOperator{\Arg}{\qopname \relax m{\prettytexMathComplexArgument}}
+
+% special sets
+\newcommand{\I}{\mathbb{I}}
+\newcommand{\D}{\mathbb{D}}
+\newcommand{\T}{\mathbb{T}}
+\renewcommand{\S}{\mathbb{S}}
+\renewcommand{\H}{\mathbb{H}}
+\renewcommand{\P}{\mathbb{P}}
+
+% fields
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\F}{\mathbb{F}}
+
+% constants
+\renewcommand{\i}{\mathrm{i}}
+\renewcommand{\j}{\mathrm{j}}
+\newcommand{\e}{\mathrm{e}}
+
+% floor and ceil
+\newcommand{\floorl}[1]{\left\lfloor#1\right\rfloor}
+\newcommand{\floor}[1]{\lfloor#1\rfloor}
+\newcommand{\ceil}[1]{\lceil#1\right}
+\newcommand{\ceill}[1]{\left\lceil#1\right\rceil}
+
+% absolute value
+\newcommand{\abs}[1]{|#1|}
+\newcommand{\absc}{\abs{\prettytexMathAbsolutevaluePlaceholder}}
+\newcommand{\labs}[1]{\left|#1\right|}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Topology
+%
+% prettytexMath:
+%
+% | macro    | expands to |
+% |----------|------------|
+% | Interior | int        | 
+% | Closure  | cls        |
+% | Diameter | diam       |
+% | Exterior | ext        |
+% | Support  | supp       |
+% | Frontier | Fr         |
+%
+% operators:
+%
+% | operator | description                                                     |
+% |----------|-----------------------------------------------------------------|
+% | interior | interior of a set (largest open subset)                         |
+% | cls      | closure of a set (smallest closed superset)                     |
+% | diam     | diameter of a set (supremum of distances between all points)    |
+% | supp     | support of function (closure of complement of preimage of 0)    |
+% | froitier | frontier of a set (boundary sets that are contained in the set) |
+%
+% | macro      | arguments  | description                                 |
+% |------------|------------|---------------------------------------------|
+% | intr       | expression | interior of set, with ring above expression |
+% | inter      | expression | alias for intr                              |
+% | fc         |            | set of convergent sequences                 |
+% | fU         |            | set of neighbourhoods                       |
+% | fB         |            | base of a topology                          |
+% | fS         |            | subbase of a topology or symmetric group    | 
+%
+%----------------------------------------------------------------------------------------------------------------------
+% prettytexMath
+\newcommand{\prettytexMathInterior}{int}
+\newcommand{\prettytexMathClosure}{cls}
+\newcommand{\prettytexMathDiameter}{diam}
+\newcommand{\prettytexMathExterior}{ext}
+\newcommand{\prettytexMathSupport}{supp}
+\newcommand{\prettytexMathFrontier}{Fr}
+
+% operators
+\DeclareMathOperator{\interior}{\qopname \relax m{\prettytexMathInterior}}
+\DeclareMathOperator{\cls}{\qopname \relax m{\prettytexMathClosure}}
+\DeclareMathOperator{\diam}{\qopname \relax m{\prettytexMathDiameter}}
+\DeclareMathOperator{\ext}{\qopname \relax m{\prettytexMathExterior}}
+\DeclareMathOperator{\supp}{\qopname \relax m{\prettytexMathSupport}}
+\DeclareMathOperator{\frontier}{\qopname \relax m{\prettytexMathFrontier}}
+
+% macros
+\newcommand{\intr}[1]{\mathring{#1}}
+\newcommand{\inter}[1]{\mathring{#1}}
+\newcommand{\fc}{\mathfrak{c}}
+\newcommand{\fU}{\mathfrak{U}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fS}{\mathfrak{S}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Measure Theory
+%
+% | macro      | arguments | description                               |
+% |------------|-----------|-------------------------------------------|
+% | leb        |           | Lebesgue measure
+% | borel      |           | borel measure
+% | me         |           | general measure
+% | vol        |           | volume of a set
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\prettytexMathVolume}{vol}
+
+\DeclareMathOperator{\leb}{\qopname \relax m {\uplambda}}
+\DeclareMathOperator{\borel}{\qopname \relax m {\upbeta}}
+\DeclareMathOperator{\me}{\qopname \relax m {\upmu}}
+\DeclareMathOperator{\vol}{\qopname \relax m{\prettytexMathVolume}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Derivatives
+%
+% prettytexMath:
+%
+% | macro     | expands to |
+% |-----------|------------|
+% | Hessian   | H          |
+% | Jacobian  | J          |
+% | Gradient  | grad       |
+% | Laplacian | triangle   |
+%
+% macros:
+%
+% | macro      | arguments  | description                                            |
+% |------------|------------|--------------------------------------------------------|
+% | FD         |            | differential of a multivariate map                     |
+% | dd         |            | d from derivatives                                     |
+% | idd        |            | use this for integrals, has a small space before the d |
+% | ddx        |            | shortcut for dx                                        |
+% | ddy        |            | shortcut for dy                                        |
+% | ddz        |            | shortcut for dz                                        |
+% | ddu        |            | shortcut for du                                        |
+% | ddv        |            | shortcut for dv                                        |
+% | ddr        |            | shortcut for dr                                        |
+% | dds        |            | shortcut for ds                                        |
+% | ddt        |            | shortcut for dt                                        |
+% | hess       |            | Hessian matrix                                         |
+% | jac        |            | Jacobi Matrix                                          |
+% | grad       |            | gradient (alternative to Nabla)                        |
+% | laplace    |            | Laplace operator                                       |
+% | derx       | expression | derivative wrt x, Leibniz notation                     |
+% | nderx      | expression | n-th derivative wrt x, Leibniz notation                |
+% | kderx      | expression | k-th derivative wrt x, Leibniz notation                |
+% | nder       | expression | n-th derivative wrt x, Newton notation                 |
+% | kder       | expression | k-th derivative wrt x, Newton notation                 |
+% | argmin     |            | minimising argument or set of minimisers               |
+% | argmax     |            | maximising argument or set of maximisers               |
+% | minimise   |            | just minimise, use for natural formulations            |
+%
+% operators:
+%
+% | operator | description          |
+% |----------|----------------------|
+% | hess     | hessian of function  |
+% | jac      | jacobian of function |
+% | grad     | gradient of function |
+% | laplace  | laplace of function  |
+%
+%----------------------------------------------------------------------------------------------------------------------
+% prettytexMath
+\newcommand{\prettytexMathHessian}{H}
+\newcommand{\prettytexMathJacobian}{J}
+\newcommand{\prettytexMathGradient}{grad}
+\newcommand{\prettytexMathLaplacian}{\triangle}
+
+% macros
+\newcommand{\FD}{\mathrm{d}}
+\newcommand{\dd}{\mathrm{d}}
+\newcommand{\idd}{\;\mathrm{d}}
+\newcommand{\ddx}{\mathrm{d} x}
+\newcommand{\ddy}{\mathrm{d} y}
+\newcommand{\ddz}{\mathrm{d} z}
+\newcommand{\ddu}{\mathrm{d} u}
+\newcommand{\ddv}{\mathrm{d} v}
+\newcommand{\ddr}{\mathrm{d} r}
+\newcommand{\dds}{\mathrm{d} s}
+\newcommand{\ddt}{\mathrm{d} t}
+
+% differential operators
+\DeclareMathOperator{\hess}{\qopname \relax m{\prettytexMathHessian}}
+\DeclareMathOperator{\jac}{\qopname \relax m{\prettytexMathJacobian}}
+\DeclareMathOperator{\grad}{\qopname \relax m{\prettytexMathGradient}}
+\DeclareMathOperator{\laplace}{\qopname \relax m{\prettytexMathLaplacian}}
+
+% shortcuts for Leibniz Notation
+\newcommand{\derx}[1]{\frac{\dd #1}{\ddx}}
+\newcommand{\nderx}[1]{\frac{\dd^n #1}{\ddx^n}}
+\newcommand{\kderx}[1]{\frac{\dd^k #1}{\ddx^k}}
+
+% shortcuts for Newton Notation
+\newcommand{\nder}[1]{#1^{(n)}}
+\newcommand{\kder}[1]{#1^{(k)}}
+
+% optimisation
+\DeclareMathOperator{\argmin}{\qopname \relax m{arg\:min}}
+\DeclareMathOperator{\argmax}{\qopname \relax m{arg\:max}}
+\DeclareMathOperator{\minimise}{\qopname \relax m{minimise}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Sequences and limits
+%
+% | macro      | arguments  | description                                                     |
+% |------------|------------|-----------------------------------------------------------------|
+% | seqn       | expression | shortcut for family notation (x_n)_{n\in \N} of sequence x      |
+% | seqnz      | expression | same as seqn but with \N_0 as indexing set                      |
+% | seqk       | expression | same as seqn but with k as index variable                       |
+% | seqkz      | expression | same as seqnz but with k as index variable                      |
+% | iseq       | expression | arbitary family (x_i)_{i\in I}                                  |
+% | jseq       | expression | same as iseq but with J as indexing set and j as index variable |
+% | net        | expression | family notation (x_\lambda)_{\lambda\in\Lambda} for net x       |
+% | Kappa      |            | uppercase kappa (just K, but mathrm'd instead of text)          |
+% | subnet     | expression | subnet of net x                                                 |
+% | limh       |            | limit as h goes to 0                                            |
+% | limt       |            | limit as t goes to 0                                            |
+% | limx       |            | limit as x goes to x0                                           |
+% | limt       |            | limit as z goes to z0                                           |
+% | limn       |            | limit as n goes to infinity                                     |
+% | limk       |            | limit as k goes to infinity                                     |
+% | liminfn    |            | limit inferior as n goes to infinity                            |
+% | limsupn    |            | limit superior as n goes to infinity                            |
+% | liminfk    |            | limit inferior as k goes to infinity                            |
+% | limsupk    |            | limit superior as k goes to infinity                            |
+% | infn       |            | infimum over n in the naturals                                  |
+% | infk       |            | infimum over k in the naturals                                  |
+% | supn       |            | supremum over n in the naturals                                 |
+% | supk       |            | supremum over k in the naturals                                 |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\seqn}[1]{(#1_n)_{n\in\N}}
+\newcommand{\seqnz}[1]{(#1_n)_{n\in\N_0}}
+\newcommand{\seqk}[1]{(#1_k)_{k\in\N}}
+\newcommand{\seqkz}[1]{(#1_k)_{k\in\N_0}}
+\newcommand{\iseq}[1]{(#1_i)_{i\in I}}
+\newcommand{\jseq}[1]{(#1_j)_{j\in J}}
+\newcommand{\net}[1]{(#1_\lambda)_{\lambda\in\Lambda}}
+\newcommand{\Kappa}{\mathrm{K}}
+\newcommand{\subnet}[1]{(#1_{\lambda_\kappa})_{\kappa\in\Kappa}}
+
+\newcommand{\limh}{\lim_{h\to 0}}
+\newcommand{\limt}{\lim_{t\to 0}}
+\newcommand{\limx}{\lim_{x\to x_0}}
+\newcommand{\limz}{\lim_{z\to z_0}}
+\newcommand{\limn}{\lim_{n\to \infty}}
+\newcommand{\limk}{\lim_{k\to \infty}}
+\newcommand{\liminfn}{\liminf_{n\to\infty}}
+\newcommand{\limsupn}{\limsup_{n\to\infty}}
+\newcommand{\liminfk}{\liminf_{k\to\infty}}
+\newcommand{\limsupk}{\limsup_{k\to\infty}}
+\newcommand{\infn}{\inf_{n\in\N}}
+\newcommand{\infk}{\inf_{k\in\N}}
+\newcommand{\supn}{\sup_{n\in\N}}
+\newcommand{\supk}{\sup_{k\in\N}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Algebra
+%
+% prettytexMath:
+%
+% | macro                  | expands to |
+% |------------------------|------------|
+% | Homset                 | Hom        |
+% | Endomorphisms          | End        |
+% | Automorphisms          | Aut        |
+% | GeneralLinearGroup     | GL         |
+% | SpecialUnitaryGroup    | SU         |
+% | SpecialOrthogonalGroup | SO         |
+% | Range                  | ran        |
+% | Domain                 | dom        |
+% | Codomain               | co\:dom    |
+% | Projection             | proj       |
+% | Cokernel               | coker      |
+% | PermutationParity      | sign       |
+% | Sign                   | sgn        |
+% | LinearSpan             | span       |
+% | Image                  | img        |
+% | Kernel                 | ker        |
+% | Identity               | id         |
+% | Dimension              | dim        |
+% | Degree                 | deg        |
+%
+% macros:
+%
+% | macro     | description                                            |
+% |-----------|--------------------------------------------------------|
+% | epimorph  | arrow for epimorphism                                  |
+% | monomorph | arrow for monomorphism                                 |
+% | isomorph  | arrow for isomorphism                                  |
+% | incl      | inclusion (alias to monomorph)                         |
+% | surj      | surjection (alias to epimorph)                         |
+% | unity     | group of units of ring (write after ring e.g. R\unity) |
+%
+% operators:
+% 
+% | operator | description                                                                                       |
+% |----------|---------------------------------------------------------------------------------------------------|
+% | Hom      | morphisms from one object to another                                                              |
+% | End      | endomorphisms of an object                                                                        |
+% | Aut      | automorphisms of an object                                                                        |
+% | GL       | general linear group                                                                              |
+% | SU       | special unitary group                                                                             |
+% | SO       | special orthogonal group                                                                          |
+% | range    | image of a linear map (typically used in functional analysis)                                     |
+% | dom      | domain of a morphism (typically used in functional analysis, but can occur in set theory as well) |
+% | codom    | codomain of a morphism (i.e. the target object of a morphism)                                     | 
+% | coker    | cokernel of a morphism (in algebra, this is the codomain modulo the image)                        |
+% | im       | image of a morphism                                                                               |
+% | ker      | kernel of a morphism                                      we                                        |
+% | id       | identity                                                                                          |
+% | proj     | projection (alternative to using \pi)                                                             |
+% | sign     | parity of a permutation                                                                           |
+% | sgn      | sign of a number in an ordered algebraic structure                                                |
+% | lspan    | linear span (span is already occupied, probably for spacing)                                      |
+% | dim      | dimension of an object                                                                            |
+% | deg      | degree of an object (e.g. polynomial )                                                            |
+%
+%
+%----------------------------------------------------------------------------------------------------------------------
+\let\dim\relax
+\let\ker\relax
+\let\deg\relax
+
+% prettytexMath
+\newcommand{\prettytexMathHomset}{Hom}
+\newcommand{\prettytexMathEndomorphisms}{End}
+\newcommand{\prettytexMathAutomorphisms}{Aut}
+
+\newcommand{\prettytexMathRange}{ran}
+\newcommand{\prettytexMathDomain}{dom}
+\newcommand{\prettytexMathCodomain}{co\:dom}
+\newcommand{\prettytexMathProjection}{proj}
+\newcommand{\prettytexMathCokernel}{coker}
+\newcommand{\prettytexMathPermutationParity}{sign}
+\newcommand{\prettytexMathSign}{sgn}
+\newcommand{\prettytexMathImage}{im}
+\newcommand{\prettytexMathKernel}{ker}
+\newcommand{\prettytexMathIdentity}{id}
+\newcommand{\prettytexMathDegree}{deg}
+
+% arrows
+\newcommand{\epimorph}{\twoheadrightarrow}
+\newcommand{\monomorph}{\rightarrowtail}
+\newcommand{\isomorph}{\twoheadrightarrowtail}
+\newcommand{\incl}{\monomorph}
+\newcommand{\surj}{\epimorph}
+
+% macros
+\newcommand{\unity}{^\times}
+
+% sets of homomorphisms and related
+\DeclareMathOperator{\Hom}{\qopname \relax m{\prettytexMathHomset}}
+\DeclareMathOperator{\End}{\qopname \relax m{\prettytexMathEndomorphisms}}
+\DeclareMathOperator{\Aut}{\qopname \relax m{\prettytexMathAutomorphisms}}
+
+% sets related to homomorphisms
+\DeclareMathOperator{\range}{\qopname \relax m{\prettytexMathRange}}
+\DeclareMathOperator{\dom}{\qopname \relax m{\prettytexMathDomain}}
+\DeclareMathOperator{\codom}{\qopname \relax m{\prettytexMathCodomain}}
+\DeclareMathOperator{\coker}{\qopname \relax m{\prettytexMathCokernel}}
+\DeclareMathOperator{\im}{\qopname \relax m{\prettytexMathImage}}
+\DeclareMathOperator{\ker}{\qopname \relax m{\prettytexKernel}}
+
+% special maps
+\DeclareMathOperator{\id}{\qopname \relax m{\prettytexMathIdentity}}
+\DeclareMathOperator{\proj}{\qopname \relax m{\prettytexMathProjection}}
+\DeclareMathOperator{\sign}{\qopname \relax m{\prettytexMathPermutationParity}}
+\DeclareMathOperator{\sgn}{\qopname \relax m{\prettytexMathSign}}
+
+% other
+\DeclareMathOperator{\deg}{\qopname \relax m{\prettytexMathDegree}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Category theory
+%
+% macros:
+%
+% | macro        | arguments  | description                                       |
+% |--------------|------------|---------------------------------------------------|
+% | CATEGORY     | expression | category with label expression                    |
+% | CAT          |            | CATEGORY{C}                                       |
+% | Cat          |            | alias for CAT                                     |  
+% | CATD         |            | CATEGORY{D}                                       |
+% | CatD         |            | alias for CATD                                    |
+% | LEFTMODR     | expression | category of left modules of R                     |
+% | FINLEFTMODR  | expression | category of finitely generated left modules of R  |
+% | RIGHTMODR    | expression | category of right modules of R                    |
+% | FINRIGHTMODR | expression | category of finitely generated right modules of R |
+% | VECTK        | expression | category of k-vectorspaces                        |
+% | FINVECTK     | expression | category of finite-dimensional k-vectorspaces     |
+% | CRING        |            | category of commutative rings                     |
+% | SET          |            | category of sets                                  |
+% | SET          |            | category of groups                                |
+% | SET          |            | category of rings                                 |
+% | SET          |            | category of fields                                |
+% | SET          |            | category of topological spaces                    |
+% | SET          |            | category of based topological spaces              |
+% | SET          |            | category of abelian groups                        |
+% | Homcat       |            | morphisms between two objects in C                |
+% | UCAT         |            | CATEGORY{U}                                       |
+% | CATJ         |            | CATEGORY{J}                                       |
+% | CATS         |            | CATEGORY{S}                                       |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\CATEGORY}[1]{\mathbf{#1}}
+\newcommand{\CAT}{\CATEGORY{C}}
+\newcommand{\Cat}{\CATEGORY{C}}
+\newcommand{\CATD}{\CATEGORY{D}}
+\newcommand{\CatD}{\CATEGORY{D}}
+\newcommand{\LEFTMODR}[1]{#1-\CATEGORY{Mod}}
+\newcommand{\FINLEFTMODR}[1]{#1-\CATEGORY{mod}}
+\newcommand{\RIGHTMODR}[1]{\CATEGORY{Mod}-#1}
+\newcommand{\FINRIGHTMODR}[1]{\CATEGORY{mod}-#1}
+\newcommand{\VECTK}[1]{\CATEGORY{Vect}_{#1}}
+\newcommand{\FINVECTK}[1]{\CATEGORY{vect}_{#1}}
+\newcommand{\CRING}{\CATEGORY{CRing}}
+\newcommand{\SET}{\CATEGORY{Set}}
+\newcommand{\GRP}{\CATEGORY{Grp}}
+\newcommand{\RING}{\CATEGORY{Ring}}
+\newcommand{\FIELD}{\CATEGORY{Field}}
+\newcommand{\TOP}{\CATEGORY{Top}}
+\newcommand{\TOPB}{\CATEGORY{Top}_*}
+\newcommand{\AB}{\CATEGORY{Ab}}
+\newcommand{\Homcat}{\Hom_{\CAT}}
+\newcommand{\UCAT}{\CATEGORY{U}}
+\newcommand{\CATJ}{\CATEGORY{J}}
+\newcommand{\CATS}{\CATEGORY{S}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Linear Algebra
+%
+% Notes: 
+%
+% BEHOLD, the most over the top subsection
+%
+% prettytexMath:
+% 
+% | macro                  | expands to |
+% |------------------------|------------|
+% | Transpose              | \mathsf{t} |
+% | HermitianTranspose     | \mathsf{H} |
+% | Trace                  | trace      |
+% | Rank                   | rank       |
+% | RowRank                | rank       |
+% | ColumnRank             | rank       |
+% | DotProductPlaceholder  | \cdot      |
+% | NormPlaceholder        | \cdot      |
+% | Dimension              | dim        |
+% | LinearSpan             | span       |
+% | GeneralLinearGroup     | GL         |
+% | SpecialLinearGroup     | SL         |
+% | SpecialUnitaryGroup    | SU         |
+% | SpecialOrthogonalGroup | SO         |
+% | LpDefaultExponent      | p          |
+% | Diagonal               | diag       |
+% | Eigen                  | Eig        |
+% | Gram                   | Gram       |
+% | Spectrum               | spec       |
+% | Annihilator            | Ann        |
+% | AdjugateMatrix         | Adj        |
+% | CofactorMatrix         | Cof        |
+%
+% macros:
+% 
+% e is an abbreviation for expression
+% O means the argument is optional and has a defalt value
+% o means the argument is optional
+%
+% | macro   | arguments               | description |
+% |------------------------------------------------------------------------------------------------------------------|
+% | tran    |                         | transpose of a matrix (use like A\tran in math mode)                         |
+% | itran   |                         | inverse transpose of a matrix                                                |
+% | htran   |                         | hermitian transpose of a matrix                                              |
+% | vec     | expression              | element of a vectorspace (typically reserved for coordinate vectors)         |
+% | hvec    | expression              | vector with hat                                                              |
+% | whvec   | expression              | vector with widehat                                                          |
+% | tvec    | expression              | vector with tilde                                                            |
+% | wtvec   | expression              | vector with widetilde                                                        |
+% | bvec    | expression              | vector with bar                                                              |
+% | uvec    | expression              | vector with ubar                                                             |
+% | zvec    |                         | zero vector                                                                  |
+% | mat     | expression              | matrix (mathrms the argument)                                                |
+% | hmat    | expression              | matrix with hat                                                              |
+% | whmat   | expression              | matrix with widehat                                                          |
+% | tmat    | expression              | matrix with tilde                                                            |
+% | wtmat   | expression              | matrix with widetilde                                                        |
+% | barmat  | expression              | matrix with bar                                                              |
+% | ubarmat | expression              | matrix with ubar                                                             |
+% | bmat    | arraystretch (o), array | writes a bmatrix with the supplied array                                     |
+% | fbmat   | array                   | writes a bNiceMatrix with the supplied array                                 |
+% | detm    | array                   | array notation for a determinant (i.e. with just vertical lines as delims)   |
+% | dotp    | expression, expression  | dot product of #1 and #2, delimited with langle and rangle                   |
+% | ldotp   | expression, expression  | same as dotp, but with scaling delimiters                                    |
+% | dotpc   |                         | dot-product of placeholders (used for function definition, see doc for more) |
+% | Lpdotp  | p (O), space (o), e, e  | Lp-dot-product of the two expressions/functions first optional argument      |
+% |         |                         | defaults to LpDefaultExponent and is the exponent of the Lp-space,           |
+% |         |                         | second argument can be used to specify the measure/measurable space          |
+% | lLpdotp | p (O), space (o), e, e  | same as Lpdotp, but with automatically scaling delimiters                    |
+% | Lpdotc  | p (O), space (o)        | Lp-dot product of placeholders (used for definition)                         |
+% |         |                         | optional parameters work like in Lpdotp                                      |
+% | norm    | expression              | norm of the expression (used || for delimiters)                              |
+% | lnorm   | expression              | same as norm, but with automatically scaling delimiters                      |
+% | normc   |                         | norm of placeholder, used for definition, see docs                           |
+% | inorm   | expression              | infinity norm of expression, norm with subscript \infty afterwards           |
+% | linorm  | expression              | same as inorm, but with automatically scaling delimiters                     |
+% | inormc  |                         | infinity-norm of placeholder, used for definition                            |
+% | pnorm   | p (O), expression       | p-norm of expression, p is optionals and defaults to LpDefaultExponent       |
+% | lpnorm  | p (O), expression       | same as pnorm, but with automatically scaling delimiters                     |
+% | pnormc  | p (O)                   | pnorm of placeholder, see docs for more                                      |
+% | Lpnorm  | p (O), space (o), e     | Lp-norm of expression, p is optional and defaults to LpDefaultExponent       |
+% |         |                         | space is optional and used to specify the measure/measurable space           |
+% | lLpnorm | p (O), space (o), e     | same as Lpnorm but with automatically scaling delimiters                     |
+% | Lpnormc | p (O), space (o)        | Lp-norm of placeholder, optional arguments work like in Lpnorm               |
+%
+% Operators:
+%
+% | operator | description                                                   |
+% |----------|---------------------------------------------------------------|
+% | lspan    | linear span of collection of vectors                          |
+% | dim      | dimension of space                                            |
+% | GL       | general linear group                                          |
+% | SL       | special linear group                                          |
+% | SU       | special unitary group                                         |
+% | SO       | special orthogonal group                                      |
+% | diag     | diagonal-matrix from elements or diagonal of a matrix         |
+% | Eig      | eigendata (i.e. values and vectors) of an operator            |
+% | Gram     | Gram matrix                                                   |
+% | spec     | spectrum of operator                                          | 
+% | Ann      | annihilator of object                                         |
+% | Adj      | Adjugate matrix (NOT the adjoint)                             |
+% | Cof      | cofactor matrix                                               |
+% | trace    | trace of operator (for a matrix: sum of diagonal entries)     |
+% | Trace    | alias for trace                                               |
+% | tr       | alias for trace                                               |
+% | Tr       | alias for trace                                               |
+% | spur     | alias for trace (german spelling)                             |
+% | Spur     | alias for trace (german spelling)                             |
+% | spr      | alias for trace (german spelling)                             |
+% | Spr      | alias for trace (german spelling)                             |
+% | rank     | rank of operator (dimension of image)                         |
+% | Rank     | alias for rank                                                |
+% | rk       | alias for rank                                                |
+% | Rk       | alias for rank                                                |
+% | rang     | alias for rank (german spelling)                              |
+% | Rang     | alias for rank (german spelling)                              |
+% | rg       | alias for rank (german spelling)                              |
+% | Rg       | alias for rank (german spelling)                              |
+% | rowrank  | row rank of matrix (dimension of space spanned by rows)       |
+% | rrk      | alias for rowrank                                             |
+% | zrg      | alias for rowrank (german spelling)                           |
+% | Zrg      | alias for rowrank (german spelling)                           |
+% | colrank  | column rank of matrix (dimension of space spanned by columns) |
+% | crk      | alias for colrank                                             |
+% | srg      | alias for colrank (german spelling)                           |
+% | Srg      | alias for colrank (german spelling)                           |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\let\arrvec\vec
+
+% prettytexMath
+\newcommand{\prettytexMathTranspose}{\mathsf{t}}
+\newcommand{\prettytexMathHermitianTranspose}{\mathsf{H}}
+\newcommand{\prettytexMathTrace}{trace}
+\newcommand{\prettytexMathRank}{rank}
+\newcommand{\prettytexMathRowRank}{rank}
+\newcommand{\prettytexMathColumnRank}{rank}
+\newcommand{\prettytexMathDotProductPlaceholder}{\cdot}
+\newcommand{\prettytexMathNormPlaceholder}{\cdot}
+\newcommand{\prettytexMathDimension}{dim}
+\newcommand{\prettytexMathLinearSpan}{span}
+\newcommand{\prettytexMathGeneralLinearGroup}{GL}
+\newcommand{\prettytexMathSpecialLinearGroup}{SL}
+\newcommand{\prettytexMathSpecialUnitaryGroup}{SU}
+\newcommand{\prettytexMathSpecialOrthogonalGroup}{SO}
+\newcommand{\prettytexMathLpDefaultExponent}{p}
+\newcommand{\prettytexMathDiagonal}{diag}
+\newcommand{\prettytexMathEigen}{Eig}
+\newcommand{\prettytexMathGram}{Gram}
+\newcommand{\prettytexMathSpectrum}{spec}
+\newcommand{\prettytexMathAnnihilator}{Ann}
+\newcommand{\prettytexMathAdjugateMatrix}{Adj}
+\newcommand{\prettytexMathCofactorMatrix}{Cof}
+
+% transposes and such
+\newcommand{\tran}{^\prettytexMathTranspose}
+\newcommand{\itran}{^{-\prettytexMathTranspose}}
+\newcommand{\htran}{^\prettytexMathHermitianTransposte}
+
+% vector symbols
+\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand{\hvec}[1]{\hat{\vec{#1}}}
+\newcommand{\whvec}[1]{\widehat{\vec{#1}}}
+\newcommand{\tvec}[1]{\tilde{\vec{#1}}}
+\newcommand{\wtvec}[1]{\widetilde{\vec{#1}}}
+\newcommand{\bvec}[1]{\bar{\vec{#1}}}
+\newcommand{\uvec}[1]{\ubar{\vec{#1}}}
+\newcommand{\zvec}{\vec{0}}
+
+% matrix symbols
+\newcommand{\mat}[1]{\mathrm{#1}}
+\newcommand{\hmat}[1]{\hat{\mat{#1}}}
+\newcommand{\whmat}[1]{\widehat{\mat{#1}}}
+\newcommand{\tmat}[1]{\tilde{\mat{#1}}}
+\newcommand{\wtmat}[1]{\widetilde{\mat{#1}}}
+\newcommand{\barmat}[1]{\bar{\mat{#1}}}
+\newcommand{\ubarmat}[1]{\ubar{\mat{#1}}}
+
+% array based macros
+\newcommand{\bmat}[2][1]{{\renewcommand{\arraystretch}{#1}\begin{bmatrix}#2\end{bmatrix}}}
+\newcommand{\fbmat}[1]{\begin{bNiceMatrix}#1\end{bNiceMatrix}}
+\newcommand{\detm}[2]{\left\vert\begin{array}[#1]#2\end{array}\right\vert}
+
+% dot products
+\newcommand{\dotp}[2]{\langle#1,#2\rangle}
+\renewcommand{\ldotp}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\dotpc}{\dotp{\prettytexMathDotProductPlaceholder}{\prettytexMathDotProductPlaceholder}}
+
+\NewDocumentCommand{\Lpdotp}{O{\prettytexMathLpDefaultExponent} o m m}{%
+\IfNoValueTF{#2}{\dotp{#3}{#4}_{L^{#1}}}{\dotp{#3}{#4}_{L^{#1}(#2)}}}
+
+\NewDocumentCommand{\lLpdotp}{O{\prettytexMathLpDefaultExponent} o m m}{%
+\IfNoValueTF{#2}{\ldotp{#3}{#4}_{L^{#1}}}{\ldotp{#3}{#4}_{L^{#1}(#2)}}}
+
+\NewDocumentCommand{\Lpdotpc}{O{\prettytexMathLpDefaultExponent} o}{%
+\IfNoValueTF{#2}%
+{\Lpdotp[#1]{\prettytexMathDotProductPlaceholder}{\prettytexMathDotProductPlaceholder}}%
+{\Lpdotp[#1][#2]{\prettytexMathDotProductPlaceholder}{\prettytexMathDotProductPlaceholder}}}
+
+% norms
+\NewDocumentCommand{\norm}{o m}{\IfNoValueTF{#1}{\|#2\|}{\|#1\|_{#1}}}
+\NewDocumentCommand{\lnorm}{o m}{\IfNoValueTF{#1}{\left\|#2\left\|}{\left\|#1\left\|_{#1}}}
+\newcommand{\normc}{\norm{\prettytexMathNormPlaceholder}}
+
+\newcommand{\inorm}[1]{\norm{#1}_\infty}
+\newcommand{\linorm}[1]{\lnorm{#1}_\infty}
+\newcommand{\inormc}{\norm{\prettytexMathNormPlaceholder}}
+
+\NewDocumentCommand{\pnorm}{O{\prettytexMathLpDefaultExponent} m}{\norm{#2}_{#1}}
+\NewDocumentCommand{\lpnorm}{O{\prettytexMathLpDefaultExponent} m}{\lnorm{#2}{#1}}
+\NewDocumentCommand{\pnormc}{O{\prettytexMathLpDefaultExponent}}{\pnorm[#1]{\prettytexMathNormPlaceholder}}
+
+\NewDocumentCommand{\Lpnorm}{O{\prettytexMathLpDefaultExponent} o m}{%
+\IfNoValueTF{#2}{\norm{#3}_{L^{#1}}}{\norm{#3}_{L^{#1}(#2)}}}
+
+\NewDocumentCommand{\lLpnorm}{O{\prettytexMathLpDefaultExponent} o m}{%
+\IfNoValueTF{#2}{\lnorm{#3}_{L^{#1}}}{\lnorm{#3}_{L^{#1}(#2)}}}
+
+\NewDocumentCommand{\Lpnormc}{O{\prettytexMathLpDefaultExponent} o}{%
+\IfNoValueTF{#2}{\Lpnorm[#1]{\prettytexMathNormPlaceholder}}{\Lpnorm[#1][#2]{\prettytexMathNormPlaceholder}}}
+
+% operators
+\DeclareMathOperator{\lspan}{\qopname \relax m{\prettytexMathLinearSpan}}
+\DeclareMathOperator{\dim}{\qopname \relax m{\prettytexMathDimension}}
+\DeclareMathOperator{\GL}{\qopname \relax m{\prettytexMathGeneralLinearGroup}}
+\DeclareMathOperator{\SL}{\qopname \relax m{\prettytexMathSpecialLinearGroup}}
+\DeclareMathOperator{\SU}{\qopname \relax m{\prettytexMathSpecialUnitaryGroup}}
+\DeclareMathOperator{\SO}{\qopname \relax m{\prettytexMathSpecialOrthogonalGroup}}
+\DeclareMathOperator{\diag}{\qopname \relax m{\prettytexMathDiag}}
+\DeclareMathOperator{\Eig}{\qopname \relax m{\prettytexMathEigen}}
+\DeclareMathOperator{\Gram}{\qopname \relax m{\prettytexMathGram}}
+\DeclareMathOperator{\spec}{\qopname \relax m{\prettytexMathSpectrum}}
+\DeclareMathOperator{\Ann}{\qopname \relax m{\prettytexMathAnnihilator}}
+\DeclareMathOperator{\Adj}{\qopname \relax m{\prettytexMathAdjugateMatrix}}
+\DeclareMathOperator{\Cof}{\qopname \relax m{\prettytexMathCofactorMatrix}}
+
+% trace and all its variations
+\DeclareMathOperator{\trace}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\Trace}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\tr}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\Tr}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\Spur}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\spur}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\spr}{\qopname \relax m{\prettytexMathTrace}}
+\DeclareMathOperator{\Spr}{\qopname \relax m{\prettytexMathTrace}}
+
+% rank and all its variations
+\DeclareMathOperator{\rank}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\Rank}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\rk}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\Rk}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\rang}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\Rang}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\rg}{\qopname \relax m{\prettytexMathRank}}
+\DeclareMathOperator{\Rg}{\qopname \relax m{\prettytexMathRank}}
+
+% row rank and variations
+\DeclareMathOperator{\rowrank}{\qopname \relax m{\prettytexMathRowRank}}
+\DeclareMathOperator{\rrk}{\qopname \relax m{\prettytexMathRowRank}}
+\DeclareMathOperator{\zrg}{\qopname \relax m{\prettytexMathRowRank}}
+\DeclareMathOperator{\Zrg}{\qopname \relax m{\prettytexMathRowRank}}
+
+% column rank and variations
+\DeclareMathOperator{\colrank}{\qopname \relax m{\prettytexMathColumnRank}}
+\DeclareMathOperator{\crk}{\qopname \relax m{\prettytexMathColumnRank}}
+\DeclareMathOperator{\srg}{\qopname \relax m{\prettytexMathColumnRank}}
+\DeclareMathOperator{\Srg}{\qopname \relax m{\prettytexMathColumnRank}}
+
+
+
+% some fancy shenanigans
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+
+\newcommand*{\longleadsto}[1]{
+  \tikzexternaldisable
+  \begin{tikzpicture}
+    \draw [->, line join=round, decorate, decoration={
+          zigzag,
+          segment length=4,
+          amplitude=.9,
+          post=lineto,
+          post length=2pt}] (0,0) -- (#1,0);
+  \end{tikzpicture}
+  \tikzexternalenable
+}
+
+\newcommand{\rtrf}[1]{%
+  \tikzexternaldisable%
+  \begin{tikzpicture}%
+    \draw [->, line join=round, decorate, decoration={%
+          zigzag,%
+          segment length=4,%
+          amplitude=.9,%
+          post=lineto,%
+          post length=2pt}] (0,0) -- (1.5cm,0)%
+    node[midway,above]{$\substack{#1}$};%
+  \end{tikzpicture}%
+  \tikzexternalenable%
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Number theory
+%
+% prettytexMath:
+%
+% | macro                 | expands to |
+% |-----------------------|------------|
+% | LeastCommonMultiple   | lcm        |
+% | GreatestCommonDivisor | gcd        |
+%
+% macros:
+%
+% | macro       | arguments              | description                        |
+% |-------------|------------------------|------------------------------------|
+% | stirlingone | expression, expression | stirling number of the first kind  |
+% | stirlingtwo | expression, expression | stirling number of the second kind |
+% | cycle       | array                  | cycle notation for permutation     |
+%
+% operators
+%
+% | operator | description                     |
+% |--------------------------------------------|
+% | lcm      | least common multiple           |
+% | kgv      | alias for lcm (german spelling) |
+% | kgB      | alias for lcm (german spelling) |
+% | gcd      | greatest common divisor         |
+% | ggt      | alias for gcd (german spelling) |
+% | ggT      | alias for gcd (german spelling) |
+% 
+%----------------------------------------------------------------------------------------------------------------------
+%prettytexMath
+\newcommand{\prettytexMathLeastCommonMultiple}{lcm}
+\newcommand{\prettytexMathGreatestCommonDivisor}{gcd}
+
+% macros
+\newcommand{\stirlingone}[2]{\begin{bmatrix}#1\\#2\end{bmatrix}}
+\newcommand{\stirlingtwo}[2]{\begin{Bmatrix}#1\\#2\end{Bmatrix}}
+\newcommand{\cycle}[1]{\begin{pmatrix}#1\end{pmatrix}}
+
+% operators
+\DeclareMathOperator{\lcm}{\qopname \relax m{\prettytexMathLeastCommonMultiple}}
+\DeclareMathOperator{\kgv}{\qopname \relax m{\prettytexMathLeastCommonMultiple}}
+\DeclareMathOperator{\kgV}{\qopname \relax m{\prettytexMathLeastCommonMultiple}}
+\DeclareMathOperator{\gcd}{\qopname \relax m{\prettytexMathGreatestCommonDivisor}}
+\DeclareMathOperator{\ggt}{\qopname \relax m{\prettytexMathGreatestCommonDivisor}}
+\DeclareMathOperator{\ggT}{\qopname \relax m{\prettytexMathGreatestCommonDivisor}}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% Exotic trigonometric functions and relatives
+%
+% Notes:
+%
+% The Area functions are the inverses to the hyperbolic functions, Arcus functions are inverses to the trigonometric 
+% functions. 
+%
+% operators:
+%
+% | operator | description                           |
+% |----------|---------------------------------------|
+% | Arsinh   | Area sinus hyperobolicus              |
+% | Arsinh   | Area cosinus hyperobolicus            |
+% | Arsinh   | Area tangens hyperobolicus            |
+% | Arsinh   | Area cotangens hyperobolicus          |
+% | Arsinh   | Area secans hyperobolicus             |
+% | Arsinh   | Area cosecans hyperobolicus           |
+% | Arsinh   | sinus cardinalis                      |
+% | Arsinh   | sinus cardinalis (normed)             |
+% | Arsinh   | integral sine                         |
+% | Arsinh   | integral logarithm                    |
+% | Arsinh   | Arcus cotangens                       |
+% | Arsinh   | Arcus secans                          |
+% | Arsinh   | Arcus cosecans                        |
+% | Arsinh   | secans hyperbolicus                   |
+% | Arsinh   | cosecans hyperbolicus                 |
+% | Arsinh   | atan2                                 |
+% | Arsinh   | logarithmus dualis (base-2 logarithm) |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\DeclareMathOperator{\Arsinh}{\qopname \relax m{Arsinh}}
+\DeclareMathOperator{\Arcosh}{\qopname \relax m{Arcosh}}
+\DeclareMathOperator{\Artanh}{\qopname \relax m{Artanh}}
+\DeclareMathOperator{\Arcoth}{\qopname \relax m{Arcoth}}
+\DeclareMathOperator{\Arsech}{\qopname \relax m{Arsech}}
+\DeclareMathOperator{\Arcsch}{\qopname \relax m{Arcsch}}
+\DeclareMathOperator{\sinc}{\qopname \relax m{sinc}}
+\DeclareMathOperator{\sinnc}{\qopname \relax m{si}}
+\DeclareMathOperator{\Si}{\qopname \relax m{Si}}
+\DeclareMathOperator{\Li}{\qopname \relax m{Li}}
+\DeclareMathOperator{\arccot}{\qopname \relax m{arccot}}
+\DeclareMathOperator{\arcsec}{\qopname \relax m{arcsec}}
+\DeclareMathOperator{\arccsc}{\qopname \relax m{arccsc}}
+\DeclareMathOperator{\sech}{\qopname \relax m{sech}}
+\DeclareMathOperator{\csch}{\qopname \relax m{csch}}
+\DeclareMathOperator{\atan}{\qopname \relax m{atan2}}
+\DeclareMathOperator{\ld}{\qopname \relax m{ld}}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% Overset relations
+%
+% prettytexMath:
+%
+% | macro            | expands to |
+% |------------------|------------|
+% | AlmostEverywhere | mathrm{ae} |
+%
+% macros:
+%
+% | macro | arguments | description |
+% |
+% | hateq         |                       | equal sign with hat (used for congruence and such)                   |
+% | refrel        | reference, expression | overset the refence to the expression                                |
+% | refqual       | reference             | shortcut of refrel, but with permant = as second argument            |
+% | refleq        | reference             | shortcut of refrel, but with \leq as permanent second argument       |
+% | refle         | reference             | shortcut of refrel, but with < as permanent second argument          |
+% | refgeq        | reference             | shortcut of refrel, but with \geq as permanent second argument       |
+% | refge         | reference             | shortcut of refrel, but with > as permanent second argument          |
+% | refimpl       | reference             | shortcut of refrel, but with \implies as permanent second argument   |
+% | refimpliedb   | reference             | shortcut of refrel, but with \impliedby as permanent second argument |
+% | refeqv        | reference             | shortcut of refrel, but with \eqv as permanent second argument       |
+% | refiso        | reference             | shortcut of refrel, but with \cong as permanent second argument      |
+% | eqrefrel      | reference, expression | overset the equation reference to the expression                     |
+% | eqrefqual     | reference             | same as refqual but for equation reference                           |
+% | eqrefleq      | reference             | same as refleq but for equation reference                            |
+% | eqrefle       | reference             | same as refle but for equation reference                             |
+% | eqrefgeq      | reference             | same as refgeq but for equation reference                            |
+% | eqrefge       | reference             | same as refge but for equation reference                             |
+% | eqrefimpl     | reference             | same as refimpl but for equation reference                           |
+% | eqrefimpliedb | reference             | same as refimpliedb but for equation reference                       |
+% | eqrefeqv      | reference             | same as refeqv but for equation reference                            |
+% | eqrefiso      | reference             | same as refiso but for equation reference                            |
+% | aerel         | expression            | oversets AlmostEverywhere to the expression                          | 
+% | aeeq          |                       | \aerel{=}                                                            |
+% | aequal        |                       | alias to aeeq                                                        |
+% | aeleq         |                       | \aerel{\leq}                                                         |
+% | aele          |                       | \aerel{<}                                                            |
+% | aegeq         |                       | \aerel{\geq}                                                         |
+% | aege          |                       | \aerel{>}                                                            |
+%
+%----------------------------------------------------------------------------------------------------------------------
+% prettytexMath
+\newcommand{\prettytexMathAlmostEverywhere}{\mathrm{ae}}
+
+% macros
+\newcommand{\hateq}{\hat{=}}
+
+% relations with reference
+\newcommand{\refrel}[2]{\oset{\text{\ref{#1}}}{#2}}
+\newcommand{\refqual}[1]{\refrel{#1}{=}}
+\newcommand{\refleq}[1]{\refrel{#1}{\leq}}
+\newcommand{\refle}[1]{\refrel{#1}{<}}
+\newcommand{\refgeq}[1]{\refrel{#1}{\geq}}
+\newcommand{\refge}[1]{\refrel{#1}{>}}
+\newcommand{\refimpl}[1]{\refrel{#1}{\implies}}
+\newcommand{\refimpliedb}[1]{\refrel{#1}{\impliedby}}
+\newcommand{\refeqv}[1]{\refrel{#1}{\eqv}}
+\newcommand{\refiso}[1]{\refrel{#1}{\cong}}
+
+% relations with eqreference
+\newcommand{\eqrefrel}[2]{\oset{\text{\eqref{#1}}}{#2}}
+\newcommand{\eqrefqual}[1]{\eqrefrel{#1}{=}}
+\newcommand{\eqrefleq}[1]{\eqrefrel{#1}{\leq}}
+\newcommand{\eqrefle}[1]{\eqrefrel{#1}{<}}
+\newcommand{\eqrefgeq}[1]{\eqrefrel{#1}{\geq}}
+\newcommand{\eqrefge}[1]{\eqrefrel{#1}{>}}
+\newcommand{\eqrefimpl}[1]{\eqrefrel{#1}{\implies}}
+\newcommand{\eqrefimpliedb}[1]{\eqrefrel{#1}{\impliedby}}
+\newcommand{\eqrefeqv}[1]{\eqrefrel{#1}{\eqv}}
+\newcommand{\eqrefiso}[1]{\eqrefrel{#1}{\cong}}
+
+% almost everywhere relations
+\newcommand{\aerel}[1]{\oset{\prettytexMathAlmostEverywhere}{#1}}
+\newcommand{\aeeq}{\aerel{=}}
+\newcommand{\aequal}{\aeeq}
+\newcommand{\aeleq}{\aerel{\leq}}
+\newcommand{\aele}{\aerel{<}}
+\newcommand{\aegeq}{\aerel{\geq}}
+\newcommand{\aege}{\aerel{>}}
