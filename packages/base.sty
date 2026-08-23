@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % Package: prettytex/base
 %
-% version: 1.0.0 @ refactor
+% version: 1.0.1 @ refactor
 % author : lphilmossb
 %
 % description: 
@@ -65,28 +65,27 @@
 % packages:
 %
 % | package      | description 
-% |--------------|
-% | fontenc      | T1 font encoding (german umlaute like ö,ä,ü are proper glyphs and not accented glyphs)
-% |              | also better copy-paste behaviour       
-% | inputenc     | allows for utf8 character to be used in source files (e.g. ö,ä,ü, ß etc.) 
-% | lmodern      | use latin modern instead of computer modern
-% | float        | allows for better control of float placement
-% | geometry     | used for page layout (mostly margins)
+% |--------------|----------------------------------------------------------------------------------------|
+% | fontenc      | T1 font encoding (german umlaute like ö,ä,ü are proper glyphs and not accented glyphs) |
+% |              | also better copy-paste behaviour                                                       |
+% | inputenc     | allows for utf8 character to be used in source files (e.g. ö,ä,ü, ß etc.)              | 
+% | lmodern      | use latin modern instead of computer modern                                            |
+% | float        | allows for better control of float placement                                           |
+% | geometry     | used for page layout (mostly margins)                                                  |
 % | url          |
 % | xcolor       |
 % | cellspace    |
-% | hyperref     | place clickable links in the text (if enabled via options, links are coloured)
-% | translations | allow for automatic translations of text (e.g. theorem names)
-% | contour      | give text an outline of any colour and width 
-% | babel        | language managment of the entire project 
+% | hyperref     | place clickable links in the text (if enabled via options, links are coloured)         |
+% | translations | allow for automatic translations of text (e.g. theorem names)                          |
+% | contour      | give text an outline of any colour and width                                           | 
+% | babel        | language managment of the entire project                                               |
 % | xspace       | 
 % | subcaption   |
 % | graphicx     |
-% | parskip      | only loaded if enabled via package option (see above for more description)
-% | enumitem     | more control over enums
+% | parskip      | only loaded if enabled via package option (see above for more description)             |
+% | enumitem     | more control over enums                                                                |
 % 
 % TODO: look up what all these packages do and give a quick description
-% TODO: explain missing package options here
 %----------------------------------------------------------------------------------------------------------------------
 % basic document stuff
 \usepackage[T1]{fontenc}
@@ -212,6 +211,15 @@
 %----------------------------------------------------------------------------------------------------------------------
 % Quick formatting macros
 %
+% prettytex:
+%
+% | macro | expands to
+% |
+% | HighlightColour | pastelpurple
+% | InfoColour      | themecolor
+% | WarnColour      | orange
+% | ErrorColour     | red
+%
 % macros:
 %
 % | macro | arguments    | description                                                                         |
@@ -234,6 +242,12 @@
 %
 % TODO: find a better name for `th` that keeps the shortness
 %----------------------------------------------------------------------------------------------------------------------
+%prettytexMacros
+\newcommand{\prettytexHighlightColour}{pastelpurple}
+\newcommand{\prettytexInfoColour}{themecolor}
+\newcommand{\prettytexWarnColour}{orange}
+\newcommand{\prettytexErrorColour}{red}
+
 % just format
 \newcommand{\ebf}[1]{\emph{\textbf{#1}}}
 \newcommand{\ibf}[1]{\textit{\textbf{#1}}}
@@ -245,9 +259,14 @@
 \newcommand{\iobf}[1]{\overline{\ibf{#1}}}
 \newcommand{\what}[1]{\widehat{#1}}
 
+
 % colouring
 \newcommand{\col}[2]{\textcolor{#1}{#2}}
 \newcommand{\REFL}[1]{\col{red}{#1}}
+\newcommand{\highlight}[1]{\col{\prettytexHighlightColour}{#1}}
+\newcommand{\info}[1]{\col{\prettytexInfoColour}{#1}}
+\newcommand{\warn}[1]{\col{\prettytexWarnColour}{#1}}
+\newcommand{\error}[1]{\col{\prettytexErrorColour}{#1}}
 
 % contour
 \contourlength{.06em}
@@ -256,6 +275,7 @@
 % other
 % \newcommand{\todo}[1]{\colorbox{lightgrey}{TODO: #1}}
 \renewcommand{\th}{\textsuperscript{th}~}
+\newcommand{\prettytex}{\textsl{prettytex}\xspace}
 
 %----------------------------------------------------------------------------------------------------------------------
 % Miscellaneous stuff
@@ -274,10 +294,13 @@
 %----------------------------------------------------------------------------------------------------------------------
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
+% counter conversion
+\newcounter{dispcount}
 \newcommand{\rom}[1]{\setcounter{dispcount}{#1}\roman{dispcount}}
 \newcommand{\Rom}[1]{\setcounter{dispcount}{#1}\Roman{dispcount}}
 \newcommand{\alp}[1]{\setcounter{dispcount}{#1}\alph{dispcount}}
 \newcommand{\Alp}[1]{\setcounter{dispcount}{#1}\Alph{dispcount}}
+
 
 \makeatletter
 \newcommand\listfigures{%
