@@ -4,13 +4,24 @@
 
 \usepackage[singleLineCheck,colouredLinks]{../packages/base}
 \usepackage{../packages/math}
+\usepackage{cleveref}
 
 
 \usepackage{multicol}
 
 
-\newcommand{\pbase}{\textsl{base}\xspace}
-\newcommand{\pmath}{\textsl{math}\xspace}
+\newcommand{\prettytexMacroColour}{themecolor3}
+\newcommand{\package}[1]{\textsl{#1}\xspace}
+\newcommand{\pbase}{\package{base}}
+\newcommand{\pmath}{\package{math}}
+\newcommand{\option}[1]{#1}
+\newcommand{\boolopt}[1]{\texttt{#1}}
+\newcommand{\stringopt}[1]{\texttt{#1}}
+
+\newcommand{\prettytexMacro}[1]{\col{\prettytexMacroColour}{#1}}
+\newcommand{\vop}[1]{\texttt{\textbackslash#1}}
+\newcommand{\vma}[1]{\texttt{\textbackslash#1}}
+\newcommand{\argu}[1]{\texttt{#1}}
 
 
 \author{lphilmossb}

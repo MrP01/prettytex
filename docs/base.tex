@@ -26,21 +26,21 @@
     \centering
     \begin{tabular}{r|p{8cm}|p{4cm}}
         \hline\textbf{package} & \textbf{description} & \textbf{options}\\\hline
-        \textsl{fontenc} & T1 font encoding ensures that non-ascii characters like the german umlaute (ö,ä etc) are actual glyphs instead of accented letters. This also improves copy-paste behavior & T1\\
-        \textsl{inputenc} & allows for utf8 characters to bes used in source files (e.g. ä.ö. etc) & utf8\\
-        \textsl{lmodern} & use latin modern font instead of computer modern\\
-        \textsl{float} & allows for better control of float placement\\
-        \textsl{geometry} & used for page layout (mostly for margins)\\
-        \textsl{xcolor} & & table\\
-        \textsl{cellspace} & &column=C\\
-        \textsl{hyperref} & place clickable links in the text (if enabled via options, links are coloured instead of underlined) & hypertextnames=false\\
-        \textsl{translations} & allows for automatic translations of text (e.g. theorem names)\\
-        \textsl{contour} & give text an outline of any colour and width & outline\\
-        \textsl{xspace}&\\
-        \textsl{subcaption}&\\
-        \textsl{graphicx}&\\
-        \textsl{parksip} & only loaded if enabled via option, see \ref{tab:base_options} for explanation\\
-        \textsl{enumitem} & more control over enums, specifically their labelling, only loaded if beamer is \verb|false| & inline
+        \package{fontenc} & T1 font encoding ensures that non-ascii characters like the german umlaute (ö,ä etc) are actual glyphs instead of accented letters. This also improves copy-paste behavior & \option{T1}\\
+        \package{inputenc} & allows for utf8 characters to bes used in source files (e.g. ä.ö. etc) & \option{utf8}\\
+        \package{lmodern} & use latin modern font instead of computer modern\\
+        \package{float} & allows for better control of float placement\\
+        \package{geometry} & used for page layout (mostly for margins)\\
+        \package{xcolor} & & \option{table}\\
+        \package{cellspace} & & \option{column=C}\\
+        \package{hyperref} & place clickable links in the text (if enabled via options, links are coloured instead of underlined) & \option{hypertextnames=false}\\
+        \package{translations} & allows for automatic translations of text (e.g. theorem names)\\
+        \package{contour} & give text an outline of any colour and width & \option{outline}\\
+        \package{xspace}&\\
+        \package{subcaption}&\\
+        \package{graphicx}&\\
+        \package{parksip} & only loaded if enabled via option, see \ref{tab:base_options} for explanation\\
+        \package{enumitem} & more control over enums, specifically their labelling, only loaded if beamer is \verb|false| & \option{inline}
     \end{tabular}
     \caption{Packages loaded by \pbase{}}
 \end{table}
@@ -50,12 +50,12 @@
 The options passed to geometry are
 \begin{multicols}{3}
     \begin{itemize}
-        \item a4paper,
-        \item left=2cm,
-        \item right=2cm,
-        \item top=1.25cm
-        \item bottom=1.25cm
-        \item includeheadfoot
+        \item \option{a4paper},
+        \item \option{left=2cm},
+        \item \option{right=2cm},
+        \item \option{top=1.25cm},
+        \item \option{bottom=1.25cm},
+        \item \option{includeheadfoot}
     \end{itemize}
 \end{multicols}
 
@@ -101,10 +101,10 @@ We also provide some formatting macros:
     \centering
     \begin{tabular}{r|l}
         \hline\textbf{macro} & \textbf{expands to}\\\hline
-        HighlightColour & pastelpurple\\
-        InfoColour & themecolor\\
-        WarnColour & orange\\
-        ErrorColour & red
+        \prettytexMacro{HighlightColour} & pastelpurple\\
+        \prettytexMacro{InfoColour}      & themecolor\\
+        \prettytexMacro{WarnColour}      & orange\\
+        \prettytexMacro{ErrorColour}     & red
     \end{tabular}
     \caption{\prettytex-macros}
 \end{table}
@@ -113,21 +113,17 @@ We also provide some formatting macros:
     \centering
     \begin{tabular}{r|l|p{8cm}|l}
         \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example}\\\hline
-        ebf & \verb|text| & emphasised and bold-faced text             & \ebf{example}\\
-        ibf & \verb|text| & italicised and bold-faced text             & \ibf{example}\\
-        ibf & \verb|text| & underlined and bold-faced text             & \ubf{example}\\
-        %ibf & \verb|text| & overlined and bold-faced text              & \obf{example}\\
-        eubf & \verb|text| & emphasised, underlined and bold-faced text & \eubf{example}\\
-        %eobf & \verb|text| & emphasised, overlined and bold-faced text  & \eobf{example}\\
-        iubf & \verb|text| & italicised, underlined and bold-faced text & \iubf{example}\\\hline
-        %ibf & \verb|text| & italicised, overlined and bold-faced text  & \iobf{example}\\
-        %what & \verb|text| & italicised and bold-faced text             & \what{example}\\
-        col & \verb|colour|, \verb|text| & write text in colour         & \col{green}{example}\\
-        REFL & text & highlight reference, that does not yet exist                & \REFL{example}\\
-        highlight & text & highlight text      & \highlight{example}\\
-        info & text & info text      & \info{example}\\
-        warn & text & warn text      & \warn{example}\\
-        error & text & error text      & \error{example}\\
+        \vma{ebf}       & \argu{text} & emphasised and bold-faced text             & \ebf{example}\\
+        \vma{ibf}       & \argu{text} & italicised and bold-faced text             & \ibf{example}\\
+        \vma{ibf}       & \argu{text} & underlined and bold-faced text             & \ubf{example}\\
+        \vma{eubf}      & \argu{text} & emphasised, underlined and bold-faced text & \eubf{example}\\
+        \vma{iubf}      & \argu{text} & italicised, underlined and bold-faced text & \iubf{example}\\\hline
+        \vma{col}       & \argu{colour}, \argu{text} & write text in colour         & \col{green}{example}\\
+        \vma{REFL}      & \argu{text} & highlight reference that does not yet exist                & \REFL{example}\\
+        \vma{highlight} & \argu{text} & highlight text      & \highlight{example}\\
+        \vma{info}      & \argu{text} & info text      & \info{example}\\
+        \vma{warn}      & \argu{text} & warn text      & \warn{example}\\
+        \vma{error}     & \argu{text} & error text      & \error{example}\\
     \end{tabular}
     \caption{Formatting macros}
 \end{table}
@@ -136,11 +132,12 @@ We also provide some formatting macros:
     \centering
     \begin{tabular}{r|l|p{6cm}|l}
         \hline\textbf{macro} & \textbf{arguments}               & \textbf{description} & \textbf{example/output}\\\hline
-        cw                   & \verb|text| or \verb|expression| & give the passed argument a white outline with width .06em & \cw{example}\\
-        th                   &                                  & write th as superscript (for dates) & 4\th\\
-        prettytex            &                                  & write prettytex in pacakge format & \prettytex
+        \vma{cw}                   & \argu{text} or \argu{expression} & give the passed argument a white outline with width .06em & \cw{example}\\
+        \vma{th}                   &                                  & write th as superscript (for dates) & 4\th\\
+        \vma{prettytex}            &                                  & write prettytex in pacakge format & \prettytex
     \end{tabular}
     \caption{Miscellaneous macros}
+    \label{tab:base_misc}
 \end{table}
 
 \subsection{Miscellaneous}
@@ -149,14 +146,14 @@ We also provide some formatting macros:
     \centering
     \begin{tabular}{r|l|p{8cm}|l}
         \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\
-        tightlist & & remove vertical spacing from all lists\\
-        rom & \verb|positive integer| & convert input to lowercase roman numeral & \rom{42}\\
-        Rom & \verb|positive integer| & convert input to uppercase roman numeral & \Rom{69}\\
-        alp & \verb|integer in [1,26]| & convert input to lowercase alph-value    & \alp{24}\\
-        Alp & \verb|integer in [1,26]| & convert input to uppercase alph-value    & \Alp{16}\\
-        listfigures & & &\\
-        listtables & & &\\
-        autoheadings & & &\\
+        \vma{tightlist} & & remove vertical spacing from all lists\\
+        \vma{rom} & \argu{positive integer} & convert input to lowercase roman numeral & \rom{42}\\
+        \vma{Rom} & \argu{positive integer} & convert input to uppercase roman numeral & \Rom{69}\\
+        \vma{alp} & \argu{integer in [1,26]} & convert input to lowercase alph-value    & \alp{24}\\
+        \vma{Alp} & \argu{integer in [1,26]} & convert input to uppercase alph-value    & \Alp{16}\\
+        \vma{listfigures}  & & this is a verbatim copy of the built-in macro \vma{listfigures} but allows the list to be included as a subsection &\\
+        \vma{listtables}   & & this is a verbatim copy of the built-in macro \vma{listtables} but allows the list to be included as a subsection &\\
+        \vma{autoheadings} & & set header and footer to sensible default based on document metadata &\\
     \end{tabular}
     \caption{Miscellaneous macros from \pbase}
 \end{table}

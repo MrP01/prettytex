@@ -282,15 +282,18 @@
 %
 % macros:
 %
-% | macro     | arguments | description                                                             |
-% |-----------|-----------|-------------------------------------------------------------------------|
-% | tightlist |           | remove vertical spacing from all lists in the document                  |
-% | rom       | number    | conver `number` to a lowercase roman numeral                            |
-% | Rom       | number    | conver `number` to an uppercase roman numeral                           |
-% | alp       | number    | conver `number` to an lowercase alph-value (i.e. a for 1, b for 2 etc)  |
-% | Alp       | number    | same as `alp` but uppercase                                             |
+% | macro        | arguments | description                                                             |
+% |--------------|-----------|-------------------------------------------------------------------------|
+% | tightlist    |           | remove vertical spacing from all lists in the document                  |
+% | rom          | number    | conver `number` to a lowercase roman numeral                            |
+% | Rom          | number    | conver `number` to an uppercase roman numeral                           |
+% | alp          | number    | conver `number` to an lowercase alph-value (i.e. a for 1, b for 2 etc)  |
+% | Alp          | number    | same as `alp` but uppercase                                             |
+% | listfigures  |           | clone of the built-in latex macros \listfigures but allows inclusion    |
+% |              |           | as subsection                                                           |
+% | listttables  |           | allows list of tables to be a subsection (similar to listfigures above) |
+% | autoheadings |           | set header and footer to “sensible“ default based on document metadata  |
 %
-% TODO: find out what listfigures, listtables and autoheadings do
 %----------------------------------------------------------------------------------------------------------------------
 \providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
 
@@ -304,30 +307,30 @@
 
 \makeatletter
 \newcommand\listfigures{%
-  \subsection*{\listfigurename}%
-  \@mkboth{\MakeUppercase\listfigurename}%
-  {\MakeUppercase\listfigurename}%
-  \@starttoc{lof}%
+    \subsection*{\listfigurename}%
+    \@mkboth{\MakeUppercase\listfigurename}%
+    {\MakeUppercase\listfigurename}%
+    \@starttoc{lof}%
 }
 \makeatother
 
 \makeatletter
 \newcommand\listtables{%
-  \subsection*{\listtablename}%
-  \@mkboth{\MakeUppercase\listtablename}%
-  {\MakeUppercase\listtablename}%
-  \@starttoc{lot}%
+    \subsection*{\listtablename}%
+    \@mkboth{\MakeUppercase\listtablename}%
+    {\MakeUppercase\listtablename}%
+    \@starttoc{lot}%
 }
 \makeatother
 
 \newcommand{\autoheadings}{
-  \usepackage{lastpage}
-  \pagestyle{fancy}
-  \fancyhf{}
-  \makeatletter
-  \fancyhead[R]{\@author \enspace \textcolor{darkred}{\textbullet}}
-  \makeatother
-  \fancyhead[L]{\leftmark}
-  \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
-  \renewcommand\headrule{\color{headrulecolor}\hrulefill}
+    \usepackage{lastpage}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \makeatletter
+    \fancyhead[R]{\@author \enspace \textcolor{darkred}{\textbullet}}
+    \makeatother
+    \fancyhead[L]{\leftmark}
+    \fancyfoot[C]{\thepage\  \text{ / } \pageref{LastPage}}
+    \renewcommand\headrule{\color{headrulecolor}\hrulefill}
 }
