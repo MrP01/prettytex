@@ -1,0 +1,47 @@
+\ProvidesPackage{typst}[2024/12/20 v0.1 Embed Typst in LaTeX]
+\RequirePackage{graphicx}
+\RequirePackage{filecontents}
+\RequirePackage{xparse}
+
+\makeatletter
+\newcommand{\typstflags}{}
+\newcounter{@typstsrc}
+\newcommand{\@space}{ }
+
+\begin{filecontents*}{typst_premble.typ}
+#set page(width: auto, height: auto, margin: 0em)
+\end{filecontents*}
+
+\NewDocumentEnvironment{typst}{m}{%
+    \stepcounter{@typstsrc}
+    \def\@typstfn{\jobname-\the@typstsrc}%
+    \csname filecontents*\endcsname[overwrite]{\@typstfn.raw}%
+    \def\@abstypstfn{$TEXMF_OUTPUT_DIRECTORY/\@typstfn}%
+    \def\@abspremblefn{$TEXMF_OUTPUT_DIRECTORY/typst_premble.typ}%
+}{%
+    \csname endfilecontents*\endcsname%
+    \IfFileExists{\@typstfn.raw}{%
+        % generate the file to be compiled
+        \immediate\write18{echo "// flags: \typstflags\\n" | cat - \@abstypstfn.flags \@abspremblefn \@space \@abstypstfn.raw > \@abstypstfn.typ}
+        % compute md5 hash of the file
+        \immediate\write18{md5sum \@abstypstfn.typ > \@abstypstfn.new.md5}
+        % check md5 match, generate .changed file if not matched
+        \immediate\write18{cmp -s \@abstypstfn.new.md5 \@abstypstfn.md5 || touch \@abstypstfn.changed}
+        % if md5 changed, compile the file
+        \IfFileExists{\@abstypstfn.changed}{%
+            \immediate\write18{typst compile \typstflags \@space \@abstypstfn.typ \@abstypstfn.pdf > \@abstypstfn.log}
+            \immediate\write18{mv \@abstypstfn.new.md5 \@abstypstfn.md5}
+        }{%
+            \immediate\write18{rm \@abstypstfn.new.md5}
+        }
+        \immediate\write18{rm \@abstypstfn.changed \@abstypstfn.raw \@abstypstfn.flags}
+    }{%
+        \PackageError{typst}{Failed to write Typst source code for \@typstfn.typ}{}
+    }
+    \IfFileExists{\@typstfn.pdf}{%
+        \includegraphics[#1]{\@typstfn.pdf}%
+    }{%
+        \PackageError{typst}{Failed to compile Typst source code for \@typstfn.typ}{}
+    }
+}
+\makeatother
