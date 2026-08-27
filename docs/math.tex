@@ -1,1 +1,621 @@
 \section{\textsl{math}}\label{sec:math}
+
+\pmath is the package for all\footnote{well, almost all} things mathematics. 
+
+
+\subsection{Package options}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|p{12cm}|l}
+        \hline\textbf{option} & \textbf{description} & \textbf{type}\\\hline
+        \option{vargreek} & if \verb|true| \verb|\rho| and \verb|\epsilon| are redefined to their variants \verb|\varrho| and \verb|\varepsilon| & \boolopt{boolean}
+    \end{tabular}
+    \caption{Package options for \pmath}
+\end{table}
+
+
+\subsection{Loaded packages}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|p{8cm}|p{4cm}}
+        \hline\textbf{package} & \textbf{description} & \textbf{options}\\\hline
+        \package{amsmath}&&\\
+        \package{amssymb}&&\\
+        \package{esint}&&\\
+        \package{bm}&&\\
+        \package{upgreek} & provides non-italicised greek letter&\\
+        \package{nicematrix} &&
+    \end{tabular}
+    \caption{Packages loaded by \pmath}
+\end{table}
+
+
+\subsection{Fonts and alphabets}
+
+We declare a new math-alphabet (\verb|mathscall|) for the lowercase o for Landau-symbols. As a shortcut, we already provide the \vma{sco} macro (which is an abbreviation of small calligraphic o) and results in $\sco$.
+
+
+\subsection{Formatting}
+
+Sometimes we need to write text in equations and keep a nice format. Thus some formatting macros were created:
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{qqtext}   & \argu{text} & writes \verb|text| between two \verb|\qquad|, use in display-mode to separate expressions with natural language & $\qquad{example}$\\
+        \vma{qtext}    & \argu{text} & same as qqtext but with \verb|\quad| instead of \verb|\qquad| & $\qtext{example}$\\
+        \vma{bar}      & \argu{expression} & put a bar over the expression & $\bar{z}$\\
+        \vma{ubar}     & \argu{expression} & underline the expression & $\ubar{z}$\\
+        \vma{oset}     & \argu{expression}, \argu{expression} & types the first expression over the second, this is just a shortcut for \verb|overset| & $\oset{\rho}{=}$\\
+        \vma{uset}     & \argu{expression}, \argu{expression} & same as oset, but now underset, of which this is a shortcut & $\uset{\rho}{=}$\\
+        \vma{obra}     & \argu{expression} & put a brace over the expression (allows for proper superscript placement) & $\obra{\e^{\i\pi}}$\\
+        \vma{ubra}     & \argu{expression} & put a brace under the expression (allows for proper subscript placement) & $\ubra{\sin^2(x) + \cos^2(x)}$\\
+        \vma{parenth}  & \argu{expression} & put automatically scaling parenthesis around the expression & $\lambda\parenth{\int_0^1 f(x)\idd x}$\\
+        \vma{eqv}      & & equivalence arrow from logic & $\eqv$
+    \end{tabular}
+    \caption{Formatting macros for mathematics}
+\end{table}
+
+
+\subsection{Sets}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro} & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{Complement} & \expandsto{\textbackslash mathsf\{c\}} & $\prettytexMathComplement$\\
+    \end{tabular}
+    \caption{\prettytex-math macros for sets}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{set} & \argu{expression} & shortcut for set-builder notation, places automatically scaling braces around the expression & $\set{q\in\Q\mid q^2<2}$\\
+        \vma{sm} & & alias for \verb|\setminus|\\
+        \vma{compl} & & complement of a set, write this after the set whose complement you need & $A\compl$\\
+        \vma{eset} & & alias for \verb|\emptyset|& $\eset$\\
+        \vma{sset} && alias for \verb|subseteq|  & $\sset$\\
+        \vma{psset} && alias for \verb|subset|   & $\psset$\\
+        \vma{Sset} && alias for \verb|supseteq|  & $\Sset$\\
+        \vma{pSset} && alias for \verb|supset|   & $\pSset$\\
+        \vma{inv} && places -1 in the superscript of the previous expression (use like compl) & $f\inv$
+    \end{tabular}
+    \caption{Set macros from \pmath}
+\end{table}
+
+
+\subsection{Numbers and relatives}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro} & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{ComplexArgument} & \expandsto{Arg}                  & \prettytexMathComplexArgument\\
+        \prettytexMacro{Real}            & \expandsto{\textbackslash mathfrak\{Re\}} & $\prettytexMathReal$\\
+        \prettytexMacro{Imag}            & \expandsto{\textbackslash mathfrak\{Im\}} & $\prettytexMathImag$\\
+        \prettytexMacro{AbsoluteValuePlaceholder} & \expandsto{\textbackslash cdot}& $\prettytexMathAbsoluteValuePlaceholder$\\
+    \end{tabular}
+    \caption{\prettytex-math macros for numbers}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{N} & & the natural numbers & $\N$\\
+        \vma{Z} & & the integers & $\Z$\\
+        \vma{Q} & & the rationals & $\Q$\\
+        \vma{R} & & the reals & $\R$\\
+        \vma{C} & & the complex numbers & $\C$\\
+        \vma{I} & & the irrational numbers & $\I$\\
+        \vma{D} & & the open unit disk & $\D$\\
+        \vma{T} & & the transcendental numbers & $\T$\\
+        \vma{S} & & the unit sphere & $\S$\\
+        \vma{H} & & the upper half plane & $\H$\\
+        \vma{P} & & the primes or a probability measure & $\P$\\
+        \vma{K} & & general field (german spelling) & $\K$\\
+        \vma{F} & & general field & $\F$\\
+        \vma{i} & & imaginary unit & $\i$\\
+        \vma{j} & & jmaginary unit (electrical engineering) & $\j$\\
+        \vma{e} & & Euler's number & $\e$\\
+        \vma{floorl} & \argu{expression} & floor function of expression with scaling delimiters & $\displaystyle\floorl{\int f(x)\idd x}$\\
+        \vma{floor} &  \argu{expression} & floor function of expression & $\floor{\pi}$\\
+        \vma{ceil} &   \argu{expression} & ceiling function of expression & $\ceil\e$\\
+        \vma{ceill} &  \argu{expression} & ceiling function of expression with scaling delimieters & $\displaystyle\ceill{\int f(x)\idd x}$\\
+        \vma{abs} &    \argu{expression} & absolute value of expression & $\abs{-2}$\\
+        \vma{absc} & & absolute value of \prettytexMacro{AbsoluteValuePlaceholder}, used for definition & $\absc\colon\C\to\R_0^+$\\
+        \vma{labs} &   \argu{expression} & absolute value of expression with scaling delimiters & $\displaystyle\labs{\int f(x)\idd x}$
+    \end{tabular}
+    \caption{Number macros from \pmath}
+\end{table}
+
+\subsection{Topology}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro}      & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{Interior} & \expandsto{int}                 & \prettytexMathInterior\\
+        \prettytexMacro{Closure}  & \expandsto{cls}                 & \prettytexMathClosure\\
+        \prettytexMacro{Diameter} & \expandsto{diam}                & \prettytexMathDiameter\\
+        \prettytexMacro{Exterior} & \expandsto{ext}                 & \prettytexMathExterior\\
+        \prettytexMacro{Support}  & \expandsto{supp}                & \prettytexMathSupport\\
+        \prettytexMacro{Frontier} & \expandsto{Fr}                  & \prettytexMathFrontier\\
+    \end{tabular}
+    \caption{\prettytex-\pmath macros for topology}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{operator} & \textbf{description}  & \textbf{example/output}\\\hline
+        \vop{interior}          & interior of a set     & $\interior S$, $\interior(S)$\\
+        \vop{cls}               & closure of a set      & $\cls S$, $\cls(S)$\\
+        \vop{diam}              & diameter of a set     & $\diam S$, $\diam(S)$\\
+        \vop{supp}              & support of a function & $\supp f$, $\supp(f)$\\
+        \vop{frontier}          & frontier of a set     & $\frontier S$, $\frontier(S)$
+    \end{tabular}
+    \caption{\prettytex-\pmath operators for topology}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{intr}  & \argu{expression} & interior of \argu{expression} (accents with a small circle) & $\intr S$\\
+        \vma{inter} & \argu{expression} & alias to \vma{intr}                                         & $\inter S$\\
+        \vma{fc}    &                   & collection of convergent sequences                          & $\fc$\\
+        \vma{fU}    &                   & collection of neighbourhoods                                & $\fU$\\
+        \vma{fB}    &                   & base of topology                                            & $\fB$\\
+        \vma{fS}    &                   & subbase of topology                                         & $\fS$\\
+    \end{tabular}
+    \caption{Macros from \pmath for topology}
+\end{table}
+
+\subsection{Measure Theory}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro}    & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{Volume} & \expandsto{vol}                 & \prettytexMathVolume
+    \end{tabular}
+    \caption{\prettytex-\pmath macros for measure theory}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{operator} & \textbf{description} & \textbf{example/output}\\\hline
+        \vop{leb}               & Lebesgue measure     & $\leb$, $\leb M$, $\leb(M)$\\
+        \vop{borel}             & Borel measure        & $\borel$, $\borel M$, $\borel(M)$\\
+        \vop{me}                & general measure      & $\me$, $\me M$, $\me(M)$\\
+        \vop{vol}               & volume of a set      & $\vol$, $\vol M$, $\vol(M)$
+    \end{tabular}
+    \caption{\prettytex-\pmath operators for measure theory}
+\end{table}
+
+
+\subsection{Derivatives}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro}       & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{Hessian}   & \expandsto{H}                   & \prettytexMathHessian \\
+        \prettytexMacro{Jacobian}  & \expandsto{J}                   & \prettytexMathJacobian\\
+        \prettytexMacro{Gradient}  & \expandsto{grad}                & \prettytexMathGradient\\
+        \prettytexMacro{Laplacian} & \expandsto{\textbackslash triangle}    & $\prettytexMathLaplacian$
+    \end{tabular}
+    \caption{\prettytex-\pmath macros for derivatives}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|lll}
+        \hline\textbf{operator} & \textbf{description} & \multicolumn{3}{l}{\textbf{example/output}}\\
+                      &                                        & alone      & w/o parenthesis & w parenthesis\\\hline
+        \vop{hess}    & hessian of a differentiable function   & $\hess$    & $\hess f$    & $\hess(f)$\\
+        \vop{jac}     & jacobian of a differentiable function  & $\jac$     & $\jac f$     & $\jac(f)$\\
+        \vop{grad}    & gradient of a differentiable function  & $\grad$    & $\grad f$    & $\grad(f)$\\
+        \vop{laplace} & laplacian of a differentiable function & $\laplace$ & $\laplace f$ & $\laplace(f)$\\
+        \vop{argmin}  & minimiser of function or set of minima & $\argmin$  & $\argmin f$  & $\argmin(f)$\\
+        \vop{argmax}  & maximiser of function or set of maxima & $\argmax$  & $\argmax f$  & $\argmax(f)$\\
+        \vop{minimise} & used for stating minimisation problems & $\minimise$ & $\minimise f$ & $\minimise(f)$
+    \end{tabular}
+    \caption{\prettytex-\pmath operators for derivatives}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{FD} & & Fréchet derivative & $\FD$\\
+        \vma{dd} & & general derivative symbol & $\dd$\\
+        \vma{idd} & & used for differential in integrals (adds space after function) & $\idd$\\
+        \vma{ddx} & & shortcut for \verb|\dd x| & $\ddx$\\
+        \vma{ddy} & & shortcut for \verb|\dd y| & $\ddy$\\
+        \vma{ddz} & & shortcut for \verb|\dd z| & $\ddz$\\
+        \vma{ddu} & & shortcut for \verb|\dd u| & $\ddu$\\
+        \vma{ddv} & & shortcut for \verb|\dd v| & $\ddv$\\
+        \vma{ddr} & & shortcut for \verb|\dd r| & $\ddr$\\
+        \vma{dds} & & shortcut for \verb|\dd s| & $\dds$\\
+        \vma{ddt} & & shortcut for \verb|\dd t| & $\ddt$\\
+        \vma{derx} & \argu{expression} & derivative with respect to $x$, Leibniz notation & $\derx f$\\
+        \vma{nderx} & \argu{expression} & $n$-th derivative with respect to $x$, Leibniz notation & $\nderx f$\\
+        \vma{kderx} & \argu{expression} & $k$-th derivative with respect to $x$, Leibniz notation & $\kderx f$\\
+        \vma{nder} & \argu{expression} & $n$-th derivative, Newton notation & $\nder f$\\
+        \vma{kder} & \argu{expression} & $k$-th derivative, Newton notation & $\kder f$
+    \end{tabular}
+    \caption{Macros from \pmath for derivatives}
+\end{table}
+
+\subsection{Sequences and Limits}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{seqn} & \argu{expression} & sequence indexed with $n$  in $\N$ & $\seqn x$\\
+        \vma{seqnz} & \argu{expression} & sequence indexed with $n$ in $\N_0$ & $\seqnz x$\\
+        \vma{seqk} & \argu{expression} & sequence indexed with $k$ in $\N$ & $\seqk x$\\
+        \vma{seqkz} & \argu{expression} & sequence indexed with $k$ in $\N_0$ & $\seqkz x$\\
+        \vma{iseq} & \argu{expression} & general family indexed with $i$ and index set $I$ & $\iseq x$\\
+        \vma{jseq} & \argu{expression} & general family indexed with $j$ and index set $J$ & $\jseq x$\\
+        \vma{net} & \argu{expression} & net (map from a directed set into any set) & $\net x$\\
+        \vma{Kappa} & & uppercase kappa & $\Kappa$\\
+        \vma{subnet} & \argu{expression} & subnet of a net & $\subnet x$\\
+        \vma{limh} & & limit as $h$ goes to 0 & $\limh$\\
+        \vma{limt} & & limit as $t$ goes to 0 & $\limt$\\
+        \vma{limx} & & limit as $x$ goes to $x_0$ & $\limx$\\
+        \vma{limz} & & limit as $z$ goes to $z_0$ & $\limz$\\
+        \vma{limn} & & limit as $n$ goes to $\infty$ & $\limn$\\
+        \vma{limk} & & limit as $k$ goes to $\infty$ & $\limk$\\
+        \vma{liminfn} & & limit inferior as $n$ goes to $\infty$ & $\liminfn$\\
+        \vma{limsupn} & & limit superior as $n$ goes to $\infty$ & $\limsupn$\\
+        \vma{liminfk} & & limit inferior as $k$ goes to $\infty$ & $\liminfk$\\
+        \vma{limsupk} & & limit superior as $k$ goes to $\infty$ & $\limsupk$\\
+        \vma{infn} & & infimum of family indexed by $n$ in $\N$ & $\infn$\\
+        \vma{infk} & & infimum of family indexed by $k$ in $\N$ & $\infk$\\
+        \vma{supn} & & supremum of family  indexed by $n$ in $\N$ & $\supn$\\
+        \vma{supk} & & supremum of family  indexed by $k$ in $\N$ & $\supk$\\
+    \end{tabular}
+    \caption{Macros from \pmath for limits and sequences}
+\end{table}
+
+
+
+\subsection{Algebra}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro}               & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{Homset}            & \expandsto{Hom}                   & \prettytexMathHomset \\
+        \prettytexMacro{Endomorphisms}     & \expandsto{End}     & \prettytexMathEndomorphisms\\
+        \prettytexMacro{Automorphisms}     & \expandsto{Aut}     & \prettytexMathAutomorphisms\\
+        \prettytexMacro{Range}             & \expandsto{ran}     & \prettytexMathRange\\
+        \prettytexMacro{Domain}            & \expandsto{dom}     & \prettytexMathDomain\\
+        \prettytexMacro{Codomain}          & \expandsto{co\textbackslash:dom} & \prettytexMathCodomain\\
+        \prettytexMacro{Projection}        & \expandsto{proj} & \prettytexMathProjection\\
+        \prettytexMacro{Cokernel}          & \expandsto{coker} & \prettytexMathCokernel\\
+        \prettytexMacro{PermutationParity} & \expandsto{sign} & \prettytexMathPermutationParity\\
+        \prettytexMacro{Sign}              & \expandsto{sgn} & \prettytexMathSign\\
+        \prettytexMacro{Image}             & \expandsto{im} & \prettytexMathImage\\
+        \prettytexMacro{Kernel}            & \expandsto{ker} & \prettytexMathKernel\\
+        \prettytexMacro{Identity}          & \expandsto{id} & \prettytexMathIdentity\\
+        \prettytexMacro{Degree}            & \expandsto{deg} & \prettytexMathDegree\\
+    \end{tabular}
+    \caption{\prettytex-\pmath macros for algebra}
+\end{table}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{epimorph} & & arrow for epimoprhism & $\epimorph$\\
+        \vma{monomorph} & & arrow for monomorphism & $\monomorph$\\
+        %\vma{isomorph} & & arrow for isomorphism & $\isomorph$\\
+        \vma{incl} & & arrow for inclusion & $\incl$\\
+        \vma{surj} & & arrow for surjection (alias to \vma{epimorphism}) & $\surj$\\
+        \vma{unity} & & group of units of a structure (write after symbol) & $R\unity$
+    \end{tabular}
+    \caption{Macros from \pmath for algebra}
+\end{table}
+
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|lll}
+        \hline\textbf{operator} & \textbf{description} & \multicolumn{3}{l}{\textbf{example/output}}\\
+                      &                                        & alone      & w/o parenthesis & w parenthesis\\\hline
+        \vop{Hom}     & homomorphisms between objects & $\Hom$ & & $\Hom(R,S)$\\
+        \vop{End}     & endomorphisms of an object & $\End$ & $\End R$ & $\End(R)$\\
+        \vop{Aut}     & automorphisms of an object & $\Aut$ & $\Aut R$ & $\Aut(R)$\\
+        \vop{range}   & range of an operator (i.e. the image) & $\range$ & $\range T$ & $\range(T)$\\
+        \vop{dom}     & domain of a morphism & $\dom$ & $\dom f$ & $\dom(f)$\\
+        \vop{codom}   & codomain of a morphism & $\codom$ & $\codom f$ & $\codom(f)$\\
+        \vop{coker}   & cokernel of a morphism & $\coker$ & $\coker f$ & $\coker(f)$\\
+        \vop{im}      & image of a morphism & $\im$ & $\im f$ & $\im(f)$\\
+        \vop{ker}     & kernel of a morphism & $\ker$ & $\ker f$ & $\ker(f)$\\
+        \vop{id}      & identity map & $\id$\\
+        \vop{proj}    & general projection & $\proj$\\
+        \vop{sign}    & signature (parity) of a permutation & $\sign$ & $\sign \pi$ & $\sign(\pi)$\\
+        \vop{sgn}     & sign of an expression & $\sgn$ & $\sgn x$ & $\sgn(x)$\\
+        \vop{deg}     & degree of an object & $\deg$ & $\deg p$ & $\deg(p)$
+    \end{tabular}
+    \caption{\prettytex-\pmath operators for algebra}
+\end{table}
+
+\subsection{Category theory}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|p{8cm}|l}
+        \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+        \vma{CATEGORY} & \argu{expression} & label of a category & $\CATEGORY{A}$\\
+        \vma{CAT} & & generic category & $\CAT$\\
+        \vma{Cat} & & alias for \vma{CAT} & $\Cat$\\
+        \vma{CATD} & & generic category (variation) & $\CATD$\\
+        \vma{CatD} & & alias for \vma{CATD} & $\CatD$\\
+        \vma{LEFTMOD} & \argu{expression} & cateogry of left-modules & $\LEFTMOD S$\\
+        \vma{LEFTMODR} & & shortcut for \verb|\LEFTMOD{R}| & $\LEFTMODR$\\
+        \vma{FINLEFTMOD} & \argu{expression} & cateogry of finitely generated left-modules& $\FINLEFTMOD S$\\
+        \vma{FINLEFTMODR} & & shortcut for \verb|\FINLEFTMOD{R}| & $\FINLEFTMODR$\\
+        \vma{RIGHTMOD} & \argu{expression} & category of right-modules & $\RIGHTMOD S$\\
+        \vma{RIGHTMODR} & & shortcut for \verb|\RIGHTMOD{R}| & $\RIGHTMODR$\\
+        \vma{FINRIGHTMOD} & \argu{expression} & category of finitely generated right-modules & $\FINRIGHTMOD S$\\
+        \vma{FINRIGHTMODR} & & shortcut for \verb|\FINRIGHTMOD{R}| & $\FINRIGHTMODR$\\
+        \vma{VECT} & \argu{expression} & category of vectorspaces & $\VECT F$\\
+        \vma{VECTK} & & shortcut for \verb|\VECT{k}| & $\VECTK$\\
+        \vma{FINVECT} & \argu{expression} & category of finite dimensional vectorspaces & $\FINVECT F$\\
+        \vma{FINVECTK} & & shortcut for \verb|\FINVECT{k}| & $\FINVECTK$\\
+        \vma{CRING} & & category of commutative rings & $\CRING$\\
+        \vma{SET} & & category of sets & $\SET$\\
+        \vma{GRP} & & category of groups & $\GRP$\\
+        \vma{RING} & & category of rings & $\RING$\\
+        \vma{FIELD} & & category of fields & $\FIELD$\\
+        \vma{TOP} & & category of topological spaces & $\TOP$\\
+        \vma{TOPB} & & category of based topological spaces & $\TOPB$\\
+        \vma{AB} & & category of abelian groups & $\AB$\\
+        \vma{Homcat} & & morphisms between two objects in $\CAT$ & $\Homcat(A,B)$\\
+        \vma{UCAT} & & generic category (variation) & $\UCAT$\\
+        \vma{CATJ} & & generic category (variation) & $\CATJ$\\
+        \vma{CATS} & & generic category (variation) & $\CATS$
+    \end{tabular}
+    \caption{\prettytex-\pmath macros for category theory}
+\end{table}
+
+
+\subsection{Linear Algebra}
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|l|l}
+        \hline\textbf{macro}                & \textbf{expands to} & \textbf{result}\\\hline
+        \prettytexMacro{Transpose}          & \expandsto{\textbackslash mathsf\{t\}} & $\prettytexMathTranspose$\\
+        \prettytexMacro{HermitianTranspose} & \expandsto{\textbackslash mathsf\{H\}} & $\prettytexMathHermitianTranspose$\\
+        \prettytexMacro{Trace}              & \expandsto{trace} & \prettytexMathTrace\\
+        \prettytexMacro{Rank}              & \expandsto{rank} & \prettytexMathRank\\
+        \prettytexMacro{RowRank}              & \expandsto{rank} & \prettytexMathRowRank\\
+        \prettytexMacro{ColumnRank}              & \expandsto{rank} & \prettytexMathColumnRank\\
+        \prettytexMacro{DotProductPlaceholder}              & \expandsto{\textbackslash cdot} & $\prettytexMathDotProductPlaceholder$\\
+        \prettytexMacro{NormPlaceholder}              & \expandsto{\textbackslash cdot} & $\prettytexMathNormPlaceholder$\\
+        \prettytexMacro{Dimension}              & \expandsto{dim} & \prettytexMathDimension\\
+        \prettytexMacro{LinearSpan}              & \expandsto{span} & \prettytexMathLinearSpan\\
+        \prettytexMacro{GeneralLinearGroup}              & \expandsto{GL} & \prettytexMathGeneralLinearGroup\\
+        \prettytexMacro{SpecialLinearGroup}              & \expandsto{SL} & \prettytexMathSpecialLinearGroup\\
+        \prettytexMacro{SpecialUnitaryGroup}              & \expandsto{SU} & \prettytexMathSpecialUnitaryGroup\\
+        \prettytexMacro{SpecialOrthogonalGroup}              & \expandsto{SO} & \prettytexMathSpecialOrthogonalGroup\\
+        \prettytexMacro{LpDefaultExponent}              & \expandsto{p} & \prettytexMathLpDefaultExponent\\
+        \prettytexMacro{Diagonal}              & \expandsto{diag} & \prettytexMathDiagonal\\
+        \prettytexMacro{Eigen}              & \expandsto{Eig} & \prettytexMathEigen\\
+        \prettytexMacro{Gram}              & \expandsto{Gram} & \prettytexMathGram\\
+        \prettytexMacro{Spectrum}              & \expandsto{spec} & \prettytexMathSpectrum\\
+        \prettytexMacro{Annihilator}              & \expandsto{Ann} & \prettytexMathAnnihilator\\
+        \prettytexMacro{AdjugateMatrix}              & \expandsto{Adj} & \prettytexMathAdjugateMatrix\\
+        \prettytexMacro{CofactorMatrix}              & \expandsto{Cof} & \prettytexMathCofactorMatrix\\
+    \end{tabular}
+    \caption{\prettytex-\pmath macros for linear algebra}
+\end{table}
+
+
+\begin{longtable}{r|l|p{6cm}|p{3cm}}
+    \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+    \vma{tran} & & transpose of a matrix (write after expression) & $A\tran$\\
+    \vma{itran} & & inverse of a matrix (write after expression) & $A\itran$\\
+    \vma{htra} & & hermitian transpose of a matrix (write after expression) & $A\htran$\\
+    \vma{vec} & \argu{expression} & element of a vectorspace, but meant for coordinate vectors & $\vec v$\\
+    \vma{hvec} & \argu{expression} & vector with hat & $\hvec v$\\
+    \vma{whvec} & \argu{expression} & vector with wide hat & $\whvec v$\\
+    \vma{tvec} & \argu{expression} & vector with tilde & $\tvec v$\\
+    \vma{wtvec} & \argu{expression} & vector with wide tilde & $\wtvec v$\\
+    \vma{bvec} & \argu{expression} & vector with overbar & $\bvec v$\\
+    \vma{uvec} & \argu{expression} & vector with underbar & $\uvec v$\\
+    \vma{zvec} &  & zero vector & $\zvec$\\
+    \vma{mat} & \argu{expression} & matrix & $\mat A$\\
+    \vma{hmat} & \argu{expression} & matrix with hat & $\hmat A$\\
+    \vma{whmat} & \argu{expression} & matrix with wide hat& $\whmat A$\\
+    \vma{tmat} & \argu{expression} & matrix with tilde& $\tmat A$\\
+    \vma{wtmat} & \argu{expression} & matrix with wide tilde& $\wtmat A$\\
+    \vma{barmat} & \argu{expression} & matrix with overbar (\vma{bmat} is reserved)& $\barmat A$\\
+    \vma{ubarmat} & \argu{expression} & matrix with underbar & $\ubarmat A$\\
+    \vma{bmat} & \argu{float} (o), \argu{array} & shortcut for writing matrices, optional argument sets arraystretch & $\bmat{1&0\\0&1}$\\
+    \vma{fbmat} & \argu{array} & same as \vma{bmat}, but uses NiceMatrix instead & $\fbmat{1 &\Cdots&1\\\Vdots & \Ddots&\Vdots\\1&\Cdots&1}$\\
+    %\vma{detm} & \argu{array} & determinant of the array & $\detm{a&b\\c&d}$
+    \vma{dotp} & \argu{expression}, \argu{expression} & dot product of the expressions & $\dotp{v}{w}$\\
+    \vma{Ldotp} & \argu{expression}, \argu{expression} & same as \vma{dotp} but with scaling delimiters & $\Ldotp{\sum_{i=1}^n v_ie_i}{e_j}$\\
+    \vma{dotpc} & & dot-product of \prettytexMacro{DotProductPlaceholder}, use for definition & $\dotpc\colon V^2\to\K$\\
+    \vma{Lpdotp} & \argu{e} (O), \argu{e} (o), \argu{e}, \argu{e} & $L^p$-dot product, first optional argument sets the exponent of the $L^p$-space and has default value \prettytexMacro{LpDefaultExponent}, while the second optional argument can be used to specify the measure/measurable space & $\Lpdotp{f}{g}$, $\Lpdotp[2]{f}{g}$, $\Lpdotp[2][\R^2,\leb^2]{f}{g}$\\
+    \vma{lLpdotp} &\argu{e} (O), \argu{e} (o), \argu{e}, \argu{e} & same as \vma{Lpdotp} but with scaling delimiters\\
+    \vma{Lpdotpc} & \argu{e} (O), \argu{e} (o) & \vma{Lpdotp} of \prettytexMacro{DotProductPlaceholder}, optional arguments work identically to \vma{Lpdotp}\\
+    \vma{norm} & \argu{expression} (o), \argu{expression} & norm of expression, optional argument can be used to label the underlying space & $\norm{f}$, $\norm[X]{f}$\\
+    \vma{lnorm} & \argu{expression} (o), \argu{expression} & same as \vma{norm} but with scaling delimiters & $\lnorm{\sum_{i=1}^n \xi_ie_i}$\\
+    \vma{normc} & & norm of \prettytexMacro{NormPlaceholder}, use for definition & $\normc\colon V\to \R$\\
+    \vma{inorm} & \argu{expression} & infinity-norm of expression & $\inorm f$\\
+    \vma{linorm} & \argu{expression} & same as \vma{inorm} but with scaling delimiters & $\linorm{\sum_{i=1}^n \xi_ie_i}$\\
+    \vma{inormc} & & infinity norm of \prettytexMacro{NormPlaceholder}, used for definition & $\inormc\colon V\to \R$\\
+    \vma{pnorm} & \argu{expression} (O), \argu{expression} & $p$-norm of expression, optional argument defaults to \prettytexMacro{LpDefaultExponent} and is used to set the exponent & $\pnorm{x}$, $\pnorm[2]{x}$\\
+    \vma{lpnorm} & \argu{expression} (O), \argu{expression} & same as \vma{pnorm} but with scaling delimiters\\
+    \vma{pnormc} & \argu{expression} (O) & $p$-norm of \prettytexMacro{NormPlaceholder}, optional argument sets the exponent and defaults to \prettytexMacro{LpDefaultExponent}, use for definition & $\pnormc\colon \R^n\to\R$\\
+    \vma{Lpnorm} & \argu{e} (O), \argu{e} (o), e & $L^p$-norm of expression, first optional argument sets the exponent and defaults to \prettytexMacro{LpDefaultExponent}, second optional argument can be used to set the measure/measurable space & $\Lpnorm{f}$, $\Lpnorm[2]{f}$, $\Lpnorm[2][\R^2,\leb^2]{f}$\\
+    \vma{lLpnorm} & \argu{e} (O), \argu{e} (o), e & same as \vma{Lpnorm} but with scaling delimiters\\
+    \vma{Lpnomrc} & \argu{e} (O), \argu{e} (o) & $L^p$-norm of \prettytexMacro{NormPlaceholder}, optional arguments work identically to \vma{Lpnorm}, use for definition & $\Lpnormc\colon L^p\to\R$\\
+    \caption{\prettytex-\pmath macros for linear algebra}
+\end{longtable}
+
+
+\begin{longtable}{r|l|lll}
+    \hline\textbf{operator} & \textbf{description} & \multicolumn{3}{l}{\textbf{example/output}}\\
+                            &                                        & alone      & w/o parenthesis & w parenthesis\\\hline
+    \vop{lspan}             & linear span of collection of elements & $\lspan$ & & $\lspan(v_1,\dots,v_n)$\\
+    \vop{dim}               & dimension of object & $\dim$ & $\dim V$& $\dim(V)$\\
+    \vop{GL}                & general linear group of a space & $\GL$ & $\GL V$ & $\GL(V)$\\
+    \vop{SL}                & special linear group of a space & $\SL$ & $\SL V$ & $\SL(V)$\\
+    \vop{SU}                & special unitary group of a space & $\SU$ & $\SU V$ & $\SU(V)$\\
+    \vop{SO}                & special orthogonal group of a space & $\SO$ & $\SO V$ & $\SO(V)$\\
+    \vop{diag} & diagonal matrix from elements or diagonal of a matrix & $\diag$& $\diag M$& $\diag(v_1,\dots,v_m)$\\
+    \vop{Eig} & eigendata of an operator & $\Eig$ & $\Eig T$ & $\Eig(T)$\\
+    \vop{Gram} & Gram matrix of vectors & $\Gram$ & & $\Gram(v_1,\dots,v_n)$\\
+    \vop{spec} & spectrum of an operator & $\spec$ & $\spec T$, $\spec(T)$\\
+    \vop{Ann} & annihilator of object & $\Ann$ & $\Ann M$ & $\Ann(M)$\\
+    \vop{Adj} & adjugate of a matrix & $\Adj$ & $\Adj M$ & $\Adj(M)$\\
+    \vop{Cof} & cofactor matrix & $\Cof$& $\Cof M$ & $\Cof(M)$\\
+    \vop{trace} & trace of an operator & $\trace$ & $\trace T$ & $\trace(T)$\\
+    \vop{Trace} & alias of \vop{trace}\\ 
+    \vop{tr} & alias of \vop{trace}\\ 
+    \vop{Tr} & alias of \vop{trace}\\  
+    \vop{spur} & alias of \vop{trace} (german spelling)\\  
+    \vop{Spur} & alias of \vop{trace} (german spelling)\\  
+    \vop{spr} & alias of \vop{trace} (german spelling)\\  
+    \vop{Spr} & alias of \vop{trace} (german spelling)\\  
+    \vop{rank} & rank of operator & $\rank$ & $\rank T$ & $\rank(T)$\\
+    \vop{Rank} & alias of \vop{rank}\\
+    \vop{rk} & alias of \vop{rank}\\
+    \vop{Rk} & alias of \vop{rank}\\
+    \vop{rang} & alias of \vop{rank} (german spelling)\\
+    \vop{Rang} & alias of \vop{rank} (german spelling)\\
+    \vop{rg} & alias of \vop{rank} (german spelling)\\
+    \vop{Rg} & alias of \vop{rank} (german spelling)\\
+    \vop{rowrank} &  row-rank of operator & $\rowrank$ & $\rowrank T$ & $\rowrank(T)$\\
+    \vop{rrk} & alias of \vop{rowrank}\\
+    \vop{zrk} & alias of \vop{rowrank} (german spelling)\\
+    \vop{Zrk} & alias of \vop{rowrank} (german spelling)\\
+    \vop{colrank} &  column-rank of operator & $\colrank$ & $\colrank T$ & $\colrank(T)$\\
+    \vop{crk} & alias of \vop{colrank}\\
+    \vop{srg} & alias of \vop{colrank} (german spelling)\\
+    \vop{Srg} & alias of \vop{colrank} (german spelling)\\
+    \caption{\pmath operators for linear algebra}
+\end{longtable}
+
+
+\subsection{Number theory}
+
+\begin{longtable}{r|l|l}
+    \hline\textbf{macro}                 & \textbf{expands to} & \textbf{result}\\\hline
+    \prettytexMacro{LeastCommonMultiple} & \expandsto{lcm}     & \prettytexMathLeastCommonMultiple\\
+    \prettytexMacro{GreatestCommonDivisor} & \expandsto{gcd}     & \prettytexMathGreatestCommonDivisor\\
+    \caption{\prettytex macros for number theory}
+\end{longtable}
+
+
+
+\begin{longtable}{r|l|l|l}
+    \hline\textbf{macro} & \textbf{arguments} & \textbf{description} & \textbf{example/output}\\\hline
+    \vma{stirlingone} & \argu{expression},\argu{expression} & Stirling number of the first kind & $\stirlingone{n}{m}$\\
+    \vma{stirlingtwo} & \argu{expression},\argu{expression} & Stirling number of the second kind & $\stirlingtwo{n}{m}$\\
+    \vma{cycle} & \argu{array} & cycle notation for permutations & $\cycle{1&2&3}$\\
+    \caption{\pmath macros for number theory }
+\end{longtable}
+
+\begin{longtable}{r|l|lll}
+    \hline\textbf{operator} & \textbf{description} & \multicolumn{3}{l}{\textbf{example/output}}\\
+                            &                                        & alone      & w/o parenthesis & w parenthesis\\\hline
+    \vop{lcm} & least common multiple & $\lcm$ & & $\lcm(m,n)$\\
+    \vop{kgv} & alias of \vop{lcm} (german spelling)\\
+    \vop{kgV} & alias of \vop{lcm} (german spelling)\\
+    \vop{gcd} & greatest common divisor & $\gcd$ & & $\gcd(m,n)$\\
+    \vop{ggt} & alias of \vop{gcd} (german spelling)\\
+    \vop{ggT} & alias of \vop{gcd} (german spelling)\\
+    \caption{\pmath operators for number theory}
+\end{longtable}
+
+\subsection{Exotic trigonometric functions and relatives}
+
+The \emph{Area} functions are the inverses of hyperbolic functions, while the arcus functions are the inverses of the corresponding trigonometric functions.
+
+\begin{longtable}{r|l|lll}
+    \hline\textbf{operator} & \textbf{description} & \multicolumn{3}{l}{\textbf{example/output}}\\
+    && alone & w/o parenthesis & w parenthesis\\\hline
+    \vop{Arsinh} & Area sinus hyperbolicus         & $\Arsinh$ & $\Arsinh x$ & $\Arsinh(x)$\\
+    \vop{Arcosh}  & Area cosinus hyperbolicus      & $\Arcosh$ & $\Arcosh x$ & $\Arcosh(x)$\\
+    \vop{Artanh} & Area tangens hyperbolicus       & $\Artanh$ & $\Artanh x$ & $\Artanh(x)$\\
+    \vop{Arcoth} & Area cotangens hyperbolicus     & $\Arcoth$ & $\Arcoth x$ & $\Arcoth(x)$\\
+    \vop{Arsech} & Area secans hyperbolicus        & $\Arsech$ & $\Arsech x$ & $\Arsech(x)$\\
+    \vop{Arcsch} & Area cosecans hyperbolicus      & $\Arcsch$ & $\Arcsch x$ & $\Arcsch(x)$\\
+    \vop{sinc}   & Sinus cardinalis                & $\sinc$ & $\sinc x$ & $\sinc(x)$\\
+    \vop{sinnc}  & Sinus cardinalis (normalised)   & $\sinnc$ & $\sinnc x$ & $\sinnc(x)$\\
+    \vop{Si}     & integral sine                   & $\Si$ & $\Si x$ & $\Si(x)$\\
+    \vop{Li}     & integral logarithm              & $\Li$ & $\Li x$ & $\Li(x)$\\
+    \vop{arccot} & Arcus cotangens                 & $\arccot$ & $\arccot x$ & $\arccot(x)$\\
+    \vop{arcsec} & Arcus secans                    & $\arcsec$ & $\arcsec x$ & $\arcsec(x)$\\
+    \vop{arccsc} & Arcus cosecans                  & $\arccsc$ & $\arccsc x$ & $\arccsc(x)$\\
+    \vop{sech}   & Secans hyperbolicus             & $\sech$ & $\sech x$ & $\sech(x)$\\
+    \vop{csch}   & Cosecans hyperbolicus           & $\csch$ & $\csch x$ & $\csch(x)$\\
+    \vop{atan}   & atan2-map                       & $\atan$ &  & $\atan(x,y)$\\
+    \vop{ld}     & Logarithmus dualus (base-2 log) & $\ld$ & $\ld x$ & $\ld(x)$\\
+    \caption{\pmath operators for exotic trigonometric functions}
+\end{longtable}
+
+
+\subsection{Overset relations}
+
+Sometimes, it is useful to reference a result/equations etc in a relation by setting it over the relational symbol. These macros provide shortcuts to do precisly that. You can either define your own or use the list of common symbols below. We provide both reference to theorems et cetera as well as equations (these macros have the same name as the regular reference ones but with the eq prefix).
+
+\begin{longtable}{r|l|l}
+    \hline\textbf{macro} & \textbf{expandsto} & \textbf{result}\\\hline
+    AlmostEverywhere & \expandsto{ae} & \prettytexMathAlmostEverywhere\\
+    \caption{\prettytex macros for overset relations}
+\end{longtable}
+
+
+\begin{longtable}{r|l|l}
+    \textbf{macro} & \textbf{arguments} & \textbf{description}\\\hline
+    \vma{hateq} & & equals-sign with hat ($\hateq$), used for congruence or similar\\
+    \vma{refrel} & \argu{reference}, \argu{expression} & relation with reference overset to expression\\
+    \vma{refqual} & \argu{reference} & reference overset of $=$\\
+    \vma{refleq} & \argu{reference} & reference overset of $\leq$\\
+    \vma{refle} & \argu{reference} & reference overset of $<$\\
+    \vma{refgeq} & \argu{reference} & reference overset of $\geq$\\
+    \vma{refge} & \argu{reference} & reference overset of $>$\\
+    \vma{refimpl} & \argu{reference} & reference overset of $\implies$\\
+    \vma{refimpliedb} & \argu{reference} & reference overset of $\impliedby$\\
+    \vma{refeqv} & \argu{reference} & reference overset of $\eqv$\\
+    \vma{refiso} & \argu{reference} & reference overset of $\cong$\\
+    \vma{eqrefrel} & \argu{reference}, \argu{expression} & relation with equation reference overset to expression\\
+    \vma{eqrefqual} & \argu{reference}     & equation reference overset of $=$\\
+    \vma{eqrefleq} & \argu{reference}      & equation reference overset of $\leq$\\
+    \vma{eqrefle} & \argu{reference}       & equation reference overset of $<$\\
+    \vma{eqrefgeq} & \argu{reference}      & equation reference overset of $\geq$\\
+    \vma{eqrefge} & \argu{reference}       & equation reference overset of $>$\\
+    \vma{eqrefimpl} & \argu{reference}     & equation reference overset of $\implies$\\
+    \vma{eqrefimpliedb} & \argu{reference} & equation reference overset of $\impliedby$\\
+    \vma{eqrefeqv} & \argu{reference}      & equation reference overset of $\eqv$\\
+    \vma{eqrefiso} & \argu{reference}      & equation reference overset of $\cong$\\
+    \vma{aerel} & \argu{expression} & relation with \prettytexMacro{AlmostEverywhere} overset\\
+    \vma{aeeq} & & almost everywhere equal\\
+    \vma{aequal} && alias of \vma{aeeq}\\
+    \vma{aeleq} && almost everywhere less than or equal\\
+    \vma{aele} && almost everywhere less than\\
+    \vma{aegeq} && almost everywhere greater than or equal\\
+    \vma{aege} && almost everywhere greater than\\
+\end{longtable}

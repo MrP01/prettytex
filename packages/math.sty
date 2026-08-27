@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/math
 %
-% @version: 1.0.1 @ refactor
+% @version: 1.1.0 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -257,12 +257,12 @@
 % floor and ceil
 \newcommand{\floorl}[1]{\left\lfloor#1\right\rfloor}
 \newcommand{\floor}[1]{\lfloor#1\rfloor}
-\newcommand{\ceil}[1]{\lceil#1\right}
+\newcommand{\ceil}[1]{\lceil#1\rceil}
 \newcommand{\ceill}[1]{\left\lceil#1\right\rceil}
 
 % absolute value
 \newcommand{\abs}[1]{|#1|}
-\newcommand{\absc}{\abs{\prettytexMathAbsolutevaluePlaceholder}}
+\newcommand{\absc}{\abs{\prettytexMathAbsoluteValuePlaceholder}}
 \newcommand{\labs}[1]{\left|#1\right|}
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -287,7 +287,7 @@
 % | cls      | closure of a set (smallest closed superset)                     |
 % | diam     | diameter of a set (supremum of distances between all points)    |
 % | supp     | support of function (closure of complement of preimage of 0)    |
-% | froitier | frontier of a set (boundary sets that are contained in the set) |
+% | frontier | frontier of a set (boundary sets that are contained in the set) |
 %
 % | macro      | arguments  | description                                 |
 % |------------|------------|---------------------------------------------|
@@ -573,8 +573,8 @@
 % arrows
 \newcommand{\epimorph}{\twoheadrightarrow}
 \newcommand{\monomorph}{\rightarrowtail}
-\newcommand{\isomorph}{\twoheadrightarrowtail}
-\newcommand{\incl}{\monomorph}
+% \newcommand{\isomorph}{\twoheadrightarrowtail}
+\newcommand{\incl}{\hookrightarrow}
 \newcommand{\surj}{\epimorph}
 
 % macros
@@ -591,7 +591,7 @@
 \DeclareMathOperator{\codom}{\qopname \relax m{\prettytexMathCodomain}}
 \DeclareMathOperator{\coker}{\qopname \relax m{\prettytexMathCokernel}}
 \DeclareMathOperator{\im}{\qopname \relax m{\prettytexMathImage}}
-\DeclareMathOperator{\ker}{\qopname \relax m{\prettytexKernel}}
+\DeclareMathOperator{\ker}{\qopname \relax m{\prettytexMathKernel}}
 
 % special maps
 \DeclareMathOperator{\id}{\qopname \relax m{\prettytexMathIdentity}}
@@ -614,20 +614,26 @@
 % | Cat          |            | alias for CAT                                     |  
 % | CATD         |            | CATEGORY{D}                                       |
 % | CatD         |            | alias for CATD                                    |
-% | LEFTMODR     | expression | category of left modules of R                     |
-% | FINLEFTMODR  | expression | category of finitely generated left modules of R  |
-% | RIGHTMODR    | expression | category of right modules of R                    |
-% | FINRIGHTMODR | expression | category of finitely generated right modules of R |
-% | VECTK        | expression | category of k-vectorspaces                        |
-% | FINVECTK     | expression | category of finite-dimensional k-vectorspaces     |
+% | LEFTMOD      | expression | category of left modules                          |
+% | LEFTMODR     |            | category of left modules of R                     |
+% | FINLEFTMOD   | expression | category of finitely generated left modules       |
+% | FINLEFTMODR  |            | category of finitely generated left modules of R  |
+% | RIGHTMOD     | expression | category of right modules                         |
+% | RIGHTMODR    |            | category of right modules of R                    |
+% | FINRIGHTMOD  | expression | category of finitely generated right modules      |
+% | FINRIGHTMODR |            | category of finitely generated right modules of R |
+% | VECT         | expression | category of vectorspaces                          |
+% | VECTK        |            | category of k-vectorspaces                        |
+% | FINVECTK     | expression | category of finite-dimensional vectorspaces       |
+% | FINVECT      |            | category of finite-dimensional k-vectorspaces     |
 % | CRING        |            | category of commutative rings                     |
 % | SET          |            | category of sets                                  |
-% | SET          |            | category of groups                                |
-% | SET          |            | category of rings                                 |
-% | SET          |            | category of fields                                |
-% | SET          |            | category of topological spaces                    |
-% | SET          |            | category of based topological spaces              |
-% | SET          |            | category of abelian groups                        |
+% | GRP          |            | category of groups                                |
+% | RING         |            | category of rings                                 |
+% | FIELD        |            | category of fields                                |
+% | TOP          |            | category of topological spaces                    |
+% | TOPB         |            | category of based topological spaces              |
+% | AB           |            | category of abelian groups                        |
 % | Homcat       |            | morphisms between two objects in C                |
 % | UCAT         |            | CATEGORY{U}                                       |
 % | CATJ         |            | CATEGORY{J}                                       |
@@ -636,15 +642,21 @@
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand{\CATEGORY}[1]{\mathbf{#1}}
 \newcommand{\CAT}{\CATEGORY{C}}
-\newcommand{\Cat}{\CATEGORY{C}}
+\newcommand{\Cat}{\CAT}
 \newcommand{\CATD}{\CATEGORY{D}}
-\newcommand{\CatD}{\CATEGORY{D}}
-\newcommand{\LEFTMODR}[1]{#1-\CATEGORY{Mod}}
-\newcommand{\FINLEFTMODR}[1]{#1-\CATEGORY{mod}}
-\newcommand{\RIGHTMODR}[1]{\CATEGORY{Mod}-#1}
-\newcommand{\FINRIGHTMODR}[1]{\CATEGORY{mod}-#1}
-\newcommand{\VECTK}[1]{\CATEGORY{Vect}_{#1}}
-\newcommand{\FINVECTK}[1]{\CATEGORY{vect}_{#1}}
+\newcommand{\CatD}{\CATD}
+\newcommand{\LEFTMOD}[1]{#1-\CATEGORY{Mod}}
+\newcommand{\LEFTMODR}{\LEFTMOD{R}}
+\newcommand{\FINLEFTMOD}[1]{#1-\CATEGORY{mod}}
+\newcommand{\FINLEFTMODR}{\FINLEFTMOD{R}}
+\newcommand{\RIGHTMOD}[1]{\CATEGORY{Mod}-#1}
+\newcommand{\RIGHTMODR}{\RIGHTMOD{R}}
+\newcommand{\FINRIGHTMOD}[1]{\CATEGORY{mod}-#1}
+\newcommand{\FINRIGHTMODR}{\FINRIGHTMOD{R}}
+\newcommand{\VECT}[1]{\CATEGORY{Vect}_{#1}}
+\newcommand{\VECTK}{\VECT{k}}
+\newcommand{\FINVECT}[1]{\CATEGORY{vect}_{#1}}
+\newcommand{\FINVECTK}{\FINVECT{k}}
 \newcommand{\CRING}{\CATEGORY{CRing}}
 \newcommand{\SET}{\CATEGORY{Set}}
 \newcommand{\GRP}{\CATEGORY{Grp}}
@@ -722,7 +734,7 @@
 % | fbmat   | array                   | writes a bNiceMatrix with the supplied array                                 |
 % | detm    | array                   | array notation for a determinant (i.e. with just vertical lines as delims)   |
 % | dotp    | expression, expression  | dot product of #1 and #2, delimited with langle and rangle                   |
-% | ldotp   | expression, expression  | same as dotp, but with scaling delimiters                                    |
+% | Ldotp   | expression, expression  | same as dotp, but with scaling delimiters                                    |
 % | dotpc   |                         | dot-product of placeholders (used for function definition, see doc for more) |
 % | Lpdotp  | p (O), space (o), e, e  | Lp-dot-product of the two expressions/functions first optional argument      |
 % |         |                         | defaults to LpDefaultExponent and is the exponent of the Lp-space,           |
@@ -816,7 +828,7 @@
 % transposes and such
 \newcommand{\tran}{^\prettytexMathTranspose}
 \newcommand{\itran}{^{-\prettytexMathTranspose}}
-\newcommand{\htran}{^\prettytexMathHermitianTransposte}
+\newcommand{\htran}{^\prettytexMathHermitianTranspose}
 
 % vector symbols
 \renewcommand{\vec}[1]{\bm{#1}}
@@ -844,7 +856,7 @@
 
 % dot products
 \newcommand{\dotp}[2]{\langle#1,#2\rangle}
-\renewcommand{\ldotp}[2]{\left\langle#1,#2\right\rangle}
+\newcommand{\Ldotp}[2]{\left\langle#1,#2\right\rangle}
 \newcommand{\dotpc}{\dotp{\prettytexMathDotProductPlaceholder}{\prettytexMathDotProductPlaceholder}}
 
 \NewDocumentCommand{\Lpdotp}{O{\prettytexMathLpDefaultExponent} o m m}{%
@@ -859,8 +871,8 @@
 {\Lpdotp[#1][#2]{\prettytexMathDotProductPlaceholder}{\prettytexMathDotProductPlaceholder}}}
 
 % norms
-\NewDocumentCommand{\norm}{o m}{\IfNoValueTF{#1}{\|#2\|}{\|#1\|_{#1}}}
-\NewDocumentCommand{\lnorm}{o m}{\IfNoValueTF{#1}{\left\|#2\left\|}{\left\|#1\left\|_{#1}}}
+\NewDocumentCommand{\norm}{o m}{\IfNoValueTF{#1}{\|#2\|}{\|#2\|_{#1}}}
+\NewDocumentCommand{\lnorm}{o m}{\IfNoValueTF{#1}{\left\|#2\right\|}{\left\|#2\right\|_{#1}}}
 \newcommand{\normc}{\norm{\prettytexMathNormPlaceholder}}
 
 \newcommand{\inorm}[1]{\norm{#1}_\infty}
@@ -887,7 +899,7 @@
 \DeclareMathOperator{\SL}{\qopname \relax m{\prettytexMathSpecialLinearGroup}}
 \DeclareMathOperator{\SU}{\qopname \relax m{\prettytexMathSpecialUnitaryGroup}}
 \DeclareMathOperator{\SO}{\qopname \relax m{\prettytexMathSpecialOrthogonalGroup}}
-\DeclareMathOperator{\diag}{\qopname \relax m{\prettytexMathDiag}}
+\DeclareMathOperator{\diag}{\qopname \relax m{\prettytexMathDiagonal}}
 \DeclareMathOperator{\Eig}{\qopname \relax m{\prettytexMathEigen}}
 \DeclareMathOperator{\Gram}{\qopname \relax m{\prettytexMathGram}}
 \DeclareMathOperator{\spec}{\qopname \relax m{\prettytexMathSpectrum}}
@@ -1026,22 +1038,22 @@
 % | operator | description                           |
 % |----------|---------------------------------------|
 % | Arsinh   | Area sinus hyperobolicus              |
-% | Arsinh   | Area cosinus hyperobolicus            |
-% | Arsinh   | Area tangens hyperobolicus            |
-% | Arsinh   | Area cotangens hyperobolicus          |
-% | Arsinh   | Area secans hyperobolicus             |
-% | Arsinh   | Area cosecans hyperobolicus           |
-% | Arsinh   | sinus cardinalis                      |
-% | Arsinh   | sinus cardinalis (normed)             |
-% | Arsinh   | integral sine                         |
-% | Arsinh   | integral logarithm                    |
-% | Arsinh   | Arcus cotangens                       |
-% | Arsinh   | Arcus secans                          |
-% | Arsinh   | Arcus cosecans                        |
-% | Arsinh   | secans hyperbolicus                   |
-% | Arsinh   | cosecans hyperbolicus                 |
-% | Arsinh   | atan2                                 |
-% | Arsinh   | logarithmus dualis (base-2 logarithm) |
+% | Arcosh   | Area cosinus hyperobolicus            |
+% | Artanh   | Area tangens hyperobolicus            |
+% | Arcoth   | Area cotangens hyperobolicus          |
+% | Arsech   | Area secans hyperobolicus             |
+% | Arcsch   | Area cosecans hyperobolicus           |
+% | sinc     | sinus cardinalis                      |
+% | sinnc    | sinus cardinalis (normed)             |
+% | Si       | integral sine                         |
+% | Li       | integral logarithm                    |
+% | arccot   | Arcus cotangens                       |
+% | arcsec   | Arcus secans                          |
+% | arccsc   | Arcus cosecans                        |
+% | sech     | secans hyperbolicus                   |
+% | csch     | cosecans hyperbolicus                 |
+% | atan     | atan2                                 |
+% | ld       | logarithmus dualis (base-2 logarithm) |
 %
 %----------------------------------------------------------------------------------------------------------------------
 \DeclareMathOperator{\Arsinh}{\qopname \relax m{Arsinh}}
@@ -1107,7 +1119,7 @@
 %
 %----------------------------------------------------------------------------------------------------------------------
 % prettytexMath
-\newcommand{\prettytexMathAlmostEverywhere}{\mathrm{ae}}
+\newcommand{\prettytexMathAlmostEverywhere}{ae}
 
 % macros
 \newcommand{\hateq}{\hat{=}}
@@ -1137,7 +1149,7 @@
 \newcommand{\eqrefiso}[1]{\eqrefrel{#1}{\cong}}
 
 % almost everywhere relations
-\newcommand{\aerel}[1]{\oset{\prettytexMathAlmostEverywhere}{#1}}
+\newcommand{\aerel}[1]{\oset{\mathrm{\prettytexMathAlmostEverywhere}}{#1}}
 \newcommand{\aeeq}{\aerel{=}}
 \newcommand{\aequal}{\aeeq}
 \newcommand{\aeleq}{\aerel{\leq}}

@@ -18,10 +18,10 @@ The goal of \prettytex{} is to make writing pretty (thus the name) \LaTeX docume
         \item theorems
         \item boxes
         \item scriptum
-        \item \highlight{invoice}
+        \item \warn{invoice}
         \item \highlight{code}
-        \item \highlight{contract}
-        \item \highlight{neturalThesis}
+        \item \warn{contract}
+        \item \warn{neturalThesis}
         \item \highlight{gfx-components}
         \item \warn{gfx-circuits}
         \item \warn{math-sigtrans}
@@ -40,7 +40,7 @@ Packages highlighted in \error{red} are bound to be removed from the main branch
 
 \subsection{Package options}
 
-We provide some elementary package options, which are handled via \textsl{xkeyval}. We have some key-value options, like lang in \nameref{sec:base}, but also quite a few boolean-flags, like vargreek in \nameref{sec:math}. In order to pass a key-value option, load the package as such:
+We provide some elementary package options, which are handled via \package{xkeyval}. We have some key-value options, like lang in \nameref{sec:base}, but also quite a few boolean-flags, like vargreek in \nameref{sec:math}. In order to pass a key-value option, load the package as such:
 
 \begin{verbatim}
 \usepackage[<option>=<value>]{prettytex/<package>}
@@ -61,6 +61,27 @@ Each package typically provides a few so called \emph{prettytex-macros}. These a
 \prettytex<Package><Macro>,
 \end{verbatim}
 
-so all \prettytex{}-macros in \pmath{} are of the form \verb|\prettytexMath<Macro>|. The exception here is \pbase{}, where it simply is \verb|\prettytex<Macro>|. \prettytex{} macros are always listed in their corresponding package description.
+so all \prettytex{}-macros in \pmath{} are of the form \verb|\prettytexMath<Macro>|. The exception here is \pbase{}, where it simply is \verb|\prettytex<Macro>|. \prettytex{} macros are always listed in their corresponding package description. To keep everything legible, we will mostly omit the \verb|prettytex<Package>| when talking about prettytex-macros, thus we write \prettytex-macros in colour, so \prettytexMacro{Trace} is actually \verb|\prettytexMathTrace|.
 
-To keep everything legible, we will mostly omit when talking about prettytex-macros. Whenever this can happen, we highlight it in this documentation.
+
+\subsection{Convention on argument naming in the documentation}
+
+Many macros use arguments, either mandatory or optional. Most of these can by any valid tex-expression (depending on the mode either text or math), however to highlight their intended use, we name arguments in a certain manner. For example, the argument of a formatting macro will be labelled \verb|text|, while for general mathematical expressions we use \verb|expression|. Optional arguments are highlighted in two ways: either with (o) or (O) (this losely follows the convention of \textsl{xparse}), where (o) means the argument is optional, and (O) optional, but a default value is provided.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{r|p{12cm}}
+        \hline\textbf{argument type} & \textbf{description}\\\hline
+        \argu{text} & text argument\\
+        \argu{colour} & \package{xcolor} colour identifier\\
+        \argu{<number type>} & can be \verb|integer| or \verb|float|\\
+        \argu{<signed> <number type>} & the sign can be one of \verb|positive| ($>0$), \verb|negative| ($<0$), \verb|nonpositive| $(\leq 0$) or \verb|nonnegative| ($\geq 0$)\\
+        \argu{<number type> in <set>} & <set> can be any set, typically used for intervals like \verb|[1,26]|\\
+        \argu{expression} & any valid math-mode expression\\
+        \argu{array} & valid array-contents (anything that fits into bmatrix and relatives, as well as a plain array in math mode etc)\\
+        \argu{reference} & valid reference identifier for labels
+    \end{tabular}
+    \caption{Argument types}
+\end{table}
+
+Some macros allow multiple argument types, these are separated by an or in the argument list, see for example cw in \cref{tab:base_misc}. If a macro uses multiple arguments, they are listed in the expected order and separated by commas.

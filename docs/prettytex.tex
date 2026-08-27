@@ -5,6 +5,7 @@
 \usepackage[singleLineCheck,colouredLinks]{../packages/base}
 \usepackage{../packages/math}
 \usepackage{cleveref}
+\usepackage{longtable}
 
 
 \usepackage{multicol}
@@ -22,7 +23,8 @@
 \newcommand{\vop}[1]{\texttt{\textbackslash#1}}
 \newcommand{\vma}[1]{\texttt{\textbackslash#1}}
 \newcommand{\argu}[1]{\texttt{#1}}
-
+\newcommand{\expandsto}[1]{\texttt{#1}}
+\newcommand{\tbl}{\textbackslash}
 
 \author{lphilmossb}
 \title{prettytex\\\small write prettier \LaTeX}
@@ -31,7 +33,6 @@
 
 \clearpage\maketitle
 \tableofcontents
-
 \include{general}
 \include{base}
 \include{math}
