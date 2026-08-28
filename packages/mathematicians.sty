@@ -1,0 +1,149 @@
+%----------------------------------------------------------------------------------------------------------------------
+% @package: prettytex/mathematicians
+%
+% @version: 1.0.0 @ refactor
+% @author : lphilmossb
+%
+% @description: 
+% 
+% 
+%
+% @disclaimer: This is not a drop in replacement, as the macros are no longar all uppercase.
+%
+%----------------------------------------------------------------------------------------------------------------------
+\ProvidesPackage{prettytex/mathematicians}
+\RequirePackage{prettytex/base}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Macros
+%
+% | macro            | arguments            | description                                                       |
+% |------------------|----------------------|-------------------------------------------------------------------|
+% | newMathematician | text (o), text, link | creates a new command that either has the name #2 or #1, if #1 is |
+% |                  |                      | supplied. #3 links to the wikipedia page of the mathematician     |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\NewDocumentCommand{\newMathematician}{o m m}{
+    \IfNoValueTF{#1}
+    {\expandafter\newcommand\csname #2\endcsname{\textsl{\href{#3}{#2}}\xspace}}
+    {\expandafter\newcommand\csname #1\endcsname{\textsl{\href{#3}{#2}}\xspace}}
+}
+    
+%----------------------------------------------------------------------------------------------------------------------
+% Mathematicians
+%
+% Note: When you add a new person, keep the alphabetical order
+%----------------------------------------------------------------------------------------------------------------------
+\newMathematician{Abel}{https://en.wikipedia.org/wiki/Niels_Henrik_Abel}
+\newMathematician{Ackermann}{https://en.wikipedia.org/wiki/J\%C3\%BCrgen_Ackermann}
+\newMathematician[Alembert]{d'Alembert}{https://en.wikipedia.org/wiki/Jean_le_Rond_d\%27Alembert}
+\newMathematician{Artin}{https://en.wikipedia.org/wiki/Emil_Artin}
+\newMathematician{Banach}{https://en.wikipedia.org/wiki/Stefan_Banach}
+\newMathematician{Bernstein}{https://en.wikipedia.org/wiki/Felix_Bernstein_(mathematician)}
+\newMathematician[JBernstein]{Bernstein}{https://en.wikipedia.org/wiki/Joseph_Bernstein}
+\newMathematician[JBernoulli]{Bernoulli}{https://en.wikipedia.org/wiki/Jacob_Bernoulli}
+\newMathematician{Bessel}{https://en.wikipedia.org/wiki/Friedrich_Bessel}
+\newMathematician{Bolzano}{https://en.wikipedia.org/wiki/Bernard_Bolzano}
+\newMathematician{Bunyakovsky}{https://en.wikipedia.org/wiki/Viktor_Bunyakovsky}
+\newMathematician{Cardano}{https://en.wikipedia.org/wiki/Gerolamo_Cardano}
+\newMathematician{Cayley}{https://en.wikipedia.org/wiki/Arthur_Cayley}
+\newMathematician{Cantor}{https://en.wikipedia.org/wiki/Georg_Cantor}
+\newMathematician{Cauchy}{https://en.wikipedia.org/wiki/Augustin-Louis_Cauchy}
+\newMathematician[Cech]{Čech}{https://en.wikipedia.org/wiki/Eduard_\%C4\%8Cech}
+\newMathematician{Chebyshev}{https://en.wikipedia.org/wiki/Pafnuty_Chebyshev}
+\newMathematician{Clairaut}{https://en.wikipedia.org/wiki/Alexis_Clairaut}
+\newMathematician{Cohen}{https://en.wikipedia.org/wiki/Paul_Cohen}
+\newMathematician{Conway}{https://en.wikipedia.org/wiki/John_Horton_Conway}
+\newMathematician{Daniell}{https://en.wikipedia.org/wiki/Percy_John_Daniell}
+\newMathematician{Dedekind}{https://en.wikipedia.org/wiki/Richard_Dedekind}
+\newMathematician[DelFerro]{Del Ferro}{https://en.wikipedia.org/wiki/Scipione_del_Ferro}
+\newMathematician{Epimenides}{https://en.wikipedia.org/wiki/Epimenides}
+\newMathematician{Euler}{https://en.wikipedia.org/wiki/Leonhard_Euler}
+\newMathematician[FaaDiBruno]{Faà die Bruno}{https://en.wikipedia.org/wiki/Francesco_Fa\%C3\%A0_di_Bruno}
+\newMathematician{Fermat}{https://en.wikipedia.org/wiki/Pierre_de_Fermat}
+\newMathematician{Fitting}{https://en.wikipedia.org/wiki/Hans_Fitting}
+\newMathematician{Fraenkel}{https://en.wikipedia.org/wiki/Abraham_Fraenkel}
+\newMathematician[Frechet]{Fréchet}{https://en.wikipedia.org/wiki/Ren\%C3\%A9_Maurice_Fr\%C3\%A9chet}
+\newmathematician{Frenet}{https://en.wikipedia.org/wiki/Jean_Fr\%C3\%A9d\%C3\%A9ric_Frenet}
+\newMathematician{Fourier}{https://en.wikipedia.org/wiki/Joseph_Fourier}
+\newMathematician{Gabriel}{https://en.wikipedia.org/wiki/Pierre_Gabriel}
+\newMathematician{Galois}{https://en.wikipedia.org/wiki/\%C3\%89variste_Galois}
+\newMathematician[Gateaux]{Gâteaux}{https://en.wikipedia.org/wiki/Ren\%C3\%A9_Gateaux}
+\newMathematician{Gauss}{https://en.wikipedia.org/wiki/Carl_Friedrich_Gauss}
+\newMathematician{Gelfand}{https://en.wikipedia.org/wiki/Israel_Gelfand}
+\newMathematician[Godel]{Gödel}{https://en.wikipedia.org/wiki/Kurt_G\%C3\%B6del}
+\newMathematician{Gram}{https://en.wikipedia.org/wiki/J\%C3\%B8rgen_Pedersen_Gram}
+\newMathematician{Hadamard}{https://en.wikipedia.org/wiki/Jacques_Hadamard}
+\newMathematician{Hamilton}{https://en.wikipedia.org/wiki/William_Rowan_Hamilton}
+\newMathematician{Hausdorff}{https://en.wikipedia.org/wiki/Felix_Hausdorff}
+\newMathematician{Hautus}{https://www.wikidata.org/wiki/Q102205835}
+\newMathematician{Heaviside}{https://en.wikipedia.org/wiki/Oliver_Heaviside}
+\newMathematician{Hopf}{https://en.wikipedia.org/wiki/Heinz_Hopf}
+\newMathematician{Horner}{https://en.wikipedia.org/wiki/William_George_Horner}
+\newMathematician{Hurwitz}{https://en.wikipedia.org/wiki/Adolf_Hurwitz}
+\newMathematician{Hilbert}{https://en.wikipedia.org/wiki/David_Hilbert}
+\newMathematician{Jiushao}{https://en.wikipedia.org/wiki/Qin_Jiushao}
+\newMathematician[CJordan]{Jordan}{https://en.wikipedia.org/wiki/Camille_Jordan}
+\newMathematician[PJordan]{Jordan}{https://en.wikipedia.org/wiki/Pascual_Jordan}
+\newMathematician[WJordan]{Jordan}{https://en.wikipedia.org/wiki/Wilhelm_Jordan_(geodesist)}
+\newMathematician[Kalman]{Kálmán}{https://en.wikipedia.org/wiki/Rudolf_E._K\%C3\%A1lm\%C3\%A1n}
+\newMathematician{Klein}{https://en.wikipedia.org/wiki/Felix_Klein}
+\newMathematician{Kolmogorov}{https://en.wikipedia.org/wiki/Andrey_Kolmogorov}
+\newMathematician{Krull}{https://en.wikipedia.org/wiki/Wolfgang_Krull}
+\newMathematician{Kuratowski}{https://en.wikipedia.org/wiki/Kazimierz_Kuratowski}
+\newMathematician{Lagrange}{https://en.wikipedia.org/wiki/Joseph-Louis_Lagrange}
+\newMathematician{Laplace}{https://en.wikipedia.org/wiki/Pierre-Simon_Laplace}
+\newMathematician{Lebesgue}{https://en.wikipedia.org/wiki/Henri_Lebesgue}
+\newMathematician{Legendre}{https://en.wikipedia.org/wiki/Adrien-Marie_Legendre}
+\newMathematician{Leibniz}{https://en.wikipedia.org/wiki/Gottfried_Wilhelm_Leibniz}
+\newMathematician{Lie}{https://en.wikipedia.org/wiki/Sophus_Lie}
+\newMathematician[Lindelof]{Lindelöf}{https://de.wikipedia.org/wiki/Ernst_Leonard_Lindel\%C3\%B6f}
+\newMathematician{Liouville}{https://en.wikipedia.org/wiki/Joseph_Liouville}
+\newMathematician{Listing}{https://en.wikipedia.org/wiki/Johann_Benedict_Listing}
+\newMathematician{Luenberger}{https://en.wikipedia.org/wiki/David_Luenberger}
+\newMathematician[Mobius]{Möbius}{https://en.wikipedia.org/wiki/August_Ferdinand_M\%C3\%B6bius}
+\newMathematician{Nagata}{https://en.wikipedia.org/wiki/Masayoshi_Nagata}
+\newMathematician{Neile}{https://de.wikipedia.org/wiki/William_Neile}
+\newMathematician{Nemyzki}{https://de.wikipedia.org/wiki/Wiktor_Wladimirowitsch_Nemyzki}
+\newMathematician{Newton}{https://en.wikipedia.org/wiki/Isaac_Newton}
+\newMathematician{Noether}{https://en.wikipedia.org/wiki/Emmy_Noether}
+\newMathematician{Peano}{https://en.wikipedia.org/wiki/Giuseppe_Peano}
+\newMathematician{Picard}{https://de.wikipedia.org/wiki/\%C3\%89mile_Picard}
+\newMathematician{Plancherel}{https://en.wikipedia.org/wiki/Michel_Plancherel}
+\newMathematician[Poincare]{Poincaré}{https://en.wikipedia.org/wiki/Henri_Poincar\%C3\%A9}
+\newMathematician{Rabinowitsch}{https://en.wikipedia.org/wiki/George_Yuri_Rainich}
+\newMathematician{Radon}{https://en.wikipedia.org/wiki/Johann_Radon}
+\newMathematician{Rainich}{https://en.wikipedia.org/wiki/George_Yuri_Rainich}
+\newMathematician{Riccati}{https://en.wikipedia.org/wiki/Jacopo_Riccati}
+\newMathematician{Riemann}{https://en.wikipedia.org/wiki/Bernhard_Riemann}
+\newMathematician[FRiesz]{Riesz}{https://en.wikipedia.org/wiki/Frigyes_Riesz}
+\newMathematician[MRiesz]{Riesz}{https://en.wikipedia.org/wiki/Marcel_Riesz}
+\newMathematician{Rinow}{https://en.wikipedia.org/wiki/Willi_Rinow}
+\newMathematician{Ruffini}{https://en.wikipedia.org/wiki/Paolo_Ruffini}
+\newMathematician{Russel}{https://en.wikipedia.org/wiki/Bertrand_Russell}
+\newMathematician[Schroder]{Schröder}{https://en.wikipedia.org/wiki/Ernst_Schr\%C3\%B6der_(mathematician)}
+\newMathematician{Schur}{https://en.wikipedia.org/wiki/Issai_Schur}
+\newMathematician{Schwarz}{https://en.wikipedia.org/wiki/Hermann_Schwarz}
+\newMathematician{Schmidt}{https://en.wikipedia.org/wiki/Erhard_Schmidt}
+\newMathematician{Shannon}{https://en.wikipedia.org/wiki/Claude_Shannon}
+\newMathematician{Shimura}{https://en.wikipedia.org/wiki/Goro_Shimura}
+\newMathematician{Solovay}{https://en.wikipedia.org/wiki/Robert_M._Solovay}
+\newMathematician{Stokes}{https://en.wikipedia.org/wiki/Sir_George_Stokes,_1st_Baronet}
+\newMathematician{Stone}{https://en.wikipedia.org/wiki/Marshall_H._Stone}
+\newMathematician{Takagi}{https://en.wikipedia.org/wiki/Teiji_Takagi}
+\newMathematician{Taniyama}{https://en.wikipedia.org/wiki/Yutaka_Taniyama}
+\newMathematician{Tarski}{https://en.wikipedia.org/wiki/Alfred_Tarski}
+\newMathematician{Tartaglia}{https://en.wikipedia.org/wiki/Niccol\%C3\%B2_Fontana_Tartaglia}
+\newMathematician{Turing}{https://en.wikipedia.org/wiki/Alan_Turing}
+\newMathematician{Tychonoff}{https://en.wikipedia.org/wiki/Andrey_Tikhonov_(mathematician)}
+\newMathematician[Vazsonyi]{Vázsonyi}{https://en.wikipedia.org/wiki/Andrew_V\%C3\%A1zsonyi}
+\newMathematician[Viete]{Viète}{https://en.wikipedia.org/wiki/Fran\%C3\%A7ois_Vi\%C3\%A8te}
+\newMathematician{Vitali}{https://de.wikipedia.org/wiki/Giuseppe_Vitali}
+\newMathematician{Volterra}{https://de.wikipedia.org/wiki/Vito_Volterra}
+\newMathematician[Weierstrass]{Weierstraß}{https://en.wikipedia.org/wiki/Karl_Weierstrass}
+\newMathematician{Wiener}{https://en.wikipedia.org/wiki/Norbert_Wiener}
+\newMathematician{Wiles}{https://en.wikipedia.org/wiki/Andrew_Wiles}
+\newMathematician{Wirtinger}{https://en.wikipedia.org/wiki/Wilhelm_Wirtinger}
+\newMathematician{Zariski}{https://en.wikipedia.org/wiki/Oscar_Zariski}
+\newMathematician{Zermelo}{https://en.wikipedia.org/wiki/Ernst_Zermelo}
+\newMathematician{Zorn}{https://en.wikipedia.org/wiki/Max_August_Zorn}
