@@ -1,0 +1,240 @@
+%----------------------------------------------------------------------------------------------------------------------
+% @package: prettytex/gfx
+%
+% @version: 1.0.0 @ refactor
+% @author : lphilmossb
+%
+% @description: 
+% 
+% 
+%
+% @disclaimer:
+%
+%----------------------------------------------------------------------------------------------------------------------
+\ProvidesPackage{prettytex/gfx}
+\RequirePackage{prettytex/base}
+\RequirePackage{xparse}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Package loading
+%
+% @ packages:
+%
+% | package    | description 
+% |------------|
+% | pgfplots   | 
+%
+%----------------------------------------------------------------------------------------------------------------------
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Library loading
+%
+% @ pgfplots-libraries:
+%
+% | library     | description 
+% |-------------|---------------------
+% | patchplots  |
+% | fillbetween |
+% | groupplots  |
+% | units       |
+%
+% @ tikz-libraries:
+%
+% | library                  | description 
+% |--------------------------|--------------
+% | calc                     |
+% | arrwos.meta              |
+% | patterns                 |
+% | patterns.meta            |
+% | shapes.misc              |
+% | matrix                   |
+% | decorations              |
+% | decorations.pathmorphing |
+% | decorations.markings     |
+% | external                 | allow for externalisation of figures (compile them separately and cache them)  |
+% | babel                    |
+% 
+%----------------------------------------------------------------------------------------------------------------------
+
+\usepgfplotslibrary{
+    patchplots,
+    fillbetween,
+    groupplots,
+    units
+}
+
+\usetikzlibrary{
+    calc,
+    arrows.meta,
+    patterns,
+    patterns.meta,
+    shapes.misc,
+    matrix,
+    decorations,
+    decorations.pathmorphing,
+    decorations.markings,
+    external,
+    babel
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% prettytex-macros
+%
+% | macro          | expands to |
+% |----------------|------------|
+% | FigureLocation | figures    |
+% | TikzExternal   | tikz       |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\prettytexGfxFigureLocation}{figures}
+\newcommand{\prettytexGfxTikzExternal}{tikz}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Package Options
+%
+% options:
+%
+% | option   | description                       | type    |
+% |----------|-----------------------------------|---------|
+% | external | enables externalisation from tikz | boolean |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\define@boolkey{prettytex}{external}[false]{}
+
+% processing and handling
+\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/gfx}{Unknown option: `\CurrentOption`. I will ignore it!}}
+\ProcessOptionsX<prettytex>\relax
+
+\ifKV@prettytex@external
+    \tikzexternalize[prefix=\prettytexGfxTikzExternal/]
+\fi
+
+%----------------------------------------------------------------------------------------------------------------------
+% Macros
+%
+% | macro     | arguments   | description                                                                       |
+% |-----------|-------------|-----------------------------------------------------------------------------------|
+% | inputtikz | figure name | inputs the figure FigureLocation/<figure name>.tex into the document and sets the |
+% |           |             | name of the externalised pdf output to <figure name>.                             |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\inputtikz}[1]{
+  \tikzsetnextfilename{#1}
+  \input{\prettytexGfxFigureLocation/#1.tex}
+}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% Pgfplots styles
+%
+% | style | description                                                                |
+% |-------|----------------------------------------------------------------------------|
+% | clean | use in axis environments, removes all axis stuff (axes, ticks, labels etc) |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\pgfplotsset{
+    clean/.style={axis line style={draw=none}, tick style={draw=none},xticklabels={},yticklabels={}}
+}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Tikz styles and macros
+%
+% | style      | description                   |
+% |------------|-------------------------------|
+% | bpoint     | blue point, blue filling      |
+% | bwpoint    | blue point, white filling     |
+% | rpoint     | red point, red filling        |
+% | gpoint     | green point, green filling    |
+% | opoint     | orange point, orange filling  |
+% | ppoint     | purple point, purple filling  |
+% | ypoint     | yellow ponit, yellow filling  |
+% | cpoint     | cyan point, cyan filling      |
+% | bapoint    | black point, black filling    |
+% | point      | alias to bpoint               |
+% | bluegdot   | blue graph dot                |
+% | redgdot    | red graph dot                 |
+% | greendot   | green graph dot               |
+% | graygdot   | gray graph dot                |
+% | purplegdot | purple graph dot              |
+% | orangegdot | orange graph dot              | 
+% | darrow     | double arrow                  |
+% | bcomp      | generic blue flow component   |
+% | rcomp      | generic red flow component    |
+% | gcomp      | generic green flow component  |
+% | ocomp      | generic orange flow component |
+% | pcomp      | generic purple flow component |
+% | bdot       | generic blue flow node        |
+% | rdot       | generic red flow node         |
+% | gdot       | generic green flow node       |
+% | odot       | generic orange flow node      |
+% | pdot       | generic purple flow node      |
+%
+% tikz-commands:
+%
+% | command   | arguments                            | description                                              |
+% |-----------|--------------------------------------|----------------------------------------------------------|
+% | centerarc | point, angle, angle, positive length | draws an arc with center at point with starting angle #2 | 
+% |           |                                      | and ending angle #3, radius is #4                        |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\tikzset{
+    bpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm},
+    bwpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=white,label distance=1mm},
+    rpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=red,fill=red!70,label distance=1mm},
+    gpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=green,fill=green!50,label distance=1mm},
+    opoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=orange,fill=orange!50,label distance=1mm},
+    ppoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=purple,fill=purple!50,label distance=1mm},
+    ypoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=yellow,fill=yellow!50,label distance=1mm},
+    cpoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=cyan,fill=cyan!50,label distance=1mm},
+    bapoint/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=black,fill=black!50,label distance=1mm},
+    point/.style = {circle,inner sep=0pt,minimum size=0.1cm,draw=blue,fill=blue!50,label distance=1mm}
+}
+
+% graph dots
+\tikzset{
+    bluegdot/.style = {circle,fill=blue!50,draw=blue,inner sep=0pt,minimum size=.2cm},
+    redgdot/.style = {circle,fill=red!70,draw=red,inner sep=0pt,minimum size=.2cm},
+    greengdot/.style = {circle,fill=green!50,draw=green,inner sep=0pt,minimum size=.2cm},
+    graygdot/.style = {circle,fill=gray!50,draw=gray!50!black,inner sep=0pt,minimum size=.2cm},
+    purplegdot/.style = {circle,fill=purple!50,draw=purple,inner sep=0pt,minimum size=.2cm},
+    orangegdot/.style = {circle,fill=orange!50,draw=orange,inner sep=0pt,minimum size=.2cm}
+}
+
+\tikzstyle{darrow} = [thick, decoration={markings,mark=at position%
+    1 with {\arrow[semithick]{open triangle 60}}},%
+    double distance=1.4pt, shorten >= 5.5pt,%
+    preaction = {decorate},%
+    postaction = {draw,line width=1.4pt, white,shorten >= 4.5pt}]
+
+\tikzset{bcomp/.style={draw,draw=blue,fill=blue!50,text=white}}
+\tikzset{rcomp/.style={draw,draw=red,fill=red!70,text=white}}
+\tikzset{gcomp/.style={draw,draw=green,fill=green!50,text=white}}
+\tikzset{ocomp/.style={draw,draw=orange,fill=orange!50,text=white}}
+\tikzset{pcomp/.style={draw,draw=purple,fill=purple!50,text=white}}
+
+\tikzset{bdot/.style={blue,circle,draw,minimum size=5pt,inner sep=0pt,fill=blue!70}}
+\tikzset{rdot/.style={red,circle,draw,minimum size=5pt,inner sep=0pt,fill=red!70}}
+\tikzset{gdot/.style={green,circle,draw,minimum size=5pt,inner sep=0pt,fill=green!70}}
+\tikzset{odot/.style={orange,circle,draw,minimum size=5pt, inner sep=0pt,fill=orange!70}}
+\tikzset{pdot/.style={purple,circle,draw,minimum size=5pt, inner sep=0pt,fill=purple!70}}
+
+
+\def\centerarc[#1](#2)(#3:#4:#5)% Syntax: [draw options] (center) (initial angle:final angle:radius)
+{ \draw[#1] ($(#2)+({#5*cos(#3)},{#5*sin(#3)})$) arc (#3:#4:#5); }
+
+% magic from Qrrbrbirlbel
+% answer this was taken from: https://tex.stackexchange.com/a/665688/203253
+\makeatletter
+\pgfkeys{
+  /utils/temp/.initial/.expand once=\tikzcd,
+  /utils/temp/.prefix=%
+    \ifx\path\tikz@command@path % we're inside a tikzpicture
+      \let\tikzpicture\scope
+      \let\endtikzpicture\endscope
+    \else % we're not inside a tikzpicture, disable externalizing
+      \tikzexternaldisable
+    \fi,
+  /utils/temp/.get=\tikzcd}
+\makeatother
