@@ -1,0 +1,179 @@
+%----------------------------------------------------------------------------------------------------------------------
+% @package: prettytex/scriptum
+%
+% @version: 1.0.0 @ refactor
+% @author : lphilmossb
+%
+% @description: 
+% 
+% 
+%
+% @disclaimer:
+%
+% @notes:
+%
+% This should probably be moved into a class instead of being a wrapper.
+%----------------------------------------------------------------------------------------------------------------------
+\ProvidesPackage{prettytex/scriptum}
+\RequirePackage{xkeyval}
+
+% macros for package options
+\newcommand{\prettytexLang}{}
+
+
+% key-value options
+\define@key{prettytex}{lang}[british]{\renewcommand{\prettytexLang}{#1}}
+
+% processing and handling
+\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/base}{Unknown option: `\CurrentOption`. I will ignore it!}}
+\ProcessOptionsX<prettytex>\relax
+
+%----------------------------------------------------------------------------------------------------------------------
+% package loading
+%----------------------------------------------------------------------------------------------------------------------
+\usepackage{imakeidx}
+\usepackage[lang=\scriptlang, colouredLinks]{prettytex/base}
+\usepackage{prettytex/math}
+\usepackage{prettytex/gfx}
+\usepackage[cref]{prettytex/boxes}
+\usepackage{prettytex/shortcuts}
+\usepackage{prettytex/mathematicians}
+\usepackage{cleveref}
+\usepackage[\scriptlang]{prettytex/theorems}
+\usepackage[type={CC}, modifier={by-nc-sa},version={4.0}]{doclicense}
+\usepackage[title]{appendix}
+\usepackage{tikz-cd}
+
+%----------------------------------------------------------------------------------------------------------------------
+% setup commands
+%----------------------------------------------------------------------------------------------------------------------
+\def\@lecturerSurname{Surname}
+\def\@lecturerName{Name}
+\def\@lecturerTitle{Title}
+\def\@institute{Institute}
+\def\@lecture{Lecture}
+\def\@lectureID{Lecture ID}
+\def\@term{Term}
+\def\@university{University}
+\def\@student{Student}
+
+\newcommand{\lecturerSurname}[1]{\def\@lecturerSurname{#1}}
+\newcommand{\lecturerName}[1]{\def\@lecturerName{#1}}
+\newcommand{\lecturerTitle}[1]{\def\@lecturerTitle{#1}}
+\newcommand{\institute}[1]{\def\@institute{#1}}
+\newcommand{\lecture}[1]{\def\@lecture{#1}}
+\newcommand{\lectureID}[1]{\def\@lectureID{#1}}
+\newcommand{\term}[1]{\def\@term{#1}}
+\newcommand{\university}[1]{\def\@university{#1}}
+\newcommand{\student}[1]{\def\@student{#1}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% page layout
+%----------------------------------------------------------------------------------------------------------------------
+\setlist[itemize]{noitemsep}
+\setlist[enumerate]{noitemsep,label=(\roman*)}
+\makeindex[intoc]
+
+\fancyhf{}
+\fancyhead[C]{\leftmark}
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{\rightmark}
+
+\pagestyle{fancy}
+\numberwithin{equation}{section}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Opening remarks and such
+%----------------------------------------------------------------------------------------------------------------------
+\DeclareTranslation{English}{readby}{read by}
+\DeclareTranslation{German}{readby}{gelesen von}
+
+\DeclareTranslation{English}{atthe}{at the}
+\DeclareTranslation{German}{atthe}{am}
+
+\DeclareTranslation{English}{basednotes}{based on notes from and written by}
+\DeclareTranslation{German}{basednotes}{basierend auf Notizen und geschrieben von}
+
+\title{\Large\textbf{\@lecture} \\\small[\@lectureID]\\\vspace{0.5cm}\GetTranslation{readby}: \@lecturerTitle{} \@lecturerName{} \@lecturerSurname \\\GetTranslation{atthe} \@institute \\\@university }
+\author{\small \GetTranslation{basednotes}:\\\@student}
+\date{\@term}
+
+
+\def\@openingQuote{Opening quote}
+\def\@openingQuoteSource{Source}
+\newcommand{\openingQuote}[1]{\def\@openingQuote{#1}}
+\newcommand{\openingQuoteSource}[1]{\def\@openingQuoteSource{#1}}
+\newcommand{\makeOpeningQuote}{\begin{center}\@openingQuote\\\vspace{0.25cm}\slshape\small {\@openingQuoteSource}\end{center}}
+
+\def\@closingQuote{Closing quote}
+\def\@closginQuoteSource{Source}
+\newcommand{\closingQuote}[1]{\def\@closingQuote{#1}}
+\newcommand{\closingQuoteSource}[1]{\def\@closingQuoteSource{#1}}
+\newcommand{\makeClosingQuote}{%
+\newpage\thispagestyle{empty}\hspace{0pt}\vfill\begin{center}\@closingQuote \\\vspace{0.5cm}\small\@closingQuoteSource \end{center}\vfill}
+
+\DeclareTranslation{English}{shortoverviewthmhierarchy}{A short overview on the hierarchy of statements in these notes}
+\DeclareTranslation{German}{shortoverviewthmhierarchy}{Eine kurze Übersicht über die Hierarchie der Aussagen in diesem Skriptum}
+
+
+\def\@majorResultKey{}
+\def\@majorResultName{}
+\newcommand{\majorResultKey}[1]{\def\@majorResultKey{#1}}
+\newcommand{\majorResultName}[1]{\def\@majorResultName{#1}}
+
+\DeclareTranslation{English}{theoremhierarchy}{Theorem: A theorem is considered a major result, such as \hyperref[\@majorResultKey]{\@majorResultName}.}
+\DeclareTranslation{English}{propositionhierarchy}{Proposition: Propositions are „weaker“ than theorems in the sense, that they are for less important statements.}
+\DeclareTranslation{English}{lemmahierarchy}{Lemma: Lemmata are used as auxiliary results in order to simplify a long proof. Some statements may still be called Lemma based on historical developments.}
+\DeclareTranslation{English}{corollaryhierarchy}{Corollary: A corollary is a direct consequence of one of the above and only requires an application of the already proven statement(s).}
+
+\DeclareTranslation{German}{theoremhierarchy}{Satz: Unter einem Satz verstehen wir ein bedeutendes Ergebnis, wie etwa \hyperref[\@majorResultKey]{\@majorResultName}.}
+\DeclareTranslation{German}{propositionhierarchy}{Proposition: Propositionen sind „schwächer“ als Sätze in dem Sinn, da sie für weniger wichtige Ergebnisse stehen.}
+\DeclareTranslation{German}{lemmahierarchy}{Lemma: Lemmata sind Hilfsresultate, die zur Vereinfachung eines langen Beweises dienen. Einige Aussagen werden aus geschichtlichen Gründen immer noch Lemma genannt.}
+\DeclareTranslation{German}{corollaryhierarchy}{Korollar: Ein Korollar ist eine direkte Konsequenz aus einer der vorherigen Aussagen und benötigt nur eine Anwendung der zuvor beweisenen Aussage(n).}
+
+\newcommand{\makeHierarchy}{%
+\GetTranslation{shortoverviewthmhierarchy}:
+\begin{enumerate}
+    \item \GetTranslation{theoremhierarchy}
+    \item \GetTranslation{propositionhierarchy}
+    \item \GetTranslation{lemmahierarchy}
+    \item \GetTranslation{corollaryhierarchy}
+\end{enumerate}
+}
+
+\DeclareTranslation{English}{mastercourseremark}{As this is a course from the master's programme of mathematics in Graz, some proofs may be considered elementary and are thus omitted. This is indicated that the $\qedsymbol$ is already at the end of the statment.}
+\DeclareTranslation{German}{mastercourseremark}{Da es sich hierbei um eine Lehrveranstaltung aus dem Masterprogramm \textit{Mathematics} in Graz handelt, werden manche Beweise als elementar angesehen und daher ausgelassen. Das wird dadurch angezeigt, dass $\qedsymbol$ bereits am Ende der Aussage steht.}
+
+\newcommand{\makeMasterRemark}{\GetTranslation{mastercourseremark}}
+
+
+\DeclareTranslation{English}{correctnessremark}{While this text is basically a transcript of the lecture by professor \@lecturerSurname, I do not guarantee correctness of the presented results. As with any mathematical text, you should read with focus, and verify things by yourself.}
+\DeclareTranslation{German}{correctnessremark}{Dieses Skript ist mehr oder weniger ein Transkript der Vorlesung von Professor \@lecturerSurname, daher garantiere ich keine Korrektheit der präsentierten Ergebnisse. Wie bei jedem mathematischen Text sollten Sie aufmerksam lesen und Ergebnisse selbst nachweisen.}
+
+\newcommand{\makeCorrectnessRemark}{\GetTranslation{correctnessremark}}
+
+\DeclareTranslation{English}{correctnesserrors}{The mistakes, that are by no means present, are most likely of a very abstract nature, or stem from a lack of understanding on my side. If you happen to notice any errors, please contact me personally or via E-Mail:}
+\DeclareTranslation{German}{correctnesserrors}{Die Fehler, die zweifelsohne in diesem Text sind, sind vermutlich sehr abstrakter Natur, oder stammen von einem unvollständigen Verständnis meinerseits. Falls Sie Fehler finden, kontaktieren Sie mich bitte entweder persönlich oder per E-Mail:}
+
+\newcommand{\makeErrorsRemark}{\GetTranslation{correctnesserrors}}
+
+\DeclareTranslation{English}{license}{License}
+\DeclareTranslation{German}{license}{Lizenz}
+\newcommand{\makeLicense}{\subsection*{\GetTranslation{license}}\doclicenseThis}
+
+\newcommand{\makeFullBeginningRemarks}[1]{
+    \makeHierarchy{}
+
+    \makeMasterRemark{}
+
+    \makeCorrectnessRemark{}
+
+    \makeErrorsRemark{} \href{#1}{#1}
+
+    \makeLicense
+}
+
+\DeclareTranslation{English}{oneTimeOffering}{The lecture \emph{\@lecture} was offered by \@lecturerName \@lecturerSurname as an elective subject at the \@university. It is, at the time of writing, not offered as a recurring course.}
+\DeclareTranslation{German}{oneTimeOffering}{Die Lehrveranstaltung \emph{\@lecture} wurde von \@lecturerName \@lecturerSurname einmalig auf der \@university gehalten. Sie wird, zum Zeitpunkt des Schreibens, in keinem regelmäßigen Zyklus angeboten.}
+
+\newcommand{\makeOneTimeRemark}{\begin{displayquote}\GetTranslation{oneTimeOffering}\end{displayquote}}
