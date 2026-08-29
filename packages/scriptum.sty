@@ -21,11 +21,11 @@
 \newcommand{\prettytexScriptumLang}{}
 
 % key-value options
-\define@key{prettytex}{lang}[british]{\renewcommand{\prettytexScriptumLang}{#1}}
+\define@key{scriptum}{lang}[british]{\renewcommand{\prettytexScriptumLang}{#1}}
 
 % processing and handling
-\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/scriptum}{Unknown option: `\CurrentOption`. I will ignore it!}}
-\ProcessOptionsX<prettytex>\relax
+\DeclareOptionX<scriptum>*{\PackageWarning{prettytex/scriptum}{Unknown option: `\CurrentOption`. I will ignore it!}}
+\ProcessOptionsX<scriptum>\relax
 
 %----------------------------------------------------------------------------------------------------------------------
 % package loading
