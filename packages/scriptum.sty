@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/scriptum
 %
-% @version: 1.0.0 @ refactor
+% @version: 1.0.1 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -20,12 +20,11 @@
 % macros for package options
 \newcommand{\prettytexScriptumLang}{}
 
-
 % key-value options
 \define@key{prettytex}{lang}[british]{\renewcommand{\prettytexScriptumLang}{#1}}
 
 % processing and handling
-\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/base}{Unknown option: `\CurrentOption`. I will ignore it!}}
+\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/scriptum}{Unknown option: `\CurrentOption`. I will ignore it!}}
 \ProcessOptionsX<prettytex>\relax
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -35,11 +34,11 @@
 \usepackage[lang=\scriptlang, colouredLinks]{prettytex/base}
 \usepackage{prettytex/math}
 \usepackage{prettytex/gfx}
-\usepackage[cref]{prettytex/boxes}
+\usepackage{prettytex/boxes}
 \usepackage{prettytex/shortcuts}
 \usepackage{prettytex/mathematicians}
 \usepackage{cleveref}
-\usepackage[\scriptlang]{prettytex/theorems}
+\usepackage{prettytex/theorems}
 \usepackage[type={CC}, modifier={by-nc-sa},version={4.0}]{doclicense}
 \usepackage[title]{appendix}
 \usepackage{tikz-cd}
