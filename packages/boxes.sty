@@ -9,6 +9,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 \ProvidesPackage{prettytex/boxes}
 \RequirePackage{prettytex/base}
+\RequirePackage{cleveref}
 \RequirePackage{xparse}
 
 %----------------------------------------------------------------------------------------------------------------------
@@ -36,21 +37,11 @@
 \usepackage{thmtools}
 
 %----------------------------------------------------------------------------------------------------------------------
-% Package Options
-%
-% options:
-%
-% | option | description              | type    |
-% |--------|--------------------------|---------|
-% | cref   | enables cleveref support | boolean |
-% | sharp  | use non-rounded corners  | boolena |
-%
+% Settings
 %----------------------------------------------------------------------------------------------------------------------
-\define@boolkey{prettytex}{cref}[false]{}
-
-% processing and handling
-\DeclareOptionX<prettytex>*{\PackageWarning{prettytex/gfx}{Unknown option: `\CurrentOption`. I will ignore it!}}
-\ProcessOptionsX<prettytex>\relax
+% allow tikz-externalization
+\tcbsetforeverylayer{shield externalize}
+\tcbuselibrary{skins}
 
 %----------------------------------------------------------------------------------------------------------------------
 % Environments
@@ -60,12 +51,12 @@
 % | leftbar     |
 %----------------------------------------------------------------------------------------------------------------------
 \renewenvironment{leftbar}[1][\hsize]{
-  \def\FrameCommand{
-    {\color{themecolor}\vrule width 3pt}%
-    \hspace{0pt}
-    \fboxsep=.8cm\colorbox{lightgreybg}%
-  }
-  \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
+    \def\FrameCommand{
+        {\color{themecolor}\vrule width 3pt}%
+        \hspace{0pt}
+        \fboxsep=.8cm\colorbox{lightgreybg}%
+    }
+    \MakeFramed{\hsize#1\advance\hsize-\width\FrameRestore}
 }{\endMakeFramed}
 
 
@@ -83,35 +74,27 @@
 %
 %----------------------------------------------------------------------------------------------------------------------
 \newcommand{\wrapthm}[2]{%
-  \tcolorboxenvironment{#1}{enhanced jigsaw,
-    enhanced jigsaw, colframe=#2!50,%
-    ,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
-    borderline={0.5mm}{0mm}{#2!50},%
-    colback=#2!5
-  }
+    \tcolorboxenvironment{#1}{enhanced jigsaw,
+        enhanced jigsaw, colframe=#2!50,%
+        ,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
+        borderline={0.5mm}{0mm}{#2!50},%
+        colback=#2!5
+    }
 }
 
 \newcommand{\miniwrap}[2]{%
-  \tcolorboxenvironment{#1}{enhanced jigsaw,
-    colframe=#2!50,%
-    ,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
-    borderline={0.5mm}{0mm}{#2!50},%
-    colback=white
-  }
+    \tcolorboxenvironment{#1}{enhanced jigsaw,
+        colframe=#2!50,%
+        ,fonttitle=\bfseries\itshape,colbacktitle=#2!20,%
+        borderline={0.5mm}{0mm}{#2!50},%
+        colback=white
+    }
 }
 
-\ifKV@prettytex@cref
-    \newcommand{\declareEnvList}[4]{%
-        \newlist{#1list}{enumerate}{1}
-        \setlist[#1list]{label=(\roman{#1listi}), ref=#2.(\roman{#1listi}), noitemsep}
-        \Crefname{list#1}{#3}{#3}
-        \crefname{list#1}{#4}{#4}
-        \addtotheorempostheadhook[#1]{\crefalias{#1listi}{list#1}}
-    }
-\else
-    \newcommand{\declareEnvList}[2]{%
-        \newlist{#1list}{enumerate}{1}
-        \setlist[#1list]{label=(\roman{#1listi}), ref=#2.(\roman{#1listi}), noitemsep}
-        \addtotheorempostheadhook[#1]{\crefalias{#1listi}{list#1}}
-    }
-\fi
+\newcommand{\envList}[3]{
+    \newlist{#1list}{enumerate}{1}
+    \setlist[#1list]{label=(\roman{#1listi}), ref=#2.(\roman{#1listi})}
+    \Crefname{list#1}{#3}{#3s}
+    \crefname{list#1}{\MakeLowercase{#3}}{\MakeLowercase{#3}s}
+    \addtotheorempostheadhook[#1]{\crefalias{#1listi}{list#1}}
+}
