@@ -1,0 +1,128 @@
+%----------------------------------------------------------------------------------------------------------------------
+% @package: prettytex/theorems
+%
+% @version: 1.0.0 @ refactor
+% @author : lphilmossb
+%
+% @description: 
+% 
+% 
+%
+% @disclaimer:
+%
+%----------------------------------------------------------------------------------------------------------------------
+\ProvidesPackage{prettytex/theorems}
+\RequirePackage{prettytex/base}
+\RequirePackage{prettytex/boxes}
+
+% MikTeX is annoying, for some reason this is required on Windows
+% thanks, Microslop
+\makeatletter
+\renewcommand\thmt@autorefsetup{%
+\@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
+}
+\makeatletter
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% Translations
+%
+% available languages:
+% - English
+% - German
+%
+%----------------------------------------------------------------------------------------------------------------------
+\DeclareTranslation{English}{Theorem}{Theorem}
+\DeclareTranslation{English}{Lemma}{Lemma}
+\DeclareTranslation{English}{Proposition}{Proposition}
+\DeclareTranslation{English}{Corollary}{Corollary}
+\DeclareTranslation{English}{Definition}{Definition}
+\DeclareTranslation{English}{Remark}{Remark}
+\DeclareTranslation{English}{Remarks}{Remarks}
+\DeclareTranslation{English}{Example}{Example}
+\DeclareTranslation{English}{Examples}{Examples}
+\DeclareTranslation{English}{Axiom}{Axiom}
+\DeclareTranslation{English}{Axioms}{Axioms}
+\DeclareTranslation{English}{Principle}{Principle}
+\DeclareTranslation{English}{Principles}{Principles}
+
+\DeclareTranslation{German}{Theorem}{Satz}
+\DeclareTranslation{German}{Lemma}{Lemma}
+\DeclareTranslation{German}{Proposition}{Proposition}
+\DeclareTranslation{German}{Corollary}{Korollar}
+\DeclareTranslation{German}{Definition}{Definition}
+\DeclareTranslation{German}{Remark}{Bemerkung}
+\DeclareTranslation{German}{Remarks}{Bemerkungen}
+\DeclareTranslation{German}{Example}{Beispiel}
+\DeclareTranslation{German}{Examples}{Beispiele}
+\DeclareTranslation{German}{Axiom}{Axiom}
+\DeclareTranslation{German}{Axioms}{Axiome}
+\DeclareTranslation{German}{Principle}{Prinzip}
+\DeclareTranslation{German}{Principles}{Prinzipien}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Colours
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\theoremcolour}{themecolor3}
+\newcommand{\definitioncolour}{themecolor2}
+\newcommand{\lemmacolour}{pastelpurple}
+\newcommand{\corollarycolour}{pastelpink}
+\newcommand{\axiomcolour}{themecolor4}
+\newcommand{\principlecolour}{darkred}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Environment definitions
+%----------------------------------------------------------------------------------------------------------------------
+\newtheorem{theorem}{\protect\GetTranslation{Theorem}}[section]
+\newtheorem{corollary}[theorem]{\protect\GetTranslation{Corollary}}
+\newtheorem{lemma}[theorem]{\protect\GetTranslation{Lemma}}
+\newtheorem{proposition}[theorem]{\protect\GetTranslation{Proposition}}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{\protect\GetTranslation{Definition}}
+\newtheorem{axiom}[theorem]{\protect\GetTranslation{Axiom}}
+\newtheorem{axioms}[theorem]{\protect\GetTranslation{Axioms}}
+\newtheorem{principle}[theorem]{\protect\GetTranslation{Principle}}
+\newtheorem{principles}[theorem]{\protect\GetTranslation{Principles}}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{\protect\GetTranslation{Remark}}
+\newtheorem{remarks}[theorem]{\protect\GetTranslation{Remarks}}
+\newtheorem*{remark*}{\protect\GetTranslation{Remark}}
+\newtheorem{example}[theorem]{\protect\GetTranslation{Example}}
+\newtheorem{examples}[theorem]{\protect\GetTranslation{Examples}}
+\newtheorem*{example*}{\protect\GetTranslation{Example}}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% making things pretty
+%----------------------------------------------------------------------------------------------------------------------
+\miniwrap{definition}{\definitioncolour}
+\miniwrap{theorem}{\theoremcolour}
+\miniwrap{proposition}{\theoremcolour}
+\miniwrap{lemma}{\lemmacolour}
+\miniwrap{corollary}{\corollarycolour}
+\miniwrap{axiom}{\axiomcolour}
+\miniwrap{axioms}{\axiomcolour}
+\miniwrap{principle}{\principlecolour}
+\miniwrap{principles}{\principlecolour}
+
+
+%----------------------------------------------------------------------------------------------------------------------
+% defining environment lists
+%
+% environment lists allow you to reference the item like Proposition 2.4 (ii) instead of (ii).
+%----------------------------------------------------------------------------------------------------------------------
+\envList{theorem}{\thetheorem}{\GetTranslation{Theorem}}
+\envList{lemma}{\thelemma}{\GetTranslation{Lemma}}
+\envList{corollary}{\thecorollary}{\GetTranslation{Corollary}}
+\envList{proposition}{\theproposition}{\GetTranslation{Proposition}}
+\envList{definition}{\thedefinition}{\GetTranslation{Definition}}
+\envList{axiom}{\theaxiom}{\GetTranslation{Axiom}}
+\envList{axioms}{\theaxioms}{\GetTranslation{Axioms}}
+\envList{principle}{\theprinciple}{\GetTranslation{Principle}}
+\envList{principles}{\theprinciples}{\GetTranslation{Principles}}
+\envList{remark}{\theremark}{\GetTranslation{Remark}}
+\envList{remarks}{\theremarks}{\GetTranslation{Remarks}}
+\envList{example}{\theexample}{\GetTranslation{Example}}
+\envList{examples}{\theexamples}{\GetTranslation{Examples}}
