@@ -18,11 +18,11 @@
 \RequirePackage{xkeyval}
 
 % macros for package options
-\newcommand{\prettytexLang}{}
+\newcommand{\prettytexScriptumLang}{}
 
 
 % key-value options
-\define@key{prettytex}{lang}[british]{\renewcommand{\prettytexLang}{#1}}
+\define@key{prettytex}{lang}[british]{\renewcommand{\prettytexScriptumLang}{#1}}
 
 % processing and handling
 \DeclareOptionX<prettytex>*{\PackageWarning{prettytex/base}{Unknown option: `\CurrentOption`. I will ignore it!}}
