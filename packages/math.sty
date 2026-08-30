@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/math
 %
-% @version: 1.1.0 @ refactor
+% @version: 1.1.1 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -618,6 +618,8 @@
 % | LEFTMODR     |            | category of left modules of R                     |
 % | FINLEFTMOD   | expression | category of finitely generated left modules       |
 % | FINLEFTMODR  |            | category of finitely generated left modules of R  |
+% | MOD          | expression | alias for LEFTMOD                                 |
+% | MODR         |            | alias for LEFTMODR                                |
 % | RIGHTMOD     | expression | category of right modules                         |
 % | RIGHTMODR    |            | category of right modules of R                    |
 % | FINRIGHTMOD  | expression | category of finitely generated right modules      |
@@ -647,6 +649,8 @@
 \newcommand{\CatD}{\CATD}
 \newcommand{\LEFTMOD}[1]{#1-\CATEGORY{Mod}}
 \newcommand{\LEFTMODR}{\LEFTMOD{R}}
+\newcommand{\MOD}[1]{\LEFTMOD{#1}}
+\newcommand{\MODR}{\LEFTMODR}
 \newcommand{\FINLEFTMOD}[1]{#1-\CATEGORY{mod}}
 \newcommand{\FINLEFTMODR}{\FINLEFTMOD{R}}
 \newcommand{\RIGHTMOD}[1]{\CATEGORY{Mod}-#1}
@@ -944,20 +948,20 @@
 % some fancy shenanigans
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{
-  \hskip -\arraycolsep
-  \let\@ifnextchar\new@ifnextchar
-  \array{#1}}
+    \hskip -\arraycolsep
+    \let\@ifnextchar\new@ifnextchar
+    \array{#1}}
 \makeatother
 
 \newcommand*{\longleadsto}[1]{
   \tikzexternaldisable
   \begin{tikzpicture}
     \draw [->, line join=round, decorate, decoration={
-          zigzag,
-          segment length=4,
-          amplitude=.9,
-          post=lineto,
-          post length=2pt}] (0,0) -- (#1,0);
+            zigzag,
+            segment length=4,
+            amplitude=.9,
+            post=lineto,
+            post length=2pt}] (0,0) -- (#1,0);
   \end{tikzpicture}
   \tikzexternalenable
 }
@@ -966,11 +970,11 @@
   \tikzexternaldisable%
   \begin{tikzpicture}%
     \draw [->, line join=round, decorate, decoration={%
-          zigzag,%
-          segment length=4,%
-          amplitude=.9,%
-          post=lineto,%
-          post length=2pt}] (0,0) -- (1.5cm,0)%
+            zigzag,%
+            segment length=4,%
+            amplitude=.9,%
+            post=lineto,%
+            post length=2pt}] (0,0) -- (1.5cm,0)%
     node[midway,above]{$\substack{#1}$};%
   \end{tikzpicture}%
   \tikzexternalenable%
