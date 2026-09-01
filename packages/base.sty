@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % Package: prettytex/base
 %
-% version: 1.0.1 @ refactor
+% version: 1.1.0 @ refactor
 % author : lphilmossb
 %
 % description: 
@@ -42,6 +42,7 @@
 %
 %----------------------------------------------------------------------------------------------------------------------
 \RequirePackage{xkeyval}
+\RequirePackage{xparse}
 
 % macros for package options
 \newcommand{\prettytexLang}{}
@@ -51,6 +52,7 @@
 \define@boolkey{prettytex}{colouredLinks}[true]{}
 \define@boolkey{prettytex}{parSkip}[false]{}
 \define@boolkey{prettytex}{beamer}[false]{}
+\define@boolkey{prettytex}{index}[false]{}
 
 % key-value options
 \define@key{prettytex}{lang}[british]{\renewcommand{\prettytexLang}{#1}}
@@ -88,6 +90,11 @@
 % TODO: look up what all these packages do and give a quick description
 %----------------------------------------------------------------------------------------------------------------------
 % basic document stuff
+
+\ifKV@prettytex@index
+    \usepackage{imakeidx}
+\fi
+
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
@@ -259,6 +266,10 @@
 \newcommand{\iobf}[1]{\overline{\ibf{#1}}}
 \newcommand{\what}[1]{\widehat{#1}}
 
+% indexing
+\ifKV@prettytex@index
+    \NewDocumentCommand{\eimph}{o m}{\IfNoValueTF{#1}{\emph{#2}\index{#2}}{\emph{#2}\index{#1}}}
+\fi
 
 % colouring
 \newcommand{\col}[2]{\textcolor{#1}{#2}}
