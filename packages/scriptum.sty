@@ -16,6 +16,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 \ProvidesPackage{prettytex/scriptum}
 \RequirePackage{xkeyval}
+\RequirePackage{xparse}
 
 % macros for package options
 \newcommand{\prettytexScriptumLang}{}
@@ -30,7 +31,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % package loading
 %----------------------------------------------------------------------------------------------------------------------
-\usepackage[lang=\prettytexScriptumLang, colouredLinks, parSkip, index]{prettytex/base}
+\usepackage[lang=\prettytexScriptumLang, colouredLinks, parSkip]{prettytex/base}
 \usepackage{prettytex/math}
 \usepackage{prettytex/gfx}
 \usepackage{prettytex/boxes}
@@ -41,6 +42,8 @@
 \usepackage[type={CC}, modifier={by-nc-sa},version={4.0}]{doclicense}
 \usepackage[title]{appendix}
 \usepackage{tikz-cd}
+
+
 
 %----------------------------------------------------------------------------------------------------------------------
 % setup commands
@@ -79,6 +82,8 @@
 
 \pagestyle{fancy}
 \numberwithin{equation}{section}
+
+\NewDocumentCommand{\eimph}{o m}{\IfNoValueTF{#1}{\emph{#2}\index{#2}}{\emph{#2}\index{#1}}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % Opening remarks and such
