@@ -618,6 +618,7 @@
 % | LEFTMODR     |            | category of left modules of R                     |
 % | FINLEFTMOD   | expression | category of finitely generated left modules       |
 % | FINLEFTMODR  |            | category of finitely generated left modules of R  |
+% | FINMODR      |            | alias for FINLEFTMODR                             |
 % | MOD          | expression | alias for LEFTMOD                                 |
 % | MODR         |            | alias for LEFTMODR                                |
 % | RIGHTMOD     | expression | category of right modules                         |
@@ -653,6 +654,7 @@
 \newcommand{\MODR}{\LEFTMODR}
 \newcommand{\FINLEFTMOD}[1]{#1-\CATEGORY{mod}}
 \newcommand{\FINLEFTMODR}{\FINLEFTMOD{R}}
+\newcommand{\FINMODR}{\FINLEFTMODR}
 \newcommand{\RIGHTMOD}[1]{\CATEGORY{Mod}-#1}
 \newcommand{\RIGHTMODR}{\RIGHTMOD{R}}
 \newcommand{\FINRIGHTMOD}[1]{\CATEGORY{mod}-#1}
