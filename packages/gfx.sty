@@ -227,6 +227,7 @@
 
 % magic from Qrrbrbirlbel
 % answer this was taken from: https://tex.stackexchange.com/a/665688/203253
+% disable externalisation for tikz-cd environments (since its somehow incompatible)
 \makeatletter
 \pgfkeys{
   /utils/temp/.initial/.expand once=\tikzcd,
