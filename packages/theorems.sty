@@ -6,9 +6,12 @@
 %
 % @description: 
 % 
-% 
-%
-% @disclaimer:
+% Provides a list of common math environments like theorems, definitions, lemmata etc, and a few not so common
+% ones like principle or axiom. Furthermore, some environments have a plural version, like examples when you
+% want to provide multiple examples in a single block. However, when you reference them via the examples list,
+% you still get the same behaviour as for the singular list, i.e. instead of Examples 3.(ii), the result is 
+% Example 3.(ii). Referencing multiple elements of an examples list then gives Examples 3.(ii) and 3.(iii), just
+% like the default behaviour of cleveref.
 %
 %----------------------------------------------------------------------------------------------------------------------
 \ProvidesPackage{prettytex/theorems}
@@ -17,12 +20,13 @@
 
 % MikTeX is annoying, for some reason this is required on Windows
 % thanks, Microslop
-\makeatletter
-\renewcommand\thmt@autorefsetup{%
-\@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
-}
-\makeatletter
-
+% \makeatletter
+% \renewcommand\thmt@autorefsetup{%
+% \@xa\def\csname\thmt@envname autorefname\@xa\endcsname\@xa{\thmt@thmname}%
+% }
+% \makeatletter
+% This messes with cleveref, however, this will be automatically fixed anyway, whenever MiKTex updates 
+% thmtools, since the upstream already contains the fix
 
 %----------------------------------------------------------------------------------------------------------------------
 % Translations
@@ -111,7 +115,37 @@
 %----------------------------------------------------------------------------------------------------------------------
 % defining environment lists
 %
-% environment lists allow you to reference the item like Proposition 2.4 (ii) instead of (ii).
+% environment lists allow you to reference the item like Proposition 2.4 (ii) instead of (ii). Use them as such:
+%
+% \begin{theorem}
+%
+% \begin{theoremlist}
+%   \item Something important \label{important_result}
+%   \item Something important 2 \label{important_result_2}
+% \end{theoremlist}
+%
+% \end{theorem}
+%
+% And to reference just use your preferred method, e.g. \Cref{important_result}.
+%
+% The following environment list are provided by prettytex:
+%
+% | environment name | Cref output (singular) | Cref output (plural) |
+% |------------------|------------------------|----------------------|
+% | theoremlist      | Theorem                | Theorems             |
+% | lemmalist        | Lemma                  | Lemmas               |
+% | corollarylist    | Corollary              | Corollarys           |
+% | propositionlist  | Proposition            | Propositions         |
+% | definitionlist   | Definition             | Definitions          |
+% | axiomlist        | Axiom                  | Axioms               |
+% | axiomslist       | Axiom                  | Axioms               |
+% | principlelist    | Principle              | Principles           |
+% | principleslist   | Principle              | Principles           |
+% | remarklist       | Remark                 | Remarks              |
+% | remarsklist      | Remark                 | Remarks              |
+% | examplelist      | Example                | Examples             |
+% | examplelist      | Example                | Examples             |
+%
 %----------------------------------------------------------------------------------------------------------------------
 \envList{theorem}{\thetheorem}{\GetTranslation{Theorem}}
 \envList{lemma}{\thelemma}{\GetTranslation{Lemma}}
