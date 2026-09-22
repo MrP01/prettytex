@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/theorems
 %
-% @version: 1.0.1 @ refactor
+% @version: 1.2.0 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -50,7 +50,21 @@
 \DeclareTranslation{English}{Principle}{Principle}
 \DeclareTranslation{English}{Principles}{Principles}
 
-\DeclareTranslation{German}{Theorem}{Satz}
+\DeclareTranslation{English}{PluralTheorem}{Theorems}
+\DeclareTranslation{English}{PluralLemma}{Lemmas}
+\DeclareTranslation{English}{PluralProposition}{Propositions}
+\DeclareTranslation{English}{PluralCorollary}{Corollaries}
+\DeclareTranslation{English}{PluralDefinition}{Definitions}
+\DeclareTranslation{English}{PluralRemark}{Remarks}
+\DeclareTranslation{English}{PluralRemarks}{Remarks}
+\DeclareTranslation{English}{PluralExample}{Examples}
+\DeclareTranslation{English}{PluralExamples}{Examples}
+\DeclareTranslation{English}{PluralAxiom}{Axioms}
+\DeclareTranslation{English}{PluralAxioms}{Axioms}
+\DeclareTranslation{English}{PluralPrinciple}{Principles}
+\DeclareTranslation{English}{PluralPrinciples}{Principles}
+
+\DeclareTranslation{German}{Satz}{Satz}
 \DeclareTranslation{German}{Lemma}{Lemma}
 \DeclareTranslation{German}{Proposition}{Proposition}
 \DeclareTranslation{German}{Corollary}{Korollar}
@@ -63,6 +77,20 @@
 \DeclareTranslation{German}{Axioms}{Axiome}
 \DeclareTranslation{German}{Principle}{Prinzip}
 \DeclareTranslation{German}{Principles}{Prinzipien}
+
+\DeclareTranslation{German}{PluralTheorem}{Sätze}
+\DeclareTranslation{German}{PluralLemma}{Lemmata}
+\DeclareTranslation{German}{PluralProposition}{Propositionen}
+\DeclareTranslation{German}{PluralCorollary}{Korollare}
+\DeclareTranslation{German}{PluralDefinition}{Definitionen}
+\DeclareTranslation{German}{PluralRemark}{Bemerkungen}
+\DeclareTranslation{German}{PluralRemarks}{Bemerkungen}
+\DeclareTranslation{German}{PluralExample}{Beispiele}
+\DeclareTranslation{German}{PluralExamples}{Beispiele}
+\DeclareTranslation{German}{PluralAxiom}{Axiome}
+\DeclareTranslation{German}{PluralAxioms}{Axiome}
+\DeclareTranslation{German}{PluralPrinciple}{Prinzipie}
+\DeclareTranslation{German}{PluralPrinciples}{Prinzipien}
 
 %----------------------------------------------------------------------------------------------------------------------
 % Colours
@@ -97,6 +125,33 @@
 \newtheorem{examples}[theorem]{\protect\GetTranslation{Examples}}
 \newtheorem*{example*}{\protect\GetTranslation{Example}}
 
+\Crefname{theorem}{\GetTranslation{Theorem}}{\GetTranslation{PluralTheorem}}
+\Crefname{corollary}{\GetTranslation{Corollary}}{\GetTranslation{PluralCorollary}}
+\Crefname{lemma}{\GetTranslation{Lemma}}{\GetTranslation{PluralLemma}}
+\Crefname{proposition}{\GetTranslation{Proposition}}{\GetTranslation{PluralProposition}}
+\Crefname{definition}{\GetTranslation{Definition}}{\GetTranslation{PluralDefinition}}
+\Crefname{axiom}{\GetTranslation{Axiom}}{\GetTranslation{PluralAxiom}}
+\Crefname{axioms}{\GetTranslation{Axioms}}{\GetTranslation{PluralAxioms}}
+\Crefname{principle}{\GetTranslation{Principle}}{\GetTranslation{PluralPrinciple}}
+\Crefname{principles}{\GetTranslation{Principles}}{\GetTranslation{PluralPrinciples}}
+\Crefname{remark}{\GetTranslation{Remark}}{\GetTranslation{PluralRemarks}}
+\Crefname{remarks}{\GetTranslation{Remarks}}{\GetTranslation{PluralRemarks}}
+\Crefname{example}{\GetTranslation{Example}}{\GetTranslation{PluralExample}}
+\Crefname{examples}{\GetTranslation{Examples}}{\GetTranslation{PluralExamples}}
+
+\crefname{theorem}{\GetTranslation{Theorem}}{\GetTranslation{PluralTheorem}}
+\crefname{corollary}{\GetTranslation{Corollary}}{\GetTranslation{PluralCorollary}}
+\crefname{lemma}{\GetTranslation{Lemma}}{\GetTranslation{PluralLemma}}
+\crefname{proposition}{\GetTranslation{Proposition}}{\GetTranslation{PluralProposition}}
+\crefname{definition}{\GetTranslation{Definition}}{\GetTranslation{PluralDefinition}}
+\crefname{axiom}{\GetTranslation{Axiom}}{\GetTranslation{PluralAxiom}}
+\crefname{axioms}{\GetTranslation{Axioms}}{\GetTranslation{PluralAxioms}}
+\crefname{principle}{\GetTranslation{Principle}}{\GetTranslation{PluralPrinciple}}
+\crefname{principles}{\GetTranslation{Principles}}{\GetTranslation{PluralPrinciples}}
+\crefname{remark}{\GetTranslation{Remark}}{\GetTranslation{PluralRemarks}}
+\crefname{remarks}{\GetTranslation{Remarks}}{\GetTranslation{PluralRemarks}}
+\crefname{example}{\GetTranslation{Example}}{\GetTranslation{PluralExample}}
+\crefname{examples}{\GetTranslation{Examples}}{\GetTranslation{PluralExamples}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % making things pretty
