@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/scriptum
 %
-% @version: 1.1.1 @ refactor
+% @version: 1.1.2 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -64,13 +64,9 @@
 \def\@titleGraphicScale{1}
 \def\@titleLogo{Path to Logo file}
 \def\@titleLogoScale{1}
-\def\@author{Author}
 
-\newif\ifgraphic
-\graphicfalse
-
-\newif\iflogo
-\logofalse
+\define@boolkey{scriptum}{graphic}[false]{}
+\define@boolkey{scriptum}{logo}[false]{}
 
 \newcommand{\lecturerSurname}[1]{\def\@lecturerSurname{#1}}
 \newcommand{\lecturerName}[1]{\def\@lecturerName{#1}}
@@ -86,9 +82,11 @@
 \newcommand{\titleGraphicScale}[1]{\def\@titleGraphicScale{#1}}
 \newcommand{\titleLogo}[1]{\def\@titleLogo{#1}}
 \newcommand{\titleLogoScale}[1]{\def\@titleLogoScale{#1}}
-\newcommand{\useTitleGraphic}{\graphictrue}
-\newcommand{\useTitleLogo}{\logotrue}
-\renewcommand{\author}{\def\@author{#1}}
+
+\newcommand{\useTitleGraphic}{\setkeys{scriptum}{graphic=true}}
+\newcommand{\useTitleLogo}{\setkeys{scriptum}{logo=true}}
+
+
 
 %----------------------------------------------------------------------------------------------------------------------
 % page layout
@@ -110,15 +108,15 @@
 \newcommand{\makeTitlepage}{%
     \clearpage\maketitle\thispagestyle{empty}
     \makeOpeningQuote
-    \ifgraphic
+    \ifKV@scriptum@graphic
         \begin{center}
-            \includegraphics[\@titleGraphicScale]{\@titleGraphic}
+            \includegraphics[scale=\@titleGraphicScale]{\@titleGraphic}
         \end{center}
-        \fi
-        \vfill
-        \iflogo
+    \fi
+    \vfill
+    \ifKV@scriptum@logo
         \begin{center}
-            \includegraphics[\@titleLogoScale]{\@titleLogo}
+            \includegraphics[scale=\@titleLogoScale]{\@titleLogo}
         \end{center}
     \fi
     \begin{center}
