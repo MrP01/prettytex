@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/scriptum
 %
-% @version: 1.1.0 @ refactor
+% @version: 1.1.1 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -63,6 +63,7 @@
 \def\@titleGraphicScale{1}
 \def\@titleLogo{Path to Logo file}
 \def\@titleLogoScale{1}
+\def\@author{Author}
 
 \newif\ifgraphic
 \graphicfalse
@@ -86,6 +87,7 @@
 \newcommand{\titleLogoScale}[1]{\def\@titleLogoScale{#1}}
 \newcommand{\useTitleGraphic}{\graphictrue}
 \newcommand{\useTitleLogo}{\logotrue}
+\renewcommand{\author}{\def\@author{#1}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % page layout
@@ -104,6 +106,10 @@
 
 \NewDocumentCommand{\eimph}{o m}{\IfNoValueTF{#1}{\emph{#2}\index{#2}}{\emph{#2}\index{#1}}}
 
+\hypersetup{
+    pdftitle = {\@lecture},
+    pdfauthor = {\@author}
+}
 
 \newcommand{\makeTitlepage}{%
     \clearpage\maketitle\thispagestyle{empty}
