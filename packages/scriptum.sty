@@ -107,11 +107,6 @@
 
 \NewDocumentCommand{\eimph}{o m}{\IfNoValueTF{#1}{\emph{#2}\index{#2}}{\emph{#2}\index{#1}}}
 
-\hypersetup{
-    pdftitle = {\@lecture},
-    pdfauthor = {\@author}
-}
-
 \newcommand{\makeTitlepage}{%
     \clearpage\maketitle\thispagestyle{empty}
     \makeOpeningQuote
