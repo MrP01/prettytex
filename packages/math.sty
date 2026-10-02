@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/math
 %
-% @version: 1.1.1 @ refactor
+% @version: 1.1.2 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -340,6 +340,32 @@
 \DeclareMathOperator{\borel}{\qopname \relax m {\upbeta}}
 \DeclareMathOperator{\me}{\qopname \relax m {\upmu}}
 \DeclareMathOperator{\vol}{\qopname \relax m{\prettytexMathVolume}}
+
+%----------------------------------------------------------------------------------------------------------------------
+% Statistics and probability theory
+%
+% prettytexMath:
+%
+% | macro      | expands to |
+% |------------|------------|
+% | Variance   | Var        |
+% | Covariance | Cov        |
+%
+% operators:
+%
+% | operator | description                         |
+% |----------|-------------------------------------|
+% | E        | expected value of a random variable |
+% | Var      | variance of a random variable       |
+% | Cov      | covariance of two random variables  |
+%
+%----------------------------------------------------------------------------------------------------------------------
+\newcommand{\prettytexMathVariance}{Var}
+\newcommand{\prettytexMathCovariance}{Cov}
+
+\DeclareMathOperator{\E}{\qopname \relax m {\mathbb{E}}}
+\DeclareMathOperator{\Var}{\qopname \relax m {\prettytexMathVariance}}
+\DeclareMathOperator{\Cov}{\qopname \relax m {\prettytexMathCovariance}}
 
 %----------------------------------------------------------------------------------------------------------------------
 % Derivatives
