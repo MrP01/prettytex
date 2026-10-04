@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/boxes
 %
-% @version: 1.1.0 @ refactor
+% @version: 1.1.1 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -94,9 +94,9 @@
 \newcommand{\envList}[3]{
     \newlist{#1list}{enumerate}{1}
     \setlist[#1list]{label=(\roman{#1listi}), ref=#2.(\roman{#1listi})}
-    \Crefname{list#1}{#3}{#3s}
-    \Crefname{#1listi}{#3}{#3s}
-    \crefname{list#1}{\MakeLowercase{#3}}{\MakeLowercase{#3}s}
-    \crefname{#1listi}{\MakeLowercase{#3}}{\MakeLowercase{#3}s}
+    \Crefname{list#1}{#3}{#3}
+    \Crefname{#1listi}{#3}{#3}
+    \crefname{list#1}{\MakeLowercase{#3}}{\MakeLowercase{#3}}
+    \crefname{#1listi}{\MakeLowercase{#3}}{\MakeLowercase{#3}}
     \addtotheorempostheadhook[#1]{\crefalias{#1listi}{list#1}}
 }
