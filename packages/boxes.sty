@@ -1,7 +1,7 @@
 %----------------------------------------------------------------------------------------------------------------------
 % @package: prettytex/boxes
 %
-% @version: 1.1.2 @ refactor
+% @version: 1.1.3 @ refactor
 % @author : lphilmossb
 %
 % @description: 
@@ -103,7 +103,7 @@
 
 \newcommand{\envListAlph}[3]{
     \newlist{#1list}{enumerate}{1}
-    \setlist[#1list]{label=(\alph{#1listi}), ref=#2.(\roman{#1listi})}
+    \setlist[#1list]{label=(\alph{#1listi}), ref=#2.(\alph{#1listi})}
     \Crefname{list#1}{#3}{#3}
     \Crefname{#1listi}{#3}{#3}
     \crefname{list#1}{\MakeLowercase{#3}}{\MakeLowercase{#3}}
